@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { useHeaderNavState } from "#layers/landing/modules/layout"
+import { useHeader } from "#layers/landing/modules/layout"
 
-const navState = useHeaderNavState()
+const { navMenu } = useHeader()
 const contentRef = ref<HTMLDivElement>()
 
 const start = (el: Element) => nextTick(() => (contentRef.value!.style.height = `${el.scrollHeight}px`))
@@ -10,11 +10,11 @@ const end = () => nextTick(() => (contentRef.value!.style.height = "0"))
 
 <template>
   <transition name="nav-menu" @after-leave="end" @enter="start">
-    <div v-if="navState?.dropdown?.length" class="nav-menu" ref="contentRef">
+    <div v-if="navMenu?.dropdown?.length" class="nav-menu" ref="contentRef">
       <div class="nav-menu__container">
         <transition name="nav-menu__list" mode="out-in" @enter="start">
-          <ul class="nav-menu__list" :key="navState.to">
-            <li v-for="({ to, label }, idx) in navState?.dropdown" :key="idx">
+          <ul class="nav-menu__list" :key="navMenu.to">
+            <li v-for="({ to, label }, idx) in navMenu?.dropdown" :key="idx">
               <nuxt-link-locale :to>{{ label }}</nuxt-link-locale>
             </li>
           </ul>
@@ -30,18 +30,20 @@ const end = () => nextTick(() => (contentRef.value!.style.height = "0"))
   @apply transition-all duration-150 ease-linear;
 
   &__container {
-    @apply w-full max-w-5xl 2xl:mx-auto;
+    @apply mx-auto w-full max-w-7xl 2xl:max-w-5xl;
   }
 
   &__list {
     @apply grid gap-6 px-4 py-6 md:grid-cols-3 2xl:px-7;
-  }
 
-  &__link {
-    @apply text-gray-600 transition-colors hover:text-gray-950;
+    li {
+      a {
+        @apply text-sm font-medium text-gray-600 transition-colors hover:text-black;
 
-    &--active {
-      @apply font-bold text-gray-950;
+        &.router-link-active {
+          @apply text-blue-bondi;
+        }
+      }
     }
   }
 }

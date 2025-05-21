@@ -1,8 +1,17 @@
 <script lang="ts" setup>
 import Logo from "#layers/landing/assets/svg/logo.svg"
-import { useHeaderNavMenu, MainHeaderNav, MainHeaderNavMenu } from "#layers/landing/modules/layout"
 
-const { hideNavMenu } = useHeaderNavMenu()
+import {
+  useHeader,
+  MainHeaderNav,
+  MainHeaderNavMenu,
+  MainHeaderLanguage,
+  MainHeaderMenu,
+  MainHeaderMenuToggle,
+  MainHeaderAlert
+} from "#layers/landing/modules/layout"
+
+const { hideNavMenu } = useHeader()
 </script>
 
 <template>
@@ -23,7 +32,29 @@ const { hideNavMenu } = useHeaderNavMenu()
           </div>
 
           <div class="main-header__right">
-            <span class="main-header__divider"></span>
+            <span class="main-header__divider" />
+
+            <ui-icon-button
+              rounded
+              variant="ghost"
+              color="secondary"
+              icon-class="text-xl"
+              icon-name="lucide:search"
+              :label="$t('labels.search')"
+            />
+
+            <main-header-language />
+
+            <ui-icon-button
+              rounded
+              variant="ghost"
+              color="secondary"
+              icon-class="text-xl"
+              icon-name="lucide:mail"
+              :label="$t('labels.contact')"
+            />
+
+            <main-header-menu-toggle />
           </div>
         </div>
 
@@ -31,8 +62,11 @@ const { hideNavMenu } = useHeaderNavMenu()
           <main-header-nav />
         </nav>
       </div>
+
+      <main-header-alert />
     </div>
 
+    <main-header-menu />
     <main-header-nav-menu />
   </header>
 </template>
@@ -49,7 +83,7 @@ const { hideNavMenu } = useHeaderNavMenu()
     @apply relative flex h-14 items-center justify-between gap-6;
 
     & > div {
-      @apply flex items-center gap-4;
+      @apply flex items-center;
     }
   }
 
@@ -66,7 +100,7 @@ const { hideNavMenu } = useHeaderNavMenu()
   }
 
   &__divider {
-    @apply hidden h-6 w-px bg-gray-300 2xl:block;
+    @apply mr-2 hidden h-6 w-px bg-gray-300 2xl:block;
   }
 
   &__nav {

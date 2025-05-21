@@ -29,7 +29,18 @@ export default defineNuxtConfig({
     }
   },
 
-  modules: ["@nuxt/fonts", "@nuxt/icon", "@nuxt/image", "@nuxt/eslint", "@nuxtjs/i18n", "@nuxtjs/tailwindcss", "@pinia/nuxt"],
+  css: ["floating-vue/dist/style.css"],
+
+  modules: [
+    "@nuxt/fonts",
+    "@nuxt/icon",
+    "@nuxt/image",
+    "@nuxt/eslint",
+    "@nuxtjs/i18n",
+    "@nuxtjs/tailwindcss",
+    "@pinia/nuxt",
+    "@vueuse/nuxt"
+  ],
 
   fonts: {
     families: [{ name: "Inter", provider: "google", weights: ["300", "400", "500", "600", "700", "800", "900"] }]

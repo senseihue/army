@@ -1,4 +1,3 @@
-import { useHeaderNavState } from "#layers/landing/modules/layout"
 import type { IHeaderNav } from "#layers/landing/modules/layout"
 
 export const useHeaderNav = () => {
@@ -43,13 +42,4 @@ export const useHeaderNav = () => {
   ])
 
   return { list }
-}
-
-export const useHeaderNavMenu = () => {
-  const navMenu = useHeaderNavState()
-
-  const showNavMenu = (nav: IHeaderNav) => (navMenu.value = nav)
-  const hideNavMenu = () => (navMenu.value = undefined)
-
-  return { navMenu, showNavMenu, hideNavMenu }
 }

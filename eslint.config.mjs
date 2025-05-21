@@ -9,8 +9,9 @@ export default withNuxt(prettier, {
     "vue/attributes-order": "off",
     "vue/require-default-prop": "off",
     "vue/no-multiple-template-root": "off",
-    "vue/component-name-in-template-casing": ["error", "kebab-case"],
     "unicorn/prevent-abbreviations": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "vue/component-name-in-template-casing": ["error", "kebab-case"],
     "unicorn/filename-case": ["error", { case: "kebabCase" }]
   }
 })

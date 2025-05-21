@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { useHeaderNav, useHeaderNavMenu } from "#layers/landing/modules/layout"
+import { useHeaderNav, useHeader } from "#layers/landing/modules/layout"
 
 const { list } = useHeaderNav()
-const { showNavMenu } = useHeaderNavMenu()
+const { showNavMenu } = useHeader()
 </script>
 
 <template>

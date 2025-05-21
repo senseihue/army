@@ -1,7 +1,15 @@
 import forms from "@tailwindcss/forms"
+import { cyan, amber, red, sky, gray, green } from "tailwindcss/colors"
+
 import type { Config } from "tailwindcss"
 
 export const colors = {
+  primary: cyan,
+  secondary: gray,
+  success: green,
+  warning: amber,
+  danger: red,
+  info: sky,
   blue: {
     ateneo: "#0A4D67",
     bondi: "#0099B5",
