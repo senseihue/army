@@ -1,5 +1,11 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { HomeAbout, HomeHero, HomeReport } from "#layers/landing/modules/home"
+</script>
 
 <template>
-  <div class="text-blue-midnight">Main page 1</div>
+  <div>
+    <home-hero />
+    <home-about />
+    <home-report />
+  </div>
 </template>

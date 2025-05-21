@@ -17,7 +17,7 @@ const { hideNavMenu } = useHeader()
 <template>
   <header class="main-header" @mouseleave="hideNavMenu">
     <div class="main-header__inner">
-      <div class="primary-container">
+      <div class="container-7xl">
         <div class="main-header__wrapper">
           <div class="main-header__left">
             <nuxt-link-locale to="/">
@@ -40,6 +40,7 @@ const { hideNavMenu } = useHeader()
               color="secondary"
               icon-class="text-xl"
               icon-name="lucide:search"
+              to="/search"
               :label="$t('labels.search')"
             />
 
@@ -51,7 +52,8 @@ const { hideNavMenu } = useHeader()
               color="secondary"
               icon-class="text-xl"
               icon-name="lucide:mail"
-              :label="$t('labels.contact')"
+              to="/contacts"
+              :label="$t('labels.contacts')"
             />
 
             <main-header-menu-toggle />
@@ -73,7 +75,7 @@ const { hideNavMenu } = useHeader()
 
 <style>
 .main-header {
-  @apply relative top-0 z-50 w-full;
+  @apply sticky top-0 z-50 w-full;
 
   &__inner {
     @apply relative z-50 w-full bg-white;
