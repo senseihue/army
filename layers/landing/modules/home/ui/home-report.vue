@@ -7,7 +7,7 @@ const { t } = useI18n({ useScope: "local" })
     <div class="container-7xl relative">
       <div class="p-section">
         <div class="grid grid-cols-1 gap-8 lg:grid-cols-2">
-          <div class="order-2 lg:order-1" data-aos="fade-right" data-aos-delay="50">
+          <div class="order-2 mb-12 lg:order-1" data-aos="fade-right" data-aos-delay="50">
             <p class="mb-8 whitespace-pre-line text-gray-700">{{ t("text") }}</p>
             <ui-button size="lg" color="success" rounded :label="t('view_report')" />
           </div>

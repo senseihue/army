@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { HomeAbout, HomeHero, HomeReport } from "#layers/landing/modules/home"
+import { HomeAbout, HomeHero, HomeReport, HomeStatistics } from "#layers/landing/modules/home"
 </script>
 
 <template>
@@ -7,5 +7,6 @@ import { HomeAbout, HomeHero, HomeReport } from "#layers/landing/modules/home"
     <home-hero />
     <home-about />
     <home-report />
+    <home-statistics />
   </div>
 </template>

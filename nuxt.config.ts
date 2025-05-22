@@ -29,7 +29,7 @@ export default defineNuxtConfig({
     }
   },
 
-  css: ["floating-vue/dist/style.css"],
+  css: ["floating-vue/dist/style.css", "vue3-carousel/carousel.css"],
 
   modules: [
     "@nuxt/fonts",
