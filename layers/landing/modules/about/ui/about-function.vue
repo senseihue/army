@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { CarouselConfig } from "vue3-carousel"
 import { Carousel, Slide, Navigation } from "vue3-carousel"
-import { HomeStatisticsSlide } from "#layers/landing/modules/home"
 
 const { t, tm, rt } = useI18n({ useScope: "local" })
 
@@ -50,7 +49,7 @@ const carouselConfig = computed<Partial<CarouselConfig>>(() => ({
         </carousel>
 
         <a
-          class="block px-16 italic text-white hover:underline"
+          class="block px-16 2xl:px-0 italic text-white hover:underline"
           target="_blank"
           href="https://lex.uz/docs/4438440"
           data-aos="fade-up"
@@ -65,7 +64,7 @@ const carouselConfig = computed<Partial<CarouselConfig>>(() => ({
 
 <style scoped>
 .carousel {
-  @apply mb-12 px-16;
+  @apply mb-12 2xl:-mx-16 px-16;
   --vc-nav-width: 36px;
   --vc-nav-height: 36px;
 }

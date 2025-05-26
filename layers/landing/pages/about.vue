@@ -1,5 +1,12 @@
 <script setup lang="ts">
-import { AboutFunction, AboutHero, AboutInfo } from "#layers/landing/modules/about"
+import {
+  AboutService,
+  AboutFunction,
+  AboutHero,
+  AboutInfo,
+  AboutAttachment,
+  AboutEntity
+} from "#layers/landing/modules/about"
 
 definePageMeta({ fixedHeader: true })
 </script>
@@ -9,5 +16,8 @@ definePageMeta({ fixedHeader: true })
     <about-hero />
     <about-info />
     <about-function />
+    <about-service />
+    <about-attachment />
+    <about-entity />
   </div>
 </template>

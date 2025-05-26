@@ -1,9 +1,11 @@
 import withNuxt from "./.nuxt/eslint.config.mjs"
 import unicorn from "eslint-plugin-unicorn"
+import boundaries from "eslint-plugin-boundaries"
+import pluginImport from "eslint-plugin-import"
 import prettier from "eslint-config-prettier"
 
 export default withNuxt(prettier, {
-  plugins: { unicorn },
+  plugins: { unicorn, boundaries, pluginImport },
   rules: {
     "import/order": "off",
     "vue/attributes-order": "off",
