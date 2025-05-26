@@ -30,5 +30,14 @@
       "blogs": "Blogs",
       "gallery": "Gallery"
     }
+  },
+  "labels": {
+    "office": "(Office)",
+    "search": "Search",
+    "language": "Language",
+    "contacts": "Contacts",
+    "privacy_policy": "Privacy policy",
+    "cookie_policy": "Cookie policy",
+    "sitemap": "Sitemap"
   }
 }

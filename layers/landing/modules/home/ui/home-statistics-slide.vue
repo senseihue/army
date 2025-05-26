@@ -11,7 +11,7 @@ defineProps<IProps>()
 </script>
 
 <template>
-  <div class="flex flex-col justify-center gap-4">
+  <div class="flex w-full flex-col justify-center gap-4">
     <home-statistics-progress :label :progress />
     <p v-if="description" class="text-body text-center">{{ description }}</p>
   </div>

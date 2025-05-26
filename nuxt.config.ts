@@ -39,7 +39,9 @@ export default defineNuxtConfig({
     "@nuxtjs/i18n",
     "@nuxtjs/tailwindcss",
     "@pinia/nuxt",
-    "@vueuse/nuxt"
+    "@vueuse/nuxt",
+    "nuxt-aos",
+    "nuxt-rellax"
   ],
 
   fonts: {
@@ -68,6 +70,8 @@ export default defineNuxtConfig({
       }
     ]
   },
+
+  aos: { once: true, disable: "mobile" },
 
   vite: {
     plugins: [svgLoader({ defaultImport: "component" })]

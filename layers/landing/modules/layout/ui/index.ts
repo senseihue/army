@@ -1,3 +1,4 @@
+export { default as MainFooter } from "./main-footer.vue"
 export { default as MainHeader } from "./main-header.vue"
 export { default as MainHeaderAlert } from "./main-header-alert.vue"
 export { default as MainHeaderNav } from "./main-header-nav.vue"

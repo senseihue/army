@@ -1,7 +1,13 @@
+<script setup lang="ts">
+import { AboutFunction, AboutHero, AboutInfo } from "#layers/landing/modules/about"
+
+definePageMeta({ fixedHeader: true })
+</script>
+
 <template>
-  <div></div>
+  <div>
+    <about-hero />
+    <about-info />
+    <about-function />
+  </div>
 </template>
-
-<script setup lang="ts"></script>
-
-<style scoped></style>

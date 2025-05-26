@@ -1,1 +1,43 @@
-{}
+{
+  "nav": {
+    "about": "IPA ga kirish",
+    "reason": {
+      "label": "Nega O‘zbekiston",
+      "economy": "Iqtisodiyot",
+      "talent": "Talant",
+      "resource": "Tabiiy resurslar",
+      "innovation": "Innovatsiya va raqamli texnologiyalar",
+      "culture": "Madaniyat",
+      "living": "O‘zbekistonda yashash",
+      "strategy": "2030 strategiyasi - Asosiy yo‘nalishlar",
+      "environment": "Qo‘llab-quvvatlovchi muhit"
+    },
+    "guide": {
+      "label": "Investitsiya qo‘llanmasi",
+      "explore": "Sektorlaringizni o‘rganing",
+      "partnership": "Davlat-xususiy sheriklik",
+      "privatization": "Xususiylashtirish",
+      "free_zones": "Erkin iqtisodiy zonalar",
+      "project": "Loyihalar",
+      "appeal": "Murojaat",
+      "event": "Tadbirlar"
+    },
+    "media": {
+      "label": "Yangiliklar va tahlillar",
+      "news": "Yangiliklar",
+      "publications": "Nashrlar",
+      "pr_materials": "PR materiallar",
+      "blogs": "Bloglar",
+      "gallery": "Galereya"
+    }
+  },
+  "labels": {
+    "office": "(Ofis)",
+    "search": "Qidiruv",
+    "language": "Til",
+    "contacts": "Kontaktlar",
+    "privacy_policy": "Xisoblash shartlari",
+    "cookie_policy": "Cookie shartlari",
+    "sitemap": "Sahifalar ro'yxati"
+  }
+}

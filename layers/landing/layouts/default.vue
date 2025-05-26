@@ -1,11 +1,15 @@
 <script setup lang="ts">
-import { MainHeader } from "#layers/landing/modules/layout"
+import { MainFooter, MainHeader } from "#layers/landing/modules/layout"
 </script>
 
 <template>
-  <div>
+  <div class="flex min-h-dvh flex-col">
     <main-header />
 
-    <slot />
+    <main class="grow">
+      <slot />
+    </main>
+
+    <main-footer />
   </div>
 </template>

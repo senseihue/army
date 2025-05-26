@@ -12,10 +12,12 @@ import {
 } from "#layers/landing/modules/layout"
 
 const { hideNavMenu } = useHeader()
+const route = useRoute()
+const position = computed(() => (route.meta.fixedHeader ? "fixed" : "sticky"))
 </script>
 
 <template>
-  <header class="main-header" @mouseleave="hideNavMenu">
+  <header class="main-header" :style="{ position }" @mouseleave="hideNavMenu">
     <div class="main-header__inner">
       <div class="container-7xl">
         <div class="main-header__wrapper">
@@ -75,7 +77,7 @@ const { hideNavMenu } = useHeader()
 
 <style>
 .main-header {
-  @apply sticky top-0 z-50 w-full;
+  @apply top-0 z-50 w-full;
 
   &__inner {
     @apply relative z-50 w-full bg-white;
