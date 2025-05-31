@@ -1,5 +1,5 @@
 .container-7xl {
-  @apply mx-auto max-w-7xl px-4;
+  @apply mx-auto w-full max-w-7xl px-4;
 }
 
 .p-section {
