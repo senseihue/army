@@ -32,7 +32,8 @@ export default defineNuxtConfig({
   css: ["floating-vue/dist/style.css", "vue3-carousel/carousel.css"],
 
   modules: [
-    "@nuxt/fonts",
+    // "@nuxt/fonts",
+    '@nuxtjs/google-fonts',
     "@nuxt/icon",
     "@nuxt/image",
     "@nuxt/eslint",
@@ -43,9 +44,13 @@ export default defineNuxtConfig({
     "nuxt-aos",
     "nuxt-rellax"
   ],
-
-  fonts: {
-    families: [{ name: "Inter", provider: "google", weights: ["300", "400", "500", "600", "700", "800", "900"] }]
+  // fonts: {
+  //   families: [{ name: "Inter", provider: "google", weights: ["300", "400", "500", "600", "700", "800", "900"] }]
+  // }
+  googleFonts: {
+    families: {
+      Inter: [300, 400, 500, 600, 700, 800, 900],
+    }
   },
 
   i18n: {
