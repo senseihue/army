@@ -7,62 +7,62 @@ const cards = computed(() => [
   {
     label: t("agriculture"),
     image: "https://dev-portal.miit.uz/uploads/guide/agriculture.png",
-    link: "/explore/agriculture"
+    link: "/guide/explore/agriculture"
   },
   {
     label: t("automotive"),
     image: "https://dev-portal.miit.uz/uploads/guide/auto.png",
-    link: "/explore/automotive"
+    link: "/guide/explore/automotive"
   },
   {
     label: t("chemicals"),
     image: "https://dev-portal.miit.uz/uploads/guide/chemicals.png",
-    link: "/explore/chemicals"
+    link: "/guide/explore/chemicals"
   },
   {
     label: t("construction"),
     image: "https://dev-portal.miit.uz/uploads/guide/construction.png",
-    link: "/explore/construction"
+    link: "/guide/explore/construction"
   },
   {
     label: t("education"),
     image: "https://dev-portal.miit.uz/uploads/guide/education.png",
-    link: "/explore/education"
+    link: "/guide/explore/education"
   },
   {
     label: t("energy"),
     image: "https://dev-portal.miit.uz/uploads/guide/energy.png",
-    link: "/explore/energy"
+    link: "/guide/explore/energy"
   },
   {
     label: t("finance"),
     image: "https://dev-portal.miit.uz/uploads/fin_serv.jpg",
-    link: "/explore/finance"
+    link: "/guide/explore/finance"
   },
   {
     label: t("metals"),
     image: "https://dev-portal.miit.uz/uploads/guide/metals.png",
-    link: "/explore/metals"
+    link: "/guide/explore/metals"
   },
   {
     label: t("pharma"),
     image: "https://dev-portal.miit.uz/uploads/guide/pharma.png",
-    link: "/explore/pharma"
+    link: "/guide/explore/pharma"
   },
   {
     label: t("textiles"),
     image: "https://dev-portal.miit.uz/uploads/guide/textiles.png",
-    link: "/explore/textiles"
+    link: "/guide/explore/textiles"
   },
   {
     label: t("technology"),
     image: "https://dev-portal.miit.uz/uploads/guide/technology.webp",
-    link: "/explore/technology"
+    link: "/guide/explore/technology"
   },
   {
     label: t("tourism"),
     image: "https://dev-portal.miit.uz/uploads/guide/tourism.png",
-    link: "/explore/tourism"
+    link: "/guide/explore/tourism"
   }
 ])
 </script>

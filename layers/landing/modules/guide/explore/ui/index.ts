@@ -1,3 +1,8 @@
 export { default as ExploreHero } from "./explore-hero.vue"
 export { default as ExploreGrid } from "./explore-grid.vue"
 export { default as ExploreCard } from "./explore-card.vue"
+export { default as ExploreSectorHero } from "./explore-sector-hero.vue"
+export { default as ExploreSectorSlide } from "./explore-sector-slide.vue"
+export { default as ExploreSectorSlider } from "./explore-sector-slider.vue"
+export { default as ExploreSectorContent } from "./explore-sector-content.vue"
+export { default as ExploreSectorFooter } from "./explore-sector-footer.vue"
