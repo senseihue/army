@@ -30,13 +30,13 @@ const active = computed(() => links.value.find((item) => item.link === route.pat
   <nav class="reason-nav ">
     <ul class="reason-nav__links">
       <li v-for="{ link, label } in links" :key="link">
-        <NuxtLink
+        <nuxt-link-locale
           :to="link"
-          active-class="bg-bondi"
+          active-class="bg-blue-bondi"
           class="  "
         >
           {{ t(label) }}
-        </NuxtLink>
+        </nuxt-link-locale>
       </li>
     </ul>
   </nav>
@@ -78,7 +78,7 @@ const active = computed(() => links.value.find((item) => item.link === route.pat
     @apply grid grid-cols-3 lg:grid-cols-4;
 
     a {
-      @apply block px-4 py-2 text-center font-semibold transition-colors duration-300 ease-in-out hover:bg-blue-bondi;
+      @apply block p-3 text-center font-semibold transition-colors duration-300 ease-in-out hover:bg-blue-bondi;
     }
   }
 }

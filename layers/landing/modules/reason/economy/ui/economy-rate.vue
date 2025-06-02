@@ -12,7 +12,7 @@
         <span class="text-white">{{ leftYear }}</span>
       </div>
 
-      <img alt="chart" src="/public/img/economy/chart.png" class="w-12" />
+      <img alt="chart" src="/public/img/reason/economy/chart.png" class="w-12" />
 
       <div class="flex flex-col items-center gap-0.5">
         <span class="inline-block text-xl font-semibold text-white md:text-3xl">{{ rightNumber }}</span>

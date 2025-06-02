@@ -30,6 +30,7 @@
     "nuxt": "^3.17.3",
     "nuxt-aos": "^1.2.5",
     "nuxt-rellax": "^0.0.17",
+    "nuxt-swiper": "^2.0.1",
     "pinia": "^3.0.2",
     "vue": "^3.5.14",
     "vue-router": "^4.5.1",

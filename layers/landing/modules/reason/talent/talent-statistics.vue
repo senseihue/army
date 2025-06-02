@@ -1,0 +1,110 @@
+<script setup lang="ts">
+import type { CarouselConfig } from "vue3-carousel"
+import { HomeStatisticsSlide } from "#layers/landing/modules/home"
+
+const { t, tm, rt } = useI18n({ useScope: "local" })
+
+</script>
+
+<template>
+  <section>
+    <div class="container-7xl" data-aos="fade-up" data-aos-delay="50">
+      <div class="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1  pb-12 pt-20 md:pb-20 md:pt-32">
+        <home-statistics-slide
+          v-for="(slide, idx) in tm('slides')"
+          :label="rt(slide.label)"
+          :progress="rt(slide.progress)"
+          :description="rt(slide.description)"
+        />
+      </div>
+    </div>
+  </section>
+</template>
+
+<style scoped>
+.carousel {
+  @apply mb-12 px-10;
+  --vc-nav-width: 36px;
+  --vc-nav-height: 36px;
+}
+</style>
+
+<i18n lang="json">
+{
+  "en": {
+    "heading": "Uzbekistan In Numbers",
+    "slides": [
+      {
+        "label": "70%",
+        "progress": 70,
+        "description": "Pre-school"
+      },
+      {
+        "label": "100",
+        "progress": 100,
+        "description": "School"
+      },
+      {
+        "label": "41%",
+        "progress": 41,
+        "description": "Higher"
+      },
+      {
+        "label": "6%",
+        "progress": 6,
+        "description": "GDP allocated to education"
+      }
+    ]
+  },
+  "ru": {
+    "heading": "Узбекистан в цифрах",
+    "slides": [
+      {
+        "label": "70%",
+        "progress": 70,
+        "description": "Дошкольное учреждение "
+      },
+      {
+        "label": "100",
+        "progress": 100,
+        "description": "Школа"
+      },
+      {
+        "label": "41%",
+        "progress": 41,
+        "description": "Выше"
+      },
+      {
+        "label": "6%",
+        "progress": 6,
+        "description": "ВВП, выделяемый на образование"
+      }
+    ]
+  },
+  "uz": {
+    "heading": "O‘zbekiston Raqamlarda",
+    "slides": [
+      {
+        "label": "70%",
+        "progress": 70,
+        "description": "Maktabgacha ta'lim"
+      },
+      {
+        "label": "100",
+        "progress": 100,
+        "description": "O'rta ta'lim"
+      },
+      {
+        "label": "41%",
+        "progress": 41,
+        "description": "Yuqori ta'lim"
+      },
+      {
+        "label": "6%",
+        "progress": 6,
+        "description": "Ta'limga ajratilgan YAIM"
+      }
+    ]
+  }
+}
+</i18n>

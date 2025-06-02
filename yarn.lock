@@ -1297,7 +1297,7 @@
     unimport "^5.0.1"
     untyped "^2.0.0"
 
-"@nuxt/kit@^3.10.3", "@nuxt/kit@^3.12.3", "@nuxt/kit@^3.14.1592", "@nuxt/kit@^3.15.0":
+"@nuxt/kit@^3.10.3", "@nuxt/kit@^3.12.3", "@nuxt/kit@^3.14.1592", "@nuxt/kit@^3.15.0", "@nuxt/kit@^3.17.2":
   version "3.17.4"
   resolved "https://registry.yarnpkg.com/@nuxt/kit/-/kit-3.17.4.tgz#602d2cf9a1ced93a29a47321c69946abfff51b58"
   integrity sha512-l+hY8sy2XFfg3PigZj+PTu6+KIJzmbACTRimn1ew/gtCz+F38f6KTF4sMRTN5CUxiB8TRENgEonASmkAWfpO9Q==
@@ -7111,6 +7111,14 @@ nuxt-rellax@^0.0.17:
     "@types/rellax" "^1.7.7"
     rellax "^1.12.1"
 
+nuxt-swiper@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/nuxt-swiper/-/nuxt-swiper-2.0.1.tgz#6e05bea474bab8d7e866eaf40554943ce3348177"
+  integrity sha512-mUAzuGqQHcsqJa1p5y/Hafvurn62o6njHq8DcwQErourkpJpv7z/SnnT0ezXMr7YvDPNg22ayEKGdHkGXXOxMQ==
+  dependencies:
+    "@nuxt/kit" "^3.17.2"
+    swiper "^11.2.6"
+
 nuxt@^3.17.3:
   version "3.17.3"
   resolved "https://registry.yarnpkg.com/nuxt/-/nuxt-3.17.3.tgz#e6f89c755d8205eecc954083917e29b28cd59cd0"
@@ -9025,6 +9033,11 @@ svgo@^3.0.2, svgo@^3.2.0, svgo@^3.3.2:
     css-what "^6.1.0"
     csso "^5.0.5"
     picocolors "^1.0.0"
+
+swiper@^11.2.6:
+  version "11.2.8"
+  resolved "https://registry.yarnpkg.com/swiper/-/swiper-11.2.8.tgz#2b5d7da3093454c0a7bf090f1714fb4332142702"
+  integrity sha512-S5FVf6zWynPWooi7pJ7lZhSUe2snTzqLuUzbd5h5PHUOhzgvW0bLKBd2wv0ixn6/5o9vwc/IkQT74CRcLJQzeg==
 
 synckit@^0.11.0:
   version "0.11.6"

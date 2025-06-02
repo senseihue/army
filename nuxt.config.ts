@@ -34,6 +34,7 @@ export default defineNuxtConfig({
   modules: [
     // "@nuxt/fonts",
     '@nuxtjs/google-fonts',
+    'nuxt-swiper',
     "@nuxt/icon",
     "@nuxt/image",
     "@nuxt/eslint",
@@ -57,6 +58,9 @@ export default defineNuxtConfig({
     lazy: true,
     strategy: "prefix",
     defaultLocale: "en",
+    compilation: {
+      strictMessage: false
+    },
     locales: [
       {
         code: "uz",
