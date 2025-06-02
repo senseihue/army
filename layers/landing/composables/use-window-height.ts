@@ -1,7 +1,11 @@
 export const useWindowHeight = (offset = 0) => {
   const minHeight = ref("100vh")
+  const minHeightPx = ref(0)
 
-  const setMinHeight = () => (minHeight.value = Math.min(window.innerHeight, window.screen.height) - offset + "px")
+  const setMinHeight = () => {
+    minHeightPx.value = Math.min(window.innerHeight, window.screen.height) - offset
+    minHeight.value = minHeightPx.value + "px"
+  }
 
   onBeforeMount(() => {
     setMinHeight()
@@ -10,5 +14,5 @@ export const useWindowHeight = (offset = 0) => {
 
   onBeforeUnmount(() => window.removeEventListener("resize", setMinHeight))
 
-  return { minHeight }
+  return { minHeight, minHeightPx }
 }
