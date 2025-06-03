@@ -1,6 +1,10 @@
 {
   "nav": {
-    "about": "Introduction to IPA",
+    "about": {
+      "label": "About agency",
+      "about_us": "About us",
+      "event": "Events"
+    },
     "reason": {
       "label": "Why Uzbekistan",
       "economy": "Economy",
@@ -13,17 +17,20 @@
       "environment": "Supportive environment"
     },
     "guide": {
-      "label": "Investment guide",
+      "label": "For investor",
       "explore": "Explore your sector",
       "partnership": "Public-private partnership",
       "privatization": "Privatization",
       "free_zones": "Free economic zones",
       "project": "Projects",
-      "appeal": "Appeal",
-      "event": "Events"
+      "appeal": "Appeal"
+    },
+    "advert": {
+      "label": "Find an investor",
+      "registration": "Business registration"
     },
     "media": {
-      "label": "News and insights",
+      "label": "News",
       "news": "News",
       "publications": "Publications",
       "pr_materials": "PR materials",
