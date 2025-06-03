@@ -4,6 +4,11 @@ export default defineNuxtConfig({
 
   css: ["#layers/landing/assets/css/index.css"],
 
+  app: {
+    pageTransition: { name: "fade", mode: "out-in" },
+    layoutTransition: { name: "fade", mode: "out-in" }
+  },
+
   components: [
     {
       path: "./components",
@@ -12,6 +17,6 @@ export default defineNuxtConfig({
   ],
 
   dir: {
-    modules: "./nuxt/modules",
-  },
+    modules: "./nuxt/modules"
+  }
 })

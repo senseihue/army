@@ -8,7 +8,9 @@ import {
   AboutEntity
 } from "#layers/landing/modules/about"
 
+const { t } = useI18n()
 definePageMeta({ fixedHeader: true })
+useHead({ title: t("nav.about.about_us") })
 </script>
 
 <template>
