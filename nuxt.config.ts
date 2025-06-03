@@ -58,8 +58,10 @@ export default defineNuxtConfig({
     lazy: true,
     strategy: "prefix",
     defaultLocale: "en",
+
     compilation: {
-      strictMessage: false
+      strictMessage: false,
+      escapeHtml: false
     },
     locales: [
       {

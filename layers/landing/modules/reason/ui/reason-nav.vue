@@ -13,13 +13,13 @@ const links = ref<ILink[]>([
   { label: 'economy', link: `/${parentRoutePath}/economy` },
   { label: 'talent', link: `/${parentRoutePath}/talent` },
   // { label: 'geography', link: `/${parentRoutePath}/geography` },
-  { label: 'natural-resources', link: `/${parentRoutePath}/natural-resources` },
-  { label: 'innovation-and-digital', link: `/${parentRoutePath}/innovation-and-digital` },
+  { label: 'natural-resources', link: `/${parentRoutePath}/resource` },
+  { label: 'innovation-and-digital', link: `/${parentRoutePath}/innovation` },
   { label: 'culture', link: `/${parentRoutePath}/culture` },
-  { label: 'living-in-uzbekistan', link: `/${parentRoutePath}/living-in-uzbekistan` },
-  { label: '2030-strategy-highlights', link: `/${parentRoutePath}/2030-strategy-highlights` },
+  { label: 'living-in-uzbekistan', link: `/${parentRoutePath}/living` },
+  { label: '2030-strategy-highlights', link: `/${parentRoutePath}/strategy` },
   // { label: 'doing-business-in-uzbekistan', link: `/${parentRoutePath}/doing-business-in-uzbekistan` },
-  { label: 'supportive-environment', link: `/${parentRoutePath}/supportive-environment` },
+  { label: 'supportive-environment', link: `/${parentRoutePath}/environment` },
 ])
 const { t } = useI18n({ useScope: "local" })
 const route = useRoute()
@@ -112,8 +112,8 @@ const active = computed(() => links.value.find((item) => item.link === route.pat
     "supportive-environment": "Поддерживающая среда"
   },
   "uz": {
-    "Economy": "Iqtisodiyot",
-    "Talent": "Iqtidor",
+    "economy": "Iqtisodiyot",
+    "talent": "Iqtidor",
     "natural-resources": "Tabiiy resurslar",
     "innovation-and-digital": "Innovatsiyalar va raqamli texnologiyalar",
     "culture": "Madaniyat",

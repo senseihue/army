@@ -1,13 +1,8 @@
 <script setup lang="ts">
-import TalentStatistics from "#layers/landing/modules/reason/talent/talent-statistics.vue"
+import { StatisticCard, ReasonNav, SectionGrid } from "#layers/landing/modules/reason/ui"
+import { TalentUniversities, TalentStatistics } from "#layers/landing/modules/reason/talent/ui"
 
-definePageMeta({ fixedHeader: true })
-
-import { ReasonNav } from "#layers/landing/modules/reason/ui"
-import SectionGrid from "#layers/landing/modules/reason/ui/section-grid.vue"
-
-import StatisticCard from "#layers/landing/modules/reason/ui/statistic-card.vue"
-import TalentUniversities from "#layers/landing/modules/reason/talent/talent-universities.vue"
+definePageMeta({ fixedHeader: false })
 
 const { t } = useI18n({ useScope: "local" })
 
@@ -19,7 +14,7 @@ const statisticData = ref([
 </script>
 
 <template>
-  <div>
+  <div class="talent-page">
     <reason-nav></reason-nav>
     <section-grid>
       <template #left>
@@ -108,8 +103,8 @@ const statisticData = ref([
       },
       "stats": {
         "title": "",
-        "description": "Более того, почти 6,5 миллиона учащихся, которые сейчас посещают средние школы Узбекистана, получают выгоду от все более сложного STEM-образования, а миллион получает дальнейшее обучение в одном из 209 высших учебных заведений страны, готовя следующее поколение нации к критической роли в глобаль��ой экономике завтрашнего дня.",
-        "sub-description": "От науки и математики д�� искусства, литературы и музыки узбеки унаследовали наследие великих достижений, и мы стремимся обогатить XXI век так же, как мы обогатили многие другие периоды истории."
+        "description": "Более того, почти 6,5 миллиона учащихся, которые сейчас посещают средние школы Узбекистана, получают выгоду от все более сложного STEM-образования, а миллион получает дальнейшее обучение в одном из 209 высших учебных заведений страны, готовя следующее поколение нации к критической роли в глобальной экономике завтрашнего дня.",
+        "sub-description": "От науки и математики до искусства, литературы и музыки узбеки унаследовали наследие великих достижений, и мы стремимся обогатить XXI век так же, как мы обогатили многие другие периоды истории."
       }
     },
     "statistics": {
@@ -141,6 +136,9 @@ const statisticData = ref([
 </i18n>
 
 <style>
+.talent-page {
+  overflow: clip;
+}
 .section-card__image {
   width: 100%;
   aspect-ratio: auto;

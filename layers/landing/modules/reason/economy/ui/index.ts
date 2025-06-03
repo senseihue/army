@@ -1,1 +1,6 @@
 export { default as EconomyHero } from "./economy-hero.vue"
+export { default as EconomyChart } from "./economy-chart.vue"
+export { default as EconomyContactUs } from "./economy-contact-us.vue"
+export { default as EconomyFdi } from "./economy-fdi.vue"
+export { default as EconomyFtt } from "./economy-ftt.vue"
+export { default as EconomyRate } from "./economy-rate.vue"

@@ -13,7 +13,7 @@ import {
 
 const { hideNavMenu } = useHeader()
 const route = useRoute()
-const position = computed(() => (route.meta.fixedHeader ? "fixed" : "sticky"))
+const position = computed(() => (route.meta?.fixedHeader ? "fixed" : "sticky"))
 </script>
 
 <template>
