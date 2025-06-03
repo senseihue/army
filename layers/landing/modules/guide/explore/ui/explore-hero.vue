@@ -1,7 +1,6 @@
 <script setup lang="ts">
 const { minHeight, minHeightPx } = useWindowHeight()
 const { t } = useI18n({ useScope: "local" })
-
 const scrollTo = () => window.scrollTo({ top: minHeightPx.value, behavior: "smooth" })
 </script>
 

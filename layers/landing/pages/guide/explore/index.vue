@@ -2,6 +2,9 @@
 import { ExploreGrid, ExploreHero } from "#layers/landing/modules/guide/explore"
 
 definePageMeta({ fixedHeader: true })
+
+const { t } = useI18n()
+useHead({ title: t("nav.guide.explore") })
 </script>
 
 <template>

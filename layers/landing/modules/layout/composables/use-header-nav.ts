@@ -5,10 +5,6 @@ export const useHeaderNav = () => {
 
   const list = computed<IHeaderNav[]>(() => [
     {
-      label: t("nav.about"),
-      to: "/about"
-    },
-    {
       label: t("nav.reason.label"),
       to: "/reason/economy",
       dropdown: [
@@ -29,15 +25,25 @@ export const useHeaderNav = () => {
         { label: t("nav.guide.explore"), to: "/guide/explore" },
         { label: t("nav.guide.partnership"), to: "/guide/partnership" },
         { label: t("nav.guide.privatization"), to: "/guide/privatization" },
-        { label: t("nav.guide.free_zones"), to: "/guide/free-zones" },
-        { label: t("nav.guide.project"), to: "/guide/project" },
-        { label: t("nav.guide.appeal"), to: "/guide/appeal" },
-        { label: t("nav.guide.event"), to: "/guide/event" }
+        { label: t("nav.guide.project"), to: "/guide/project" }
       ]
+    },
+    {
+      label: t("nav.advert.label"),
+      to: "/advert/registration",
+      dropdown: [{ label: t("nav.advert.registration"), to: "/advert/registration" }]
     },
     {
       label: t("nav.media.label"),
       to: "/media"
+    },
+    {
+      label: t("nav.about.label"),
+      to: "/about",
+      dropdown: [
+        { label: t("nav.about.about_us"), to: "/about" },
+        { label: t("nav.about.event"), to: "/event" }
+      ]
     }
   ])
 
