@@ -2,6 +2,7 @@
 import {
   ExploreSectorContent,
   ExploreSectorFooter,
+  ExploreSectorGrid,
   ExploreSectorHero,
   ExploreSectorSlide,
   ExploreSectorSlider
@@ -35,6 +36,7 @@ const images = computed(() => ({
     </explore-sector-slider>
 
     <explore-sector-content :image="images.content" :text="t('text')" />
+    <explore-sector-grid />
     <explore-sector-footer :file-url="fileUrl" />
   </div>
 </template>
