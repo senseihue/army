@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { minHeight, minHeightPx } = useWindowHeight()
+const { minHeight } = useWindowHeight()
 const { t } = useI18n({ useScope: "local" })
 </script>
 
