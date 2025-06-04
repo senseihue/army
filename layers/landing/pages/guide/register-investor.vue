@@ -1,30 +1,23 @@
 <script setup lang="ts">
-import { RegisterInvestorForm } from "#layers/landing/modules/forms/register-investor/ui"
+import { RegisterInvestorForm } from "#layers/landing/modules/forms/register-investor"
 
-const { t } = useI18n({
-  useScope: "local"
-})
+const { t } = useI18n({ useScope: "local" })
 </script>
 
 <template>
-  <section class="register-investor bg-blue-midnight">
-    <div class="container-7xl p-section">
-      <div class="py-12 text-center text-white">
-        <h3 class="mb-2 text-3xl font-semibold">
-          {{ t("title") }}
-        </h3>
-        <div class="mx-auto max-w-3xl">
-          <p>
-            {{ t("description") }}
-          </p>
+  <section class="register-investor">
+    <div class="container-7xl">
+      <div class="p-section">
+        <div class="mb-12 text-center">
+          <h3 class="mb-4 text-center text-3xl font-bold">{{ t("title") }}</h3>
+          <p class="mx-auto max-w-3xl">{{ t("description") }}</p>
         </div>
+
+        <register-investor-form />
       </div>
-      <register-investor-form />
     </div>
   </section>
 </template>
-
-<style scoped></style>
 
 <i18n>
 {

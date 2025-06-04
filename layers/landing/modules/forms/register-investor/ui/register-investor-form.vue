@@ -1,10 +1,8 @@
 <script setup lang="ts">
-const { t } = useI18n({
-  useScope: "local"
-})
-
 import Multiselect from "@vueform/multiselect"
 import { RegisterInvestor } from "#layers/landing/modules/forms/register-investor"
+
+const { t } = useI18n({ useScope: "local" })
 
 type SelectOptions = Array<{
   name: string
@@ -110,8 +108,8 @@ const submit = async () => {
 
 <template>
   <form class="register-investor-form" @submit.prevent="submit">
-    <div class="grid grid-cols-2 gap-x-4 gap-y-4">
-      <h3 class="title col-span-full">{{ t("basic-information.title") }}*</h3>
+    <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
+      <h3 class="title col-span-full">{{ t("basic-information.title") }}</h3>
       <ui-form-group
         v-bind="hasError('name')"
         v-slot="{ id }"
@@ -142,10 +140,11 @@ const submit = async () => {
         <ui-mask-input v-model="form.phone" unmasked mask="+### (##) ### ## ##" name="phone" :id />
       </ui-form-group>
       <ui-form-group v-slot="{ id }" :label="t('basic-information.fields.website')">
-        <ui-input v-model="form.website" type="url" :placeholder="t('basic-information.fields.website')" />
+        <ui-input v-model="form.website" type="url" :id :placeholder="t('basic-information.fields.website')" />
       </ui-form-group>
     </div>
-    <div class="grid grid-cols-2 gap-x-4 gap-y-4">
+    <hr />
+    <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
       <h3 class="title col-span-full">
         {{ t("financial-information.title") }}
       </h3>
@@ -172,8 +171,9 @@ const submit = async () => {
         <ui-input v-model="form.numberOfEmployees" name="numberOfEmployees" :id />
       </ui-form-group>
     </div>
-    <div class="grid grid-cols-2 gap-x-4 gap-y-4">
-      <h3 class="title col-span-full">{{ t("investment-preferences.title") }}*</h3>
+    <hr />
+    <div class="grid gap-x-4 gap-y-4 sm:grid-cols-2">
+      <h3 class="title col-span-full">{{ t("investment-preferences.title") }}</h3>
       <ui-form-group
         v-bind="hasError('target')"
         v-slot="{ id }"
@@ -224,8 +224,9 @@ const submit = async () => {
         <ui-input v-model="form.amountRange" name="amountRange" :id />
       </ui-form-group>
     </div>
-    <div class="grid grid-cols-2 gap-x-4 gap-y-4">
-      <h3 class="title col-span-full">{{ t("experience.title") }}*</h3>
+    <hr />
+    <div class="grid gap-x-4 gap-y-4 sm:grid-cols-2">
+      <h3 class="title col-span-full">{{ t("experience.title") }}</h3>
       <ui-form-group v-bind="hasError('business')" v-slot="{ id }" :label="t('experience.fields.have-a-business')">
         <multiselect v-model="form.business" label="name" value="value" name="business" :options="business" :id />
       </ui-form-group>
@@ -237,8 +238,9 @@ const submit = async () => {
         <ui-input v-model="form.investmentExperience" name="investmentExperience" :id />
       </ui-form-group>
     </div>
-    <div class="grid grid-cols-2 gap-x-4 gap-y-4">
-      <h3 class="title col-span-full">{{ t("additional-information.title") }}*</h3>
+    <hr />
+    <div class="grid gap-x-4 gap-y-4 sm:grid-cols-2">
+      <h3 class="title col-span-full">{{ t("additional-information.title") }}</h3>
       <ui-form-group v-bind="hasError('aboutUs')" v-slot="{ id }" :label="t('additional-information.fields.find-type')">
         <multiselect
           v-model="form.aboutUs"
@@ -262,24 +264,19 @@ const submit = async () => {
         <ui-input v-model="form.aboutUsOther" name="aboutUsOther" :id />
       </ui-form-group>
     </div>
-    <div class="col-span-full mt-6 text-center">
-      <ui-button class="ui-button-rounded" size="lg" type="submit" color="success">
-        {{ t("submit-button") }}
-      </ui-button>
+
+    <div class="mt-6 flex items-center justify-center">
+      <ui-button class="w-full sm:w-auto" rounded size="lg" type="submit" color="success" :label="t('submit-button')" />
     </div>
   </form>
 </template>
 
 <style>
 .register-investor-form {
-  @apply grid grid-cols-1 gap-y-6;
+  @apply mx-auto grid max-w-3xl gap-6;
 
   .title {
-    @apply text-center text-lg font-semibold text-white;
-  }
-
-  .ui-form-label {
-    @apply text-white;
+    @apply text-lg font-bold;
   }
 }
 </style>

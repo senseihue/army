@@ -49,8 +49,8 @@ const submit = async () => {
 </script>
 
 <template>
-  <form class="register-investor-form" @submit.prevent="submit">
-    <div class="grid grid-cols-2 gap-x-4 gap-y-4">
+  <form class="register-business-form" @submit.prevent="submit">
+    <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
       <h3 class="title col-span-full">{{ t("company-information.title") }}:</h3>
       <ui-form-group
         v-bind="hasError('companyName')"
@@ -75,7 +75,10 @@ const submit = async () => {
         <ui-input v-model="form.website" name="website" :id />
       </ui-form-group>
     </div>
-    <div class="grid grid-cols-2 gap-x-4 gap-y-4">
+
+    <hr />
+
+    <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
       <h3 class="title col-span-full">{{ t("applicant.title") }}:</h3>
       <ui-form-group v-bind="hasError('name')" v-slot="{ id }" :label="t('applicant.fields.name')">
         <ui-input v-model="form.name" name="name" :id />
@@ -90,7 +93,10 @@ const submit = async () => {
         <ui-input v-model="form.email" type="email" name="email" :id />
       </ui-form-group>
     </div>
-    <div class="grid grid-cols-2 gap-x-4 gap-y-4">
+
+    <hr />
+
+    <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
       <h3 class="title col-span-full">{{ t("project-information.title") }}:</h3>
       <ui-form-group
         v-bind="hasError('projectName')"
@@ -121,7 +127,10 @@ const submit = async () => {
         <ui-input v-model="form.ownContribution" name="ownContribution" :id />
       </ui-form-group>
     </div>
-    <div class="grid grid-cols-2 gap-x-4 gap-y-4">
+
+    <hr />
+
+    <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
       <h3 class="title col-span-full">
         {{ t("file.title") }}
       </h3>
@@ -129,24 +138,19 @@ const submit = async () => {
         <ui-file-input v-model="form.file" name="file" :id :placeholder="t('file.placeholder')" />
       </ui-form-group>
     </div>
-    <div class="col-span-full mt-6 text-center">
-      <ui-button class="ui-button-rounded" size="lg" type="submit" color="success">
-        {{ t("submit-button") }}
-      </ui-button>
+
+    <div class="mt-6 flex items-center justify-center">
+      <ui-button class="w-full sm:w-auto" rounded size="lg" type="submit" color="success" :label="t('submit-button')" />
     </div>
   </form>
 </template>
 
 <style>
-.register-investor-form {
-  @apply grid grid-cols-1 gap-y-6;
+.register-business-form {
+  @apply mx-auto grid max-w-3xl gap-6;
 
   .title {
-    @apply text-center text-lg font-semibold text-white;
-  }
-
-  .ui-form-label {
-    @apply text-white;
+    @apply text-lg font-bold;
   }
 }
 </style>
