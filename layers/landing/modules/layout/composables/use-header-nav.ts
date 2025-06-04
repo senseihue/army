@@ -25,7 +25,10 @@ export const useHeaderNav = () => {
         { label: t("nav.guide.explore"), to: "/guide/explore" },
         { label: t("nav.guide.partnership"), to: "/guide/partnership" },
         { label: t("nav.guide.privatization"), to: "/guide/privatization" },
-        { label: t("nav.guide.project"), to: "/guide/project" }
+        { label: t("nav.guide.project"), to: "/guide/project" },
+        { label: t("nav.guide.register-investor"), to: "/guide/register-investor" },
+        { label: t("nav.guide.register-business"), to: "/guide/register-business" },
+
       ]
     },
     {
