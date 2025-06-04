@@ -110,7 +110,7 @@ const submit = async () => {
 
 <template>
   <form class="register-investor-form" @submit.prevent="submit">
-    <div class="grid grid-cols-2 gap-x-4 gap-y-4">
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
       <h3 class="title col-span-full">{{ t("basic-information.title") }}*</h3>
       <ui-form-group
         v-bind="hasError('name')"

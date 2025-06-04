@@ -38,7 +38,7 @@ export const useHeaderNav = () => {
     },
     {
       label: t("nav.media.label"),
-      to: "/media"
+      to: "/media/news"
     },
     {
       label: t("nav.about.label"),
