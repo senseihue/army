@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ReasonNav, SectionGrid } from "#layers/landing/modules/reason/ui"
+import { ReasonNav, SectionGrid } from "#layers/landing/modules/reason"
 
 definePageMeta({
   fixedHeader: false
@@ -152,7 +152,7 @@ const { t } = useI18n({ useScope: "local" })
       },
       "taic": {
         "title": "Toshkent xalqaro arbitraj markazi",
-        "description": "2018-yilda tashkil etilgan Toshkent xalqaro arbitraj markazi (TIAC) ​​O‘zbekistondagi sarmoyaviy muhitni yaxshilash maqsadida tashkil etilgan. 2021 yilgi Xalqaro tijorat arbitraj qonuni doirasida faoliyat yurituvchi u UNCITRAL Model qonuniga ham mos keladi. TIAC chet ellik hakamlar uchun soliq imtiyozlari va ishlash ruxsatnomasidan voz kechishni taklif qiladi va xorijiy qonunlarni qo'llashga ruxsat beradi. Arbitrlar mahalliy qonunchilik litsenziyalarisiz ishlay oladilar va TIAC qarorlari Nyu-York konventsiyasiga muvofiq butun dunyo bo'ylab ijro etilishi mumkin. TIAC ko'p tilli va onlayn arbitrajlar olib boradi va 70 ga yaqin xalqaro ishlarni ko'rib chiqdi. Ba'zi asosiy rag'batlantirishlar nol ma'muriy to'lovlar, HKIAC bilan strategik hamkorlik va texnologiya nizolari uchun maxsus qoidalarni o'z ichiga oladi."
+        "description": "2018-yilda tashkil etilgan Toshkent xalqaro arbitraj markazi (TIAC) \n\nO‘zbekistondagi sarmoyaviy muhitni yaxshilash maqsadida tashkil etilgan. 2021 yilgi Xalqaro tijorat arbitraj qonuni doirasida faoliyat yurituvchi u UNCITRAL Model qonuniga ham mos keladi. TIAC chet ellik hakamlar uchun soliq imtiyozlari va ishlash ruxsatnomasidan voz kechishni taklif qiladi va xorijiy qonunlarni qo'llashga ruxsat beradi. Arbitrlar mahalliy qonunchilik litsenziyalarisiz ishlay oladilar va TIAC qarorlari Nyu-York konventsiyasiga muvofiq butun dunyo bo'ylab ijro etilishi mumkin. TIAC ko'p tilli va onlayn arbitrajlar olib boradi va 70 ga yaqin xalqaro ishlarni ko'rib chiqdi. Ba'zi asosiy rag'batlantirishlar nol ma'muriy to'lovlar, HKIAC bilan strategik hamkorlik va texnologiya nizolari uchun maxsus qoidalarni o'z ichiga oladi."
       },
       "fic": {
         "title": "O‘zbekiston Prezidenti huzuridagi Xorijiy investorlar kengashi",

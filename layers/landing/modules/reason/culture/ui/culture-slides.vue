@@ -15,10 +15,6 @@ const currentSlide = ref(0)
 
 const slideTo = (nextSlide: number) => (currentSlide.value = nextSlide)
 
-const galleryConfig = {
-  height: 320
-}
-
 const thumbnailsConfig: Partial<CarouselConfig> = {
   height: 128,
   itemsToShow: 4,
@@ -29,20 +25,16 @@ const thumbnailsConfig: Partial<CarouselConfig> = {
   breakpoints: {
     576: {
       itemsToShow: 4,
-      gap: 16,
+      gap: 16
     },
     376: {
       itemsToShow: 3,
       height: 100,
-      gap: 10,
+      gap: 10
     }
   }
 }
 const { t } = useI18n({ useScope: "local" })
-const images = Array.from({ length: 10 }, (_, index) => ({
-  id: index + 1,
-  url: `https://picsum.photos/seed/${Math.random()}/800/600`
-}))
 
 const config: Partial<CarouselConfig> = {
   height: 500,
@@ -53,10 +45,10 @@ const config: Partial<CarouselConfig> = {
   touchDrag: false,
   breakpoints: {
     576: {
-      height: 500,
+      height: 500
     },
     376: {
-      height: 350,
+      height: 350
     }
   }
 }
@@ -82,8 +74,8 @@ const slideItems = ref([
 
       <div class="flex flex-col">
         <div class="mb-4">
-          <Carousel v-model="currentSlide" v-bind="config" id="main-slides" ref="carouselRef">
-            <Slide
+          <carousel v-model="currentSlide" v-bind="config" id="main-slides" ref="carouselRef">
+            <slide
               v-for="image in slideItems"
               :key="image.title"
               :data-vc-slide-item-after-content="t(image.title)"
@@ -92,24 +84,24 @@ const slideItems = ref([
               }"
             >
               <img class="h-full w-full select-none object-cover object-center" alt="image" :src="image.url" />
-            </Slide>
-          </Carousel>
+            </slide>
+          </carousel>
         </div>
       </div>
 
-      <Carousel v-bind="thumbnailsConfig" v-model="currentSlide" id="thumbnails">
-        <Slide v-for="image in slideItems" :key="image.title">
+      <carousel v-bind="thumbnailsConfig" v-model="currentSlide" id="thumbnails">
+        <slide v-for="image in slideItems" :key="image.title">
           <template #default="{ currentIndex, isActive }">
             <div :class="['thumbnail', { 'is-active': isActive }]" @click="slideTo(currentIndex)">
               <img class="thumbnail-image" alt="Thumbnail Image" :src="image.url" />
             </div>
           </template>
-        </Slide>
+        </slide>
 
         <template #addons>
-          <Navigation />
+          <navigation />
         </template>
-      </Carousel>
+      </carousel>
     </div>
   </div>
 </template>
@@ -160,7 +152,7 @@ const slideItems = ref([
   }
 
   #main-slides .carousel__slide {
-    --vc-slide-item-after-content: '';
+    --vc-slide-item-after-content: "";
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
@@ -245,5 +237,4 @@ const slideItems = ref([
     }
   }
 }
-
 </style>

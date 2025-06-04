@@ -1,12 +1,10 @@
 <script setup lang="ts">
-import { ReasonNav, SectionGrid, ReasonWrapper } from "#layers/landing/modules/reason/ui"
-import { CultureSlides } from "#layers/landing/modules/reason/culture/ui"
+import { ReasonNav, SectionGrid, ReasonWrapper } from "#layers/landing/modules/reason"
+import { CultureSlides } from "#layers/landing/modules/reason/culture"
+
 definePageMeta({ fixedHeader: false })
 
 const { t } = useI18n({ useScope: "local" })
-
-
-
 </script>
 
 <template>
@@ -64,5 +62,3 @@ const { t } = useI18n({ useScope: "local" })
   }
 }
 </i18n>
-
-<style scoped></style>

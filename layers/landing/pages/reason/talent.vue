@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { StatisticCard, ReasonNav, SectionGrid } from "#layers/landing/modules/reason/ui"
-import { TalentUniversities, TalentStatistics } from "#layers/landing/modules/reason/talent/ui"
+import { StatisticCard, ReasonNav, SectionGrid } from "#layers/landing/modules/reason"
+import { TalentUniversities, TalentStatistics } from "#layers/landing/modules/reason/talent"
 
 definePageMeta({ fixedHeader: false })
 

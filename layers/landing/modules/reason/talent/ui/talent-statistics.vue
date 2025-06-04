@@ -1,17 +1,16 @@
 <script setup lang="ts">
-import type { CarouselConfig } from "vue3-carousel"
 import { HomeStatisticsSlide } from "#layers/landing/modules/home"
 
-const { t, tm, rt } = useI18n({ useScope: "local" })
-
+const { tm, rt } = useI18n({ useScope: "local" })
 </script>
 
 <template>
   <section>
     <div class="container-7xl" data-aos="fade-up" data-aos-delay="50">
-      <div class="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1  pb-12 pt-20 md:pb-20 md:pt-32">
+      <div class="grid grid-cols-1 pb-12 pt-20 md:grid-cols-2 md:pb-20 md:pt-32 lg:grid-cols-4">
         <home-statistics-slide
           v-for="(slide, idx) in tm('slides')"
+          :key="idx"
           :label="rt(slide.label)"
           :progress="rt(slide.progress)"
           :description="rt(slide.description)"

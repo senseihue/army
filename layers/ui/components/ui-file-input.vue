@@ -66,7 +66,7 @@ watch(
   <div class="ui-input-group">
     <div class="before w-9">
       <slot name="icon">
-        <i class="le-file text-lg text-gray-400" />
+        <icon class="text-lg text-gray-400" name="lucide:upload" />
       </slot>
     </div>
 
@@ -83,7 +83,7 @@ watch(
     />
 
     <div v-if="fileName?.length" class="after w-9 cursor-pointer" @click="onClear">
-      <i class="le-circle-x text-lg text-danger-500" />
+      <icon class="text-lg text-danger-500" name="lucide:circle-x" />
     </div>
   </div>
 </template>

@@ -2,7 +2,7 @@
 import type { CarouselConfig, CarouselMethods } from "vue3-carousel"
 import { Carousel, Slide } from "vue3-carousel"
 
-const { t, tm } = useI18n({ useScope: "local" })
+const { t } = useI18n({ useScope: "local" })
 
 const carouselRef = ref<CarouselMethods>()
 const carouselConfig = computed<Partial<CarouselConfig>>(() => ({

@@ -129,7 +129,7 @@ const callFormatter = <T,>(col: ITableCol<T>, row: T) => {
 
 const selectAll = (event: Event) => {
   const value = props.selectBy ? tableRows.value?.map((row) => row[props.selectBy!]) : tableRows.value
-  if ((<HTMLInputElement>event.target).checked) selectedModel.value = value
+  if ((event.target as HTMLInputElement).checked) selectedModel.value = value
   else selectedModel.value = []
 }
 
