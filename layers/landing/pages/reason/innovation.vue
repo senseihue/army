@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ReasonNav, SectionGrid } from "#layers/landing/modules/reason/ui"
-import ChartInnovation from "#layers/landing/modules/reason/innovation/ui/chart-innovation.vue"
+import { ReasonNav, SectionGrid } from "#layers/landing/modules/reason"
+import { ChartInnovation } from "#layers/landing/modules/reason/innovation"
 
 definePageMeta({ fixedHeader: false })
 const { t } = useI18n({ useScope: "local" })

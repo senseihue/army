@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ReasonNav, SectionGrid, StatisticCard } from "#layers/landing/modules/reason/ui"
-import { ProvenTable, ResourcesChart } from "#layers/landing/modules/reason/resources/ui"
+import { ReasonNav, SectionGrid } from "#layers/landing/modules/reason"
+import { ProvenTable, ResourcesChart } from "#layers/landing/modules/reason/resources"
 
 definePageMeta({ fixedHeader: false })
 const { t } = useI18n({ useScope: "local" })

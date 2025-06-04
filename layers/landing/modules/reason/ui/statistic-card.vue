@@ -1,17 +1,19 @@
 <script lang="ts" setup>
+interface ICard {
+  label: string
+  value: string
+}
 
 interface IProps {
-  align?: 'left' | 'right'
-  theme?: 'midnight' | 'bright'
-  items: Array<{
-    label: string
-    value: string
-  }>
+  items: ICard[]
+  align?: "left" | "right"
+  theme?: "midnight" | "bright"
 }
+
 withDefaults(defineProps<IProps>(), {
-  align: 'left',
-  theme: 'midnight',
-  items: [],
+  align: "left",
+  theme: "midnight",
+  items: () => []
 })
 </script>
 
@@ -39,7 +41,7 @@ withDefaults(defineProps<IProps>(), {
   }
 
   &::before {
-    content: '';
+    content: "";
     @apply absolute top-0 -z-10 -mx-4 h-full w-screen md:right-0 md:mx-0;
   }
 

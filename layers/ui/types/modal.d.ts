@@ -5,4 +5,6 @@ interface IModalValue {
   hide(): void
 }
 
-interface IModal {}
+interface IModal {
+  [key: ModalId]: any
+}

@@ -1,1 +1,1 @@
-export { default as InnovationNav } from "./innovation-nav.vue"
+export { default as ChartInnovation } from "./chart-innovation.vue"

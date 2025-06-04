@@ -26,8 +26,8 @@ const setValue = (value: string) => {
 
 const onMounted = (data: VNode) => {
   if (data.el) {
-    el.value = <HTMLInputElement>data.el
-    input.value = new MaskInput(<HTMLInputElement>data.el, {
+    el.value = data.el as HTMLInputElement
+    input.value = new MaskInput(data.el as HTMLInputElement, {
       mask: props.mask,
       tokens: props.tokens,
       onMaska: ({ masked, unmasked }) => {

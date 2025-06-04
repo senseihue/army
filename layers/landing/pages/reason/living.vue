@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { ReasonNav, SectionGrid, GalleryGrid } from "#layers/landing/modules/reason/ui"
-import { LivingTable } from "#layers/landing/modules/reason/living/ui"
+import { ReasonNav, SectionGrid, GalleryGrid } from "#layers/landing/modules/reason"
+import { LivingTable } from "#layers/landing/modules/reason/living"
+
 definePageMeta({
   fixedHeader: false
 })

@@ -1,12 +1,21 @@
 <script lang="ts" setup>
-
 interface IProps {
-  theme?: 'transparent' | 'midnight' | 'command' | 'bright' | 'white' | 'bondi' | 'texas' | 'sand' | 'light' | 'olive' | 'moonstone' | 'ateneo'
+  theme?:
+    | "transparent"
+    | "midnight"
+    | "command"
+    | "bright"
+    | "white"
+    | "bondi"
+    | "texas"
+    | "sand"
+    | "light"
+    | "olive"
+    | "moonstone"
+    | "ateneo"
 }
 
-withDefaults(defineProps<IProps>(), {
-  theme: 'transparent'
-})
+withDefaults(defineProps<IProps>(), { theme: "transparent" })
 </script>
 
 <template>

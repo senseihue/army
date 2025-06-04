@@ -2,8 +2,6 @@
 import type { CarouselConfig } from "vue3-carousel"
 import { Carousel, Slide, Navigation } from "vue3-carousel"
 
-const { t, tm, rt } = useI18n({ useScope: "local" })
-
 const carouselConfig = computed<Partial<CarouselConfig>>(() => ({
   gap: 24,
   snapAlign: "start",

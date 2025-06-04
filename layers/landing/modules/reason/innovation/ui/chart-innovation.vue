@@ -4,7 +4,7 @@ import type { ApexOptions } from "apexcharts"
 
 const { t } = useI18n({ useScope: "local" })
 
-const createChartOptions = () => ({
+const createChartOptions = (): ApexOptions => ({
   chart: {
     type: "bar",
     toolbar: {

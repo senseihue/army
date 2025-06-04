@@ -6,7 +6,7 @@ interface IProps {
   image: string
 }
 
-const props = defineProps<IProps>()
+defineProps<IProps>()
 
 const { t } = useI18n({ useScope: "local" })
 

@@ -1,46 +1,46 @@
 <template>
   <div class="p-section container-7xl">
-    <ClientOnly>
+    <client-only>
       <div>
         <p class="text-center font-bold text-[#0543c1] sm:text-lg md:text-xl">
-          {{ t('FDI_INFLOW_TITLE') }}
+          {{ t("FDI_INFLOW_TITLE") }}
         </p>
-        <apexchart :options="options" :series="series" height="250" type="bar" />
+        <apexchart height="250" type="bar" :options="options" :series="series" />
       </div>
-    </ClientOnly>
+    </client-only>
   </div>
 </template>
 
 <script lang="ts" setup>
-import type { ApexOptions } from 'apexcharts'
-import apexchart from 'vue3-apexcharts'
+import type { ApexOptions } from "apexcharts"
+import apexchart from "vue3-apexcharts"
 
-const { t } = useI18n({ useScope: 'local' })
+const { t } = useI18n({ useScope: "local" })
 const options: ApexOptions = {
   chart: {
-    type: 'bar',
+    type: "bar",
     height: 250,
     toolbar: {
-      show: false,
-    },
+      show: false
+    }
   },
   plotOptions: {
     bar: {
       dataLabels: {
-        position: 'top',
-      },
-    },
+        position: "top"
+      }
+    }
   },
   dataLabels: {
     enabled: true,
     offsetY: -15,
     style: {
-      fontSize: '12px',
-      colors: ['#0078B5', '#013D8C'],
-    },
+      fontSize: "12px",
+      colors: ["#0078B5", "#013D8C"]
+    }
   },
   xaxis: {
-    categories: [2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024],
+    categories: [2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024]
   },
   title: {
     // text: 'FDI INFLOWS IN 2017 – 2024, MLN USD',
@@ -51,24 +51,22 @@ const options: ApexOptions = {
     //   fontSize: '18px',
     //   color: '#0543c1',
     // },
-  },
+  }
 }
 
 const series = [
   {
-    name: 'Projects',
+    name: "Projects",
     data: [111, 300, 345, 635, 812, 981, 1402, 2680],
-    color: '#203864',
+    color: "#203864"
   },
   {
-    name: 'FDI',
+    name: "FDI",
     data: [3349, 2848, 4200, 6685, 8612, 9989, 22372, 34653],
-    color: '#064AD4',
-  },
+    color: "#064AD4"
+  }
 ]
 </script>
-
-<style scoped></style>
 
 <i18n lang="json">
 {

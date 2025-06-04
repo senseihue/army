@@ -20,6 +20,7 @@ const { minHeight } = useWindowHeight()
       <!--  Content  -->
       <div class="container-7xl z-10 grid grow items-center">
         <div class="pb-4 pt-16 md:text-left">
+          <!-- TODO: Translate -->
           <h1 class="text-4xl font-bold text-white md:text-6xl">Why Uzbekistan</h1>
         </div>
       </div>

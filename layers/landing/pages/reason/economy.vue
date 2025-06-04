@@ -1,6 +1,15 @@
 <script setup lang="ts">
-import { EconomyHero, EconomyChart, EconomyRate, EconomyFtt, EconomyContactUs, EconomyFdi } from "#layers/landing/modules/reason/economy"
-import { ReasonNav, SectionGrid,  ReasonWrapper } from "#layers/landing/modules/reason/ui"
+import { ReasonNav, SectionGrid, ReasonWrapper } from "#layers/landing/modules/reason"
+
+import {
+  EconomyHero,
+  EconomyChart,
+  EconomyRate,
+  EconomyFtt,
+  EconomyContactUs,
+  EconomyFdi
+} from "#layers/landing/modules/reason/economy"
+
 const { t } = useI18n({ useScope: "local" })
 definePageMeta({ fixedHeader: true })
 
@@ -28,18 +37,21 @@ const unemploymentRate = {
       <template #left>
         <economy-chart />
       </template>
+
       <template #right>
         <p class="mt-4 text-justify">
           {{ t("chart-description") }}
         </p>
       </template>
     </section-grid>
+
     <section-grid>
       <template #left>
         <p class="mt-4 text-justify">
           {{ t("inflation-rate.description") }}
         </p>
       </template>
+
       <template #right>
         <economy-rate
           :left-year="inflationRate.leftYear"
@@ -51,12 +63,14 @@ const unemploymentRate = {
         />
       </template>
     </section-grid>
+
     <section-grid>
       <template #right>
         <p class="mt-4 text-justify">
           {{ t("unemployment-rate.description") }}
         </p>
       </template>
+
       <template #left>
         <economy-rate
           :left-year="unemploymentRate.leftYear"
@@ -68,16 +82,19 @@ const unemploymentRate = {
         />
       </template>
     </section-grid>
+
     <section-grid>
       <template #right>
         <economy-ftt />
       </template>
+
       <template #left>
         <p class="mt-4 text-justify">
           {{ t("fft.description") }}
         </p>
       </template>
     </section-grid>
+
     <reason-wrapper>
       <p class="text-center">
         {{ t("fdi-description") }}
@@ -94,6 +111,7 @@ const unemploymentRate = {
           </strong>
         </h3>
       </template>
+
       <ui-button class="ui-button-rounded" size="lg" color="success" :label="t('contact-us-label')" />
     </economy-contact-us>
   </div>

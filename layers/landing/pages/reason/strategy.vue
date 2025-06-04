@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import { ReasonNav, SectionGrid } from "#layers/landing/modules/reason/ui"
-import ReasonStepsCard from "#layers/landing/modules/reason/ui/reason-steps-card.vue"
+import { ReasonNav, SectionGrid, ReasonStepsCard } from "#layers/landing/modules/reason"
 
 definePageMeta({ fixedHeader: false })
-const { t, tm } = useI18n({ useScope: "local" })
+const { t } = useI18n({ useScope: "local" })
 
 const moments = ref([
   { heading: "01", text: t("moments.0.label") },
   { heading: "02", text: t("moments.1.label") },
   { heading: "03", text: t("moments.2.label") }
 ])
+
 const moments2 = ref([
   { heading: "04", text: t("moments2.0.label") },
   { heading: "05", text: t("moments2.1.label") },
@@ -147,5 +147,3 @@ const moments2 = ref([
   }
 }
 </i18n>
-
-<style scoped></style>

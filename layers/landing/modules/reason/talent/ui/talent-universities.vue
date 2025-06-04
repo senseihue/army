@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { CarouselConfig } from "vue3-carousel"
 import { Carousel, Slide, Navigation } from "vue3-carousel"
-import { HomeStatisticsSlide } from "#layers/landing/modules/home"
 
 import westminster from "@/public/img/reason/talent/wiut-logotype-full.png"
 import webster from "@/public/img/reason/talent/webster.png"
@@ -12,7 +11,7 @@ import amity from "@/public/img/reason/talent/amity_logo-removebg-preview.png"
 import ytit from "@/public/img/reason/talent/ytit_logo-1.png"
 import bucheon from "@/public/img/reason/talent/bucheon.svg"
 
-const { t, tm, rt } = useI18n({ useScope: "local" })
+const { t } = useI18n({ useScope: "local" })
 
 const carouselConfig = computed<Partial<CarouselConfig>>(() => ({
   gap: 24,
@@ -82,11 +81,9 @@ console.log(carouselItems.value)
             <a :href="slide.href">
               <template v-if="typeof slide.img === 'object'">
                 <component class="h-full w-full object-contain" :is="slide.img" />
-
               </template>
               <template v-else>
                 <img :src="slide.img" :alt="slide.href" />
-
               </template>
             </a>
           </slide>
