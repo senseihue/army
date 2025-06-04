@@ -3,7 +3,6 @@ import { useVuelidate } from "@vuelidate/core"
 
 import type { MaybeRef, Ref } from "vue"
 import type { ValidationArgs } from "@vuelidate/core"
-import type { Paths } from "env-paths"
 
 type Form<T> = { [key in keyof T]: any }
 

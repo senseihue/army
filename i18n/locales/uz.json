@@ -21,7 +21,8 @@
       "project": "Loyihalar",
       "appeal": "Murojaat",
       "event": "Tadbirlar",
-        "register-investor": "Investorlarni ro'yxatdan o'tkazish"
+      "register-investor": "Investorlarni ro'yxatdan o'tkazish",
+      "register-business": "Biznesni ro'yxatdan o'tkazish"
     },
     "media": {
       "label": "Yangiliklar va tahlillar",
@@ -41,5 +42,12 @@
     "privacy_policy": "Xisoblash shartlari",
     "cookie_policy": "Cookie shartlari",
     "sitemap": "Sahifalar ro'yxati"
+  },
+  "validations": {
+    "email": "Noto'g'ri elektron pochta manzili",
+    "maxLength": "Maksimal ruxsat etilgan uzunlik {max}",
+    "minLength": "Minimal talab qilingan uzunlik {min}",
+    "required": "Ushbu maydon to'ldirilishi shart",
+    "sameAs": "Qiymat \"{otherName}\" maydoni bilan mos kelishi kerak"
   }
 }

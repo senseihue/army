@@ -4,33 +4,14 @@ const { t } = useI18n({
 })
 
 import Multiselect from "@vueform/multiselect"
+import { RegisterInvestor } from "#layers/landing/modules/forms/register-investor"
 
-type FormTypes = {
-  companyName: string
-  country: string
-  contactPerson: string
-  position: string
-  email: string
-  phone: string
-  website: string
+type SelectOptions = Array<{
+  name: string
+  value: string
+}>
 
-  annualRevenue: string
-  netProfit: string
-  employees: string
-
-  targetIndustry: (typeof options)[number]["value"] | undefined
-  preferredRegion: string
-  investmentType: string
-  investmentAmount: string
-
-  haveBusiness: boolean
-  investmentExperience: string
-
-  findType: string
-  comments: string
-}
-
-const options: Array<Record<string, string>> = [
+const options: SelectOptions = [
   { name: t("investment-preferences.options.target.agriculture_agribusiness"), value: "agro" },
   { name: t("investment-preferences.options.target.energy"), value: "energy" },
   { name: t("investment-preferences.options.target.manufacturing"), value: "manufacturing" },
@@ -49,7 +30,7 @@ const options: Array<Record<string, string>> = [
   { name: t("investment-preferences.options.target.other"), value: "other" }
 ]
 
-const regions = [
+const regions: SelectOptions = [
   { name: t("investment-preferences.options.region.tashkent_city"), value: "tashkent_city" },
   { name: t("investment-preferences.options.region.tashkent_region"), value: "tashkent_region" },
   { name: t("investment-preferences.options.region.samarkand_region"), value: "samarkand_region" },
@@ -66,12 +47,12 @@ const regions = [
   { name: t("investment-preferences.options.region.republic_of_karakalpakstan"), value: "republic_of_karakalpakstan" }
 ]
 
-const investmentType = [
+const investmentType: SelectOptions = [
   { name: t("investment-preferences.options.investment_type.greenfield"), value: "greenfield" },
   { name: t("investment-preferences.options.investment_type.brownfield"), value: "brownfield" }
 ]
 
-const amountRange = [
+const amountRange: SelectOptions = [
   { name: t("investment-preferences.options.amount_range.one_two"), value: "one_two" },
   { name: t("investment-preferences.options.amount_range.five_ten"), value: "five_ten" },
   { name: t("investment-preferences.options.amount_range.ten_twenty"), value: "ten_twenty" },
@@ -79,7 +60,7 @@ const amountRange = [
   { name: t("investment-preferences.options.amount_range.other"), value: "other" }
 ]
 
-const aboutUs = [
+const aboutUs: SelectOptions = [
   { name: t("additional-information.options.about_us.google"), value: "google" },
   { name: t("additional-information.options.about_us.linkedin"), value: "linkedin" },
   { name: t("additional-information.options.about_us.instagram"), value: "instagram" },
@@ -88,62 +69,39 @@ const aboutUs = [
   { name: t("additional-information.options.about_us.other"), value: "other" }
 ]
 
-const business = [
+const business: SelectOptions = [
   { name: t("short-answers.yes"), value: "yes" },
   { name: t("short-answers.no"), value: "no" }
 ]
 
-const formFields = ref<FormTypes>({
-  companyName: "",
-  country: "",
-  contactPerson: "",
-  position: "",
-  email: "",
-  phone: "+998",
-  website: "",
-
-  annualRevenue: "",
-  netProfit: "",
-  employees: "",
-
-  targetIndustry: undefined,
-  preferredRegion: "",
-  investmentType: "",
-  investmentAmount: "",
-
-  haveBusiness: false,
-  investmentExperience: "",
-
-  findType: "",
-  comments: ""
-})
+const form = ref<RegisterInvestor>(new RegisterInvestor())
 
 const { required, email, minLength } = useRule()
 const rules = ref({
-  companyName: { required },
+  name: { required },
   country: { required },
   contactPerson: { required },
   position: { required },
-  phone: { required, minLength: minLength(9) },
+  phone: { required, minLength: minLength(12) },
   email: { required, email },
 
-  targetIndustry: { required },
-  preferredRegion: { required },
+  target: { required },
+  region: { required },
   investmentType: { required },
-  investmentAmount: { required, minLength: minLength(1) },
+  investmentAmountRange: { required, minLength: minLength(1) },
 
-  haveBusiness: { required },
+  business: { required },
   investmentExperience: { required },
 
-  findType: { required },
+  aboutUs: { required },
   comments: { required }
 })
-const { vuelidate, hasError } = useValidate(formFields, rules)
+const { vuelidate, hasError } = useValidate(form, rules)
 const submit = async () => {
   const isValid = await vuelidate.value.$validate()
   if (isValid) {
     // Handle form submission logic here
-    console.log("Form submitted:", formFields.value)
+    console.log("Form submitted:", form.value)
   } else {
     console.error("Form validation failed")
   }
@@ -153,20 +111,18 @@ const submit = async () => {
 <template>
   <form class="register-investor-form" @submit.prevent="submit">
     <div class="grid grid-cols-2 gap-x-4 gap-y-4">
-      <h3 class="title col-span-full">
-        {{ t("basic-information.title") }}
-      </h3>
+      <h3 class="title col-span-full">{{ t("basic-information.title") }}*</h3>
       <ui-form-group
-        v-bind="hasError('companyName')"
+        v-bind="hasError('name')"
         v-slot="{ id }"
         class="col-span-full"
         :label="t('basic-information.fields.company-name')"
       >
-        <ui-input v-model="formFields.companyName" :id />
+        <ui-input v-model="form.name" name="name" :id />
       </ui-form-group>
 
       <ui-form-group v-bind="hasError('country')" v-slot="{ id }" :label="t('basic-information.fields.country')">
-        <ui-input v-model="formFields.country" :id />
+        <ui-input v-model="form.country" name="country" :id />
       </ui-form-group>
 
       <ui-form-group
@@ -174,72 +130,136 @@ const submit = async () => {
         v-slot="{ id }"
         :label="t('basic-information.fields.contact-person')"
       >
-        <ui-input v-model="formFields.contactPerson" :id />
+        <ui-input v-model="form.contactPerson" name="contactPerson" :id />
       </ui-form-group>
       <ui-form-group v-bind="hasError('position')" v-slot="{ id }" :label="t('basic-information.fields.position')">
-        <ui-input v-model="formFields.position" :id />
+        <ui-input v-model="form.position" name="position" :id />
       </ui-form-group>
       <ui-form-group v-bind="hasError('email')" v-slot="{ id }" :label="t('basic-information.fields.email')">
-        <ui-input v-model="formFields.email" :id />
+        <ui-input v-model="form.email" name="email" :id />
       </ui-form-group>
       <ui-form-group v-bind="hasError('phone')" v-slot="{ id }" :label="t('basic-information.fields.phone')">
-        <ui-mask-input v-model="formFields.phone" unmasked mask="+998 (##) ### ## ##" :id />
+        <ui-mask-input v-model="form.phone" unmasked mask="+### (##) ### ## ##" name="phone" :id />
       </ui-form-group>
-      <ui-form-group v-bind="hasError('website')" v-slot="{ id }" :label="t('basic-information.fields.website')">
-        <ui-input type="url" :placeholder="t('basic-information.fields.website')" />
+      <ui-form-group v-slot="{ id }" :label="t('basic-information.fields.website')">
+        <ui-input v-model="form.website" type="url" :placeholder="t('basic-information.fields.website')" />
       </ui-form-group>
     </div>
     <div class="grid grid-cols-2 gap-x-4 gap-y-4">
       <h3 class="title col-span-full">
         {{ t("financial-information.title") }}
       </h3>
-      <ui-form-group v-slot="{ id }" class="col-span-full" :label="t('financial-information.fields.annual-revenue')">
-        <ui-input v-model="formFields.annualRevenue" :id />
+      <ui-form-group
+        v-bind="hasError('annualRevenue')"
+        v-slot="{ id }"
+        class="col-span-full"
+        :label="t('financial-information.fields.annual-revenue')"
+      >
+        <ui-input v-model="form.annualRevenue" name="annualRevenue" :id />
       </ui-form-group>
-      <ui-form-group v-slot="{ id }" :label="t('financial-information.fields.net-profit')">
-        <ui-input v-model="formFields.netProfit" :id />
+      <ui-form-group
+        v-bind="hasError('netProfit')"
+        v-slot="{ id }"
+        :label="t('financial-information.fields.net-profit')"
+      >
+        <ui-input v-model="form.netProfit" name="netProfit" :id />
       </ui-form-group>
-      <ui-form-group v-slot="{ id }" :label="t('financial-information.fields.employees')">
-        <ui-input v-model="formFields.employees" :id />
-      </ui-form-group>
-    </div>
-    <div class="grid grid-cols-2 gap-x-4 gap-y-4">
-      <h3 class="title col-span-full">
-        {{ t("investment-preferences.title") }}
-      </h3>
-      <ui-form-group v-slot="{ id }" :label="t('investment-preferences.fields.target-industry')">
-        <multiselect v-model="formFields.targetIndustry" label="name" value="value" :options="options" :id />
-      </ui-form-group>
-      <ui-form-group v-slot="{ id }" :label="t('investment-preferences.fields.preferred-region')">
-        <multiselect v-model="formFields.netProfit" label="name" value="value" :options="regions" :id />
-      </ui-form-group>
-      <ui-form-group v-slot="{ id }" :label="t('investment-preferences.fields.investment-type')">
-        <multiselect v-model="formFields.employees" label="name" value="value" :options="investmentType" :id />
-      </ui-form-group>
-      <ui-form-group v-slot="{ id }" :label="t('investment-preferences.fields.investment-amount')">
-        <multiselect v-model="formFields.employees" label="name" value="value" :options="amountRange" :id />
+      <ui-form-group
+        v-bind="hasError('numberOfEmployees')"
+        v-slot="{ id }"
+        :label="t('financial-information.fields.employees')"
+      >
+        <ui-input v-model="form.numberOfEmployees" name="numberOfEmployees" :id />
       </ui-form-group>
     </div>
     <div class="grid grid-cols-2 gap-x-4 gap-y-4">
-      <h3 class="title col-span-full">
-        {{ t("experience.title") }}
-      </h3>
-      <ui-form-group v-slot="{ id }" :label="t('experience.fields.have-a-business')">
-        <multiselect v-model="formFields.haveBusiness" label="name" value="value" :options="business" :id />
+      <h3 class="title col-span-full">{{ t("investment-preferences.title") }}*</h3>
+      <ui-form-group
+        v-bind="hasError('target')"
+        v-slot="{ id }"
+        :label="t('investment-preferences.fields.target-industry')"
+      >
+        <multiselect v-model="form.target" label="name" value="value" name="target" :options="options" :id />
       </ui-form-group>
-      <ui-form-group v-slot="{ id }" :label="t('experience.fields.investment-experience')">
-        <ui-input v-model="formFields.investmentExperience" :id />
+      <ui-form-group
+        v-bind="hasError('region')"
+        v-slot="{ id }"
+        :label="t('investment-preferences.fields.preferred-region')"
+      >
+        <multiselect v-model="form.region" label="name" value="value" name="region" :options="regions" :id />
+      </ui-form-group>
+      <ui-form-group
+        v-bind="hasError('investmentType')"
+        v-slot="{ id }"
+        :label="t('investment-preferences.fields.investment-type')"
+      >
+        <multiselect
+          v-model="form.investmentType"
+          label="name"
+          value="value"
+          name="investmentType"
+          :options="investmentType"
+          :id
+        />
+      </ui-form-group>
+      <ui-form-group
+        v-bind="hasError('investmentAmountRange')"
+        v-slot="{ id }"
+        :label="t('investment-preferences.fields.investment-amount')"
+      >
+        <multiselect
+          v-model="form.investmentAmountRange"
+          label="name"
+          value="value"
+          name="investmentAmountRange"
+          :options="amountRange"
+          :id
+        />
+      </ui-form-group>
+      <ui-form-group
+        v-if="form.investmentAmountRange === 'other'"
+        v-slot="{ id }"
+        :label="t('investment-preferences.fields.investment-amount')"
+      >
+        <ui-input v-model="form.amountRange" name="amountRange" :id />
       </ui-form-group>
     </div>
     <div class="grid grid-cols-2 gap-x-4 gap-y-4">
-      <h3 class="title col-span-full">
-        {{ t("additional-information.title") }}
-      </h3>
-      <ui-form-group v-slot="{ id }" :label="t('additional-information.fields.find-type')">
-        <multiselect v-model="formFields.haveBusiness" label="name" value="value" :options="aboutUs" :id />
+      <h3 class="title col-span-full">{{ t("experience.title") }}*</h3>
+      <ui-form-group v-bind="hasError('business')" v-slot="{ id }" :label="t('experience.fields.have-a-business')">
+        <multiselect v-model="form.business" label="name" value="value" name="business" :options="business" :id />
       </ui-form-group>
-      <ui-form-group v-slot="{ id }" :label="t('additional-information.fields.comments')">
-        <ui-input v-model="formFields.investmentExperience" :id />
+      <ui-form-group
+        v-bind="hasError('investmentExperience')"
+        v-slot="{ id }"
+        :label="t('experience.fields.investment-experience')"
+      >
+        <ui-input v-model="form.investmentExperience" name="investmentExperience" :id />
+      </ui-form-group>
+    </div>
+    <div class="grid grid-cols-2 gap-x-4 gap-y-4">
+      <h3 class="title col-span-full">{{ t("additional-information.title") }}*</h3>
+      <ui-form-group v-bind="hasError('aboutUs')" v-slot="{ id }" :label="t('additional-information.fields.find-type')">
+        <multiselect
+          v-model="form.aboutUs"
+          label="name"
+          value="value"
+          name="aboutUs"
+          :options="aboutUs"
+          :id
+          @change="form.aboutUsOther = ''"
+        />
+      </ui-form-group>
+      <ui-form-group v-bind="hasError('comments')" v-slot="{ id }" :label="t('additional-information.fields.comments')">
+        <ui-input v-model="form.comments" name="comments" :id />
+      </ui-form-group>
+      <ui-form-group
+        v-bind="hasError('aboutUsOther')"
+        v-if="form.aboutUs === 'other'"
+        v-slot="{ id }"
+        :label="t('additional-information.fields.aboutUsOther')"
+      >
+        <ui-input v-model="form.aboutUsOther" name="aboutUsOther" :id />
       </ui-form-group>
     </div>
     <div class="col-span-full mt-6 text-center">
@@ -355,7 +375,8 @@ const submit = async () => {
       "title": "Additional Information",
       "fields": {
         "find-type": "How did you find out about us?",
-        "comments": "Comments"
+        "comments": "Comments",
+        "aboutUsOther": "Write your variant here"
       },
       "options": {
         "about_us": {
@@ -374,7 +395,109 @@ const submit = async () => {
     },
     "submit-button": "Register"
   },
-  "ru": {},
-  "uz": {}
+  "ru": {
+    "basic-information": {
+      "title": "Основная информация",
+      "fields": {
+        "company-name": "Название компании",
+        "country": "Страна",
+        "contact-person": "Контактное лицо",
+        "position": "Должность",
+        "email": "Электронная почта",
+        "phone": "Телефон",
+        "website": "Веб-сайт"
+      },
+      "description": "Пожалуйста, предоставьте вашу основную информацию для продолжения регистрации."
+    },
+    "financial-information": {
+      "title": "Финансовая информация",
+      "fields": {
+        "annual-revenue": "Годовой доход",
+        "net-profit": "Чистая прибыль",
+        "employees": "Количество сотрудников"
+      }
+    },
+    "investment-preferences": {
+      "title": "Инвестиционные предпочтения",
+      "fields": {
+        "target-industry": "Целевая отрасль",
+        "preferred-region": "Предпочитаемый регион",
+        "investment-type": "Тип инвестиций",
+        "investment-amount": "Диапазон инвестиций (в USD)"
+      }
+    },
+    "experience": {
+      "title": "Опыт и присутствие",
+      "fields": {
+        "have-a-business": "Есть ли у вас бизнес в Узбекистане?",
+        "investment-experience": "Опыт инвестиций"
+      }
+    },
+    "additional-information": {
+      "title": "Дополнительная информация",
+      "fields": {
+        "find-type": "Как вы узнали о нас?",
+        "comments": "Комментарии",
+        "aboutUsOther": "Напишите ваш вариант здесь"
+      }
+    },
+    "short-answers": {
+      "yes": "Да",
+      "no": "Нет"
+    },
+    "submit-button": "Зарегистрироваться"
+  },
+  "uz": {
+    "basic-information": {
+      "title": "Asosiy ma'lumotlar",
+      "fields": {
+        "company-name": "Kompaniya nomi",
+        "country": "Mamlakat",
+        "contact-person": "Aloqa shaxsi",
+        "position": "Lavozim",
+        "email": "Elektron pochta",
+        "phone": "Telefon",
+        "website": "Veb-sayt"
+      },
+      "description": "Ro'yxatdan o'tishni davom ettirish uchun asosiy ma'lumotlaringizni taqdim eting."
+    },
+    "financial-information": {
+      "title": "Moliyaviy ma'lumotlar",
+      "fields": {
+        "annual-revenue": "Yillik daromad",
+        "net-profit": "Sof foyda",
+        "employees": "Xodimlar soni"
+      }
+    },
+    "investment-preferences": {
+      "title": "Investitsiya afzalliklari",
+      "fields": {
+        "target-industry": "Maqsadli tarmoqlar",
+        "preferred-region": "O'zbekistonda afzal ko'rilgan investitsiya hududlari",
+        "investment-type": "Investitsiya turi",
+        "investment-amount": "Investitsiya miqdori diapazoni (AQSH dollarida)"
+      }
+    },
+    "experience": {
+      "title": "Tajriba va mavjudlik",
+      "fields": {
+        "have-a-business": "O'zbekistonda biznesingiz bormi?",
+        "investment-experience": "Investitsiya tajribasi"
+      }
+    },
+    "additional-information": {
+      "title": "Qo'shimcha ma'lumotlar",
+      "fields": {
+        "find-type": "Biz haqimizda qanday ma'lumot oldingiz?",
+        "comments": "Izohlar",
+        "aboutUsOther": "Bu yerda o'z variantingizni yozing"
+      }
+    },
+    "short-answers": {
+      "yes": "Ha",
+      "no": "Yo'q"
+    },
+    "submit-button": "Ro'yxatdan o'tish"
+  }
 }
 </i18n>

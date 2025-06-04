@@ -25,6 +25,7 @@
       "project": "Projects",
       "appeal": "Appeal",
       "register-investor": "Investor registration",
+      "register-business": "Business registration"
     },
     "advert": {
       "label": "Find an investor",
@@ -48,5 +49,12 @@
     "privacy_policy": "Privacy policy",
     "cookie_policy": "Cookie policy",
     "sitemap": "Sitemap"
+  },
+  "validations": {
+    "email": "Invalid email address",
+    "maxLength": "Maximum allowed length is {max}",
+    "minLength": "Minimum required length is {min}",
+    "required": "This field is required",
+    "sameAs": "Value must match the field \"{otherName}\""
   }
 }
