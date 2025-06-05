@@ -32,7 +32,7 @@ const livingTableRows = ref([
       </template>
       <template #right>
         <div>
-          <img class="section-card__image" src="/public/img/reason/living/tashkent-city.jpeg" alt="" />
+          <img class="section-card__image" src="/public/img/reason/living/tashkent-city.webp" alt="" />
         </div>
       </template>
     </section-grid>
@@ -58,14 +58,14 @@ const livingTableRows = ref([
     </section-grid>
     <gallery-grid>
       <div>
-        <img class="section-card__image" src="/public/img/reason/living/living-2.png" alt="" />
+        <img class="section-card__image" src="/public/img/reason/living/mosaic.webp" alt="" />
       </div>
       <living-table />
       <div>
-        <img class="section-card__image" src="/public/img/reason/living/living-3.png" alt="" />
+        <img class="section-card__image" src="/public/img/reason/living/mother-child.webp" alt="" />
       </div>
       <div>
-        <img class="section-card__image" src="/public/img/reason/living/original.jpg" alt="" />
+        <img class="section-card__image" src="/public/img/reason/living/fountain.webp" alt="" />
       </div>
     </gallery-grid>
   </div>

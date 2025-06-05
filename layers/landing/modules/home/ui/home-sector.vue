@@ -5,7 +5,7 @@ const { t } = useI18n({ useScope: "local" })
 <template>
   <section class="sector">
     <div v-rellax class="sector__background" data-rellax-percentage="0.4" data-rellax-speed="-4.5">
-      <img class="sector__background-image" src="/public/img/home/sector.png" alt="Sector background" />
+      <img class="sector__background-image" src="/public/img/home/sector.webp" alt="Sector background" />
     </div>
 
     <div class="container-7xl">
@@ -21,7 +21,7 @@ const { t } = useI18n({ useScope: "local" })
             <img
               v-rellax
               class="sector__image"
-              src="/public/img/home/sector.png"
+              src="/public/img/home/sector.webp"
               alt="Sector"
               data-rellax-percentage="0.5"
               data-rellax-speed="-2"

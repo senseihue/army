@@ -20,7 +20,7 @@ const { t } = useI18n({ useScope: "local" })
       </template>
       <template #left>
         <div>
-          <img class="section-card__image" src="/public/img/reason/culture/image_2024-12-06_18-18-01.png" alt="" />
+          <img class="section-card__image" src="/public/img/reason/culture/woman.webp" alt="" />
         </div>
       </template>
     </section-grid>
@@ -32,7 +32,7 @@ const { t } = useI18n({ useScope: "local" })
       </template>
       <template #right>
         <div>
-          <img class="section-card__image" src="/public/img/reason/culture/image_2024-12-06_18-18-43.png" alt="" />
+          <img class="section-card__image" src="/public/img/reason/culture/man.webp" alt="" />
         </div>
       </template>
     </section-grid>
