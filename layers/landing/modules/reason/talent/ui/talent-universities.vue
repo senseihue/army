@@ -2,13 +2,13 @@
 import type { CarouselConfig } from "vue3-carousel"
 import { Carousel, Slide, Navigation } from "vue3-carousel"
 
-import westminster from "@/public/img/reason/talent/wiut-logotype-full.png"
-import webster from "@/public/img/reason/talent/webster.png"
+import westminster from "@/public/img/reason/talent/wiut-logo.webp"
+import webster from "@/public/img/reason/talent/webster.webp"
 import inha from "@/public/img/reason/talent/inha_university.svg"
-import mdis from "@/public/img/reason/talent/mdis-logo_full-colour.png"
-import turin from "@/public/img/reason/talent/logo-ttpu.png"
-import amity from "@/public/img/reason/talent/amity_logo-removebg-preview.png"
-import ytit from "@/public/img/reason/talent/ytit_logo-1.png"
+import mdis from "@/public/img/reason/talent/mdis-logo.webp"
+import turin from "@/public/img/reason/talent/logo-ttpu.webp"
+import amity from "@/public/img/reason/talent/amity.webp"
+import ytit from "@/public/img/reason/talent/ytit-logo.webp"
 import bucheon from "@/public/img/reason/talent/bucheon.svg"
 
 const { t } = useI18n({ useScope: "local" })

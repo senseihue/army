@@ -7,6 +7,9 @@ import {
   ExploreSectorSlide,
   ExploreSectorSlider
 } from "#layers/landing/modules/guide/explore"
+import agriculture from "@/public/img/guide/explore/agriculture/hero.png"
+import cottonSmall from "@/public/img/guide/explore/agriculture/cotton-agriculture-small.png"
+import cow from "@/public/img/guide/explore/agriculture/cow.png"
 
 const { t, tm, rt } = useI18n({ useScope: "local" })
 
@@ -16,9 +19,9 @@ definePageMeta({ fixedHeader: true })
 const fileUrl = "https://dev-portal.miit.uz/uploads/files/agriculture.pdf"
 
 const images = computed(() => ({
-  hero: "https://dev-portal.miit.uz/uploads/guide/image-assetherosizedefaultstatedefault@2x.png",
-  slider: "https://dev-portal.miit.uz/uploads/guide/cotton-agriculture-small.png",
-  content: "https://dev-portal.miit.uz/uploads/guide/cow.png"
+  hero: agriculture,
+  slider: cottonSmall,
+  content: cow
 }))
 </script>
 

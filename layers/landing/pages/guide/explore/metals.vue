@@ -6,7 +6,9 @@ import {
   ExploreSectorSlide,
   ExploreSectorSlider
 } from "#layers/landing/modules/guide/explore"
-
+import hero from "@/public/img/guide/explore/metals/hero.png"
+import cray from "@/public/img/guide/explore/metals/cray.png"
+import mine from "@/public/img/guide/explore/metals/mine.png"
 const { t, tm, rt } = useI18n({ useScope: "local" })
 
 useHead({ title: t("heading") })
@@ -15,9 +17,9 @@ definePageMeta({ fixedHeader: true })
 const fileUrl = "https://dev-portal.miit.uz/uploads/files/metals-and-mining.pdf"
 
 const images = computed(() => ({
-  hero: "https://dev-portal.miit.uz/uploads/image_assetherosizedefaultstatedefault@2x1.png",
-  slider: "https://dev-portal.miit.uz/uploads/guide/image-assetsmallsizedefaultstatedefault-2-2.png",
-  content: "https://dev-portal.miit.uz/uploads/guide/image-assetsmallsizedefaultstatedefault-1-2.png"
+  hero: hero,
+  slider: cray,
+  content: mine
 }))
 </script>
 

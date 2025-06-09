@@ -35,7 +35,7 @@ const statisticData = ref([
       <template #right>
         <img
           class="section-card__image"
-          src="/public/img/reason/talent/copy-of-atrium-garden-of-kukeldash-madrasah-higher-theological-college.-tashkent.jpeg"
+          src="/public/img/reason/talent/kukeldash-madrasah.webp"
           alt="Talent in Uzbekistan"
         />
       </template>
@@ -44,11 +44,7 @@ const statisticData = ref([
     <section-grid>
       <template #left>
         <div>
-          <img
-            class="section-card__image"
-            src="/public/img/reason/talent/copy-of-young-peoples-with-national-flag-of-uzbekistan-at-independance-day..jpeg"
-            alt=""
-          />
+          <img class="section-card__image" src="/public/img/reason/talent/independance-day.webp" alt="" />
         </div>
       </template>
       <template #right>
@@ -139,6 +135,7 @@ const statisticData = ref([
 .talent-page {
   overflow: clip;
 }
+
 .section-card__image {
   width: 100%;
   aspect-ratio: auto;

@@ -6,6 +6,9 @@ import {
   ExploreSectorSlide,
   ExploreSectorSlider
 } from "#layers/landing/modules/guide/explore"
+import hero from "@/public/img/guide/explore/energy/hero.png"
+import sunBattery from "@/public/img/guide/explore/energy/sun-battery.png"
+import sunBatteryWorker from "@/public/img/guide/explore/energy/sun-battery-worker.png"
 
 const { t, tm, rt } = useI18n({ useScope: "local" })
 
@@ -15,9 +18,9 @@ definePageMeta({ fixedHeader: true })
 const fileUrl = "https://dev-portal.miit.uz/uploads/files/energy.pdf"
 
 const images = computed(() => ({
-  hero: "https://dev-portal.miit.uz/uploads/guide/image_assetherosizedefaultstatedefault@2x1-4.png",
-  slider: "https://dev-portal.miit.uz/uploads/guide/image-assetsmallsizedefaultstatedefault-2-1.png",
-  content: "https://dev-portal.miit.uz/uploads/guide/image-assetsmallsizedefaultstatedefault-1-1.png"
+  hero: hero,
+  slider: sunBattery,
+  content: sunBatteryWorker
 }))
 </script>
 

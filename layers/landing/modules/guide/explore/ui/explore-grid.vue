@@ -1,67 +1,79 @@
 <script setup lang="ts">
 import { ExploreCard } from "#layers/landing/modules/guide/explore"
+import agriculture from "~/public/img/guide/explore/agriculture/agriculture.png"
+import auto from "@/public/img/guide/explore/auto.png"
+import chemicals from "@/public/img/guide/explore/chemicals.png"
+import construction from "@/public/img/guide/explore/construction.png"
+import education from "@/public/img/guide/explore/education.png"
+import energy from "@/public/img/guide/explore/energy.png"
+import finance from "@/public/img/guide/explore/finance.png"
+import metals from "@/public/img/guide/explore/metals.png"
+import pharma from "@/public/img/guide/explore/pharma.png"
+import textiles from "@/public/img/guide/explore/textiles.png"
+import technology from "@/public/img/guide/explore/technology.png"
+import tourism from "@/public/img/guide/explore/tourism.png"
 
 const { t } = useI18n({ useScope: "local" })
 
 const cards = computed(() => [
   {
     label: t("agriculture"),
-    image: "https://dev-portal.miit.uz/uploads/guide/agriculture.png",
+    image: agriculture,
     link: "/guide/explore/agriculture"
   },
   {
     label: t("automotive"),
-    image: "https://dev-portal.miit.uz/uploads/guide/auto.png",
+    image: auto,
     link: "/guide/explore/automotive"
   },
   {
     label: t("chemicals"),
-    image: "https://dev-portal.miit.uz/uploads/guide/chemicals.png",
+    image: chemicals,
     link: "/guide/explore/chemicals"
   },
   {
     label: t("construction"),
-    image: "https://dev-portal.miit.uz/uploads/guide/construction.png",
+    image: construction,
     link: "/guide/explore/construction"
   },
   {
     label: t("education"),
-    image: "https://dev-portal.miit.uz/uploads/guide/education.png",
+    image: education,
     link: "/guide/explore/education"
   },
   {
     label: t("energy"),
-    image: "https://dev-portal.miit.uz/uploads/guide/energy.png",
+    image: energy,
     link: "/guide/explore/energy"
   },
   {
     label: t("finance"),
-    image: "https://dev-portal.miit.uz/uploads/fin_serv.jpg",
+    image: finance,
     link: "/guide/explore/finance"
   },
   {
     label: t("metals"),
-    image: "https://dev-portal.miit.uz/uploads/guide/metals.png",
+    image: metals,
     link: "/guide/explore/metals"
   },
   {
     label: t("pharma"),
-    image: "https://dev-portal.miit.uz/uploads/guide/pharma.png",
+    image: pharma,
     link: "/guide/explore/pharma"
   },
   {
     label: t("textiles"),
-    image: "https://dev-portal.miit.uz/uploads/guide/textiles.png",
+    image: textiles,
     link: "/guide/explore/textiles"
   },
   {
     label: t("technology"),
-    image: "https://dev-portal.miit.uz/uploads/guide/technology.webp",
+    image: technology,
     link: "/guide/explore/technology"
   },
   {
     label: t("tourism"),
-    image: "https://dev-portal.miit.uz/uploads/guide/tourism.png",
+    image: tourism,
     link: "/guide/explore/tourism"
   }
 ])

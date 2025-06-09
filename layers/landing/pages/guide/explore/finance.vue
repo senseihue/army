@@ -5,6 +5,9 @@ import {
   ExploreSectorSlide,
   ExploreSectorSlider
 } from "#layers/landing/modules/guide/explore"
+import hero from "@/public/img/guide/explore/finance/hero.png"
+import stock from "@/public/img/guide/explore/finance/stock.png"
+import nbu from "@/public/img/guide/explore/finance/nbu.png"
 
 const { t, tm, rt } = useI18n({ useScope: "local" })
 
@@ -14,9 +17,9 @@ definePageMeta({ fixedHeader: true })
 // const fileUrl = "https://dev-portal.miit.uz/uploads/files/agriculture.pdf"
 
 const images = computed(() => ({
-  hero: "https://dev-portal.miit.uz/uploads/fin_serv.jpg",
-  slider: "https://dev-portal.miit.uz/uploads/why-uzbekistan/financial-services-stock-image.jpeg",
-  content: "https://dev-portal.miit.uz/uploads/guide/national-bank-of-uzbek.jpeg"
+  hero,
+  slider: stock,
+  content: nbu
 }))
 </script>
 

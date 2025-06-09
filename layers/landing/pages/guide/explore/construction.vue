@@ -6,6 +6,9 @@ import {
   ExploreSectorSlide,
   ExploreSectorSlider
 } from "#layers/landing/modules/guide/explore"
+import hero from "@/public/img/guide/explore/construction/hero.png"
+import mosque from "@/public/img/guide/explore/construction/mosque.png"
+import build from "@/public/img/guide/explore/construction/build.png"
 
 const { t, tm, rt } = useI18n({ useScope: "local" })
 
@@ -15,9 +18,9 @@ definePageMeta({ fixedHeader: true })
 const fileUrl = "https://dev-portal.miit.uz/uploads/files/construction-and-housing.pdf"
 
 const images = computed(() => ({
-  hero: "https://dev-portal.miit.uz/uploads/guide/image_assetherosizedefaultstatedefault@2x1-2.png",
-  slider: "https://dev-portal.miit.uz/uploads/guide/build-small.png",
-  content: "https://dev-portal.miit.uz/uploads/guide/build-block.png"
+  hero: hero,
+  slider: mosque,
+  content: build
 }))
 </script>
 

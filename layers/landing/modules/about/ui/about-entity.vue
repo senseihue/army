@@ -1,6 +1,16 @@
 <script setup lang="ts">
 import type { CarouselConfig } from "vue3-carousel"
 import { Carousel, Slide, Navigation } from "vue3-carousel"
+import davaktiv from "@/public/img/about/davaktiv.uz.webp"
+import gov from "@/public/img/about/gov.uz.webp"
+import lex from "@/public/img/about/lex.uz.webp"
+import miit from "@/public/img/about/miit.uz.webp"
+import myGov from "@/public/img/about/my.gov.uz.webp"
+import pmGov from "@/public/img/about/pm.gov.uz.webp"
+import president from "@/public/img/about/president.uz.webp"
+import senat from "@/public/img/about/senat.uz.webp"
+import soliq from "@/public/img/about/soliq.uz.webp"
+import tashkent from "@/public/img/about/tashkent.uz.webp"
 
 const carouselConfig = computed<Partial<CarouselConfig>>(() => ({
   gap: 24,
@@ -22,43 +32,43 @@ const carouselConfig = computed<Partial<CarouselConfig>>(() => ({
 const entities = computed(() => [
   {
     url: "https://gov.uz/en/davaktiv/news/view/25777",
-    image: "https://dev-portal.miit.uz/uploads/introduction/davaktiv.uz.png"
+    image: davaktiv
   },
   {
     url: "https://gov.uz/en/davaktiv/pages/about",
-    image: "https://dev-portal.miit.uz/uploads/introduction/gov.uz.png"
+    image: gov
   },
   {
     url: "https://lex.uz/uz",
-    image: "https://dev-portal.miit.uz/uploads/introduction/lex.uz.png"
+    image: lex
   },
   {
     url: "https://gov.uz/en/miit",
-    image: "https://dev-portal.miit.uz/uploads/introduction/miit.uz.png"
+    image: miit
   },
   {
     url: "https://my.gov.uz/oz",
-    image: "https://dev-portal.miit.uz/uploads/introduction/my.gov.uz.png"
+    image: myGov
   },
   {
     url: "https://pm.gov.uz/oz",
-    image: "https://dev-portal.miit.uz/uploads/introduction/pm.gov.uz.png"
+    image: pmGov
   },
   {
     url: "https://president.uz/en",
-    image: "https://dev-portal.miit.uz/uploads/introduction/president.uz.png"
+    image: president
   },
   {
     url: "https://parliament.gov.uz/",
-    image: "https://dev-portal.miit.uz/uploads/introduction/senat.uz.png"
+    image: senat
   },
   {
     url: "https://my.soliq.uz/main/",
-    image: "https://dev-portal.miit.uz/uploads/introduction/soliq.uz.png"
+    image: soliq
   },
   {
     url: "https://gov.uz/en/toshkent/pages/about",
-    image: "https://dev-portal.miit.uz/uploads/introduction/tashkent.uz.png"
+    image: tashkent
   }
 ])
 </script>
