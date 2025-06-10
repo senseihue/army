@@ -6,9 +6,9 @@ import {
   ExploreSectorSlide,
   ExploreSectorSlider
 } from "#layers/landing/modules/guide/explore"
-import hero from "@/public/img/guide/explore/pharma/hero.png"
-import pharma1 from "@/public/img/guide/explore/pharma/pharma-1.png"
-import pharma2 from "@/public/img/guide/explore/pharma/pharma-2.png"
+import hero from "@/public/img/guide/explore/pharma/hero.webp"
+import pharma1 from "@/public/img/guide/explore/pharma/pharma-1.webp"
+import pharma2 from "@/public/img/guide/explore/pharma/pharma-2.webp"
 
 const { t, tm, rt } = useI18n({ useScope: "local" })
 

@@ -7,9 +7,9 @@ import {
   ExploreSectorSlider
 } from "#layers/landing/modules/guide/explore"
 
-import hero from "@/public/img/guide/explore/technology/hero.png"
-import basket from "@/public/img/guide/explore/technology/basket.png"
-import pay from "@/public/img/guide/explore/technology/pay.png"
+import hero from "@/public/img/guide/explore/technology/hero.webp"
+import basket from "@/public/img/guide/explore/technology/basket.webp"
+import pay from "@/public/img/guide/explore/technology/pay.webp"
 
 const { t, tm, rt } = useI18n({ useScope: "local" })
 

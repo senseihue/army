@@ -7,9 +7,9 @@ import {
   ExploreSectorSlide,
   ExploreSectorSlider
 } from "#layers/landing/modules/guide/explore"
-import agriculture from "@/public/img/guide/explore/agriculture/hero.png"
-import cottonSmall from "@/public/img/guide/explore/agriculture/cotton-agriculture-small.png"
-import cow from "@/public/img/guide/explore/agriculture/cow.png"
+import agriculture from "@/public/img/guide/explore/agriculture/hero.webp"
+import cottonSmall from "@/public/img/guide/explore/agriculture/cotton-agriculture-small.webp"
+import cow from "@/public/img/guide/explore/agriculture/cow.webp"
 
 const { t, tm, rt } = useI18n({ useScope: "local" })
 

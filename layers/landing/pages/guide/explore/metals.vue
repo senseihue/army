@@ -6,9 +6,9 @@ import {
   ExploreSectorSlide,
   ExploreSectorSlider
 } from "#layers/landing/modules/guide/explore"
-import hero from "@/public/img/guide/explore/metals/hero.png"
-import cray from "@/public/img/guide/explore/metals/cray.png"
-import mine from "@/public/img/guide/explore/metals/mine.png"
+import hero from "@/public/img/guide/explore/metals/hero.webp"
+import cray from "@/public/img/guide/explore/metals/cray.webp"
+import mine from "@/public/img/guide/explore/metals/mine.webp"
 const { t, tm, rt } = useI18n({ useScope: "local" })
 
 useHead({ title: t("heading") })

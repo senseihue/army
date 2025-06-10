@@ -5,9 +5,9 @@ import {
   ExploreSectorSlide,
   ExploreSectorSlider
 } from "#layers/landing/modules/guide/explore"
-import hero from "@/public/img/guide/explore/finance/hero.png"
-import stock from "@/public/img/guide/explore/finance/stock.png"
-import nbu from "@/public/img/guide/explore/finance/nbu.png"
+import hero from "@/public/img/guide/explore/finance/hero.webp"
+import stock from "@/public/img/guide/explore/finance/stock.webp"
+import nbu from "@/public/img/guide/explore/finance/nbu.webp"
 
 const { t, tm, rt } = useI18n({ useScope: "local" })
 

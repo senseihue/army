@@ -6,9 +6,9 @@ import {
   ExploreSectorSlide,
   ExploreSectorSlider
 } from "#layers/landing/modules/guide/explore"
-import hero from "@/public/img/guide/explore/energy/hero.png"
-import sunBattery from "@/public/img/guide/explore/energy/sun-battery.png"
-import sunBatteryWorker from "@/public/img/guide/explore/energy/sun-battery-worker.png"
+import hero from "@/public/img/guide/explore/energy/hero.webp"
+import sunBattery from "@/public/img/guide/explore/energy/sun-battery.webp"
+import sunBatteryWorker from "@/public/img/guide/explore/energy/sun-battery-worker.webp"
 
 const { t, tm, rt } = useI18n({ useScope: "local" })
 

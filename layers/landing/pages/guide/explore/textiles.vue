@@ -6,9 +6,9 @@ import {
   ExploreSectorSlide,
   ExploreSectorSlider
 } from "#layers/landing/modules/guide/explore"
-import hero from "@/public/img/guide/explore/textiles/hero.png"
-import atlas1 from "@/public/img/guide/explore/textiles/atlas1.png"
-import atlas2 from "@/public/img/guide/explore/textiles/atlas2.png"
+import hero from "@/public/img/guide/explore/textiles/hero.webp"
+import atlas1 from "@/public/img/guide/explore/textiles/atlas1.webp"
+import atlas2 from "@/public/img/guide/explore/textiles/atlas2.webp"
 
 const { t, tm, rt } = useI18n({ useScope: "local" })
 

@@ -6,9 +6,9 @@ import {
   ExploreSectorSlide,
   ExploreSectorSlider
 } from "#layers/landing/modules/guide/explore"
-import hero from "@/public/img/guide/explore/auto/hero.png"
-import car from "@/public/img/guide/explore/auto/car.png"
-import oil from "@/public/img/guide/explore/auto/oil.png"
+import hero from "@/public/img/guide/explore/auto/hero.webp"
+import car from "@/public/img/guide/explore/auto/car.webp"
+import oil from "@/public/img/guide/explore/auto/oil.webp"
 
 const { t, tm, rt } = useI18n({ useScope: "local" })
 
