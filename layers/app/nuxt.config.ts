@@ -4,6 +4,9 @@ export default defineNuxtConfig({
     layouts: "./layouts",
     plugins: "./plugins",
     modules: "./modules",
-    middleware: "./middleware",
+    middleware: "./middleware"
   },
+  imports: {
+    dirs: ["./composables", "./lib", "./constants", "./stores"]
+  }
 })
