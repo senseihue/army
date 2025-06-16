@@ -7,6 +7,8 @@ export default defineNuxtConfig({
   dev: !!parseInt(process.env.APP_DEV!),
   devtools: { enabled: true },
 
+  extends: ["./layers/app", "./layers/ui"],
+
   devServer: {
     port: parseInt(process.env.APP_PORT || "8000", 10),
     host: process.env.APP_HOST || "0.0.0.0"
@@ -33,8 +35,8 @@ export default defineNuxtConfig({
 
   modules: [
     // "@nuxt/fonts",
-    '@nuxtjs/google-fonts',
-    'nuxt-swiper',
+    "@nuxtjs/google-fonts",
+    "nuxt-swiper",
     "@nuxt/icon",
     "@nuxt/image",
     "@nuxt/eslint",
@@ -50,7 +52,7 @@ export default defineNuxtConfig({
   // }
   googleFonts: {
     families: {
-      Inter: [300, 400, 500, 600, 700, 800, 900],
+      Inter: [300, 400, 500, 600, 700, 800, 900]
     }
   },
 

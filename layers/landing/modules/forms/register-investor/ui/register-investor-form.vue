@@ -96,10 +96,12 @@ const rules = ref({
 })
 const { vuelidate, hasError } = useValidate(form, rules)
 const submit = async () => {
+  console.log("Form submitted:", useNuxtApp())
+
   const isValid = await vuelidate.value.$validate()
   if (isValid) {
     // Handle form submission logic here
-    console.log("Form submitted:", form.value)
+    console.log("Form submitted:", useNuxtApp())
   } else {
     console.error("Form validation failed")
   }
