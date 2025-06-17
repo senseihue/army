@@ -7,6 +7,10 @@ import {
   ExploreSectorSlider
 } from "#layers/landing/modules/guide/explore"
 
+import hero from "@/public/img/guide/explore/technology/hero.webp"
+import basket from "@/public/img/guide/explore/technology/basket.webp"
+import pay from "@/public/img/guide/explore/technology/pay.webp"
+
 const { t, tm, rt } = useI18n({ useScope: "local" })
 
 useHead({ title: t("heading") })
@@ -15,9 +19,9 @@ definePageMeta({ fixedHeader: true })
 const fileUrl = "https://dev-portal.miit.uz/uploads/files/technology.pdf"
 
 const images = computed(() => ({
-  hero: "https://dev-portal.miit.uz/uploads/image_assetherosizedefaultstatedefault@2x1-3.png",
-  slider: "https://dev-portal.miit.uz/uploads/guide/e-commerce-stock.jpeg",
-  content: "https://dev-portal.miit.uz/uploads/guide/apple-pay.jpeg"
+  hero,
+  slider: basket,
+  content: pay
 }))
 </script>
 

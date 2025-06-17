@@ -6,6 +6,9 @@ import {
   ExploreSectorSlide,
   ExploreSectorSlider
 } from "#layers/landing/modules/guide/explore"
+import hero from "@/public/img/guide/explore/auto/hero.webp"
+import car from "@/public/img/guide/explore/auto/car.webp"
+import oil from "@/public/img/guide/explore/auto/oil.webp"
 
 const { t, tm, rt } = useI18n({ useScope: "local" })
 
@@ -15,9 +18,9 @@ definePageMeta({ fixedHeader: true })
 const fileUrl = "https://dev-portal.miit.uz/uploads/files/automotive.pdf"
 
 const images = computed(() => ({
-  hero: "https://dev-portal.miit.uz/uploads/guide/image_assetherosizedefaultstatedefault@2x1.png",
-  slider: "https://dev-portal.miit.uz/uploads/guide/car.png",
-  content: "https://dev-portal.miit.uz/uploads/guide/oil.png"
+  hero: hero,
+  slider: car,
+  content: oil
 }))
 </script>
 

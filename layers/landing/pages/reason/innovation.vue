@@ -18,13 +18,13 @@ const { t } = useI18n({ useScope: "local" })
         <p v-html="t('description')" class="text-justify"></p>
       </template>
       <template #right>
-        <img class="section-card__image" src="/public/img/reason/innovation/innovation-1.png" alt="" />
+        <img class="section-card__image" src="/public/img/reason/innovation/innovation.webp" alt="" />
       </template>
     </section-grid>
     <section-grid>
       <template #left>
         <div>
-          <img class="section-card__image" src="/public/img/reason/innovation/innovation-2.png" alt="" />
+          <img class="section-card__image" src="/public/img/reason/innovation/payment.webp" alt="" />
         </div>
       </template>
       <template #right>

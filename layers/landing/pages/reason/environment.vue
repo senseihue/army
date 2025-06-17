@@ -25,7 +25,7 @@ const { t } = useI18n({ useScope: "local" })
       </template>
       <template #right>
         <div>
-          <img class="section-card__image" src="/public/img/reason/supportive-environment/environment-1.png" alt="" />
+          <img class="section-card__image" src="/public/img/reason/supportive-environment/city.webp" alt="" />
         </div>
       </template>
     </section-grid>
@@ -43,7 +43,7 @@ const { t } = useI18n({ useScope: "local" })
       </template>
       <template #left>
         <div>
-          <img class="section-card__image" src="/public/img/reason/supportive-environment/environment-2.png" alt="" />
+          <img class="section-card__image" src="/public/img/reason/supportive-environment/night-city.webp" alt="" />
         </div>
       </template>
     </section-grid>
@@ -63,7 +63,7 @@ const { t } = useI18n({ useScope: "local" })
         <div>
           <img
             class="section-card__image"
-            src="/public/img/reason/supportive-environment/tashkent-international-arbitration-center-stock.jpeg"
+            src="/public/img/reason/supportive-environment/appeal.webp"
             alt=""
           />
         </div>
@@ -74,7 +74,7 @@ const { t } = useI18n({ useScope: "local" })
         <div>
           <img
             class="section-card__image"
-            src="/public/img/reason/supportive-environment/foreign-investor-council.jpg"
+            src="/public/img/reason/supportive-environment/meeting.webp"
             alt=""
           />
         </div>

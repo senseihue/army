@@ -6,6 +6,9 @@ import {
   ExploreSectorSlide,
   ExploreSectorSlider
 } from "#layers/landing/modules/guide/explore"
+import hero from "@/public/img/guide/explore/chemicals/hero.webp"
+import outsideFactory from "@/public/img/guide/explore/chemicals/outside-factory.webp"
+import insideFactory from "@/public/img/guide/explore/chemicals/inside-factory.webp"
 
 const { t, tm, rt } = useI18n({ useScope: "local" })
 
@@ -15,9 +18,9 @@ definePageMeta({ fixedHeader: true })
 const fileUrl = "https://dev-portal.miit.uz/uploads/files/chemicals.pdf"
 
 const images = computed(() => ({
-  hero: "https://dev-portal.miit.uz/uploads/guide/image_assetherosizedefaultstatedefault@2x1-1.png",
-  slider: "https://dev-portal.miit.uz/uploads/guide/chemicals-slider.png",
-  content: "https://dev-portal.miit.uz/uploads/guide/chemicals-block.png"
+  hero: hero,
+  slider: outsideFactory,
+  content: insideFactory
 }))
 </script>
 

@@ -2,12 +2,12 @@
 import { ref } from "vue"
 import { type CarouselConfig, Navigation } from "vue3-carousel"
 import { Carousel, Slide } from "vue3-carousel"
-import aksu from "@/public/img/reason/culture/aksu_jabagly_2.jpg"
-import chorBakr from "@/public/img/reason/culture/chor-bakr.jpg"
-import itchanKala from "@/public/img/reason/culture/itchan_kala_khiva_2012.jpg"
-import registan from "@/public/img/reason/culture/registan_square_2014.jpg"
-import kalon from "@/public/img/reason/culture/le_minaret_et_la_mosquee_kalon_(boukhara_ouzbekistan)_(5658826884).jpg"
-import kokGumbaz from "@/public/img/reason/culture/kok-gumbaz_mosque_shahrisabz.jpg"
+import aksu from "@/public/img/reason/culture/aksu-jabagly.webp"
+import chorBakr from "@/public/img/reason/culture/chor-bakr.webp"
+import itchanKala from "@/public/img/reason/culture/ichan-kala.webp"
+import registan from "@/public/img/reason/culture/registan-square.webp"
+import kalon from "@/public/img/reason/culture/mosque-kalon.webp"
+import kokGumbaz from "@/public/img/reason/culture/mosque-shahrisabz.webp"
 import "vue3-carousel/carousel.css"
 
 const carouselRef = ref()

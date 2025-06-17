@@ -7,7 +7,7 @@ const { t, tm, rt } = useI18n({ useScope: "local" })
     <div class="container-7xl">
       <div class="p-section">
         <div class="flex flex-col gap-4">
-          <img src="https://invest.miit.uz/uploads/photo_2024-(2).jpg" alt="Image" />
+          <img src="/public/img/guide/privatization/privatization.webp" alt="img" />
           <p class="whitespace-pre-line text-gray-olive">{{ t("content") }}</p>
 
           <div class="mb-8 flex flex-col gap-4">

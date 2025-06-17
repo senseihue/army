@@ -1,18 +1,15 @@
 export class RegisterBusiness {
-  companyName: string = ''
-  tin: string = ''
-  legalAddress: string = ''
-  website: string = ''
-
-  name: string = ''
-  surname: string = ''
-  mobile: string = ''
-  email: string = ''
-
-  projectName: string = ''
-  projectPurpose: string = ''
-  totalInvestment: string = ''
-  ownContribution: string = ''
-
-  file: undefined | File[] = undefined
+  company_name: string = ""
+  tin: string = ""
+  website: string = ""
+  legal_address: string = ""
+  name: string = ""
+  surname: string = ""
+  email: string = ""
+  phone: string = ""
+  project_name: string = ""
+  project_purpose: string = ""
+  required_investment: string = ""
+  own_contribution: string = ""
+  file!: File[]
 }

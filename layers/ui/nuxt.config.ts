@@ -8,5 +8,8 @@ export default defineNuxtConfig({
       path: "./components",
       pathPrefix: false
     }
-  ]
+  ],
+  imports: {
+    dirs: ["./composables", "./lib", "./constants", "./stores"]
+  }
 })

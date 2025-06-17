@@ -6,6 +6,9 @@ import {
   ExploreSectorSlide,
   ExploreSectorSlider
 } from "#layers/landing/modules/guide/explore"
+import hero from "@/public/img/guide/explore/tourism/hero.webp"
+import plov from "@/public/img/guide/explore/tourism/plov.webp"
+import oldBuilding from "@/public/img/guide/explore/tourism/old-building.webp"
 
 const { t, tm, rt } = useI18n({ useScope: "local" })
 
@@ -15,9 +18,9 @@ definePageMeta({ fixedHeader: true })
 const fileUrl = "https://dev-portal.miit.uz/uploads/files/tourism.pdf"
 
 const images = computed(() => ({
-  hero: "https://dev-portal.miit.uz/uploads/image_assetherosizedefaultstatedefault@2x1-4.png",
-  slider: "https://dev-portal.miit.uz/uploads/guide/image-assetsmallsizedefaultstatedefault-1-5.png",
-  content: "https://dev-portal.miit.uz/uploads/guide/image-assetsmallsizedefaultstatedefault-5.png"
+  hero,
+  slider: plov,
+  content: oldBuilding
 }))
 </script>
 
