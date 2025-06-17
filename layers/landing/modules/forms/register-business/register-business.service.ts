@@ -16,8 +16,6 @@ export const useRegisterBusinessService = () => {
         $toast.success(t("messages.success.registration"))
         const formData = new FormData()
         formData.append("files", dto.value.file[0])
-        console.log(dto.value, "dto.value")
-
         formData.append("registration_id", content.id.toString())
         uploadService.saveBusinessRegistrationDocument(formData)
 
