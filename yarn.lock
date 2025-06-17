@@ -10115,6 +10115,11 @@ vue-router@^4.5.0, vue-router@^4.5.1:
   dependencies:
     "@vue/devtools-api" "^6.6.4"
 
+vue-sonner@1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/vue-sonner/-/vue-sonner-1.3.0.tgz#da8ab9be995dfea781d57a6ac52d170d02473d86"
+  integrity sha512-jAodBy4Mri8rQjVZGQAPs4ZYymc1ywPiwfa81qU0fFl+Suk7U8NaOxIDdI1oBGLeQJqRZi/oxNIuhCLqsBmOwg==
+
 vue3-apexcharts@1.6.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/vue3-apexcharts/-/vue3-apexcharts-1.6.0.tgz#2ea6eb9acdd3c31cff790b67d6c2bf1b38cc09f6"

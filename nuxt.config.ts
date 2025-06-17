@@ -7,7 +7,6 @@ export default defineNuxtConfig({
   dev: !!parseInt(process.env.APP_DEV!),
   devtools: { enabled: true },
 
-  extends: ["./layers/app", "./layers/ui"],
 
   devServer: {
     port: parseInt(process.env.APP_PORT || "8000", 10),
@@ -31,6 +30,10 @@ export default defineNuxtConfig({
     }
   },
 
+  routeRules: {
+    "/gateway/**": { proxy: process.env.APP_API_URL }
+  },
+
   css: ["floating-vue/dist/style.css", "vue3-carousel/carousel.css"],
 
   modules: [
@@ -45,7 +48,8 @@ export default defineNuxtConfig({
     "@pinia/nuxt",
     "@vueuse/nuxt",
     "nuxt-aos",
-    "nuxt-rellax"
+    "nuxt-rellax",
+    "vue-sonner/nuxt"
   ],
   // fonts: {
   //   families: [{ name: "Inter", provider: "google", weights: ["300", "400", "500", "600", "700", "800", "900"] }]

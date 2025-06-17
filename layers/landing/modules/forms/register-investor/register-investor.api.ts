@@ -1,22 +1,14 @@
-export class RegisterInvestor {
-  name: string = ''
-  country: string = ''
-  contactPerson: string = ''
-  position: string = ''
-  email: string = ''
-  phone: string = ''
-  website: string = ''
-  annualRevenue: string = ''
-  netProfit: string = ''
-  numberOfEmployees: string = ''
-  target: string = ''
-  region: string = ''
-  investmentType: string = ''
-  investmentAmountRange: string = ''
-  amountRange: string = ''
-  business: string = ''
-  investmentExperience: string = ''
-  aboutUs: string = ''
-  aboutUsOther: string = ''
-  comments: string = ''
+import { RegisterInvestor } from "#layers/landing/modules/forms/register-investor"
+
+export const useRegisterInvestorApi = () => {
+  const BASE_URL = "/siw/public"
+  const { $http } = useNuxtApp()
+
+  const registerInvestor = async (data: RegisterInvestor): AsyncResponseContainer<IRegistrationInvestor> => {
+    return $http.$post(`${BASE_URL}/investor-registration`, data)
+  }
+
+  return {
+    registerInvestor
+  }
 }
