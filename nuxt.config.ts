@@ -7,6 +7,7 @@ export default defineNuxtConfig({
   dev: !!parseInt(process.env.APP_DEV!),
   devtools: { enabled: true },
 
+
   devServer: {
     port: parseInt(process.env.APP_PORT || "8000", 10),
     host: process.env.APP_HOST || "0.0.0.0"
@@ -29,12 +30,16 @@ export default defineNuxtConfig({
     }
   },
 
+  routeRules: {
+    "/gateway/**": { proxy: process.env.APP_API_URL }
+  },
+
   css: ["floating-vue/dist/style.css", "vue3-carousel/carousel.css"],
 
   modules: [
     // "@nuxt/fonts",
-    '@nuxtjs/google-fonts',
-    'nuxt-swiper',
+    "@nuxtjs/google-fonts",
+    "nuxt-swiper",
     "@nuxt/icon",
     "@nuxt/image",
     "@nuxt/eslint",
@@ -43,14 +48,15 @@ export default defineNuxtConfig({
     "@pinia/nuxt",
     "@vueuse/nuxt",
     "nuxt-aos",
-    "nuxt-rellax"
+    "nuxt-rellax",
+    "vue-sonner/nuxt"
   ],
   // fonts: {
   //   families: [{ name: "Inter", provider: "google", weights: ["300", "400", "500", "600", "700", "800", "900"] }]
   // }
   googleFonts: {
     families: {
-      Inter: [300, 400, 500, 600, 700, 800, 900],
+      Inter: [300, 400, 500, 600, 700, 800, 900]
     }
   },
 

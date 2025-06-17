@@ -56,5 +56,31 @@
     "minLength": "Minimum required length is {min}",
     "required": "This field is required",
     "sameAs": "Value must match the field \"{otherName}\""
+  },
+  "messages": {
+    "confirm": {
+      "block": "Are you sure you want to block?",
+      "deactivate": "Are you sure you want to deactivate?",
+      "delete": "Are you sure you want to delete?",
+      "send_message": "Are you sure you want to send the message?",
+      "sign_out": "Are you sure you want to sign out?"
+    },
+    "info": {
+      "data_not_found": "Data not found",
+      "entity_blocked": "{name} has been blocked",
+      "entity_deactivated": "{name} has been deactivated",
+      "entity_deleted": "{name} has been deleted",
+      "message_cannot_be_edited": "Message cannot be edited after sending.",
+      "no_worries_message": "No worries, we'll send you reset instructions.",
+      "page_not_found": "Page not found",
+      "welcome_message": "Welcome back! Please enter your details."
+    },
+    "success": {
+      "entity_activated": "{name} has been activated",
+      "entity_sent": "{name} has been sent",
+      "entity_unblocked": "{name} has been unblocked",
+      "saved": "Saved successfully",
+      "registration": "Registration successful!"
+    }
   }
 }

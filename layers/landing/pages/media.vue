@@ -7,5 +7,3 @@ import { MediaHero } from "#layers/landing/modules/media/ui"
     <media-hero />
   </div>
 </template>
-
-<style scoped></style>

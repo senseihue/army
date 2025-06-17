@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { MainFooter, MainHeader } from "#layers/landing/modules/layout"
+useFetch()
 </script>
 
 <template>
