@@ -5,11 +5,12 @@ import utc from "dayjs/plugin/utc"
 dayjs.extend(utc)
 
 interface IProps {
-  image: any
-  agenda: any
+  image?: IFile
+  agenda?: IFile
+  id: number
   name: string
-  date: number[] | []
-  time: number | null
+  date: string
+  time: string
   location: string
   description: string
   path: string
@@ -25,7 +26,8 @@ const runtimeConfig = useRuntimeConfig()
 <template>
   <div class="grid grid-cols-1 gap-y-8 md:grid-cols-2">
     <div class="md:mr-24">
-      <img class="w-full" :src="image" />
+      <img v-if="image" class="w-full" :src="image.download_link" :name />
+      <img v-else src="" alt="" />
     </div>
 
     <div class="flex flex-col gap-6">
@@ -55,13 +57,13 @@ const runtimeConfig = useRuntimeConfig()
       </p>
 
       <div class="flex items-center gap-3">
-        <nuxt-link-locale :to="{ path, query: { to: 'register' } }">
+        <nuxt-link-locale :to="{ path, query: { to: 'register', event_id: id } }">
           <ui-button download color="info">
             {{ t("actions.register") }}
           </ui-button>
         </nuxt-link-locale>
 
-        <ui-button download color="info">
+        <ui-button v-if="agenda" target="_blank" color="info" :href="agenda.download_link">
           {{ t("actions.download_forum_agenda") }}
         </ui-button>
       </div>

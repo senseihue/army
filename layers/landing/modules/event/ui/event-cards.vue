@@ -2,21 +2,11 @@
 import { EventCard } from "#layers/landing/modules/event"
 
 interface IProps {
-  data: {
-    id: string
-    date: number[] | []
-    description: string
-    image: string
-    forumAgenda: string[]
-    location: string
-    name: string
-    path: string
-    time: number | null
-  }[]
+  data: IEventType[]
 }
 
 defineProps<IProps>()
-const { t } = useI18n({useScope: 'local'})
+const { t } = useI18n({ useScope: "local" })
 </script>
 
 <template>
@@ -29,14 +19,15 @@ const { t } = useI18n({useScope: 'local'})
         <div class="grid gap-8 md:gap-10">
           <event-card
             v-for="event in data"
-            :date="event.date"
+            :date="event.date_from"
             :description="event.description"
-            :image="event.image"
+            :id="event.id"
+            :image="event.photo"
             :key="event.id"
-            :agenda="event.forumAgenda"
+            :agenda="event.agenda"
             :location="event.location"
             :name="event.name"
-            :path="event.path"
+            :path="`/events/${event.id}`"
             :time="event.time"
           />
         </div>
@@ -52,7 +43,7 @@ const { t } = useI18n({useScope: 'local'})
   "en": {
     "events": {
       "heading": "Events Calendar"
-    },
+    }
   },
   "ru": {
     "events": {

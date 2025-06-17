@@ -1,15 +1,15 @@
 import { getSelectItems } from "#layers/ui/lib/select-collection"
-import { useTerritoryApi } from "#layers/landing/modules/territory"
+import { useCountryApi } from "#layers/landing/modules/country"
 
-export const useTerritoryService = () => {
+export const useCountryService = () => {
   const { $toast } = useNuxtApp()
-  const territoryApi = useTerritoryApi()
+  const countryApi = useCountryApi()
 
-  const getTerritoryList = async (dto: Ref<[]>, loading?: Ref<boolean>) => {
+  const getCountryList = async (dto: Ref<[]>, loading?: Ref<boolean>) => {
     if (loading) loading.value = true
 
-    territoryApi
-      .getTerritoryList({ page: 0, size: 100 })
+    countryApi
+      .getCountryList({ page: 0, size: 100 })
       .then(({ content }) => {
         dto.value = getSelectItems(content, undefined, "region.region")
       })
@@ -19,6 +19,6 @@ export const useTerritoryService = () => {
   }
 
   return {
-    getTerritoryList
+    getCountryList
   }
 }

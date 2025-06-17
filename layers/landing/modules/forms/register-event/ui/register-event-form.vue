@@ -1,41 +1,46 @@
 <script setup lang="ts">
-import { RegisterEvent } from "#layers/landing/modules/forms/register-event"
+import { RegisterEvent, useRegisterEventService } from "#layers/landing/modules/forms/register-event"
 import Multiselect from "@vueform/multiselect"
+import { CountrySelect } from "#layers/landing/modules/country"
 
-const { t } = useI18n({
-  useScope: "local"
-})
 type SelectOptions = Array<{
-  name: string
+  label: string
   value: string
 }>
 
-const roles: SelectOptions = [{ name: t("applicant.options.role.attendee"), value: "attendee" }]
+const { createApplication } = useRegisterEventService()
+const { t } = useI18n({
+  useScope: "local"
+})
+const route = useRoute()
+
+const roles: SelectOptions = [{ label: t("applicant.options.role.attendee"), value: "attendee" }]
 
 const genders: SelectOptions = [
-  { name: t("applicant.options.gender.male"), value: "male" },
-  { name: t("applicant.options.gender.female"), value: "female" }
+  { label: t("applicant.options.gender.male"), value: "male" },
+  { label: t("applicant.options.gender.female"), value: "female" }
 ]
 
 const form = ref<RegisterEvent>(new RegisterEvent())
+const loading = ref(false)
 const { required, email, minLength } = useRule()
 
 const rules = ref({
   role: { required },
-  firstName: { required },
-  middleName: { required },
-  lastName: { required },
-  gender: { required },
-  birthDate: { required },
-  email: { required, email },
-  phone: { required, minLength: minLength(12) },
-  passportId: { required },
-  country: { required },
-  livingAddress: { required },
-  birthPlace: { required },
+  first_name: { required },
+  last_name: { required },
+  middle_name: { required },
+  birth_date: { required },
+  email: { required },
+  phone: { required },
+  passport: { required },
+  country_id: { required },
+  address: { required },
+  birthplace: { required },
   organization: { required },
   position: { required },
-  activity: { required },
+  event_id: { required },
+  gender: { required },
   filePassport: { required },
   filePhoto: { required }
 })
@@ -44,10 +49,8 @@ const { vuelidate, hasError } = useValidate(form, rules)
 const submit = async () => {
   const isValid = await vuelidate.value.$validate()
   if (isValid) {
-    // Handle form submission logic here
-    console.log("Form submitted:", form.value)
-  } else {
-    console.error("Form validation failed")
+    form.value.event_id = route.query.event_id
+    createApplication(form, loading)
   }
 }
 </script>
@@ -59,23 +62,23 @@ const submit = async () => {
         {{ t("applicant.title") }}
       </h3>
       <ui-form-group v-bind:class="hasError('role')" v-slot="{ id }" :label="t('applicant.fields.role')">
-        <multiselect v-model="form.role" value="value" label="name" :options="roles" :id />
+        <multiselect v-model="form.role" :options="roles" :id />
       </ui-form-group>
-      <ui-form-group v-bind="hasError('firstName')" v-slot="{ id }" :label="t('applicant.fields.first_name')">
-        <ui-input v-model="form.firstName" name="firstName" :id />
+      <ui-form-group v-bind="hasError('first_name')" v-slot="{ id }" :label="t('applicant.fields.first_name')">
+        <ui-input v-model="form.first_name" name="first_name" :id />
       </ui-form-group>
-      <ui-form-group v-bind="hasError('middleName')" v-slot="{ id }" :label="t('applicant.fields.middle_name')">
-        <ui-input v-model="form.middleName" name="middleName" :id />
+      <ui-form-group v-bind="hasError('middle_name')" v-slot="{ id }" :label="t('applicant.fields.middle_name')">
+        <ui-input v-model="form.middle_name" name="middle_name" :id />
       </ui-form-group>
-      <ui-form-group v-bind="hasError('lastName')" v-slot="{ id }" :label="t('applicant.fields.last_name')">
-        <ui-input v-model="form.lastName" name="lastName" :id />
+      <ui-form-group v-bind="hasError('last_name')" v-slot="{ id }" :label="t('applicant.fields.last_name')">
+        <ui-input v-model="form.last_name" name="last_name" :id />
       </ui-form-group>
       <ui-form-group v-bind:class="hasError('gender')" v-slot="{ id }" :label="t('applicant.fields.gender')">
-        <multiselect v-model="form.gender" value="value" label="name" :options="genders" :id />
+        <multiselect v-model="form.gender" :options="genders" :id />
       </ui-form-group>
 
-      <ui-form-group v-bind="hasError('birthDate')" v-slot="{ id }" :label="t('applicant.fields.birth_date')">
-        <ui-input v-model="form.birthDate" name="birthDate" type="date" :id />
+      <ui-form-group v-bind="hasError('birth_date')" v-slot="{ id }" :label="t('applicant.fields.birth_date')">
+        <ui-input v-model="form.birth_date" name="birth_date" type="date" :id />
       </ui-form-group>
       <ui-form-group v-bind="hasError('email')" v-slot="{ id }" :label="t('applicant.fields.email')">
         <ui-input v-model="form.email" name="email" type="email" :id />
@@ -83,17 +86,17 @@ const submit = async () => {
       <ui-form-group v-bind="hasError('phone')" v-slot="{ id }" :label="t('applicant.fields.phone')">
         <ui-mask-input v-model="form.phone" unmasked mask="+### (##) ### ## ##" name="phone" :id />
       </ui-form-group>
-      <ui-form-group v-bind="hasError('passportId')" v-slot="{ id }" :label="t('applicant.fields.passport_id')">
-        <ui-input v-model="form.passportId" name="passportId" :id />
+      <ui-form-group v-bind="hasError('passport')" v-slot="{ id }" :label="t('applicant.fields.passport_id')">
+        <ui-input v-model="form.passport" name="passport" :id />
       </ui-form-group>
-      <ui-form-group v-bind="hasError('country')" v-slot="{ id }" :label="t('applicant.fields.country')">
-        <ui-input v-model="form.country" name="country" :id />
+      <ui-form-group v-bind="hasError('country_id')" v-slot="{ id }" :label="t('applicant.fields.country')">
+        <country-select v-model="form.country_id" name="country_id" :id />
       </ui-form-group>
-      <ui-form-group v-bind="hasError('livingAddress')" v-slot="{ id }" :label="t('applicant.fields.living_address')">
-        <ui-input v-model="form.livingAddress" name="livingAddress" :id />
+      <ui-form-group v-bind="hasError('address')" v-slot="{ id }" :label="t('applicant.fields.living_address')">
+        <ui-input v-model="form.address" name="address" :id />
       </ui-form-group>
-      <ui-form-group v-bind="hasError('birthPlace')" v-slot="{ id }" :label="t('applicant.fields.birth_place')">
-        <ui-input v-model="form.birthPlace" name="birthPlace" :id />
+      <ui-form-group v-bind="hasError('birthplace')" v-slot="{ id }" :label="t('applicant.fields.birth_place')">
+        <ui-input v-model="form.birthplace" name="birthplace" :id />
       </ui-form-group>
       <ui-form-group v-bind="hasError('organization')" v-slot="{ id }" :label="t('applicant.fields.organization')">
         <ui-input v-model="form.organization" name="organization" :id />
@@ -103,7 +106,6 @@ const submit = async () => {
       </ui-form-group>
       <ui-form-group
         v-if="form.role === 'attendee' || form.role === 'speaker' || form.role === 'moderator'"
-        v-model="form.activity"
         v-bind="hasError('position')"
         v-slot="{ id }"
         :label="t('applicant.fields.activity')"
@@ -116,10 +118,10 @@ const submit = async () => {
         {{ t("files.title") }}
       </h3>
       <ui-form-group v-bind="hasError('filePassport')" v-slot="{ id }" :label="t('files.passport')">
-        <ui-file-input v-model="form.filePassport" name="filePassport" :id />
+        <ui-file-input v-model="form.filePassport" name="filePassport" :multiple="false" :id />
       </ui-form-group>
       <ui-form-group v-bind="hasError('filePhoto')" v-slot="{ id }" :label="t('files.photo')">
-        <ui-file-input v-model="form.filePhoto" name="filePhoto" :id />
+        <ui-file-input v-model="form.filePhoto" name="filePhoto" :multiple="false" :id />
       </ui-form-group>
       <div></div>
       <div class="flex items-center gap-2">
@@ -139,7 +141,7 @@ const submit = async () => {
       <ui-button class="ui-button-rounded" type="button" size="lg" color="danger">
         {{ t("cancel-button") }}
       </ui-button>
-      <ui-button class="ui-button-rounded" size="lg" type="submit" color="success">
+      <ui-button class="ui-button-rounded" :loading size="lg" type="submit" color="success">
         {{ t("submit-button") }}
       </ui-button>
     </div>

@@ -36,13 +36,14 @@ export default defineNuxtPlugin(() => {
       config.headers["Accept-Language"] = $i18n.locale.value
 
       const headerToken = config.headers["Authorization"]
-      const token = localStorage.getItem("token")
-      if (!headerToken && token) config.headers["Authorization"] = `Bearer ${token}`
+      const token = useCookie("token")
+      if (!headerToken && token.value) config.headers["Authorization"] = `Bearer ${token.value}`
+
+      console.log(config, "HTTP Request")
 
       return config
     },
     (error) => {
-      console.error(error)
       return Promise.reject(error)
     }
   )
@@ -65,6 +66,8 @@ export default defineNuxtPlugin(() => {
         401: $i18n.t("messages.error.unauthorized"),
         403: $i18n.t("messages.error.forbidden")
       }
+
+      console.log("HTTP Error:", error)
 
       if (error.response?.status) $toast.error(code[error.response.status])
 
