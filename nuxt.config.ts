@@ -29,7 +29,7 @@ export default defineNuxtConfig({
     }
   },
 
-  css: ["floating-vue/dist/style.css", "vue3-carousel/carousel.css"],
+  css: ["floating-vue/dist/style.css", "vue3-carousel/carousel.css", "@vuepic/vue-datepicker/dist/main.css"],
 
   routeRules: {
     "/gateway/**": { proxy: process.env.APP_API_URL }

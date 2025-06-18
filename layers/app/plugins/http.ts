@@ -46,8 +46,6 @@ export default defineNuxtPlugin(() => {
       if (import.meta.client && !config.url?.includes("public"))
         if (!headerToken && token.value) config.headers["Authorization"] = `Bearer ${token.value}`
 
-      console.log(config, "HTTP Request")
-
       return config
     },
     (error) => {
@@ -58,7 +56,6 @@ export default defineNuxtPlugin(() => {
   http.interceptors.response.use(
     (response) => {
       const { code, description } = response?.data?.result || {}
-      console.log(response, "HTTP Response")
       if (code && code.toLowerCase() !== "ok") {
         const result = description?.split("_")
         if (result?.length > 1) $toast.error($i18n.t(`messages.error.${description}`))
@@ -73,8 +70,6 @@ export default defineNuxtPlugin(() => {
         401: $i18n.t("messages.error.unauthorized"),
         403: $i18n.t("messages.error.forbidden")
       }
-
-      console.log("HTTP Error:", error.response)
 
       if (error.response?.status) $toast.error(code[error.response.status])
 
