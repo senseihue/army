@@ -1,5 +1,5 @@
-import { useRegisterEventApi } from "#layers/landing/modules/forms/register-event/register-event.api"
-import { RegisterEvent } from "#layers/landing/modules/forms/register-event/register-event.model"
+import { useRegisterEventApi } from "#layers/landing/modules/forms/register-event"
+import { RegisterEvent } from "#layers/landing/modules/forms/register-event"
 
 export const useRegisterEventService = () => {
   const { $toast } = useNuxtApp()
