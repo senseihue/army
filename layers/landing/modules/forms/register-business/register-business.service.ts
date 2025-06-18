@@ -1,5 +1,5 @@
 import { useRegisterBusinessApi, RegisterBusiness } from "#layers/landing/modules/forms/register-business"
-import { useUploadService } from "#layers/landing/modules/upload/upload.service"
+import { useUploadService } from "#layers/landing/modules/upload"
 
 export const useRegisterBusinessService = () => {
   const { $toast } = useNuxtApp()
