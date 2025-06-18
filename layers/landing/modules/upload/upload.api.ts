@@ -7,8 +7,14 @@ export const useUploadApi = () => {
   ): AsyncResponseContainer<IBusinessRegistrationDocument> => {
     return $http.$post(`${BASE_URL}/business-registration`, data)
   }
+  const createEventRegistrationDocument = (
+    data: FormData
+  ): AsyncResponseContainer<IBusinessRegistrationDocument> => {
+    return $http.$post(`${BASE_URL}/business-registration`, data)
+  }
 
   return {
-    createBusinessRegistrationDocument
+    createBusinessRegistrationDocument,
+    createEventRegistrationDocument
   }
 }

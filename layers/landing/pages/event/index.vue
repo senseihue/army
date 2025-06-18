@@ -2,7 +2,7 @@
 import { EventCards, EventHero, useEventApi, useEventService } from "#layers/landing/modules/event"
 import RegisterEventForm from "#layers/landing/modules/forms/register-event/ui/register-event-form.vue"
 
-const { getEventsList } = useEventApi()
+const { getEventsList } = useEventService()
 
 const params = ref({
   page: 0,
@@ -10,21 +10,20 @@ const params = ref({
 })
 const loading = ref(false)
 
-const { data } = await useAsyncData(
-  "events-list",
-  () => {
-    return getEventsList(params.value)
-  },
-  {
-    server: true
-  }
-)
+// const data = ref<IEventType[]>([])
+//
+const { data, error } = await useAsyncData("events-list", () => {
+  return getEventsList(params.value, loading)
+})
+
 </script>
 
 <template>
   <div>
     <event-hero />
-    <event-cards :data="data" />
+    <template v-if="data?.content">
+      <event-cards :data="data.content" />
+    </template>
   </div>
 </template>
 

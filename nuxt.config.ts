@@ -7,7 +7,6 @@ export default defineNuxtConfig({
   dev: !!parseInt(process.env.APP_DEV!),
   devtools: { enabled: true },
 
-
   devServer: {
     port: parseInt(process.env.APP_PORT || "8000", 10),
     host: process.env.APP_HOST || "0.0.0.0"
@@ -30,11 +29,11 @@ export default defineNuxtConfig({
     }
   },
 
+  css: ["floating-vue/dist/style.css", "vue3-carousel/carousel.css"],
+
   routeRules: {
     "/gateway/**": { proxy: process.env.APP_API_URL }
   },
-
-  css: ["floating-vue/dist/style.css", "vue3-carousel/carousel.css"],
 
   modules: [
     // "@nuxt/fonts",

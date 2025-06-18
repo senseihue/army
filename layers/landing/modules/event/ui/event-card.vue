@@ -57,7 +57,7 @@ const runtimeConfig = useRuntimeConfig()
       </p>
 
       <div class="flex items-center gap-3">
-        <nuxt-link-locale :to="{ path, query: { to: 'register', event_id: id } }">
+        <nuxt-link-locale :to="{ path: '/event/register', query: { event_id: id } }">
           <ui-button download color="info">
             {{ t("actions.register") }}
           </ui-button>

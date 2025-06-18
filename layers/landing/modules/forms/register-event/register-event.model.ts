@@ -35,6 +35,6 @@ export class RegisterEvent {
   position: string = ""
   gender: string = ""
   event_id!: number
-  filePassport!: File[]
-  filePhoto!: File[]
+  filePassport: File[] = []
+  filePhoto: File[] = []
 }

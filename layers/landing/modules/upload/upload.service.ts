@@ -13,8 +13,19 @@ export const useUploadService = () => {
         if (loading) loading.value = false
       })
   }
+  const saveEventRegistrationDocument = async (dto: FormData, loading?: Ref<boolean>) => {
+    if (loading) loading.value = true
+
+    uploadApi
+      .createEventRegistrationDocument(dto)
+      .then(({ content }) => {})
+      .finally(() => {
+        if (loading) loading.value = false
+      })
+  }
 
   return {
-    saveBusinessRegistrationDocument
+    saveBusinessRegistrationDocument,
+    saveEventRegistrationDocument
   }
 }

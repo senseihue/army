@@ -39,7 +39,6 @@ const rules = ref({
   birthplace: { required },
   organization: { required },
   position: { required },
-  event_id: { required },
   gender: { required },
   filePassport: { required },
   filePhoto: { required }

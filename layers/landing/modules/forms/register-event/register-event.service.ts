@@ -1,5 +1,6 @@
 import { useRegisterEventApi } from "#layers/landing/modules/forms/register-event"
 import { RegisterEvent } from "#layers/landing/modules/forms/register-event"
+import { useUploadService } from "#layers/landing/modules/upload"
 
 export const useRegisterEventService = () => {
   const { $toast } = useNuxtApp()
@@ -18,7 +19,7 @@ export const useRegisterEventService = () => {
         formData.append("image", dto.value.filePhoto[0])
 
         formData.append("application_id", content.id.toString())
-        uploadService.saveBusinessRegistrationDocument(formData)
+        uploadService.saveEventRegistrationDocument(formData)
 
         dto.value = new RegisterEvent()
       })
