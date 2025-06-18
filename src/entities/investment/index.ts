@@ -1,0 +1,3 @@
+
+
+export * from "./investment.model"

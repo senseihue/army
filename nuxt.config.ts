@@ -6,6 +6,7 @@ export default defineNuxtConfig({
   telemetry: false,
   dev: !!parseInt(process.env.APP_DEV!),
   devtools: { enabled: true },
+  srcDir: "src/",
 
   devServer: {
     port: parseInt(process.env.APP_PORT || "8000", 10),
@@ -20,7 +21,16 @@ export default defineNuxtConfig({
       recaptchaKey: process.env.APP_RECAPTCHA_KEY
     }
   },
-
+  dir: {
+    layouts: "./app/layouts",
+    plugins: "./app/plugins",
+    middleware: "./app/middleware",
+    public: "../public"
+  },
+  components: [{ path: "./shared/components", pathPrefix: false }],
+  imports: {
+    dirs: ["./shared/composables/**", "./shared/lib", "./shared/constants", "./shared/stores"]
+  },
   app: {
     pageTransition: { name: "fade", mode: "out-in" },
     layoutTransition: { name: "fade", mode: "out-in" },
@@ -29,7 +39,12 @@ export default defineNuxtConfig({
     }
   },
 
-  css: ["floating-vue/dist/style.css", "vue3-carousel/carousel.css", "@vuepic/vue-datepicker/dist/main.css"],
+  css: [
+    "floating-vue/dist/style.css",
+    "vue3-carousel/carousel.css",
+    "@vuepic/vue-datepicker/dist/main.css",
+    "~/shared/assets/css/index.css"
+  ],
 
   routeRules: {
     "/gateway/**": { proxy: process.env.APP_API_URL }
