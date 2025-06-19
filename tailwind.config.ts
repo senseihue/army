@@ -31,7 +31,7 @@ export const colors = {
 
 const config: Config = {
   darkMode: "class",
-  content: ["./layers/**/*.vue", "./app.vue", "./error.vue", "./app.config.{js,ts,mjs}"],
+  content: ["./src/**/*.vue", "./app.vue", "./error.vue", "./app.config.{js,ts,mjs}"],
   theme: {
     extend: {
       colors,
