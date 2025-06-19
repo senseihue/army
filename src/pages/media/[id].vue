@@ -2,6 +2,9 @@
 import { PressHero, PressCards, PressTabs } from "~/features/media/press"
 import { usePressService } from "~/features/media/press"
 import { useGalleryService } from "~/features/media/gallery"
+import MediaCards from "~/widgets/media/media-cards.vue"
+
+const mediaTypes = ["news", "publication", "pr_material", "blog", "gallery"]
 
 definePageMeta({
   validate: async (route) => {
@@ -10,34 +13,13 @@ definePageMeta({
   }
 })
 
-const { t } = useI18n({ useScope: "local" })
-const route = useRoute()
-const { getPressList } = usePressService()
-const { getGalleryList } = useGalleryService()
-
-const mediaTypes = ["news", "publication", "pr_material", "blog", "gallery"]
-
-const params = ref({
-  category: route.params.id,
-  page: 0,
-  limit: 10
-})
-
-const loading = ref(false)
-
-const { data } = await useAsyncData(`media-${route.params.id}`, () => {
-  if (route.params.id === "gallery") {
-    return getGalleryList(params.value, loading)
-  }
-  return getPressList(params.value, loading)
-})
 </script>
 
 <template>
   <div>
     <press-hero />
     <press-tabs />
-    <press-cards v-if="data?.content" :data="data.content" />
+    <media-cards />
   </div>
 </template>
 

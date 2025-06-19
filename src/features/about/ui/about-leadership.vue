@@ -30,17 +30,20 @@ const carouselConfig = computed<Partial<CarouselConfig>>(() => ({
   <section class="leadership">
     <div class="container-7xl">
       <div class="p-section">
-        <div class="leadership__header" data-aos="fade-up" data-aos-delay="50">
-          <div class="leadership__nav-button" @click="carouselRef?.prev()">
-            <icon class="text-4xl" name="ph:caret-left" />
-          </div>
+        <h3 class="mb-12 text-center text-2xl font-bold text-blue-midnight lg:text-3xl">
+          {{ t("heading") }}
+        </h3>
+        <!--        <div class="leadership__header" data-aos="fade-up" data-aos-delay="50">-->
+        <!--          <div class="leadership__nav-button" @click="carouselRef?.prev()">-->
+        <!--            <icon class="text-4xl" name="ph:caret-left" />-->
+        <!--          </div>-->
 
-          <h3 class="leadership__heading">{{ t("heading") }}</h3>
+        <!--          <h3 class="leadership__heading">{{ t("heading") }}</h3>-->
 
-          <div class="leadership__nav-button" @click="carouselRef?.next()">
-            <icon class="text-4xl" name="ph:caret-right" />
-          </div>
-        </div>
+        <!--          <div class="leadership__nav-button" @click="carouselRef?.next()">-->
+        <!--            <icon class="text-4xl" name="ph:caret-right" />-->
+        <!--          </div>-->
+        <!--        </div>-->
 
         <carousel v-bind="carouselConfig" ref="carouselRef">
           <slide v-for="slide in leaderships" class="h-full">
