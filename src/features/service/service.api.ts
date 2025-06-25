@@ -1,3 +1,1 @@
-declare global {
-  interface  IService {}
-}
+export const useServiceApi = () => {}

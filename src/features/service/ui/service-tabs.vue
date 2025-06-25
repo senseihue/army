@@ -17,8 +17,14 @@
           {{ step?.title }}
         </p>
 
-        <span v-if="!infoPage && idx !== steps?.length - 1" class="clip-border clip-border-step"></span>
-        <span v-else-if="infoPage && idx !== steps?.length - 1" class="clip-border clip-border-info"></span>
+        <span
+          v-if="!infoPage && idx !== steps?.length - 1"
+          class="clip-border clip-border-step hidden !bg-blue-command lg:block"
+        ></span>
+        <span
+          v-else-if="infoPage && idx !== steps?.length - 1"
+          class="clip-border clip-border-info hidden !bg-blue-command lg:block"
+        ></span>
       </div>
     </div>
   </div>
@@ -27,7 +33,7 @@
 <script lang="ts" setup>
 interface Props {
   steps: any
-  infoPage: boolean
+  infoPage?: boolean
 }
 
 const props = defineProps<Props>()
