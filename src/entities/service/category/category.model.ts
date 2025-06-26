@@ -9,3 +9,7 @@ declare global {
     parent: string
   }
 }
+
+export class ServiceCategoryParams {
+  parent_id!: number
+}

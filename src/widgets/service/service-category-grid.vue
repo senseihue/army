@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ServiceTabs, ServiceList } from "~/features/service"
+import { ServiceList } from "~/widgets/service"
 import { ServiceCategoryList } from "~/features/service/category"
 </script>
 
