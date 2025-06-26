@@ -17,7 +17,7 @@ const params = ref({
   }
 })
 
-const { data: services, refresh } = await useFetch<IResponse<IService[]>>("/gateway/siw/public/service", {
+const { data: services } = await useFetch<IResponse<IService[]>>("/gateway/siw/public/service", {
   ...params.value
 })
 

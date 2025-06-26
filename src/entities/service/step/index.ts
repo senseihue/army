@@ -1,2 +1,2 @@
-export * from './category.model'
-export * from './category.store'
+export * from './step.model'
+export * from './step.store'

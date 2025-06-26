@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ServiceCategoryHero, ServiceCategoryTabs } from "~/widgets/layout"
+import { ServiceCategoryHero, ServiceCategoryTabs } from "~/widgets/layout/service/category"
 </script>
 
 <template>

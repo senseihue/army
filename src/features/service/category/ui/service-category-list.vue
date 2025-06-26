@@ -7,6 +7,9 @@ interface IProps {}
 defineProps<IProps>()
 
 const route = useRoute()
+const { t } = useI18n({
+  useScope: "local"
+})
 const serviceCategoryStore = useServiceCategoryStore()
 
 const { current } = storeToRefs(serviceCategoryStore)
@@ -21,25 +24,10 @@ const params = ref({
 })
 
 const { history, canRedo, canUndo, redo, undo } = useRefHistory(current)
-const categories = ref<IServiceCategory[]>([])
 
-const { data } = await useFetch<IResponse<IServiceCategory[]>>("/gateway/siw/public/service/category", {
+const { data: categories } = await useFetch<IResponse<IServiceCategory[]>>("/gateway/siw/public/service/category", {
   ...params.value
 })
-
-if (data.value?.content) {
-  categories.value = data.value.content
-}
-
-const getCategories = async () => {
-  params.value.query.parent_id = current.value?.id || route.params.category_id
-
-  const data = await $fetch<IResponse<IServiceCategory[]>>("/gateway/siw/public/service/category", {
-    ...params.value
-  })
-
-  categories.value = data.content || []
-}
 
 const changeCategory = async (category: IServiceCategory) => {
   current.value = category
@@ -50,18 +38,23 @@ const changeCategory = async (category: IServiceCategory) => {
 const onBack = () => {
   if (canUndo.value) {
     undo()
-    getCategories()
+    params.value.query.parent_id = current.value?.id || route.params.category_id
   }
 }
 </script>
 
 <template>
-  <div>
-    <ui-button v-show="canUndo" class="text-black" @click="onBack">go back</ui-button>
+  <div v-show="canUndo" class="flex cursor-pointer items-center text-blue-midnight" @click="onBack">
+    <div class="inline-flex items-center justify-center rounded-full border border-blue-midnight p-1">
+      <icon name="ph:arrow-u-up-left" />
+    </div>
+    <span class="ml-2">
+      {{ t('go_to_previous_category') }}
+    </span>
   </div>
   <div class="flex flex-wrap gap-4">
     <ui-button
-      v-for="category in categories"
+      v-for="category in categories?.content"
       class="ui-button ui-button-solid ui-button-rounded ui-button-md ui-button-secondary flex !bg-gray-100 !font-medium !text-black"
       :key="category.id"
       @click="changeCategory(category)"
@@ -70,3 +63,17 @@ const onBack = () => {
     </ui-button>
   </div>
 </template>
+
+<i18n>
+{
+  "en": {
+    "go_to_previous_category": "Go to previous category"
+  },
+  "ru": {
+    "go_to_previous_category": "Вернуться к предыдущей категории"
+  },
+  "oz": {
+    "go_to_previous_category": "Oldingi toifaga o'tish"
+  }
+}
+</i18n>
