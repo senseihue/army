@@ -3,8 +3,20 @@ import { useServiceStore } from "~/entities/service"
 
 const { t } = useI18n({ useScope: "local" })
 
+const route = useRoute()
+const { data: service, error } = await useFetch<IResponse<IService>>(
+  `/gateway/siw/public/service/${route.params.service_id}`,
+  {
+    server: true
+  }
+)
+
+if (error.value) {
+  showError(error.value)
+}
+
 const serviceStore = useServiceStore()
-const { current } = serviceStore
+serviceStore.current = service.value?.content
 </script>
 
 <template>
@@ -16,8 +28,8 @@ const { current } = serviceStore
 
     <!--  Content  -->
     <div class="service-category-hero__content container-7xl">
-      <h1 class="service-category-hero__content-heading">{{ current?.title }}</h1>
-      <p class="service-category-hero__content-text">{{ current?.description }}</p>
+      <h1 class="service-category-hero__content-heading">{{ service.content?.title }}</h1>
+      <p class="service-category-hero__content-text">{{ service.content?.description }}</p>
     </div>
   </div>
 </template>

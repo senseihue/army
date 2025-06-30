@@ -9,5 +9,3 @@ import { ServiceCategoryHero, ServiceCategoryTabs } from "~/widgets/layout/servi
     <slot />
   </main>
 </template>
-
-<style scoped></style>

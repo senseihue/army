@@ -4,6 +4,8 @@ declare global {
     title: string
     description: string
     link: string
+    upload: IFile
+
   }
 }
 

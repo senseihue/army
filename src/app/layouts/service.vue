@@ -5,8 +5,10 @@ import { ServiceHero, ServiceTabs } from "~/widgets/layout/service"
 <template>
   <main class="grow">
     <service-hero />
-    <service-tabs />
-    <slot />
+    <div class="bg-[#F1F5F9]">
+      <service-tabs />
+      <slot />
+    </div>
   </main>
 </template>
 

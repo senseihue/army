@@ -31,7 +31,7 @@ const changeRoute = (category: IServiceCategory) => {
 
 <template>
   <section>
-    <div class="container-7xl">
+    <div class="container-7xl bg-white">
       <div class="pb-4 pt-8">
         <service-tabs :steps="parentCategories?.content" @update="changeRoute" />
       </div>

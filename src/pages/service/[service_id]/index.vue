@@ -18,5 +18,3 @@ import { ServiceGrid } from "~/widgets/service"
     <service-grid />
   </div>
 </template>
-
-<style scoped></style>
