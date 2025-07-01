@@ -40,6 +40,11 @@
       "gallery": "Gallery"
     }
   },
+  "project_status": {
+    "open_for_investment": "Open for investment",
+    "under_negotiation": "Under negotiation",
+    "closed": "Closed"
+  },
   "labels": {
     "contact_us": "Contact us",
     "office": "(Office)",
@@ -48,7 +53,17 @@
     "contacts": "Contacts",
     "privacy_policy": "Privacy policy",
     "cookie_policy": "Cookie policy",
-    "sitemap": "Sitemap"
+    "sitemap": "Sitemap",
+    "investment_proposals": "Investment proposals",
+    "project_cost": "Project cost",
+    "sector": "Sector",
+    "project_type": "Project type",
+    "status": "Status",
+    "view_more": "View more",
+    "view_here": "View here",
+    "all_sectors": "All sectors",
+    "all_regions": "All regions",
+    "amount": "Amount"
   },
   "validations": {
     "email": "Invalid email address",
