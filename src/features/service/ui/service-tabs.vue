@@ -37,11 +37,12 @@ interface Props {
 }
 
 const props = defineProps<Props>()
+const active = defineModel<number>("active", {
+  default: 0
+})
 const emit = defineEmits<{
   (e: "update", step: any, idx: number): void
 }>()
-
-const active = ref(0)
 
 const stepClasses = (idx: number) => ({
   "rounded-full border-2 w- p-1.5 h-9 w-9  text-[#CFCFCF] border-[#CFCFCF]": true,

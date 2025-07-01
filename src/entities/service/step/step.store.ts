@@ -5,6 +5,7 @@ export const useServiceStepStore = defineStore("service-step", () => {
   const params = createListParams<ServiceStepParams>(new ServiceStepParams())
 
   const current = ref<IServiceStep>()
+  const loadingCurrent = ref(false)
 
-  return { ...list, params, current }
+  return { ...list, params, current, loadingCurrent }
 })

@@ -37,15 +37,15 @@ onBeforeUnmount(() => window.removeEventListener("resize", hide))
       <slot name="title">
         <div class="flex items-center gap-3">
           <span v-if="icon" class="block">
-            <icon class="block h-6 w-6" :name="icon" />1
+            <icon class="block h-6 w-6" :name="icon" />
           </span>
-          <h3 class="ignore-text-format font-semibold" :class="{ 'text-midnight': arrow }">{{ title }}</h3>
+          <h3 class="ignore-text-format font-semibold" :class="{ 'text-blue-midnight': arrow }">{{ title }}</h3>
         </div>
       </slot>
 
       <div v-if="arrow">
-        <Icon v-if="isShown" class="text-midnight text-xl" filled name="ph:caret-up" />
-        <Icon v-else class="text-midnight text-xl" filled name="ph:caret-down" />
+        <Icon v-if="isShown" class="text-xl text-blue-midnight" filled name="ph:caret-up" />
+        <Icon v-else class="text-xl text-blue-midnight" filled name="ph:caret-down" />
       </div>
     </div>
 
@@ -83,11 +83,11 @@ onBeforeUnmount(() => window.removeEventListener("resize", hide))
 }
 
 .ui-accordion-primary {
-  @apply bg-midnight text-white;
+  @apply bg-blue-midnight text-white;
 }
 
 .ui-accordion-primary.active {
-  @apply bg-command;
+  @apply bg-blue-command;
 }
 
 .ui-accordion-secondary {

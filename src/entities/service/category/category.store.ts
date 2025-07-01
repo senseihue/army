@@ -5,6 +5,7 @@ export const useServiceCategoryStore = defineStore("serviceCategory", () => {
   const params = createListParams<ServiceCategoryParams>(new ServiceCategoryParams())
 
   const current = ref<IServiceCategory>()
+  const active = ref(0)
 
-  return { ...list, params, current }
+  return { ...list, params, current, active }
 })

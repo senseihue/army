@@ -5,6 +5,7 @@ export const useServiceProcessStore = defineStore("service-prrocess", () => {
   const params = createListParams<ServiceProcessParams>(new ServiceProcessParams())
 
   const current = ref<IServiceProcess>()
+  const active = ref(0)
 
-  return { ...list, params, current }
+  return { ...list, params, current, active }
 })

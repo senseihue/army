@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useServiceProcessStore } from "~/entities/service/process"
 import { useServiceStepStore } from "~/entities/service/step"
+import { useServiceStepService } from "~/features/service/step"
 
 interface IProps {
   service: IService
@@ -8,7 +9,13 @@ interface IProps {
 
 const route = useRoute()
 const serviceStepStore = useServiceStepStore()
+const { getStep } = useServiceStepService()
 const { items, current } = storeToRefs(serviceStepStore)
+
+const changeStep = (step: IServiceStep) => {
+  current.value = step
+  getStep()
+}
 </script>
 
 <template>
@@ -17,13 +24,14 @@ const { items, current } = storeToRefs(serviceStepStore)
       <div>
         <div
           v-for="step in items"
-          class="!text-midnight flex cursor-pointer items-center gap-1 rounded-[14px] p-[10px] text-black"
+          class="flex cursor-pointer items-center gap-1 rounded-[14px] p-[10px] text-black"
           :class="{
-            '!bg-[#D6E8FF]': current?.id === step.id
+            '!bg-[#D6E8FF] !text-blue-midnight': current?.id === step.id
           }"
           :key="step.id"
+          @click="changeStep(step)"
         >
-          <icon :name="step.icon" />
+          <icon class="!text-blue-midnight" :name="step.icon" />
           <p class="text-sm font-medium" data-v-ea57a248="">
             {{ step.title }}
           </p>

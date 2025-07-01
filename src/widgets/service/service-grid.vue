@@ -6,6 +6,7 @@ import { useServiceProcessStore } from "~/entities/service/process"
 import { useServiceStepStore } from "~/entities/service/step"
 import { useServiceProcessService } from "~/features/service/process"
 import { useServiceStore } from "~/entities/service"
+import ServiceProcessPagination from "~/widgets/service/service-process-pagination.vue"
 
 const route = useRoute()
 const { t } = useI18n({ useScope: "local" })
@@ -23,6 +24,10 @@ const getInitialData = async () => {
   await getStepList()
   await getStep()
 }
+const test = () => {
+
+  console.log("Report sent")
+}
 onMounted(() => {
   getInitialData()
 })
@@ -35,13 +40,14 @@ onMounted(() => {
         <div class="flex flex-col-reverse gap-2 lg:flex-row">
           <div class="w-full">
             <service-step-info />
+            <service-process-pagination />
           </div>
-          <div class="sticky right-0 flex w-full max-w-[272px] flex-row gap-5 lg:flex-col">
+          <div class="sticky right-0 flex w-full gap-5 md:max-w-[272px] md:flex-col">
             <div class="w-full rounded-2xl bg-white px-2 py-4">
               <service-step-list />
-              <div class="grid gap-2" data-v-ea57a248="">
+              <div class="grid gap-2">
                 <!---->
-                <div v-if="service?.link" class="p-2" data-v-ea57a248="">
+                <div v-if="service?.link" class="p-2">
                   <a
                     class="ui-button ui-button-rounded ui-button-lg ui-button-solid w-full bg-green-benzol text-white"
                     target="_blank"
@@ -63,8 +69,13 @@ onMounted(() => {
                 </div>
               </div>
             </div>
-            <div class="w-full rounded-2xl bg-white px-2 py-4">
-
+            <div class="w-full rounded-2xl bg-white px-4 py-4">
+              <p class="mb-4 text-sm font-medium">
+                {{ t("report.description") }}
+              </p>
+              <ui-button class="w-full" color="danger" size="lg" rounded @click="test">
+                {{ t("actions.send-report") }}
+              </ui-button>
             </div>
           </div>
         </div>
@@ -76,21 +87,33 @@ onMounted(() => {
 <i18n>
 {
   "en": {
+    "report": {
+      "description": "If you have any difficulties with services, business or the portal, click the button below to send a request."
+    },
     "actions": {
       "download-checklist": "Download checklist",
-      "apply-online": "Apply online"
+      "apply-online": "Apply online",
+      "send-report": "File a complaint"
     }
   },
   "ru": {
+    "report": {
+      "description": "Если у вас возникли какие-либо трудности с услугами, бизнесом или порталом, нажмите на кнопку ниже, чтобы отправить запрос."
+    },
     "actions": {
       "download-checklist": "Скачать чек-лист",
-      "apply-online": "Подать онлайн"
+      "apply-online": "Подать онлайн",
+      "send-report": "Подать жалобу"
     }
   },
   "oz": {
+    "report": {
+      "description": "Агар хизматлар, бизнес ёки portal билан боғлиқ қийинчиликларга дуч келсангиз, сўров юбориш учун қуйидаги тугмани босинг."
+    },
     "actions": {
       "download-checklist": "Юклаб олиш",
-      "apply-online": "Онлайн ариза бериш"
+      "apply-online": "Онлайн ариза бериш",
+      "send-report": "Шикоят қилиш"
     }
   }
 }

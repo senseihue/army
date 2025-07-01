@@ -13,12 +13,14 @@ const params = {
   }
 }
 
-const { data: parentCategories } = await useFetch<IResponse<IServiceCategory[]>>(
+const { data: parentCategories, error } = await useFetch<IResponse<IServiceCategory[]>>(
   "/gateway/siw/public/service/category",
   {
     ...params
   }
 )
+
+
 
 if (!route.params.category_id && parentCategories.value?.content?.length > 0) {
   await navigateTo(localePath(`/service/category/${parentCategories.value?.content[0]?.id}`))
@@ -27,6 +29,8 @@ if (!route.params.category_id && parentCategories.value?.content?.length > 0) {
 const changeRoute = (category: IServiceCategory) => {
   router.push(localePath(`/service/category/${category.id}`))
 }
+
+
 </script>
 
 <template>

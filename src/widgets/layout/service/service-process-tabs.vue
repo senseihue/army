@@ -8,7 +8,7 @@ const route = useRoute()
 const router = useRouter()
 const {getStepList} = useServiceStepService()
 const serviceProcessStore = useServiceProcessStore()
-const { items } = storeToRefs(serviceProcessStore)
+const { items, active } = storeToRefs(serviceProcessStore)
 
 const changeRoute = (category: IServiceCategory) => {
   serviceProcessStore.current = category
@@ -20,7 +20,7 @@ const changeRoute = (category: IServiceCategory) => {
   <section>
     <div class="container-7xl">
       <div class="pb-4 pt-8">
-        <service-tabs :steps="items" @update="changeRoute" />
+        <service-tabs v-model:active="active" :steps="items" @update="changeRoute" />
       </div>
     </div>
   </section>

@@ -20,11 +20,12 @@ export const useServiceStepService = () => {
 
   const getStep = async () => {
     if (serviceStepStore.current) {
+      serviceStepStore.loadingCurrent = true
       return serviceStepApi.getStep(serviceStepStore.current.id).then(({ content, pageable }) => {
         serviceStepStore.current = content
         serviceStepStore.params.total = pageable?.total || 0
         return Promise.resolve(content)
-      })
+      }).finally(() => serviceStepStore.loadingCurrent = false)
     }
   }
 

@@ -4,20 +4,18 @@ const { t } = useI18n({ useScope: "local" })
 </script>
 
 <template>
-  <client-only>
-    <div class="service-category-hero" :style="{ minHeight }">
-      <!--  Background  -->
-      <div v-rellax class="service-category-hero__background" data-rellax-speed="-5">
-        <img src="https://dev-portal.miit.uz/uploads/guide/hero.png" alt="Background" />
-      </div>
-
-      <!--  Content  -->
-      <div class="service-category-hero__content container-7xl">
-        <h1 class="service-category-hero__content-heading">{{ t("heading") }}</h1>
-        <p class="service-category-hero__content-text">{{ t("description") }}</p>
-      </div>
+  <div class="service-category-hero" :style="{ minHeight: '100vh' }">
+    <!--  Background  -->
+    <div v-rellax class="service-category-hero__background" data-rellax-speed="-5">
+      <img src="https://dev-portal.miit.uz/uploads/guide/hero.png" alt="Background" />
     </div>
-  </client-only>
+
+    <!--  Content  -->
+    <div class="service-category-hero__content container-7xl">
+      <h1 class="service-category-hero__content-heading">{{ t("heading") }}</h1>
+      <p class="service-category-hero__content-text">{{ t("description") }}</p>
+    </div>
+  </div>
 </template>
 
 <style>

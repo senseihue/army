@@ -8,6 +8,7 @@ declare global {
     order: number
     group: IServiceStepDocumentGroup[]
     draft: boolean
+    upload: IFile
   }
 
   interface IServiceStepDocumentGroup {
