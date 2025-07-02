@@ -8,7 +8,7 @@ const { t } = useI18n({ useScope: "local" })
     <div class="project-category-hero" :style="{ minHeight }">
       <!--  Background  -->
       <div v-rellax class="project-category-hero__background" data-rellax-speed="-5">
-        <img src="https://dev-portal.miit.uz/uploads/guide/hero.png" alt="Background" />
+        <img src="https://dev-portal.miit.uz/uploads/guide/hero.png" alt="Bac kground" />
       </div>
 
       <!--  Content  -->

@@ -16,7 +16,7 @@
       <ul>
         <li>
           <p>{{ $t("labels.project_cost") }}</p>
-          <p>{{ formatCurrency(budget, "$") }}</p>
+          <p>{{ formatCurrency(budget, "USD") }}</p>
         </li>
 
         <li>

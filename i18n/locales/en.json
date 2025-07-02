@@ -63,7 +63,8 @@
     "view_here": "View here",
     "all_sectors": "All sectors",
     "all_regions": "All regions",
-    "amount": "Amount"
+    "amount": "Amount",
+    "where_to_start": "Where to start"
   },
   "validations": {
     "email": "Invalid email address",
