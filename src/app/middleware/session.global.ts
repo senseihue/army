@@ -1,21 +1,33 @@
-// import { useProfileService } from "~/features/profile"
+import { useAuthApi } from "~/features/auth"
 
 export default defineNuxtRouteMiddleware(async (to) => {
-  // const localePath = useLocalePath()
-  // const { getProfile } = useProfileService()
-  // const { $session } = useNuxtApp()
-  //
-  // const hasToken = !!$session.token.value
-  // const isPublic = to.meta?.public || false
-  // const unauthorized = !isPublic && !hasToken
-  //
-  // const promise = new Promise((resolve) => setTimeout(resolve, 2500))
-  //
-  // if (!$session.loaded.value) {
-  //   await promise
-  //   $session.loaded.value = true
-  // }
-  //
-  // if (hasToken && !$session.profile.value) await getProfile()
-  // if (unauthorized) return navigateTo(localePath("/auth/sign-in"))
+  const authApi = useAuthApi()
+  const { $session } = useNuxtApp()
+
+  const getProfile = async () => {
+    try {
+      const { content } = await authApi.getProfile()
+      $session.profile.value = content
+      $session.loaded.value = true
+    } catch (error: any) {
+      $session.loaded.value = true
+      $session.clear()
+    }
+  }
+
+  if ($session?.token.value && !$session?.loaded.value) {
+    await getProfile()
+  }
+
+  if (to.meta?.protected && !$session?.token.value) {
+    const { origin } = useRequestURL()
+
+    const { content } = await $fetch<IResponse<string>>("/gateway/auth/one-id", {
+      method: "GET",
+      params: { state: origin + "/sso" }
+    })
+
+    window.open(content, "_self")
+    return abortNavigation()
+  }
 })

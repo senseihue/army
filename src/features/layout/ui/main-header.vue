@@ -9,6 +9,7 @@ import {
   MainHeaderMenuToggle,
   MainHeaderAlert
 } from "~/features/layout"
+import { AuthProfileButtonGroup } from "~/widgets/auth"
 
 const { hideNavMenu } = useHeader()
 const route = useRoute()
@@ -57,6 +58,8 @@ const position = computed(() => (route?.meta?.fixedHeader ? "fixed" : "sticky"))
                 to="/contacts"
                 :label="$t('labels.contacts')"
               />
+
+              <auth-profile-button-group />
 
               <main-header-menu-toggle />
             </div>

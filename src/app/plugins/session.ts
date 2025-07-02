@@ -20,7 +20,7 @@ export default defineNuxtPlugin(() => {
     token.value = ""
     loading.value = false
     profile.value = undefined
-    router.replace(localePath("/auth/sign-in"))
+    router.replace(localePath("/"))
   }
 
   const session = {
