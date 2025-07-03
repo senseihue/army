@@ -42,9 +42,9 @@ export default defineNuxtPlugin(() => {
       config.headers["Accept-Language"] = $i18n.locale.value
 
       const headerToken = config.headers["Authorization"]
-      const token = useCookie("token")
+      const token = localStorage.getItem("token")
       if (import.meta.client && !config.url?.includes("public"))
-        if (!headerToken && token.value) config.headers["Authorization"] = `Bearer ${token.value}`
+        if (!headerToken && token) config.headers["Authorization"] = `Bearer ${token}`
 
       return config
     },

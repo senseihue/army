@@ -1,15 +1,10 @@
 <script lang="ts" setup>
+import { useAuthService } from "~/features/auth"
+
 const route = useRoute()
+const { signIn } = useAuthService()
 
-onMounted(() => {
-  const { code, state } = <Record<string, string>>route.query
-
-  if (!code || !state) throw createError({ statusCode: 404, statusMessage: 'Bad request' })
-
-  const url = new URL(<string>state)
-  url.searchParams.append('code', <string>code)
-  window.location.replace(url)
-})
+onMounted(() => signIn())
 </script>
 
 <template>

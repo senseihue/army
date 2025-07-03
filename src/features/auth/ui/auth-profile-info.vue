@@ -26,10 +26,10 @@ const list = computed(() => [
         <div>
           <div class="flex flex-col p-3">
             <div class="font-bold uppercase">
-              <p class="whitespace-nowrap">{{ profile?.name }} {{ profile?.surname }}</p>
+              <p class="whitespace-nowrap">{{ profile?.full_name }}</p>
             </div>
             <div class="">
-              <p class="text-sm text-gray-600">{{ profile?.username }}</p>
+              <p class="text-sm text-gray-600">{{ profile?.user_id }}</p>
             </div>
           </div>
 

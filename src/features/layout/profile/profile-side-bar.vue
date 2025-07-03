@@ -9,7 +9,7 @@ const list = computed(() => [
     to: "/profile"
   },
   {
-    icon: "lucide:briefcase",
+    icon: "mynaui:briefcase",
     title: t("nav.profile.my_services"),
     to: "/profile/my-services"
   },

@@ -22,7 +22,7 @@ export default defineNuxtRouteMiddleware(async (to) => {
   if (to.meta?.protected && !$session?.token.value) {
     const { origin } = useRequestURL()
 
-    const { content } = await $fetch<IResponse<string>>("/gateway/auth/one-id", {
+    const { content } = await $fetch<IResponse<string>>("/core/auth", {
       method: "GET",
       params: { state: origin + "/sso" }
     })

@@ -6,7 +6,7 @@ import SignInButton from "~/widgets/auth/sign-in-button.vue"
 <template>
   <div class="flex items-center">
     <auth-profile-info />
-    <sign-in-button class="ml-2" />
+    <sign-in-button class="mx-2 !hidden sm:!inline-flex" />
   </div>
 </template>
 

@@ -55,28 +55,12 @@
     "cookie_policy": "Cookie policy",
     "sitemap": "Sitemap",
     "sign_in": "Sign in",
-    "profile": {
-      "main_info": "Basic information",
-      "passport_info": "Passport data",
-      "name": "Name",
-      "surname": "Surname",
-      "middle_name": "Middle name",
-      "pinfl": "PINOI",
-      "passport_number": "Passport series and number",
-      "passport_issued_by": "Passport issued by",
-      "passport_issued_date": "Passport issued date",
-      "passport_expiry_date": "Passport expiry date",
-      "gender": "Gender",
-      "date_of_birth": "Date of birth",
-      "nationality": "Nationality",
-      "country_of_birth": "Country of birth",
-      "citizenship": "Citizenship"
-
-    }
+    "detailed": "More details"
   },
   "actions": {
     "sign_in": "Sign in",
     "sign_out": "Sign out",
+    "contact_us": "Contact us",
     "refresh": "Refresh"
   },
   "validations": {
