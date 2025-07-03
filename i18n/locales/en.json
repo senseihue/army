@@ -64,7 +64,14 @@
     "all_sectors": "All sectors",
     "all_regions": "All regions",
     "amount": "Amount",
-    "where_to_start": "Where to start"
+    "where_to_start": "Where to start",
+    "irr": "IRR",
+    "npv": "NPV",
+    "pp": "PP",
+    "email": "Email",
+    "phone": "Phone",
+    "project_location": "Project location",
+    "project_information": "Project information"
   },
   "validations": {
     "email": "Invalid email address",

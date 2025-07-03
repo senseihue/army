@@ -9,10 +9,13 @@ export const useProjectService = () => {
     loading: Ref<boolean>
   ): AsyncResponseContainer<IProject[]> => {
     loading.value = true
-    
+
     return projectApi
       .getProjectList(params)
-      .then(({ content }) => (list.value = content))
+      .then((response) => {
+        list.value = response.content
+        return response
+      })
       .finally(() => (loading.value = false))
   }
 
@@ -25,12 +28,34 @@ export const useProjectService = () => {
 
     return projectApi
       .getProjectById(id)
-      .then(({ content }) => (project.value = content))
+      .then((response) => {
+        project.value = response.content
+        return response
+      })
       .finally(() => (loading.value = false))
   }
 
+  const getSectorList = async (params: Record<string, any>, loading: Ref<boolean>): AsyncResponseContainer<IPress[]> => {
+    loading.value = true
+
+    return projectApi.getPublicServiceSector(params).finally(() => (loading.value = false))
+  }
+
+  // const getPressList = async (params: Record<string, any>, loading: Ref<boolean>): AsyncResponseContainer<IPress[]> => {
+  //   loading.value = true
+  //
+  //   return mediaApi.getPressList(params).finally(() => (loading.value = false))
+  // }
+  //
+  // const getPressList = async (params: Record<string, any>, loading: Ref<boolean>): AsyncResponseContainer<IPress[]> => {
+  //   loading.value = true
+  //
+  //   return mediaApi.getPressList(params).finally(() => (loading.value = false))
+  // }
+
   return {
     getProjectList,
-    getProjectById
+    getProjectById,
+    getSectorList
   }
 }

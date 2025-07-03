@@ -32,7 +32,7 @@
         </div>
 
         <div class="grow">
-          <div v-if="category" class="mb-5 flex gap-6" ref="projectSection">
+          <div class="mb-5 flex gap-6" ref="projectSection">
             <div class="grid grow gap-5 rounded-xl bg-white p-4">
               <h3 class="text-xl font-semibold">{{ $t("labels.investment_proposals") }}</h3>
 
@@ -41,12 +41,12 @@
                 v-model:region="query.region"
                 v-model:sector="query.sector"
                 v-model:status="query.status"
-                v-model:type="query.type"
               />
 
-              <div class="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+              <div v-if="projectList.length" class="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
                 <project-card v-for="project in projectList" v-bind="project" :key="project.id" />
               </div>
+              <p v-else class="text-center">Loading...</p>
             </div>
           </div>
         </div>
@@ -95,16 +95,27 @@ const projectList = ref<IProject[]>([])
 const query = ref({
   sector: undefined,
   region: undefined,
-  type: undefined,
   amount: undefined,
   status: undefined,
   category: route.params.id
 })
 
+const getProjectAllList = () => {
+  projectService.getProjectList(query.value, projectList, loading)
+}
+
 onMounted(() => {
   projectCategoryService.getProjectCategoryById(+route.params.id, category, loading)
-  projectService.getProjectList(query.value, projectList, loading)
+  getProjectAllList()
 })
+
+watch(
+  query,
+  () => {
+    getProjectAllList()
+  },
+  { deep: true }
+)
 </script>
 
 <i18n lang="json">
