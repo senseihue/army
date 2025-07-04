@@ -2,6 +2,25 @@
   <div class="container-7xl p-section">
     <div v-if="loading" class="text-center">Loading...</div>
     <div v-else class="grid grid-cols-1 gap-8">
+      <ul class="flex items-center gap-2 pb-4">
+        <li class="flex items-center gap-1 text-sm font-semibold text-blue-command">
+          <Icon name="ph:house" size="20" />
+          <NuxtLink to="/guide/project/category">Project category</NuxtLink>
+        </li>
+        <li class="mt-1.5 text-blue-command">
+          <Icon name="ph:caret-right" />
+        </li>
+        <li>
+          <p class="cursor-pointer text-blue-command" @click="goBack">{{ project?.category.title }}</p>
+        </li>
+        <li class="mt-1.5 text-blue-command">
+          <Icon name="ph:caret-right" />
+        </li>
+        <li>
+          <p class="text-sm font-semibold text-gray-400">{{ project?.title }}</p>
+        </li>
+      </ul>
+
       <h2 class="mb-4 text-2xl font-semibold lg:text-3xl">{{ project?.title }}</h2>
       <p v-if="project?.budget">{{ project?.budget }}</p>
       <img
@@ -44,9 +63,12 @@
 import { ProjectInfoCard, useProjectService } from "~/features/project"
 
 const route = useRoute()
+const router = useRouter()
 
 const loading = ref<boolean>(false)
 const project = ref<IProjectById>()
+
+const goBack = () => router.back()
 
 const projectService = useProjectService()
 
