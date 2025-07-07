@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ServiceInfoCard } from "~/features/profile/my-services"
+import { ServiceInfoCard } from "~/features/profile/service"
 </script>
 
 <template>

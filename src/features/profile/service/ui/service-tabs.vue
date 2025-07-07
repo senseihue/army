@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ServiceTab, ServiceInfoCard } from "~/features/profile/my-services"
+import { ServiceTab, ServiceInfoCard } from "~/features/profile/service"
 
 const { t } = useI18n({ useScope: "local" })
 const services = computed(() => [

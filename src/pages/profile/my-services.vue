@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import { ProfileHeader } from "~/features/profile"
-import { ServiceGrid, ServiceTabs } from "~/features/profile/my-services"
+import { ServiceGrid, ServiceTabs } from "~/features/profile/service"
+
+
+
+
 </script>
 
 <template>
