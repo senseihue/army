@@ -1,12 +1,6 @@
 <script lang="ts" setup>
-import {
-  HomeAbout,
-  HomeHero,
-  HomeReport,
-  HomeSector,
-  HomeStatistics,
-  HomeTestimonial
-} from "~/features/home"
+import { HomeAbout, HomeHero, HomeReport, HomeSector, HomeStatistics, HomeTestimonial } from "~/features/home"
+import { HomeMediaCards } from "~/widgets/home"
 </script>
 
 <template>
@@ -17,5 +11,6 @@ import {
     <home-statistics />
     <home-sector />
     <home-testimonial />
+    <home-media-cards />
   </div>
 </template>

@@ -12,7 +12,8 @@ export default defineNuxtPlugin(() => {
   return {
     provide: {
       listen,
-      emit: emitter.emit
+      emit: emitter.emit,
+      mitter: emitter
     }
   }
 })

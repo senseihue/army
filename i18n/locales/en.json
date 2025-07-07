@@ -38,6 +38,11 @@
       "pr_materials": "PR materials",
       "blogs": "Blogs",
       "gallery": "Gallery"
+    },
+    "profile": {
+      "main": "Profile",
+      "my_services": "My services",
+      "my_projects": "My projects"
     }
   },
   "project_status": {
@@ -53,6 +58,15 @@
     "contacts": "Contacts",
     "privacy_policy": "Privacy policy",
     "cookie_policy": "Cookie policy",
+    "sitemap": "Sitemap",
+    "sign_in": "Sign in",
+    "detailed": "More details"
+  },
+  "actions": {
+    "sign_in": "Sign in",
+    "sign_out": "Sign out",
+    "contact_us": "Contact us",
+    "refresh": "Refresh",
     "sitemap": "Sitemap",
     "investment_proposals": "Investment proposals",
     "project_cost": "Project cost",

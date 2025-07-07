@@ -19,6 +19,7 @@ const { isMenuOpen, toggleMenu } = useHeader()
       </ul>
 
       <ui-button class="w-full shrink-0 sm:!hidden" color="success" :label="$t('actions.contact_us')" />
+      <ui-button class="mt-4 w-full shrink-0 sm:!hidden" color="success" :label="$t('actions.sign_in')" />
     </div>
   </transition>
 </template>
