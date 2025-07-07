@@ -85,7 +85,8 @@
     "email": "Email",
     "phone": "Phone",
     "project_location": "Project location",
-    "project_information": "Project information"
+    "project_information": "Project information",
+    "project_category": "Project category"
   },
   "validations": {
     "email": "Invalid email address",

@@ -6,9 +6,9 @@
         <ul class="flex items-center gap-2 pb-4">
           <li class="flex items-center gap-1 text-sm font-semibold text-blue-command">
             <Icon name="ph:house" size="20" />
-            <NuxtLink to="/guide/project/category">Project category</NuxtLink>
+            <NuxtLink to="/guide/project/category">{{ $t("labels.project_category") }}</NuxtLink>
           </li>
-          <li>
+          <li class="mt-1.5 text-blue-command">
             <Icon name="ph:caret-right" />
           </li>
           <li>
@@ -52,24 +52,38 @@
         </div>
 
         <div class="flex gap-5">
-          <div class="grid w-full gap-5 rounded-xl bg-white p-4">
+          <div class="relative grid w-full gap-5 rounded-xl bg-white p-4">
             <h3 class="font-semibold">{{ $t("labels.where_to_start") }}</h3>
 
-            <div class="rounded-2xl border">
+            <div v-if="category?.service_categories?.length" class="rounded-2xl border">
               <project-category-slider>
-                <SwiperSlide v-for="(item, idx) in category?.service_categories" class="!h-auto" :key="idx">
-                  <div
-                    class="text-gray-[#475569] relative h-full cursor-pointer rounded-xl py-3 pl-2 pr-6 text-center transition duration-300"
-                  >
-                    <Icon v-if="item.icon" :name="item.icon" />
-
-                    <div>
-                      <p>{{ item.title }}</p>
-                      <span class="project-clip-border hidden lg:block"></span>
-                    </div>
-                  </div>
-                </SwiperSlide>
+                <project-category-slide
+                  v-for="(slide, idx) in category?.service_categories"
+                  :key="idx"
+                  :title="slide.title"
+                  :icon="slide.icon"
+                  :index="idx"
+                  :service-category="category?.service_categories?.length"
+                  @click="onClickCategory(slide.id)"
+                />
               </project-category-slider>
+            </div>
+
+            <div v-else class="text-center">Loading...</div>
+
+            <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              <a
+                v-for="(online, idx) in serviceList"
+                class="flex min-h-[93px] items-center justify-between rounded-xl border bg-gray-50 px-4 py-6 transition-all hover:bg-gray-100"
+                href="https://new.birdarcha.uz/"
+                target="_blank"
+                :key="idx"
+              >
+                <span>{{ online?.title }}</span>
+                <span class="flex items-center justify-center rounded-full bg-green-400 p-1">
+                  <Icon class="icon text-white" filled name="lucide:chevron-right" />
+                </span>
+              </a>
             </div>
           </div>
         </div>
@@ -83,6 +97,7 @@ import { useProjectCategoryService } from "~/features/project/category"
 import ProjectCard from "~/features/project/ui/project-card.vue"
 import { ProjectFilter, useProjectService } from "~/features/project"
 import ProjectCategorySlider from "~/features/project/category/ui/project-category-slider.vue"
+import ProjectCategorySlide from "~/features/project/category/ui/project-category-slide.vue"
 
 const { t } = useI18n({ useScope: "local" })
 const projectCategoryService = useProjectCategoryService()
@@ -91,6 +106,7 @@ const loading = ref<boolean>(false)
 const route = useRoute()
 const category = ref<IProjectCategoryById>()
 const projectList = ref<IProject[]>([])
+const serviceList = ref<any[]>([])
 
 const query = ref({
   sector: undefined,
@@ -102,6 +118,13 @@ const query = ref({
 
 const getProjectAllList = () => {
   projectService.getProjectList(query.value, projectList, loading)
+}
+
+const onClickCategory = async (id: number) => {
+  const data = await $fetch("/gateway/siw/public/service", {
+    params: { size: 999, category_id: id }
+  })
+  serviceList.value = data.content || []
 }
 
 onMounted(() => {

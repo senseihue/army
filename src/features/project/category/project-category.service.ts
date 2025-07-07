@@ -11,20 +11,26 @@ export const useProjectCategoryService = () => {
     loading.value = true
     return projectCategoryApi
       .getProjectCategoryList(params)
-      .then(({ content }) => (list.value = content))
+      .then((response) => {
+        list.value = response.content
+        return response
+      })
       .finally(() => (loading.value = false))
   }
 
   const getProjectCategoryById = async (
     id: number,
-    category: Ref<IProjectCategoryById>,
+    category: Ref<IProjectCategoryById | undefined>,
     loading: Ref<boolean>
   ): AsyncResponseContainer<IProjectCategory> => {
     loading.value = true
 
     return projectCategoryApi
       .getProjectCategoryById(id)
-      .then(({ content }) => (category.value = content))
+      .then((response) => {
+        category.value = response.content
+        return response
+      })
       .finally(() => (loading.value = false))
   }
 

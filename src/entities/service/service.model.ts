@@ -5,7 +5,6 @@ declare global {
     description: string
     link: string
     upload: IFile
-
   }
 }
 

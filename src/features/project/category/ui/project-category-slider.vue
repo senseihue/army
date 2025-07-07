@@ -1,59 +1,66 @@
-<script lang="ts" setup>
-import type { Swiper } from 'swiper/types'
-import { Navigation } from 'swiper/modules';
+<script setup lang="ts">
+import type { CarouselConfig } from "vue3-carousel"
+import { Carousel, Navigation } from "vue3-carousel"
 
-const modules = [Navigation]
-const swiper = ref<Swiper>()
-
-const thumbnailBreakpoints = {
-  640: {
-    slidesPerView: 1,
-  },
-  768: {
-    slidesPerView: 3,
-  },
-  1024: {
-    slidesPerView: 6,
-  },
-}
-
-const onSwiper = (instance: Swiper) => (swiper.value = instance)
+const carouselConfig = computed<Partial<CarouselConfig>>(() => ({
+  gap: 1,
+  snapAlign: "start",
+  itemsToShow: 6
+}))
 </script>
 
 <template>
-  <div class="project-service-slider relative">
-    <div class="absolute -top-8 right-8">
-      <div v-if="swiper?.allowSlidePrev" @click="swiper?.slidePrev()" class="swiper-button-prev" />
-      <div v-if="swiper?.allowSlideNext" @click="swiper?.slideNext()" class="swiper-button-next" />
-    </div>
+  <section class="service-slider">
+    <div class="service-slider__grid">
+      <div class="service-slider__content" data-aos="fade-right" data-aos-delay="150">
+        <carousel v-bind="carouselConfig" class="service-carousel">
+          <slot />
 
-    <Swiper :breakpoints="thumbnailBreakpoints" :modules="modules" :slides-per-view="1" :space-between="1" @swiper="onSwiper">
-      <slot />
-    </Swiper>
-  </div>
+          <template #addons>
+            <navigation>
+              <template #prev>
+                <Icon class="text-xl" name="ph:caret-left" />
+              </template>
+
+              <template #next>
+                <Icon class="text-xl" name="ph:caret-right" />
+              </template>
+            </navigation>
+          </template>
+        </carousel>
+      </div>
+    </div>
+  </section>
 </template>
 
-<style lang="scss" scoped>
-.project-service-slider {
-  & .swiper-wrapper {
-    @apply flex items-start;
+<style lang="scss">
+
+
+.service-slider {
+  &__grid {
+    @apply grid grid-cols-1;
   }
 
-  & .swiper-button-prev {
-    @apply -left-10;
+  &__content {
+    @apply flex flex-col rounded-2xl bg-white;
   }
+}
 
-  & .swiper-button-next {
-    @apply -right-8;
-  }
+.carousel__next {
+  @apply absolute bg-gray-300 rounded-full right-0 -top-8;
+}
 
-  & .swiper-button-prev,
-  & .swiper-button-next {
-    @apply top-1/2 m-0 h-8 w-8 -translate-y-1/2 rounded-full bg-gray-olive text-white hover:bg-gray-olive;
+.carousel__prev {
+  @apply absolute bg-gray-300 rounded-full left-[88%] lg:left-[94%] -top-8;
+}
 
-    &::after {
-      @apply text-base;
-    }
-  }
+.carousel__next:hover,
+.carousel__prev:hover {
+  color: #4e1414;
+}
+
+.carousel__next--disabled,
+.carousel__prev--disabled {
+  opacity: 0.3;
 }
 </style>

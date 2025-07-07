@@ -5,7 +5,7 @@
       <ul class="flex items-center gap-2 pb-4">
         <li class="flex items-center gap-1 text-sm font-semibold text-blue-command">
           <Icon name="ph:house" size="20" />
-          <NuxtLink to="/guide/project/category">Project category</NuxtLink>
+          <NuxtLink to="/guide/project/category">{{ $t("labels.project_category")}}</NuxtLink>
         </li>
         <li class="mt-1.5 text-blue-command">
           <Icon name="ph:caret-right" />
