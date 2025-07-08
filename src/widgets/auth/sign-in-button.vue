@@ -4,7 +4,7 @@ import { useAuthService } from "~/features/auth"
 const { getRedirectUrl } = useAuthService()
 
 const getUrl = () => {
-  getRedirectUrl(window.location.origin)
+  getRedirectUrl(`${window.location.origin}/sso`)
 }
 </script>
 
