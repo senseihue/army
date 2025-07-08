@@ -45,6 +45,11 @@
       "my_projects": "My projects"
     }
   },
+  "project_status": {
+    "open_for_investment": "Open for investment",
+    "under_negotiation": "Under negotiation",
+    "closed": "Closed"
+  },
   "labels": {
     "contact_us": "Contact us",
     "office": "(Office)",
@@ -55,7 +60,27 @@
     "cookie_policy": "Cookie policy",
     "sitemap": "Sitemap",
     "sign_in": "Sign in",
-    "detailed": "More details"
+    "detailed": "More details",
+    "investment_proposals": "Investment proposals",
+    "project_cost": "Project cost",
+    "sector": "Sector",
+    "project_type": "Project type",
+    "status": "Status",
+    "view_more": "View more",
+    "view_here": "View here",
+    "all_sectors": "All sectors",
+    "all_regions": "All regions",
+    "amount": "Amount",
+    "where_to_start": "Where to start",
+    "irr": "IRR",
+    "npv": "NPV",
+    "pp": "PP",
+    "email": "Email",
+    "phone": "Phone",
+    "project_location": "Project location",
+    "project_information": "Project information",
+    "project_category": "Project category",
+    "offline_procedures": "Offline procedures"
   },
   "actions": {
     "sign_in": "Sign in",
@@ -65,7 +90,27 @@
     "cancel": "Cancel",
     "edit": "Edit",
     "save": "Save",
-    "send": "Send"
+    "send": "Send",
+    "sitemap": "Sitemap",
+    "investment_proposals": "Investment proposals",
+    "project_cost": "Project cost",
+    "sector": "Sector",
+    "project_type": "Project type",
+    "status": "Status",
+    "view_more": "View more",
+    "view_here": "View here",
+    "all_sectors": "All sectors",
+    "all_regions": "All regions",
+    "amount": "Amount",
+    "where_to_start": "Where to start",
+    "irr": "IRR",
+    "npv": "NPV",
+    "pp": "PP",
+    "email": "Email",
+    "phone": "Phone",
+    "project_location": "Project location",
+    "project_information": "Project information",
+    "project_category": "Project category"
   },
   "validations": {
     "email": "Invalid email address",
