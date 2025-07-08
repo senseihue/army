@@ -4,7 +4,7 @@ import type { ButtonHTMLAttributes } from "vue"
 export interface IProps extends /* @vue-ignore */ ButtonHTMLAttributes {
   variant?: "solid" | "ghost" | "flat" | "white"
   size?: "xs" | "sm" | "md" | "lg" | "xl"
-  color?: "primary" | "secondary" | "success" | "warning" | "danger" | "info" | "lime" | "cyan" | "yellow" | string
+  color?: "primary" | "secondary" | "success" | "warning" | "danger" | "info" | "lime" | "cyan" | "yellow" | "gray" | string
   label?: string
   loadingLabel?: string
   rounded?: boolean
@@ -15,6 +15,7 @@ export interface IProps extends /* @vue-ignore */ ButtonHTMLAttributes {
   iconName?: string
   iconClass?: string
   to?: string | Record<string, any>
+  afterIcon?: string
 }
 
 const props = withDefaults(defineProps<IProps>(), {
@@ -58,6 +59,7 @@ const buttonAttrs = computed(() => {
     <slot v-else>
       <icon v-if="iconName" :name="iconName" :class="iconClass" />
       <span>{{ label }}</span>
+      <icon v-if="afterIcon" :name="afterIcon" />
     </slot>
   </component>
 </template>

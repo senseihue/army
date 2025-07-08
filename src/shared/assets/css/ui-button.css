@@ -153,6 +153,10 @@
   &.ui-button-yellow {
     @apply bg-yellow-600 text-white hover:bg-yellow-700 dark:hover:bg-yellow-500;
   }
+
+  &.ui-button-gray {
+    @apply bg-gray-200 hover:bg-gray-300 dark:hover:bg-gray-500;
+  }
 }
 
 /* White */
