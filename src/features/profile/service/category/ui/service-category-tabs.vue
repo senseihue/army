@@ -1,44 +1,79 @@
 <script setup lang="ts">
-import { ServiceTab, ServiceInfoCard } from "~/features/profile/service"
+import { ServiceCategoryTab } from "~/features/profile/service/category"
+import { usePersonalServiceCategoryStore } from "~/entities/profile/personal-service-category"
 
+const emits = defineEmits<{
+  (e: "next"): void
+  (e: "prev"): void
+  (e: "change", category: IPersonalServiceCategory): void
+}>()
 const { t } = useI18n({ useScope: "local" })
-const services = computed(() => [
+const personalServiceCategoryStore = usePersonalServiceCategoryStore()
+const { active, items, current } = storeToRefs(personalServiceCategoryStore)
+const category = computed(() => [
   {
+    id: 1,
     title: t("services.business"),
-    endpoint: "/profile/my-services/business",
     icon: "mynaui:briefcase"
   },
   {
+    id: 2,
     title: t("services.licenses"),
-    endpoint: "/profile/my-services/licenses",
     icon: "hugeicons:note"
   },
   {
+    id: 3,
     title: t("services.infrastructure"),
-    endpoint: "/profile/my-services/infrastructure",
     icon: "lucide:cpu"
   },
   {
+    id: 4,
     title: t("services.foreign_trade_operations"),
-    endpoint: "/profile/my-services/foreign-trade-operations",
     icon: "bitcoin-icons:exchange-filled"
   },
   {
+    id: 5,
     title: t("services.tax_information"),
-    endpoint: "/profile/my-services/tax-information",
     icon: "heroicons-solid:receipt-tax"
   }
 ])
+
+const prev = () => {
+  if (active.value > 0) {
+    active.value--
+    emits("prev")
+  }
+}
+
+const next = () => {
+  if (active.value < items.value.length - 1) {
+    active.value++
+    emits("next")
+  }
+}
+
+const selectCategory = (category: IPersonalServiceCategory, index: number) => {
+  active.value = index
+  current.value = category
+  emits("change", category)
+}
 </script>
 
 <template>
   <div class="overflow-x-auto">
     <div class="mb-4 flex w-full items-center justify-end gap-4">
-      <ui-icon-button variant="flat" rounded icon-name="lucide:chevron-left" color="secondary" />
-      <ui-icon-button variant="flat" rounded icon-name="lucide:chevron-right" color="secondary" />
+      <ui-icon-button variant="flat" rounded icon-name="lucide:chevron-left" color="secondary" @click="prev" />
+      <ui-icon-button variant="flat" rounded icon-name="lucide:chevron-right" color="secondary" @click="next" />
     </div>
     <div class="flex w-full items-center justify-between gap-4">
-      <service-tab v-for="service in services" :key="service.title" :icon-name="service.icon" :title="service.title" />
+      <service-category-tab
+        v-for="(service, index) in category"
+        :key="service.title"
+        :active="active === index"
+        :icon-name="service.icon"
+        :title="service.title"
+        @click="selectCategory(service, index)"
+      />
     </div>
   </div>
 </template>

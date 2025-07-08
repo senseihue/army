@@ -1,12 +1,15 @@
 <script setup lang="ts">
 import { AuthProfileInfo } from "~/features/auth/ui"
-import SignInButton from "~/widgets/auth/sign-in-button.vue"
+import { SignInButton } from "~/widgets/auth"
+
+const { $session } = useNuxtApp()
+const { profile, loggedIn } = $session || {}
 </script>
 
 <template>
   <div class="flex items-center">
-    <auth-profile-info />
-    <sign-in-button class="mx-2 !hidden sm:!inline-flex" />
+    <auth-profile-info v-if="loggedIn" />
+    <sign-in-button v-else class="mx-2 !hidden sm:!inline-flex" />
   </div>
 </template>
 

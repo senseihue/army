@@ -2,6 +2,10 @@
 import { useAuthService } from "~/features/auth"
 
 const { getRedirectUrl } = useAuthService()
+
+const getUrl = () => {
+  getRedirectUrl(window.location.origin)
+}
 </script>
 
 <template>
@@ -12,7 +16,7 @@ const { getRedirectUrl } = useAuthService()
       rounded
       color="success"
       :label="$t('labels.sign_in')"
-      @click="getRedirectUrl()"
+      @click="getUrl"
     />
   </client-only>
 </template>

@@ -6,23 +6,41 @@ const { getEventsList } = useEventService()
 
 const params = ref({
   page: 0,
-  limit: 10
+  total: 0,
+  size: 10
 })
 const loading = ref(false)
+const events = ref<IEventType[]>([])
 
-// const data = ref<IEventType[]>([])
-//
+const paginateEvents = () => {
+  getEventsList(params.value, loading).then(({ content, pageable }) => {
+    events.value = content
+    params.value.total = pageable?.total || 0
+    return content
+  })
+}
+
 const { data, error } = await useAsyncData("events-list", () => {
   return getEventsList(params.value, loading)
 })
 
+if (data.value) {
+  params.value.total = data.value.pageable?.total || 0
+  events.value = data.value.content || []
+}
 </script>
 
 <template>
   <div>
     <event-hero />
-    <template v-if="data?.content">
-      <event-cards :data="data.content" />
+    <template v-if="events">
+      <event-cards :data="events" />
+      <ui-pagination
+        v-model="params.page"
+        :total="params.total"
+        :per-page="params.size"
+        @update:model-value="paginateEvents"
+      />
     </template>
   </div>
 </template>

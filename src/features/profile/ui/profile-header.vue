@@ -18,7 +18,7 @@ defineEmits<{
         {{ title }}
       </h2>
     </div>
-    <ui-button class="rounded-xl" color="secondary" variant="flat">
+    <ui-button class="rounded-xl" color="secondary" variant="flat" @click="$emit('refresh')">
       <span>{{ $t("actions.refresh") }}</span>
       <icon name="lucide:refresh-ccw" />
     </ui-button>

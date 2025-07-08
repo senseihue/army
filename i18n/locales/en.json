@@ -61,7 +61,11 @@
     "sign_in": "Sign in",
     "sign_out": "Sign out",
     "contact_us": "Contact us",
-    "refresh": "Refresh"
+    "refresh": "Refresh",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "save": "Save",
+    "send": "Send"
   },
   "validations": {
     "email": "Invalid email address",

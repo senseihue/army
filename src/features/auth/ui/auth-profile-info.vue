@@ -19,7 +19,7 @@ const list = computed(() => [
 
 <template>
   <client-only>
-    <ui-dropdown v-if="loggedIn" :distance="16">
+    <ui-dropdown  :distance="16">
       <ui-icon-button rounded variant="ghost" color="secondary" icon-class="text-xl" icon-name="lucide:user" />
 
       <template #body>
