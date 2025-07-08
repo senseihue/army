@@ -10,6 +10,5 @@ useHead({ titleTemplate: (title) => (title ? `${title} - Invest Uzbekistan` : "I
     <nuxt-layout>
       <nuxt-page />
     </nuxt-layout>
-    <toaster close-button rich-colors invert position="top-right" />
   </div>
 </template>

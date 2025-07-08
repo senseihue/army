@@ -2781,6 +2781,14 @@
   resolved "https://registry.yarnpkg.com/@vueform/multiselect/-/multiselect-2.6.10.tgz#be4db556d0848fe4470c97ae47f3f5033ad85c0c"
   integrity sha512-w1otA5P2F7Bg0Er9ohIsBg/Xkda/9ZzCO62PmXXmjS2mOEKWPdb/852FQbc8Gv99EYRotfxgyJ5lTC+c7YeCTA==
 
+"@vuelidate/components@^1.2.6":
+  version "1.2.6"
+  resolved "https://registry.yarnpkg.com/@vuelidate/components/-/components-1.2.6.tgz#a0f36209ed1f6aa18f0c81ef11747f08f948eaef"
+  integrity sha512-oteVHhic9F4zDnSvSRIAadrmu1can/TwjAqGOnpGFc+rKDd29fhUdbmIVEDQLQjVAF0VzZK7s0y+cxvfMERF9w==
+  dependencies:
+    "@vuelidate/core" "^2.0.3"
+    vue-demi "^0.13.11"
+
 "@vuelidate/core@^2.0.3":
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/@vuelidate/core/-/core-2.0.3.tgz#40468c5ed15b72bde880a026b0699c2f0f1ecede"

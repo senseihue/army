@@ -11,5 +11,8 @@ import { MainFooter, MainHeader } from "~/features/layout"
     </main>
 
     <main-footer />
+    <toaster close-button rich-colors invert position="top-right" />
+
   </div>
+
 </template>

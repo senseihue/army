@@ -9,5 +9,3 @@ import { ProfileHeader, ProfileMainInfo, ProfilePassportInfo } from "~/features/
     <profile-passport-info />
   </div>
 </template>
-
-<style scoped></style>

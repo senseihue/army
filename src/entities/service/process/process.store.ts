@@ -1,6 +1,6 @@
 import { ServiceProcessParams } from "~/entities/service/process"
 
-export const useServiceProcessStore = defineStore("service-prrocess", () => {
+export const useServiceProcessStore = defineStore("service-process", () => {
   const list = createListState<IServiceProcess>()
   const params = createListParams<ServiceProcessParams>(new ServiceProcessParams())
 

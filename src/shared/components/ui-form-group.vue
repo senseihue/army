@@ -1,6 +1,6 @@
 <script setup lang="ts">
 interface IProps {
-  label?: string
+  label?: string | number
   labelFor?: string
   hint?: string | any
   required?: boolean
