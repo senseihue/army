@@ -6,6 +6,9 @@ import { usePersonalServiceStore } from "~/entities/profile/personal-service"
 import { usePersonalServiceCategoryStore } from "~/entities/profile/personal-service-category"
 import { UiLoader } from "~/widgets/loader"
 
+definePageMeta({
+  protected: true
+})
 const { t } = useI18n({ useScope: "local" })
 const { getPersonalServiceList } = usePersonalServiceService()
 const { params, loading } = usePersonalServiceStore()

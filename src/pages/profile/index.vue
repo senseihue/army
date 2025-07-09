@@ -2,6 +2,10 @@
 import { ProfileHeader, ProfileMainInfo, ProfilePassportInfo } from "~/features/profile"
 import { useAuthApi } from "~/features/auth"
 
+definePageMeta({
+  protected: true
+})
+
 const { $session } = useNuxtApp()
 const { loading } = $session || {}
 

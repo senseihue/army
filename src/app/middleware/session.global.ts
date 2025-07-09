@@ -26,12 +26,12 @@ export default defineNuxtRouteMiddleware(async (to) => {
   if (to.meta?.protected && !$session?.token.value) {
     const { origin } = useRequestURL()
 
-    const { content } = await $fetch<IResponse<string>>("/core/auth", {
+    const { content } = await $fetch<IResponse<string>>("/gateway/core/auth", {
       method: "GET",
       params: { state: origin + "/sso" }
     })
 
-    window.open(content, "_self")
+    navigateTo(content, { external: true })
     return abortNavigation()
   }
 })
