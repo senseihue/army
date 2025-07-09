@@ -1,6 +1,7 @@
 <script setup lang="ts">
+import { UiLoader } from "~/widgets/loader"
 
-const { t } = useI18n({useScope: "local"})
+const { t } = useI18n({ useScope: "local" })
 const { $session } = useNuxtApp()
 const { profile } = $session || {}
 </script>
@@ -47,9 +48,9 @@ const { profile } = $session || {}
         </div>
       </div>
     </div>
+    <ui-loader v-else class="min-h-24" />
   </div>
 </template>
-
 
 <i18n>
 {
@@ -67,12 +68,12 @@ const { profile } = $session || {}
     "middle_name": "Отчество",
     "pinfl": "ПИНФЛ"
   },
-  "oz": {
-    "main_info": "Асосий маълумотлар",
-    "name": "Исм",
-    "surname": "Фамилия",
-    "middle_name": "Отчество",
-    "pinfl": "ПИНФЛ",
+  "uz": {
+    "main_info": "Asosiy ma'lumotlar",
+    "name": "Ism",
+    "surname": "Familiya",
+    "middle_name": "Otasining ismi",
+    "pinfl": "PINFL"
   }
 }
 </i18n>

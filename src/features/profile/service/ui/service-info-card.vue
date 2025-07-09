@@ -17,7 +17,7 @@ defineEmits<{
       </p>
     </div>
     <ui-button
-      class="ml-auto w-fit !rounded-[14px] !px-[10px] !py-[8px]"
+      class="ml-auto mt-auto w-fit !rounded-[14px] !px-[10px] !py-[8px]"
       variant="flat"
       color="secondary"
       :label="$t('labels.detailed')"

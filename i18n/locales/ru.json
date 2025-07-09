@@ -1,6 +1,10 @@
 {
   "nav": {
-    "about": "Введение в IPA",
+    "about": {
+      "label": "Об агентстве",
+      "about_us": "О нас",
+      "event": "Events"
+    },
     "reason": {
       "label": "Почему Узбекистан",
       "economy": "Экономика",
@@ -22,7 +26,11 @@
       "appeal": "Обращение",
       "event": "События",
       "register-investor": "Регистрация инвестора",
-        "register-business": "Регистрация бизнеса"
+      "register-business": "Регистрация бизнеса"
+    },
+    "advert": {
+      "label": "Найти инвестора",
+      "registration": "Регистрация бизнеса"
     },
     "media": {
       "label": "Медиацентр",
@@ -31,7 +39,17 @@
       "pr_materials": "PR-материалы",
       "blogs": "Блоги",
       "gallery": "Галерея"
+    },
+    "profile": {
+      "main": "Профиль",
+      "my_services": "Мои услуги",
+      "my_projects": "Мои проекты"
     }
+  },
+  "project_status": {
+    "open_for_investment": "Открыт для инвестиций",
+    "under_negotiation": "В стадии переговоров",
+    "closed": "Закрытый"
   },
   "labels": {
     "contact_us": "Свяжитесь с нами",
@@ -41,7 +59,60 @@
     "contacts": "Контакты",
     "privacy_policy": "Политика конфиденциальности",
     "cookie_policy": "Политика cookie",
-    "sitemap": "Карта сайта"
+    "sitemap": "Карта сайта",
+    "sign_in": "Войти",
+    "detailed": "Подробнее",
+    "investment_proposals": "Инвестиционные предложения",
+    "project_cost": "Стоимость проекта",
+    "sector": "Сектор",
+    "project_type": "Тип проекта",
+    "status": "Статус",
+    "view_more": "Показать больше",
+    "view_here": "Смотреть здесь",
+    "all_sectors": "Все секторы",
+    "all_regions": "Все регионы",
+    "amount": "Сумма",
+    "where_to_start": "С чего начать",
+    "irr": "ВНД",
+    "npv": "ЧДД",
+    "pp": "Срок окупаемости",
+    "email": "Электронная почта",
+    "phone": "Телефон",
+    "project_location": "Местоположение проекта",
+    "project_information": "Информация о проекте",
+    "project_category": "Категория проекта",
+    "offline_procedures": "Офлайн-процедуры"
+  },
+  "actions": {
+    "sign_in": "Войти",
+    "sign_out": "Выйти",
+    "contact_us": "Связаться с нами",
+    "refresh": "Обновить",
+    "cancel": "Отмена",
+    "edit": "Редактировать",
+    "save": "Сохранить",
+    "send": "Отправить",
+    "sitemap": "Карта сайта",
+    "investment_proposals": "Инвестиционные предложения",
+    "project_cost": "Стоимость проекта",
+    "sector": "Сектор",
+    "project_type": "Тип проекта",
+    "status": "Статус",
+    "view_more": "Показать больше",
+    "view_here": "Смотреть здесь",
+    "all_sectors": "Все секторы",
+    "all_regions": "Все регионы",
+    "amount": "Сумма",
+    "where_to_start": "С чего начать",
+    "irr": "ВНД",
+    "npv": "ЧДД",
+    "pp": "Срок окупаемости",
+    "email": "Электронная почта",
+    "phone": "Телефон",
+    "project_location": "Местоположение проекта",
+    "project_information": "Информация о проекте",
+    "project_category": "Категория проекта",
+    "loading": "Загрузка..."
   },
   "validations": {
     "email": "Неверный адрес электронной почты",
@@ -49,5 +120,31 @@
     "minLength": "Минимальная требуемая длина - {min}",
     "required": "Это поле обязательно для заполнения",
     "sameAs": "Значение должно совпадать с полем \"{otherName}\""
+  },
+  "messages": {
+    "confirm": {
+      "block": "Вы уверены, что хотите заблокировать?",
+      "deactivate": "Вы уверены, что хотите деактивировать?",
+      "delete": "Вы уверены, что хотите удалить?",
+      "send_message": "Вы уверены, что хотите отправить сообщение?",
+      "sign_out": "Вы уверены, что хотите выйти?"
+    },
+    "info": {
+      "data_not_found": "Данные не найдены",
+      "entity_blocked": "{name} был заблокирован",
+      "entity_deactivated": "{name} был деактивирован",
+      "entity_deleted": "{name} был удалён",
+      "message_cannot_be_edited": "Сообщение нельзя редактировать после отправки.",
+      "no_worries_message": "Не переживайте, мы отправим вам инструкции по сбросу.",
+      "page_not_found": "Страница не найдена",
+      "welcome_message": "С возвращением! Пожалуйста, введите свои данные."
+    },
+    "success": {
+      "entity_activated": "{name} был активирован",
+      "entity_sent": "{name} был отправлен",
+      "entity_unblocked": "{name} был разблокирован",
+      "saved": "Успешно сохранено",
+      "registration": "Регистрация прошла успешно!"
+    }
   }
 }

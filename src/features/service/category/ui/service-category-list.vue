@@ -72,7 +72,7 @@ const onBack = () => {
   "ru": {
     "go_to_previous_category": "Вернуться к предыдущей категории"
   },
-  "oz": {
+  "uz": {
     "go_to_previous_category": "Oldingi toifaga o'tish"
   }
 }

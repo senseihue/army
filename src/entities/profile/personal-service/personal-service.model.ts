@@ -31,5 +31,5 @@ declare global {
 }
 
 export class PersonalServiceParams {
-  category_id?: number
+  type?: string
 }

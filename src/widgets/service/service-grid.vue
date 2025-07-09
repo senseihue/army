@@ -108,12 +108,12 @@ onMounted(() => {
   },
   "oz": {
     "report": {
-      "description": "Агар хизматлар, бизнес ёки portal билан боғлиқ қийинчиликларга дуч келсангиз, сўров юбориш учун қуйидаги тугмани босинг."
+      "description": "Agar siz xizmatlar, biznes yoki portalni taqdim etish bilan bog'liq muammolarga duch kelsangiz, mijozlarni qo'llab-quvvatlash xizmatiga murojaat qilishingiz kerak."
     },
     "actions": {
-      "download-checklist": "Юклаб олиш",
-      "apply-online": "Онлайн ариза бериш",
-      "send-report": "Шикоят қилиш"
+      "download-checklist": "Yuklab olish",
+      "apply-online": "ONlayn ariza berish",
+      "send-report": "Shikoyat qilish"
     }
   }
 }

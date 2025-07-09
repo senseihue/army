@@ -12,5 +12,3 @@ const { profile, loggedIn } = $session || {}
     <sign-in-button v-else class="mx-2 !hidden sm:!inline-flex" />
   </div>
 </template>
-
-<style scoped></style>
