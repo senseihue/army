@@ -3,8 +3,10 @@ import { useAuthApi } from "~/features/auth"
 export default defineNuxtRouteMiddleware(async (to) => {
   const authApi = useAuthApi()
   const { $session } = useNuxtApp()
+  const { loading } = $session
 
   const getProfile = async () => {
+    loading.value = true
     try {
       const { content } = await authApi.getProfile()
       $session.profile.value = content
@@ -12,6 +14,8 @@ export default defineNuxtRouteMiddleware(async (to) => {
     } catch (error: any) {
       $session.loaded.value = true
       $session.clear()
+    } finally {
+      loading.value = false
     }
   }
 

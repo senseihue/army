@@ -3,7 +3,7 @@ import { UiLoader } from "~/widgets/loader"
 
 const { t } = useI18n({ useScope: "local" })
 const { $session } = useNuxtApp()
-const { profile } = $session || {}
+const { profile, loading } = $session || {}
 </script>
 
 <template>
@@ -11,7 +11,9 @@ const { profile } = $session || {}
     <p class="text-lg font-semibold text-blue-midnight">
       {{ t("passport_info") }}
     </p>
-    <div v-if="profile?.user" class="mt-5 grid w-full grid-cols-1 gap-x-2 gap-y-4 sm:grid-cols-2 lg:grid-cols-3">
+    <ui-loader v-if="loading" class="min-h-36" />
+
+    <div v-else class="mt-5 grid w-full grid-cols-1 gap-x-2 gap-y-4 sm:grid-cols-2 lg:grid-cols-3">
       <div class="flex flex-col gap-1">
         <label class="text-xs font-medium text-blue-command">
           {{ t("passport_number") }}
@@ -85,9 +87,8 @@ const { profile } = $session || {}
         </p>
       </div>
     </div>
-    <template v-else>
-      <ui-loader class="min-h-36" />
-    </template>
+    <!--    <template >-->
+    <!--    </template>-->
   </div>
 </template>
 
