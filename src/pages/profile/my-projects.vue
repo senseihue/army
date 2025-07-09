@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { ProfileHeader } from "~/features/profile"
+definePageMeta({
+  protected: true
+})
 </script>
 
 <template>
