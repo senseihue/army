@@ -24,6 +24,7 @@
       "free_zones": "Free economic zones",
       "project": "Projects",
       "appeal": "Appeal",
+      "event": "Events",
       "register-investor": "Investor registration",
       "register-business": "Business registration"
     },
@@ -110,7 +111,8 @@
     "phone": "Phone",
     "project_location": "Project location",
     "project_information": "Project information",
-    "project_category": "Project category"
+    "project_category": "Project category",
+    "loading": "Loading..."
   },
   "validations": {
     "email": "Invalid email address",

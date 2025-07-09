@@ -1,6 +1,10 @@
 {
   "nav": {
-    "about": "IPA ga kirish",
+    "about": {
+      "label": "Agentlik haqida",
+      "about_us": "Biz haqimizda",
+      "event": "Tadbirlar"
+    },
     "reason": {
       "label": "Nega O‘zbekiston",
       "economy": "Iqtisodiyot",
@@ -24,6 +28,10 @@
       "register-investor": "Investorlarni ro'yxatdan o'tkazish",
       "register-business": "Biznesni ro'yxatdan o'tkazish"
     },
+    "advert": {
+      "label": "Investor topish",
+      "registration": "Biznesni ro'yxatdan o'tkazish"
+    },
     "media": {
       "label": "Yangiliklar va tahlillar",
       "news": "Yangiliklar",
@@ -31,7 +39,17 @@
       "pr_materials": "PR materiallar",
       "blogs": "Bloglar",
       "gallery": "Galereya"
+    },
+    "profile": {
+      "main": "Profil",
+      "my_services": "Mening xizmatlarim",
+      "my_projects": "Mening loyihalarim"
     }
+  },
+  "project_status": {
+    "open_for_investment": "Investitsiya uchun ochiq",
+    "under_negotiation": "Muzokaralarda",
+    "closed": "Yopilgan"
   },
   "labels": {
     "contact_us": "Biz bilan bog'lanish",
@@ -41,7 +59,60 @@
     "contacts": "Kontaktlar",
     "privacy_policy": "Xisoblash shartlari",
     "cookie_policy": "Cookie shartlari",
-    "sitemap": "Sahifalar ro'yxati"
+    "sitemap": "Sahifalar ro'yxati",
+    "sign_in": "Kirish",
+    "detailed": "Batafsil",
+    "investment_proposals": "Investitsiya takliflari",
+    "project_cost": "Loyiha qiymati",
+    "sector": "Sektor",
+    "project_type": "Loyiha turi",
+    "status": "Holati",
+    "view_more": "Ko'proq ko'rish",
+    "view_here": "Bu yerda ko'rish",
+    "all_sectors": "Barcha sektorlar",
+    "all_regions": "Barcha hududlar",
+    "amount": "Miqdori",
+    "where_to_start": "Qayerdan boshlash kerak",
+    "irr": "IRR",
+    "npv": "NPV",
+    "pp": "PP",
+    "email": "Elektron pochta",
+    "phone": "Telefon",
+    "project_location": "Loyiha joylashuvi",
+    "project_information": "Loyiha haqida ma'lumot",
+    "project_category": "Loyiha toifasi",
+    "offline_procedures": "Oflayn tartiblar"
+  },
+  "actions": {
+    "sign_in": "Kirish",
+    "sign_out": "Chiqish",
+    "contact_us": "Biz bilan bog'lanish",
+    "refresh": "Yangilash",
+    "cancel": "Bekor qilish",
+    "edit": "Tahrirlash",
+    "save": "Saqlash",
+    "send": "Yuborish",
+    "sitemap": "Sahifalar ro'yxati",
+    "investment_proposals": "Investitsiya takliflari",
+    "project_cost": "Loyiha qiymati",
+    "sector": "Sektor",
+    "project_type": "Loyiha turi",
+    "status": "Holati",
+    "view_more": "Ko'proq ko'rish",
+    "view_here": "Bu yerda ko'rish",
+    "all_sectors": "Barcha sektorlar",
+    "all_regions": "Barcha hududlar",
+    "amount": "Miqdori",
+    "where_to_start": "Qayerdan boshlash kerak",
+    "irr": "IRR",
+    "npv": "NPV",
+    "pp": "PP",
+    "email": "Elektron pochta",
+    "phone": "Telefon",
+    "project_location": "Loyiha joylashuvi",
+    "project_information": "Loyiha haqida ma'lumot",
+    "project_category": "Loyiha toifasi",
+    "loading": "Yuklanmoqda..."
   },
   "validations": {
     "email": "Noto'g'ri elektron pochta manzili",
@@ -49,5 +120,31 @@
     "minLength": "Minimal talab qilingan uzunlik {min}",
     "required": "Ushbu maydon to'ldirilishi shart",
     "sameAs": "Qiymat \"{otherName}\" maydoni bilan mos kelishi kerak"
+  },
+  "messages": {
+    "confirm": {
+      "block": "Haqiqatan ham bloklamoqchimisiz?",
+      "deactivate": "Haqiqatan ham deaktivatsiya qilmoqchimisiz?",
+      "delete": "Haqiqatan ham o'chirmoqchimisiz?",
+      "send_message": "Haqiqatan ham xabar yubormoqchimisiz?",
+      "sign_out": "Haqiqatan ham chiqmoqchimisiz?"
+    },
+    "info": {
+      "data_not_found": "Ma'lumot topilmadi",
+      "entity_blocked": "{name} bloklandi",
+      "entity_deactivated": "{name} deaktivatsiya qilindi",
+      "entity_deleted": "{name} o'chirildi",
+      "message_cannot_be_edited": "Xabar yuborilgandan so'ng tahrir qilib bo'lmaydi.",
+      "no_worries_message": "Xavotir olmang, sizga tiklash bo'yicha ko'rsatmalar yuboramiz.",
+      "page_not_found": "Sahifa topilmadi",
+      "welcome_message": "Xush kelibsiz! Iltimos, ma'lumotlaringizni kiriting."
+    },
+    "success": {
+      "entity_activated": "{name} faollashtirildi",
+      "entity_sent": "{name} yuborildi",
+      "entity_unblocked": "{name} blokdan chiqarildi",
+      "saved": "Muvaffaqiyatli saqlandi",
+      "registration": "Ro'yxatdan o'tish muvaffaqiyatli yakunlandi!"
+    }
   }
 }

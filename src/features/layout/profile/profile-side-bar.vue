@@ -22,7 +22,7 @@ const list = computed(() => [
 </script>
 
 <template>
-  <div class="h-fit min-w-[272px] max-w-full rounded-[14px] bg-white px-2 py-4 sm:max-w-[272px]">
+  <div class="h-fit min-w-[272px] max-w-full rounded-[14px] bg-white px-2 py-4 md:max-w-[272px]">
     <div class="grid gap-2">
       <nuxt-link-locale
         v-for="item in list"

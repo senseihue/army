@@ -43,9 +43,9 @@ const { t } = useI18n({ useScope: "local" })
       "download": "Скачать"
     }
   },
-  "oz": {
+  "uz": {
     "actions": {
-      "download": "Юклаб олиш"
+      "download": "Yuklab olish"
     }
   }
 }

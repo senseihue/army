@@ -1,7 +1,9 @@
 <script setup lang="ts">
+import { UiLoader } from "~/widgets/loader"
+
 const { t } = useI18n({ useScope: "local" })
 const { $session } = useNuxtApp()
-const { profile } = $session || {}
+const { profile, loading } = $session || {}
 </script>
 
 <template>
@@ -9,7 +11,9 @@ const { profile } = $session || {}
     <p class="text-lg font-semibold text-blue-midnight">
       {{ t("passport_info") }}
     </p>
-    <div v-if="profile?.user" class="mt-5 grid w-full grid-cols-1 gap-x-2 gap-y-4 sm:grid-cols-2 lg:grid-cols-3">
+    <ui-loader v-if="loading" class="min-h-36" />
+
+    <div v-else class="mt-5 grid w-full grid-cols-1 gap-x-2 gap-y-4 sm:grid-cols-2 lg:grid-cols-3">
       <div class="flex flex-col gap-1">
         <label class="text-xs font-medium text-blue-command">
           {{ t("passport_number") }}
@@ -83,6 +87,8 @@ const { profile } = $session || {}
         </p>
       </div>
     </div>
+    <!--    <template >-->
+    <!--    </template>-->
   </div>
 </template>
 
@@ -114,19 +120,27 @@ const { profile } = $session || {}
     "date_of_birth": "Дата рождения",
     "nationality": "Национальность",
     "country_of_birth": "Страна рождения",
-    "citizenship": "Гражданство"
+    "citizenship": "Гражданство",
+    "genders": {
+      "male": "Мужской",
+      "female": "Женский"
+    }
   },
-  "oz": {
-    "passport_info": "Паспорт маълумотлари",
-    "passport_number": "Паспорт серияси ва рақами",
-    "passport_issued_by": "Паспортни берган ташкилот",
-    "passport_issued_date": "Паспорт берилган сана",
-    "passport_expiry_date": "Паспортнинг амал қилиш муддати",
-    "gender": "Жинс",
-    "date_of_birth": "Туғилган сана",
-    "nationality": "Миллати",
-    "country_of_birth": "Туғилган мамлакат",
-    "citizenship": "Фуқаролик"
+  "uz": {
+    "passport_info": "Pasport ma'lumotlari",
+    "passport_number": "Pasport seriyasi va raqami",
+    "passport_issued_by": "Pasport berildi",
+    "passport_issued_date": "Pasport berilgan sana",
+    "passport_expiry_date": "Pasport amal qilish muddati",
+    "gender": "Jinsi",
+    "date_of_birth": "Tug'ilgan sana",
+    "nationality": "Millati",
+    "country_of_birth": "Tug'ilgan mamlakat",
+    "citizenship": "",
+    "genders": {
+      "male": "Erkak",
+      "female": "Ayol"
+    }
   }
 }
 </i18n>

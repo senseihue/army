@@ -54,8 +54,8 @@ const { t } = useI18n({ useScope: "local" })
   "ru": {
     "loading": "Загрузка..."
   },
-  "oz": {
-    "loading": "Юкланмоқда..."
+  "uz": {
+    "loading": "Yuklanmoqda..."
   }
 }
 </i18n>

@@ -16,20 +16,8 @@ export const usePersonalServiceCategoryService = () => {
       })
   }
 
-  const getPersonalServiceCategory = async () => {
-    if (personalServiceCategoryStore.current) {
-      return personalServiceCategoryApi
-        .getPersonalServiceCategory(personalServiceCategoryStore.current.id)
-        .then(({ content, pageable }) => {
-          personalServiceCategoryStore.current = content
-          personalServiceCategoryStore.params.total = pageable?.total || 0
-          return Promise.resolve(content)
-        })
-    }
-  }
 
   return {
-    getPersonalServiceCategoryList,
-    getPersonalServiceCategory
+    getPersonalServiceCategoryList
   }
 }

@@ -1,8 +1,9 @@
 <script setup lang="ts">
+import { UiLoader } from "~/widgets/loader"
 
-const { t } = useI18n({useScope: "local"})
+const { t } = useI18n({ useScope: "local" })
 const { $session } = useNuxtApp()
-const { profile } = $session || {}
+const { profile, loading } = $session || {}
 </script>
 
 <template>
@@ -10,7 +11,8 @@ const { profile } = $session || {}
     <p class="text-lg font-semibold text-blue-midnight">
       {{ t("main_info") }}
     </p>
-    <div v-if="profile?.user" class="mt-2 flex w-full gap-9 py-4">
+    <ui-loader v-if="loading" class="min-h-24" />
+    <div v-else class="mt-2 flex w-full gap-9 py-4">
       <img class="h-28 w-28 rounded-lg object-cover object-center" src="https://picsum.photos/200/300" alt="" />
       <div class="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <div class="flex flex-col gap-1">
@@ -50,7 +52,6 @@ const { profile } = $session || {}
   </div>
 </template>
 
-
 <i18n>
 {
   "en": {
@@ -67,12 +68,12 @@ const { profile } = $session || {}
     "middle_name": "Отчество",
     "pinfl": "ПИНФЛ"
   },
-  "oz": {
-    "main_info": "Асосий маълумотлар",
-    "name": "Исм",
-    "surname": "Фамилия",
-    "middle_name": "Отчество",
-    "pinfl": "ПИНФЛ",
+  "uz": {
+    "main_info": "Asosiy ma'lumotlar",
+    "name": "Ism",
+    "surname": "Familiya",
+    "middle_name": "Otasining ismi",
+    "pinfl": "PINFL"
   }
 }
 </i18n>
