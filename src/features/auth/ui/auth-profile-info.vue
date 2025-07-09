@@ -35,7 +35,7 @@ const list = computed(() => [
 
           <hr class="dark:border-gray-800" />
 
-          <ui-dropdown-item v-for="{ title, to } in list" :key="title" :href="to" :label="title" />
+          <ui-dropdown-item v-for="{ title, to } in list" :key="title" :to="to" :label="title" />
 
           <ui-dropdown-item color="danger" :label="$t('actions.sign_out')" @click="$session.clear" />
         </div>
