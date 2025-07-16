@@ -18,6 +18,9 @@ const route = useRoute()
 const { data: post, error } = await useAsyncData(`post-${route.params.id}`, () => {
   return getPressById(Number(route.params.id), loading)
 })
+if (error.value) {
+  showError(error.value)
+}
 </script>
 
 <template>

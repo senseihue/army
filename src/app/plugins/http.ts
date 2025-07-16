@@ -42,9 +42,9 @@ export default defineNuxtPlugin(() => {
       config.headers["Accept-Language"] = $i18n.locale.value
 
       const headerToken = config.headers["Authorization"]
-      const token = localStorage.getItem("token")
+      const token = useCookie("token")
       if (import.meta.client && !config.url?.includes("public"))
-        if (!headerToken && token) config.headers["Authorization"] = `Bearer ${token}`
+        if (!headerToken && token) config.headers["Authorization"] = `Bearer ${token.value}`
 
       return config
     },
@@ -66,6 +66,7 @@ export default defineNuxtPlugin(() => {
       return response
     },
     (error: AxiosError) => {
+      console.log(error)
       const code: Record<number, string> = {
         401: $i18n.t("messages.error.unauthorized"),
         403: $i18n.t("messages.error.forbidden")
