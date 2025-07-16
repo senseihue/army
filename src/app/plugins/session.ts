@@ -2,7 +2,7 @@ export default defineNuxtPlugin(() => {
   const router = useRouter()
   const localePath = useLocalePath()
 
-  const token = useLocalStorage("token", "", { writeDefaults: false })
+  const token = useCookie("token")
   const loaded = useState<boolean>("loaded", () => ref(false)) // Profile is loaded
   const loading = useState<boolean>("loading", () => ref(false)) // Flag for loading
   const profile = useState<ISessionProfile | undefined>("profile", () => ref())
