@@ -22,7 +22,7 @@ const { data: post, error } = await useAsyncData(`post-${route.params.id}`, () =
 
 <template>
   <div>
-    <post-hero :background="post.content.photo.download_link" :title="post.content.title" />
+    <post-hero :background="post.content.photo?.download_link" :title="post.content.title" />
     <post-section
       :author="post.content.author"
       :category="post.content.category"
