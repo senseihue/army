@@ -4,13 +4,15 @@ import { Carousel, Slide } from "vue3-carousel"
 import { HomeTestimonialSlide } from "~/features/home"
 import StarIn from "~/app/assets/svg/starin.svg"
 
-const { t, tm, rt } = useI18n({ useScope: "local" })
+const { t } = useI18n({ useScope: "local" })
+
+const {data} = await useFetch<IResponse<any>>("/gateway/siw/public/review")
 
 const carouselRef = ref<CarouselMethods>()
 const carouselConfig = computed<Partial<CarouselConfig>>(() => ({
   gap: 24,
   snapAlign: "start",
-  wrapAround: true,
+  wrapAround: false,
   breakpoints: {
     1024: {
       itemsToShow: 2
@@ -43,8 +45,8 @@ const carouselConfig = computed<Partial<CarouselConfig>>(() => ({
         </div>
 
         <carousel v-bind="carouselConfig" ref="carouselRef">
-          <slide v-for="(slide, idx) in tm('slides')" class="h-full" :key="idx">
-            <home-testimonial-slide :text="rt(slide.text)" :image="rt(slide.image)" :author="rt(slide.author)" />
+          <slide v-for="(slide, idx) in data?.content" class="h-full" :key="idx">
+            <home-testimonial-slide :text="slide.comment" :image="slide.photo" :author="slide.author" />
           </slide>
         </carousel>
       </div>
