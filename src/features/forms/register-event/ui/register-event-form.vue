@@ -195,7 +195,18 @@ const submit = async () => {
       },
       "options": {
         "role": {
-          "attendee": "Attendee"
+          "official": "Official",
+          "media": "Media",
+          "participant": "Participant",
+          "attendee": "Attendee",
+          "top": "Top",
+          "top_vip": "Top vip",
+          "speaker": "Speaker",
+          "moderator": "Moderator",
+          "organizer": "Organizer",
+          "volunteer": "Volunteer",
+          "exhibitor": "Exhibitor",
+          "guest": "Guest"
         },
         "gender": {
           "male": "Male",
@@ -242,7 +253,18 @@ const submit = async () => {
       },
       "options": {
         "role": {
-          "attendee": "Ishtirokchi"
+          "official": "Rasmiy",
+          "media": "OAV",
+          "participant": "Ishtirokchi",
+          "attendee": "Tinglovchi",
+          "top": "Yuqori daraja",
+          "top_vip": "Yuqori VIP",
+          "speaker": "Ma’ruzachi",
+          "moderator": "Moderator",
+          "organizer": "Tashkilotchi",
+          "volunteer": "Ko‘ngilli",
+          "exhibitor": "Ko‘rgazma ishtirokchisi",
+          "guest": "Mehmon"
         },
         "gender": {
           "male": "Erkak",
@@ -289,7 +311,18 @@ const submit = async () => {
       },
       "options": {
         "role": {
-          "attendee": "Участник"
+          "official": "Официальный",
+          "media": "СМИ",
+          "participant": "Участник",
+          "attendee": "Посетитель",
+          "top": "Топ",
+          "top_vip": "Топ VIP",
+          "speaker": "Спикер",
+          "moderator": "Модератор",
+          "organizer": "Организатор",
+          "volunteer": "Волонтёр",
+          "exhibitor": "Экспонент",
+          "guest": "Гость"
         },
         "gender": {
           "male": "Мужчина",
