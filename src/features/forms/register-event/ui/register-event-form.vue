@@ -16,7 +16,20 @@ const { t } = useI18n({
 })
 const route = useRoute()
 
-const roles: SelectOptions = [{ label: t("applicant.options.role.attendee"), value: "attendee" }]
+const roles: SelectOptions = [
+  { label: t("applicant.options.role.attendee"), value: "attendee" },
+  { label: t("applicant.options.role.official"), value: "official" },
+  { label: t("applicant.options.role.media"), value: "media" },
+  { label: t("applicant.options.role.participant"), value: "participant" },
+  { label: t("applicant.options.role.top"), value: "top" },
+  { label: t("applicant.options.role.top_vip"), value: "top_vip" },
+  { label: t("applicant.options.role.speaker"), value: "speaker" },
+  { label: t("applicant.options.role.moderator"), value: "moderator" },
+  { label: t("applicant.options.role.organizer"), value: "organizer" },
+  { label: t("applicant.options.role.volunteer"), value: "volunteer" },
+  { label: t("applicant.options.role.exhibitor"), value: "exhibitor" },
+  { label: t("applicant.options.role.guest"), value: "guest" }
+]
 
 const genders: SelectOptions = [
   { label: t("applicant.options.gender.male"), value: "male" },
