@@ -44,7 +44,7 @@ export default defineNuxtPlugin(() => {
       const headerToken = config.headers["Authorization"]
       const token = useCookie("token")
       if (import.meta.client && !config.url?.includes("public"))
-        if (!headerToken && token) config.headers["Authorization"] = `Bearer ${token.value}`
+        if (!headerToken && token.value) config.headers["Authorization"] = `Bearer ${token.value}`
 
       return config
     },
