@@ -10,7 +10,7 @@
           <h2 class="text-2xl font-bold lg:text-3xl text-blue-midnight text-center">Investment map of Uzbekistan</h2>
 
           <div data-aos="zoom-in" data-aos-delay="100">
-            <home-svg-map v-model="regionId" attached-element-id="map-card-header" />
+<!--            <home-svg-map v-model="regionId" attached-element-id="map-card-header" />-->
           </div>
 
 
