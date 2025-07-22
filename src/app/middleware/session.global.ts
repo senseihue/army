@@ -8,7 +8,13 @@ export default defineNuxtRouteMiddleware(async (to) => {
   const getProfile = async () => {
     loading.value = true
     try {
-      const { content } = await authApi.getProfile()
+      const { content } = await $fetch<IResponse<ISessionProfile>>("/gateway/core/profile", {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${$session.token.value}`
+        }
+      })
+
       $session.profile.value = content
       $session.loaded.value = true
     } catch (error: any) {
@@ -18,11 +24,9 @@ export default defineNuxtRouteMiddleware(async (to) => {
       loading.value = false
     }
   }
-
   if ($session?.token.value && !$session?.loaded.value) {
     await getProfile()
   }
-
   if (to.meta?.protected && !$session?.token.value) {
     const { origin } = useRequestURL()
 

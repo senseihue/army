@@ -24,7 +24,8 @@ export const useAuthService = () => {
     authApi
       .signIn(code)
       .then(({ content }) => {
-        $session.token.value = content.token
+        const token  = useCookie('token')
+        token.value = content.token
         $session.profile.value = content.profile
 
         if (state) {
@@ -40,12 +41,10 @@ export const useAuthService = () => {
             navigateTo(localePath("/"))
           }
         } else {
-          console.log("Log")
           navigateTo(localePath("/"))
         }
       })
       .catch((error) => {
-        console.error(error)
 
         alert
           .errorDialog({

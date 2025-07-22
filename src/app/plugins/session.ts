@@ -6,18 +6,19 @@ export default defineNuxtPlugin(() => {
   const loaded = useState<boolean>("loaded", () => ref(false)) // Profile is loaded
   const loading = useState<boolean>("loading", () => ref(false)) // Flag for loading
   const profile = useState<ISessionProfile | undefined>("profile", () => ref())
-
-  const loggedIn = computed(() => token.value && profile.value?.user.id)
+  const loggedIn = computed(() => {
+    return !!(profile.value?.user.id)
+  })
 
   watch(loggedIn, (value) => {
     if (!value) {
-      token.value = ""
+      token.value = undefined
       profile.value = undefined
     }
   })
 
   const clear = () => {
-    token.value = ""
+    token.value = undefined
     loading.value = false
     profile.value = undefined
     router.replace(localePath("/"))

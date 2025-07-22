@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useAuthService } from "~/features/auth"
 
+const { $session } = useNuxtApp()
 const { getRedirectUrl } = useAuthService()
 
 const getUrl = () => {
@@ -12,7 +13,7 @@ const getUrl = () => {
   <client-only>
     <ui-button
       v-bind="$attrs"
-      v-if="!$session?.loggedIn.value"
+      v-if="$session?.loggedIn"
       rounded
       color="success"
       :label="$t('labels.sign_in')"
