@@ -12,7 +12,7 @@ const { t } = useI18n({ useScope: "local" })
               {{ t("heading") }}
             </h3>
 
-            <p class="whitespace-pre-line text-gray-700">{{ t("text") }}</p>
+            <p class="whitespace-pre-line text-gray-700 text-justify">{{ t("text") }}</p>
           </div>
 
           <div class="relative h-fit" data-aos="zoom-in" data-aos-delay="50">

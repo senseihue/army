@@ -6,13 +6,25 @@ const { t } = useI18n({ useScope: "local" })
   <section class="bg-blue-bright">
     <div class="container-7xl relative">
       <div class="p-section">
-        <div class="grid grid-cols-1 gap-8 lg:grid-cols-2">
-          <div class="order-2 mb-12 lg:order-1" data-aos="fade-right" data-aos-delay="50">
-            <p class="mb-8 whitespace-pre-line text-gray-700">{{ t("text") }}</p>
+        <div class="grid grid-cols-1 gap-28 lg:grid-cols-2 mb-20">
+          <div class="w-full " data-aos="fade-right" data-aos-delay="50">
+            <nuxt-img
+              class="aspect-video max-h-[543px] object-cover object-center lg:aspect-auto"
+              src="/img/home/111img_0426.jpg"
+            />
+          </div>
+          <div class="mb-12" data-aos="fade-left" data-aos-delay="50">
+            <p class="mb-8 whitespace-pre-line text-justify text-gray-700">{{ t("text") }}</p>
+            <ui-button size="lg" color="success" rounded :label="t('view_report')" />
+          </div>
+        </div>
+        <div class="grid grid-cols-1 gap-28 lg:grid-cols-2">
+          <div class="mb-12" data-aos="fade-right" data-aos-delay="50">
+            <p class="mb-8 whitespace-pre-line text-justify text-gray-700">{{ t("text") }}</p>
             <ui-button size="lg" color="success" rounded :label="t('view_report')" />
           </div>
 
-          <div class="right-4 order-1 w-full lg:absolute lg:order-2 lg:max-w-sm" data-aos="zoom-in" data-aos-delay="50">
+          <div class="w-full lg:max-w-sm ml-auto" data-aos="fade-left" data-aos-delay="50">
             <nuxt-img
               class="aspect-video w-full object-cover object-center lg:aspect-auto"
               src="https://dev-portal.miit.uz/uploads/new_uzb.jpg"

@@ -26,15 +26,13 @@ export const useHeaderNav = () => {
         { label: t("nav.guide.partnership"), to: "/guide/partnership" },
         { label: t("nav.guide.privatization"), to: "/guide/privatization" },
         { label: t("nav.guide.project"), to: "/guide/project/category" },
-        { label: t("nav.guide.register-investor"), to: "/guide/register-investor" },
-        { label: t("nav.guide.register-business"), to: "/guide/register-business" },
-
+        { label: t("nav.guide.register-investor"), to: "/guide/register-investor" }
       ]
     },
     {
       label: t("nav.advert.label"),
-      to: "/advert/registration",
-      dropdown: [{ label: t("nav.advert.registration"), to: "/advert/registration" }]
+      to: "/guide/register-business",
+      dropdown: [{ label: t("nav.advert.registration"), to: "/guide/register-business" }]
     },
     {
       label: t("nav.media.label"),
@@ -43,11 +41,9 @@ export const useHeaderNav = () => {
     {
       label: t("nav.about.label"),
       to: "/about",
-      dropdown: [
-        { label: t("nav.about.about_us"), to: "/about" },
-        { label: t("nav.about.event"), to: "/event" }
-      ]
-    }
+      dropdown: [{ label: t("nav.about.about_us"), to: "/about" }]
+    },
+    { label: t("nav.about.event"), to: "/event" }
   ])
 
   return { list }

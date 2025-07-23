@@ -43,19 +43,21 @@ const buttonAttrs = computed(() => {
 </script>
 
 <template>
-  <component
-    v-tooltip.bottom="{ content: label, strategy: 'fixed' }"
-    v-bind="{ ...$attrs, ...buttonAttrs }"
-    :is="buttonAttrs.is"
-    :class="buttonClass"
-    :disabled="disabled || loading"
-  >
-    <slot v-if="loading" name="loading">
-      <span class="ui-button-loading" />
-    </slot>
+  <client-only>
+    <component
+      v-tooltip.bottom="{ content: label, strategy: 'fixed' }"
+      v-bind="{ ...$attrs, ...buttonAttrs }"
+      :is="buttonAttrs.is"
+      :class="buttonClass"
+      :disabled="disabled || loading"
+    >
+      <slot v-if="loading" name="loading">
+        <span class="ui-button-loading" />
+      </slot>
 
-    <slot>
-      <icon v-if="iconName" :class="iconClass" :name="iconName" />
-    </slot>
-  </component>
+      <slot>
+        <icon v-if="iconName" :class="iconClass" :name="iconName" />
+      </slot>
+    </component>
+  </client-only>
 </template>

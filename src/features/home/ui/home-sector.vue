@@ -50,7 +50,7 @@ const { t } = useI18n({ useScope: "local" })
   }
 
   &__content {
-    @apply order-2 flex flex-col gap-6 lg:order-1;
+    @apply order-2 flex flex-col gap-6 lg:order-1 pr-16;
   }
 
   &__heading {
@@ -58,7 +58,7 @@ const { t } = useI18n({ useScope: "local" })
   }
 
   &__description {
-    @apply mb-4 text-base text-gray-700;
+    @apply mb-4 text-base text-gray-700 text-justify;
   }
 
   &__image {
