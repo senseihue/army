@@ -26,7 +26,7 @@ const carouselConfig = computed<Partial<CarouselConfig>>(() => ({
 <template>
   <section>
     <div class="container-7xl">
-      <div class="pb-12 pt-20 md:pb-20 md:pt-32">
+      <div class="pb-12 pt-20 md:pb-20 md:pt-36">
         <h3
           class="mb-12 text-center text-2xl font-bold text-blue-command lg:text-3xl"
           data-aos="fade-up"
@@ -67,7 +67,7 @@ const carouselConfig = computed<Partial<CarouselConfig>>(() => ({
 
 <style scoped>
 .carousel {
-  @apply mb-12 px-10;
+  @apply mb-14 px-10;
   --vc-nav-width: 36px;
   --vc-nav-height: 36px;
 }
