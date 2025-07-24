@@ -30,7 +30,7 @@ import LogoWhite from "~/app/assets/svg/logo-white.svg"
 
             <div class="footer__contact-item">
               <icon class="footer__icon" name="lucide:phone" :size="20" />
-              <a class="footer__link" href="tel:+9987120201013">+998 (71) 202-02-1013</a>
+              <a class="footer__link" href="tel:+9987120201013">+998 (71) 202-02-10</a>
             </div>
 
             <div class="footer__contact-item">
@@ -40,26 +40,36 @@ import LogoWhite from "~/app/assets/svg/logo-white.svg"
 
             <div class="footer__contact-item">
               <icon class="footer__icon" name="lucide:at-sign" :size="20" />
-              <a class="footer__link" href="mailto:uzipa@invest.gov.uz">uzipa@invest.gov.uz</a>
+              <a class="footer__link" href="mailto:uzipa@invest.gov.uz">
+                uzipa@invest.gov.uz --->
+                <br />
+                ({{ $t("labels.investment_related") }})
+              </a>
+            </div>
+            <div class="footer__contact-item">
+              <icon class="footer__icon" name="lucide:at-sign" :size="20" />
+              <a class="footer__link" href="mailto:info@invest.gov.uz">
+                info@invest.gov.uz --->
+                <br />
+                ({{ $t("labels.official_correspondence") }})
+              </a>
             </div>
 
-            <div class="footer__contact-item">
-              <icon class="footer__icon" name="tabler:brand-facebook" :size="20" />
-              <a class="footer__link" href="https://www.facebook.com/InvestUZB" target="_blank">Facebook</a>
-            </div>
+            <!--            <div class="footer__contact-item">-->
+            <!--              <icon class="footer__icon" name="tabler:brand-facebook" :size="20" />-->
+            <!--              <a class="footer__link" href="https://www.facebook.com/InvestUZB" target="_blank">Facebook</a>-->
+            <!--            </div>-->
 
-            <div class="footer__contact-item">
-              <icon class="footer__icon" name="hugeicons:linkedin-02" :size="20" />
-              <a class="footer__link" href="https://www.linkedin.com/company/investinuzb" target="_blank">Linkedin</a>
-            </div>
+            <!--            <div class="footer__contact-item">-->
+            <!--              <icon class="footer__icon" name="hugeicons:linkedin-02" :size="20" />-->
+            <!--              <a class="footer__link" href="https://www.linkedin.com/company/investinuzb" target="_blank">Linkedin</a>-->
+            <!--            </div>-->
           </div>
 
           <!-- Column 3: Bottom Text -->
           <div class="footer__text">
             <p class="text-xs text-white">
-              Any use (reproduction, publication, copying, reprinting, distribution, translation, broadcasting,
-              processing and other methods of distribution) of the materials of the Investment Portal - Invest.gov.uz,
-              without indicating the original source and a link to the Portal is strictly prohibited
+              {{ $t("description.footer_desc") }}
             </p>
           </div>
         </div>

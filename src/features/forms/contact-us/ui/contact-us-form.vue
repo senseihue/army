@@ -117,7 +117,7 @@ const submit = async () => {
         "message": "Message"
       }
     },
-    "submit-button": "Register"
+    "submit-button": "Submit"
   },
   "ru": {
     "contact-us": {
@@ -135,7 +135,7 @@ const submit = async () => {
         "message": "Сообщение"
       }
     },
-    "submit-button": "Зарегистрироваться"
+    "submit-button": "Отправить"
   },
   "uz": {
     "contact-us": {
@@ -153,7 +153,7 @@ const submit = async () => {
         "message": "Xabar"
       }
     },
-    "submit-button": "Ro'yxatdan o'tish"
+    "submit-button": "Yuborish"
   }
 }
 </i18n>

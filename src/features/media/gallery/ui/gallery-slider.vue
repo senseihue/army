@@ -6,6 +6,7 @@ import "vue3-carousel/carousel.css"
 
 interface IProps {
   slides: IFile[]
+  title: string
 }
 
 defineProps<IProps>()
@@ -17,11 +18,10 @@ const slideTo = (nextSlide: number) => (currentSlide.value = nextSlide)
 
 const thumbnailsConfig: Partial<CarouselConfig> = {
   height: 128,
-  itemsToShow: 4,
-  wrapAround: true,
+  wrapAround: false,
   touchDrag: false,
   gap: 16,
-  snapAlign: "start",
+  snapAlign: "center",
   breakpoints: {
     576: {
       itemsToShow: 4,
@@ -34,12 +34,11 @@ const thumbnailsConfig: Partial<CarouselConfig> = {
     }
   }
 }
-const { t } = useI18n({ useScope: "local" })
 
 const config: Partial<CarouselConfig> = {
   height: 500,
   itemsToShow: 1,
-  wrapAround: true,
+  wrapAround: false,
   slideEffect: "fade",
   mouseDrag: false,
   touchDrag: false,
@@ -57,6 +56,9 @@ const config: Partial<CarouselConfig> = {
 <template>
   <div class="culture-section my-8">
     <div class="container-7xl">
+      <h3 class="mb-8 text-2xl font-bold text-blue-command lg:text-3xl">
+        {{ title }}
+      </h3>
       <div class="flex flex-col">
         <div class="mb-4">
           <carousel v-model="currentSlide" v-bind="config" id="main-slides" ref="carouselRef">

@@ -46,12 +46,49 @@
       "my_projects": "My projects"
     }
   },
+  "sitemap": {
+    "about": {
+      "label": "Investment promotion agency",
+      "about_us": "About us",
+      "how_to_help": "How to help",
+      "faq": "FAQ",
+      "contact_us": "Contact us"
+    },
+    "investment_guide": {
+      "label": "Investment Guide",
+      "agriculture": "Agriculture",
+      "automotive": "Automotive",
+      "chemicals": "Chemicals",
+      "construction": "Construction & Housing",
+      "education": "Education",
+      "energy": "Energy",
+      "finance": "Financial Services",
+      "metals": "Metals and Mining",
+      "pharma": "Pharmaceuticals",
+      "textiles": "Textiles",
+      "technology": "Technology",
+      "tourism": "Tourism"
+    },
+    "media": {
+      "label": "News and Insights",
+      "news": "News",
+      "publications": "Publications",
+      "pr_materials": "PR Materials",
+      "blogs": "Blogs",
+      "gallery": "Gallery"
+    }
+  },
   "project_status": {
     "open_for_investment": "Open for investment",
     "under_negotiation": "Under negotiation",
     "closed": "Closed"
   },
+  "description": {
+    "footer_desc": "Any use (reproduction, publication, copying, reprinting, distribution, translation, broadcasting,\n              processing and other methods of distribution) of the materials of the Investment Portal - Invest.gov.uz,\n              without indicating the original source and a link to the Portal is strictly prohibited"
+  },
   "labels": {
+    "investment_related": "Investment-related",
+    "official_correspondence": "Official correspondence",
     "contact_us": "Contact us",
     "office": "(Office)",
     "search": "Search",
@@ -71,6 +108,8 @@
     "view_here": "View here",
     "all_sectors": "All sectors",
     "all_regions": "All regions",
+    "all_status": "All statuses",
+    "all_amount": "All amounts",
     "amount": "Amount",
     "where_to_start": "Where to start",
     "irr": "IRR",

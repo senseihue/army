@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 interface IProps {
   text: string
-  image: string
+  image: IFile
   author: string
 }
 
@@ -11,7 +11,7 @@ defineProps<IProps>()
 <template>
   <div class="testimonial-slide">
     <div class="testimonial-slide__image-wrapper">
-      <img class="testimonial-slide__image" :src="image" :alt="author" />
+      <img class="testimonial-slide__image" :src="image.download_link" :alt="author" />
       <span class="testimonial-slide__quote">‘‘</span>
     </div>
 
@@ -30,7 +30,7 @@ defineProps<IProps>()
 }
 
 .testimonial-slide__image {
-  @apply w-full max-w-52 rounded-full;
+  @apply w-full h-full max-w-52 max-h-52 min-h-52 rounded-full;
 }
 
 .testimonial-slide__quote {

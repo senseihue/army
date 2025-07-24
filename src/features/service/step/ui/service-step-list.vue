@@ -19,7 +19,7 @@ const changeStep = (step: IServiceStep) => {
 </script>
 
 <template>
-  <div>
+  <div v-if="items.length > 1">
     <div class="grid gap-2">
       <div>
         <div

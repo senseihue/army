@@ -160,10 +160,13 @@ const submit = async () => {
       </div>
     </div>
     <div class="col-span-full mt-6 flex items-center justify-center gap-8 pt-8 text-center">
-      <ui-button class="ui-button-rounded" type="button" size="lg" color="danger">
-        {{ t("cancel-button") }}
-      </ui-button>
-      <ui-button class="ui-button-rounded" size="lg" type="submit" color="success" :loading>
+      <nuxt-link-locale :to="{ path: '/event'}" class=" w-full sm:max-w-56">
+        <ui-button  class="ui-button-rounded w-full" type="button" size="lg" color="danger" >
+          {{ t("cancel-button") }}
+        </ui-button>
+      </nuxt-link-locale>
+
+      <ui-button  class="ui-button-rounded w-full sm:max-w-56" size="lg" type="submit" color="success" :loading>
         {{ t("submit-button") }}
       </ui-button>
     </div>

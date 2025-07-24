@@ -85,7 +85,7 @@
               <div class="relative grid w-full gap-5 rounded-xl bg-white p-4" ref="serviceSection">
                 <h3 class="font-semibold">{{ $t("labels.where_to_start") }}</h3>
 
-                <div v-if="category?.service_categories?.length" class="rounded-2xl border">
+                <div v-if="category?.service_categories?.length" class="rounded-2xl border ">
                   <project-category-slider>
                     <project-category-slide
                       v-for="(slide, idx) in category?.service_categories"

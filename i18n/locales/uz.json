@@ -51,7 +51,12 @@
     "under_negotiation": "Muzokaralarda",
     "closed": "Yopilgan"
   },
+  "description": {
+    "footer_desc": "Invest.gov.uz investitsiya portali materiallaridan asl manba va Portalga havola ko‘rsatilmagan holda har qanday foydalanish (ko‘paytirish, chop etish, nusxalash, qayta chop etish, tarqatish, tarjima qilish, efirga uzatish, qayta ishlash va tarqatishning boshqa usullari) qat’iyan man etiladi.\n\n"
+  },
   "labels": {
+    "investment_related": "Investitsiya bilan bog'liq",
+    "official_correspondence": "Rasmiy yozishmalar",
     "contact_us": "Biz bilan bog'lanish",
     "office": "(Ofis)",
     "search": "Qidiruv",
@@ -67,11 +72,13 @@
     "sector": "Sektor",
     "project_type": "Loyiha turi",
     "status": "Holati",
+    "all_status": "Barcha holatlar",
     "view_more": "Ko'proq ko'rish",
     "view_here": "Bu yerda ko'rish",
     "all_sectors": "Barcha sektorlar",
     "all_regions": "Barcha hududlar",
     "amount": "Miqdori",
+    "all_amount": "Barcha miqdorlar",
     "where_to_start": "Qayerdan boshlash kerak",
     "irr": "IRR",
     "npv": "NPV",

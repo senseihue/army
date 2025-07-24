@@ -38,7 +38,7 @@ pressList.value = data.value?.content || []
         </div>
         <div class="text-center">
           <nuxt-link-locale to="/media/news">
-            <ui-button color="success" rounded>
+            <ui-button size="lg" class="w-[200px]" color="success" rounded>
               {{ t("all-news") }}
             </ui-button>
           </nuxt-link-locale>

@@ -6,7 +6,7 @@ interface IProps {
   categories: IPersonalServiceCategory[]
 }
 
-defineProps<IProps>()
+const props = defineProps<IProps>()
 const emits = defineEmits<{
   (e: "next"): void
   (e: "prev"): void
@@ -23,7 +23,7 @@ const prev = () => {
 }
 
 const next = () => {
-  if (active.value < items.value.length - 1) {
+  if (active.value < props.categories.length - 1) {
     active.value++
     emits("next")
   }

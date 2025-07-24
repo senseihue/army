@@ -8,7 +8,7 @@ const { t, tm, rt } = useI18n({ useScope: "local" })
       <div class="p-section">
         <div class="flex flex-col gap-4">
           <img src="/img/guide/privatization/privatization.webp" alt="img" />
-          <p class="whitespace-pre-line text-gray-olive">{{ t("content") }}</p>
+          <p class="whitespace-pre-line text-gray-olive text-justify">{{ t("content") }}</p>
 
           <div class="mb-8 flex flex-col gap-4">
             <h3 class="font-bold">{{ t("highlights.heading") }}</h3>
@@ -29,7 +29,7 @@ const { t, tm, rt } = useI18n({ useScope: "local" })
           <div class="flex flex-col gap-4">
             <h3 class="font-bold">{{ t("process.heading") }}</h3>
             <h4 class="font-bold">{{ t("process.first.heading") }}</h4>
-            <p class="whitespace-pre-line text-gray-olive">{{ t("process.first.text") }}</p>
+            <p class="whitespace-pre-line text-gray-olive text-justify">{{ t("process.first.text") }}</p>
 
             <h4 class="font-bold">{{ t("process.second.heading") }}</h4>
             <p class="whitespace-pre-line text-gray-olive">{{ t("process.second.text") }}</p>
@@ -41,12 +41,12 @@ const { t, tm, rt } = useI18n({ useScope: "local" })
 
           <div class="my-4 flex flex-col gap-4">
             <h3 class="text-center text-xl font-bold text-blue-command">{{ t("procedures.heading") }}</h3>
-            <p class="whitespace-pre-line text-gray-olive">{{ t("procedures.text") }}</p>
+            <p class="whitespace-pre-line text-gray-olive text-justify">{{ t("procedures.text") }}</p>
           </div>
 
           <div class="my-4 flex flex-col gap-4">
             <h3 class="text-center text-xl font-bold text-blue-command">{{ t("offering.heading") }}</h3>
-            <p class="whitespace-pre-line text-gray-olive">{{ t("offering.text") }}</p>
+            <p class="whitespace-pre-line text-gray-olive text-justify">{{ t("offering.text") }}</p>
             <ul class="list-disc pl-10">
               <li v-for="(item, index) in tm('offering.list')" :key="index">{{ rt(item) }}</li>
             </ul>

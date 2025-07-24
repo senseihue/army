@@ -22,7 +22,7 @@ const { data: gallery, error } = await useAsyncData(`gallery-${route.params.id}`
 
 <template>
   <div>
-    <gallery-slider :slides="gallery.content.files" />
+    <gallery-slider :title="gallery.content.title" :slides="gallery.content.files" />
   </div>
 </template>
 

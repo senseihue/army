@@ -15,7 +15,7 @@ const { t } = useI18n({ useScope: "local" })
 
           <div class="lg:col-span-3" data-aos="fade-right" data-aos-delay="50">
             <h3 class="mb-8 text-2xl font-bold text-blue-command lg:text-3xl">{{ t("heading") }}</h3>
-            <p class="whitespace-pre-line text-gray-700">{{ t("text") }}</p>
+            <p class="whitespace-pre-line text-gray-700 text-justify">{{ t("text") }}</p>
           </div>
         </div>
       </div>

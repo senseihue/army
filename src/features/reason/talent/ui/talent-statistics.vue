@@ -34,8 +34,8 @@ const { tm, rt } = useI18n({ useScope: "local" })
     "heading": "Uzbekistan In Numbers",
     "slides": [
       {
-        "label": "70%",
-        "progress": 70,
+        "label": "76%",
+        "progress": 76,
         "description": "Pre-school"
       },
       {
@@ -44,8 +44,8 @@ const { tm, rt } = useI18n({ useScope: "local" })
         "description": "School"
       },
       {
-        "label": "41%",
-        "progress": 41,
+        "label": "42%",
+        "progress": 42,
         "description": "Higher"
       },
       {

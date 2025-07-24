@@ -58,12 +58,18 @@ const runtimeConfig = useRuntimeConfig()
 
       <div class="flex items-center gap-3">
         <nuxt-link-locale :to="{ path: '/event/register', query: { event_id: id } }">
-          <ui-button download color="info">
+          <ui-button download color="success" rounded>
             {{ t("actions.register") }}
           </ui-button>
         </nuxt-link-locale>
 
-        <ui-button v-if="agenda" target="_blank" color="info" :href="agenda.download_link">
+        <ui-button
+          v-if="agenda"
+          target="_blank"
+          rounded
+          color="info"
+          :href="agenda.download_link"
+        >
           {{ t("actions.download_forum_agenda") }}
         </ui-button>
       </div>

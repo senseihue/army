@@ -34,8 +34,8 @@ const { t } = useI18n({ useScope: "local" })
         </div>
       </template>
       <template #right>
-        <div>
-          <proven-table />
+        <div class="h-full">
+          <proven-table class="h-full" />
         </div>
       </template>
     </section-grid>

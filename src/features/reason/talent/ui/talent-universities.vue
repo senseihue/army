@@ -91,11 +91,11 @@ console.log(carouselItems.value)
           <template #addons>
             <navigation>
               <template #prev>
-                <icon class="text-4xl" name="ph:caret-left" />
+                <icon class="h-11 w-11" mode="svg" name="ph:caret-left" />
               </template>
 
               <template #next>
-                <icon class="text-4xl" name="ph:caret-right" />
+                <icon class="h-11 w-11" mode="svg" name="ph:caret-right" />
               </template>
             </navigation>
           </template>
@@ -107,7 +107,7 @@ console.log(carouselItems.value)
 
 <style scoped>
 .carousel {
-  @apply mb-12 px-10;
+  @apply mb-12 px-20;
   --vc-nav-width: 36px;
   --vc-nav-height: 36px;
 }

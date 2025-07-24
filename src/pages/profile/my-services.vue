@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ProfileHeader } from "~/features/profile"
 import { ServiceDetailModal, ServiceGrid, usePersonalServiceService } from "~/features/profile/service"
-import { ServiceCategoryTabs, usePersonalServiceCategoryService } from "~/features/profile/service/category"
+import { ServiceCategoryTabs } from "~/features/profile/service/category"
 import { usePersonalServiceStore } from "~/entities/profile/personal-service"
 import { usePersonalServiceCategoryStore } from "~/entities/profile/personal-service-category"
 import { UiLoader } from "~/widgets/loader"
@@ -11,7 +11,7 @@ definePageMeta({
 })
 const { t } = useI18n({ useScope: "local" })
 const { getPersonalServiceList } = usePersonalServiceService()
-const { params, loading } = usePersonalServiceStore()
+const { params, items, loading } = usePersonalServiceStore()
 const personalServiceCategoryStore = usePersonalServiceCategoryStore()
 const { current } = storeToRefs(personalServiceCategoryStore)
 
@@ -59,6 +59,7 @@ const get = async () => {
 }
 
 const onChangeCategory = async () => {
+  params.page = 0
   await getPersonalServiceList()
 }
 
@@ -84,6 +85,7 @@ onMounted(() => {
         />
       </template>
 
+
       <service-detail-modal />
     </div>
   </div>
@@ -101,7 +103,8 @@ onMounted(() => {
       "economic_operations": "Economic operations",
       "tax_information": "Tax information",
       "others": "Others"
-    }
+    },
+    "empty_service": "No services available"
   },
   "ru": {
     "services": {
@@ -113,7 +116,8 @@ onMounted(() => {
       "economic_operations": "Экономические операции",
       "tax_information": "Налоговая информация",
       "others": "Другое"
-    }
+    },
+    "empty_service": "Нет доступных услуг"
   },
   "uz": {
     "services": {
@@ -125,7 +129,8 @@ onMounted(() => {
       "economic_operations": "Iqtisodiy operatsiyalar",
       "tax_information": "Soliq ma'lumotlari",
       "others": "Boshqalar"
-    }
+    },
+    "empty_service": "Xizmatlar mavjud emas"
   }
 }
 </i18n>

@@ -30,10 +30,10 @@ const { minHeight } = useWindowHeight()
   @apply relative flex min-h-screen flex-col overflow-hidden transition-all duration-500 ease-in-out;
 
   &__background {
-    @apply absolute inset-0 -z-10 bg-blue-midnight;
+    @apply absolute inset-0 -z-10;
 
     img {
-      @apply h-full w-full object-cover object-center opacity-60;
+      @apply h-full w-full object-cover object-center;
     }
   }
 
