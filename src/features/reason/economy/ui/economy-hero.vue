@@ -1,17 +1,16 @@
 <script setup lang="ts">
-const { minHeight } = useWindowHeight()
 </script>
 
 <template>
   <client-only>
     <div
       class="relative flex min-h-screen flex-col overflow-hidden transition-all duration-500 ease-in-out"
-      :style="{ minHeight }"
+      :style="{ minHeight: '90vh' }"
     >
       <!--  Background  -->
-      <div v-rellax class="absolute inset-0 -z-10 bg-blue-midnight" data-rellax-speed="-5">
+      <div v-rellax class="absolute inset-0 -z-10 " data-rellax-speed="-5">
         <img
-          class="h-full w-full object-cover object-center opacity-60"
+          class="h-full w-full object-cover object-center"
           src="https://dev-portal.miit.uz/uploads/tashkent-buildings.jpeg"
           alt="Background"
         />

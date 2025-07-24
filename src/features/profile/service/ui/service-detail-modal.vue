@@ -31,10 +31,15 @@ const showForm = ref(false)
 const getRequestParams = async (service: IPersonalService) => {
   if (service.params) {
     const params = {}
-
     service.params.forEach((item) => {
       if (Object.prototype.hasOwnProperty.call(profile.value, item.key)) {
-        params[item.key] = profile.value[item.key]
+        if (item.key === 'inn') {
+          params[item.key] = profile.value.tin3
+        } else if (item.key === 'pinfl') {
+          params[item.key] = profile.value.pin
+        } else {
+          params[item.key] = profile.value[item.key]
+        }
       } else {
         requiredParams.value.push(item)
         rules.value[item.key] = { required }

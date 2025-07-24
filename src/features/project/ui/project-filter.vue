@@ -21,7 +21,7 @@
         v-model="amountModel"
         class="w-full border-none bg-blue-command p-2 text-sm text-white placeholder:text-white"
       >
-        <option selected :value="undefined">{{ $t("labels.amount") }}</option>
+        <option selected :value="undefined">{{ $t("labels.all_amount") }}</option>
         <option v-for="item in amountList" :key="item?.id" :value="item?.id">
           {{ item.from }} ~ {{ item.to }}
         </option>
@@ -31,7 +31,7 @@
         v-model="statusModel"
         class="w-full border-none bg-blue-command p-2 text-sm text-white placeholder:text-white"
       >
-        <option selected :value="undefined">{{ $t("labels.status") }}</option>
+        <option selected :value="undefined">{{ $t("labels.all_status") }}</option>
         <option v-for="item in status" :key="item?.value" :value="item?.value">{{ item?.label }}</option>
       </select>
     </div>

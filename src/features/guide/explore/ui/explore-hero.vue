@@ -30,10 +30,10 @@ const scrollTo = () => window.scrollTo({ top: minHeightPx.value, behavior: "smoo
   @apply relative flex min-h-screen flex-col overflow-hidden transition-all duration-500 ease-in-out;
 
   &__background {
-    @apply absolute inset-0 -z-10 bg-blue-midnight;
+    @apply absolute inset-0 -z-10 ;
 
     img {
-      @apply h-full w-full object-cover object-center opacity-60;
+      @apply h-full w-full object-cover object-center;
     }
   }
 
@@ -58,15 +58,15 @@ const scrollTo = () => window.scrollTo({ top: minHeightPx.value, behavior: "smoo
 <i18n lang="json">
 {
   "en": {
-    "heading": "Investment Guide",
+    "heading": "Explore Your Sector",
     "text": "A wealth of new opportunities are continually emerging across different sectors, opening up exciting possibilities for investors."
   },
   "ru": {
-    "heading": "Руководство по инвестициям",
+    "heading": "Потенциал отраслей",
     "text": "В различных секторах постоянно появляется множество новых возможностей, открывающих захватывающие перспективы для инвесторов."
   },
   "uz": {
-    "heading": "Sarmoya kiritish bo'yicha qo'llanma",
+    "heading": "Sanoat salohiyati",
     "text": "Turli sektorlarda doim yangi imkoniyatlar paydo bo'lmoqda, bu esa investorlar uchun qiziqarliistiqbollarni ochmoqda."
   }
 }

@@ -11,7 +11,7 @@ const { t } = useI18n({ useScope: "local" })
     <reason-nav />
     <section-grid>
       <template #left>
-        <h3>
+        <h3 class="text-center">
           {{ t("title") }}
         </h3>
         <br />

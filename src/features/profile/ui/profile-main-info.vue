@@ -13,7 +13,7 @@ const { profile, loading } = $session || {}
     </p>
     <ui-loader v-if="loading" class="min-h-24" />
     <div v-else class="mt-2 flex w-full gap-9 py-4">
-      <img class="h-28 w-28 rounded-lg object-cover object-center" src="https://picsum.photos/200/300" alt="" />
+<!--      <img class="h-28 w-28 rounded-lg object-cover object-center" src="https://picsum.photos/200/300" alt="" />-->
       <div class="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <div class="flex flex-col gap-1">
           <label class="text-xs font-medium text-blue-command">

@@ -19,11 +19,17 @@
 
         <span
           v-if="!infoPage && idx !== steps?.length - 1"
-          class="clip-border clip-border-step hidden !bg-blue-command lg:block"
+          class="clip-border clip-border-step hidden lg:block"
+          :class="{
+            '!bg-blue-midnight': active === idx || idx < active
+          }"
         ></span>
         <span
           v-else-if="infoPage && idx !== steps?.length - 1"
-          class="clip-border clip-border-info hidden !bg-blue-command lg:block"
+          class="clip-border clip-border-info hidden lg:block"
+          :class="{
+            '!bg-blue-midnight': active === idx || idx < active
+          }"
         ></span>
       </div>
     </div>

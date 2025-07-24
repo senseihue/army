@@ -5,7 +5,8 @@ import { Carousel, Navigation } from "vue3-carousel"
 const carouselConfig = computed<Partial<CarouselConfig>>(() => ({
   gap: 1,
   snapAlign: "start",
-  itemsToShow: 6
+  itemsToShow: 6,
+  wrapAround: false
 }))
 </script>
 
@@ -13,7 +14,7 @@ const carouselConfig = computed<Partial<CarouselConfig>>(() => ({
   <section class="service-slider">
     <div class="service-slider__grid">
       <div class="service-slider__content" data-aos="fade-right" data-aos-delay="150">
-        <carousel v-bind="carouselConfig" class="service-carousel">
+        <carousel v-bind="carouselConfig" class="service-carousel min-h-[88px]">
           <slot />
 
           <template #addons>

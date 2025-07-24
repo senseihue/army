@@ -38,18 +38,18 @@ const carouselConfig = computed<Partial<CarouselConfig>>(() => ({
           <template #addons>
             <navigation>
               <template #prev>
-                <icon class="text-4xl text-white" name="ph:caret-left" />
+                <icon class="h-11 w-11 text-white" mode="svg" name="ph:caret-left" />
               </template>
 
               <template #next>
-                <icon class="text-4xl text-white" name="ph:caret-right" />
+                <icon class="h-11 w-11 text-white" mode="svg" name="ph:caret-right" />
               </template>
             </navigation>
           </template>
         </carousel>
 
         <a
-          class="block px-16 2xl:px-0 italic text-white hover:underline"
+          class="block px-20 italic text-white hover:underline 2xl:px-0"
           target="_blank"
           href="https://lex.uz/docs/4438440"
           data-aos="fade-up"
@@ -64,7 +64,7 @@ const carouselConfig = computed<Partial<CarouselConfig>>(() => ({
 
 <style scoped>
 .carousel {
-  @apply mb-12 2xl:-mx-16 px-16;
+  @apply mb-12 px-20 2xl:-mx-16;
   --vc-nav-width: 36px;
   --vc-nav-height: 36px;
 }

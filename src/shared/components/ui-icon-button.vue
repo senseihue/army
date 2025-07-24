@@ -43,9 +43,7 @@ const buttonAttrs = computed(() => {
 </script>
 
 <template>
-  <client-only>
     <component
-      v-tooltip.bottom="{ content: label, strategy: 'fixed' }"
       v-bind="{ ...$attrs, ...buttonAttrs }"
       :is="buttonAttrs.is"
       :class="buttonClass"
@@ -59,5 +57,4 @@ const buttonAttrs = computed(() => {
         <icon v-if="iconName" :class="iconClass" :name="iconName" />
       </slot>
     </component>
-  </client-only>
 </template>

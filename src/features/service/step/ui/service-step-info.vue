@@ -59,3 +59,13 @@ const { t } = useI18n({ useScope: "local" })
   }
 }
 </i18n>
+
+<style>
+.content {
+  ul {
+    list-style: revert !important;
+    margin: revert;
+    padding: revert;
+  }
+}
+</style>

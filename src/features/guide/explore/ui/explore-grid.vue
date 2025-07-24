@@ -12,6 +12,8 @@ import pharma from "public/img/guide/explore/pharma/pharma.webp"
 import textiles from "public/img/guide/explore/textiles/textiles.webp"
 import technology from "public/img/guide/explore/technology/technology.webp"
 import tourism from "public/img/guide/explore/tourism/tourism.webp"
+import oilAndGas from "public/img/guide/explore/oil-and-gas/oil-gas.jpeg"
+import zdravoohranenie from "public/img/guide/explore/zdravoohranenie/wmremove-transformed-(8)-1.jpeg"
 
 const { t } = useI18n({ useScope: "local" })
 
@@ -75,6 +77,16 @@ const cards = computed(() => [
     label: t("tourism"),
     image: tourism,
     link: "/guide/explore/tourism"
+  },
+  {
+    label: t("oil-and-gas"),
+    image: oilAndGas,
+    link: "/guide/explore/oil-and-gas"
+  },
+  {
+    label: t("zdravoohranenie"),
+    image: zdravoohranenie,
+    link: "/guide/explore/zdravoohranenie"
   }
 ])
 </script>
@@ -105,7 +117,9 @@ const cards = computed(() => [
     "pharma": "Pharmaceuticals",
     "textiles": "Textiles",
     "technology": "Technology",
-    "tourism": "Tourism"
+    "tourism": "Tourism",
+    "oil-and-gas": "Oil and Gas",
+    "zdravoohranenie": "Healthcare"
   },
   "ru": {
     "agriculture": "Сельское хозяйство",
@@ -119,7 +133,9 @@ const cards = computed(() => [
     "pharma": "Фармацевтика",
     "textiles": "Текстильная промышленность",
     "technology": "Технологии",
-    "tourism": "Туризм"
+    "tourism": "Туризм",
+    "oil-and-gas": "Нефть и газ",
+    "zdravoohranenie": "Здравоохранение"
   },
   "uz": {
     "agriculture": "Qishloq xo‘jaligi",
@@ -133,7 +149,9 @@ const cards = computed(() => [
     "pharma": "Farmatsevtika",
     "textiles": "To‘qimachilik sanoati",
     "technology": "Texnologiyalar",
-    "tourism": "Turizm"
+    "tourism": "Turizm",
+    "oil-and-gas": "Neft va gaz",
+    "zdravoohranenie": "Sog‘liqni saqlash"
   }
 }
 </i18n>

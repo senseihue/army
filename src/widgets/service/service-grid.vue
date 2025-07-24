@@ -24,10 +24,6 @@ const getInitialData = async () => {
   await getStepList()
   await getStep()
 }
-const test = () => {
-
-  console.log("Report sent")
-}
 onMounted(() => {
   getInitialData()
 })
@@ -73,9 +69,9 @@ onMounted(() => {
               <p class="mb-4 text-sm font-medium">
                 {{ t("report.description") }}
               </p>
-              <ui-button class="w-full" color="danger" size="lg" rounded @click="test">
-                {{ t("actions.send-report") }}
-              </ui-button>
+<!--              <ui-button class="w-full" color="danger" size="lg" rounded @click="test">-->
+<!--                {{ t("actions.send-report") }}-->
+<!--              </ui-button>-->
             </div>
           </div>
         </div>
