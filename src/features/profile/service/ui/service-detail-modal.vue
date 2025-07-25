@@ -32,17 +32,23 @@ const getRequestParams = async (service: IPersonalService) => {
   if (service.params) {
     const params = {}
     service.params.forEach((item) => {
-      if (item.key === "inn" && profile.value.user.inn) {
-        params[item.key] = profile.value.user.tin
-      } else if (item.key === "pinfl" && profile.value.user.pin) {
-        params[item.key] = profile.value.user.pin
-      } else if (Object.prototype.hasOwnProperty.call(profile.value.user, item.key)) {
-        params[item.key] = profile.value.user[item.key]
+      if (item.key === "page" || item.key === "size") {
+        return
+      }
+      console.log(item.key === "inn" && profile.value?.user.tin)
+      if (item.key === "inn" && profile.value?.user.tin) {
+        params[item.key] = profile.value?.user.tin
+      } else if (item.key === "pinfl" && profile.value?.user.pin) {
+        params[item.key] = profile.value?.user.pin
+      } else if (Object.prototype.hasOwnProperty.call(profile.value?.user, item.key) && profile.value?.user[item.key]) {
+        params[item.key] = profile.value?.user[item.key]
       } else {
         requiredParams.value.push(item)
         rules.value[item.key] = { required }
       }
     })
+
+    console.log(rules.value, params)
 
     requestConfig.value.params = params
     return Promise.resolve()
@@ -72,6 +78,7 @@ const getRequestBody = async (service: IPersonalService) => {
 
 const onSave = async () => {
   const isValid = await vuelidate.value.$validate()
+  console.log(vuelidate.value)
   if (isValid) {
     if (paramsCollection.value.length > 0) {
       paramsCollection.value.forEach((item) => {
@@ -97,7 +104,6 @@ const onBeforeShow = async (service: IPersonalService) => {
     showForm.value = true
   } else {
     showForm.value = false
-    console.log("Request config:", requestConfig.value)
     getPersonalServiceDetail(activeService.value.link, requestConfig.value)
   }
 }
@@ -117,10 +123,11 @@ const onClose = () => {
 </script>
 
 <template>
-  <ui-modal id="service-detail-modal" :label="activeService?.title" @shown="onBeforeShow" @close="onClose">
+  <ui-modal id="service-detail-modal" :label="activeService?.title" @shown="onBeforeShow" @before-hide="onClose">
     <div v-if="showForm" class="grid grid-cols-1 gap-4 p-4 sm:grid-cols-2">
       <validate-each v-for="(item, index) in paramsCollection" :key="index" :state="item" :rules="rules">
         <template #default="{ v }">
+          {{ item.key }}: {{ v[item.key] }}
           <ui-form-group
             v-slot="{ id }"
             required
@@ -142,29 +149,29 @@ const onClose = () => {
           </ui-form-group>
         </template>
       </validate-each>
-      <validate-each v-for="(item, index) in bodyCollection" :key="index" :state="item" :rules="rules">
-        <template #default="{ v }">
-          <ui-form-group
-            v-slot="{ id }"
-            required
-            :hint="v[item.key].$errors[0]?.$message"
-            :invalid="!!v[item.key].$errors[0]?.$message"
-            :label="item.title"
-          >
-            <ui-date-picker
-              v-if="item.type !== 'date'"
-              v-model="v[item.key].$model"
-              model-type="yyyy-MM-dd"
-              format="dd.MM.yyyy"
-              auto-apply
-              teleport
-              position="left"
-              :id
-            />
-            <ui-input v-else v-model="v[item.key].$model" :type="item.type || 'text'" :id />
-          </ui-form-group>
-        </template>
-      </validate-each>
+      <!--      <validate-each v-for="(item, index) in bodyCollection" :key="index" :state="item" :rules="rules">
+              <template #default="{ v }">
+                <ui-form-group
+                  v-slot="{ id }"
+                  required
+                  :hint="v[item.key].$errors[0]?.$message"
+                  :invalid="!!v[item.key].$errors[0]?.$message"
+                  :label="item.title"
+                >
+                  <ui-date-picker
+                    v-if="item.type !== 'date'"
+                    v-model="v[item.key].$model"
+                    model-type="yyyy-MM-dd"
+                    format="dd.MM.yyyy"
+                    auto-apply
+                    teleport
+                    position="left"
+                    :id
+                  />
+                  <ui-input v-else v-model="v[item.key].$model" :type="item.type || 'text'" :id />
+                </ui-form-group>
+              </template>
+            </validate-each>-->
     </div>
     <div v-else class="grid grid-cols-1 gap-4 p-4 sm:grid-cols-2">
       <template v-for="(item, index) in current?.data" :key="index">
