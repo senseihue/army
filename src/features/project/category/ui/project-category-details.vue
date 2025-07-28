@@ -102,30 +102,32 @@
                 <div v-else class="text-center">Loading...</div>
 
                 <div v-if="serviceList.length" class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-                  <div
-                    v-for="(service, idx) in serviceList"
-                    class="flex min-h-[93px] cursor-pointer items-center justify-between rounded-xl border bg-gray-50 px-4 py-6 transition-all hover:bg-gray-100"
-                    :key="idx"
-                    @click="offlineServiceVisible(service)"
-                  >
-                    <span>{{ service?.title }}</span>
-                    <span
-                      class="flex items-center justify-center rounded-full p-1"
-                      :class="service.online ? 'bg-green-600' : 'bg-blue-600'"
+                  <template v-for="(service, idx) in serviceList" :key="idx">
+                    <!-- Карточка -->
+                    <div
+                      class="flex min-h-[93px] cursor-pointer items-center justify-between rounded-xl border px-4 py-6 transition-all hover:bg-gray-100"
+                      :class="offlineService?.id === service.id ? 'bg-gray-200' : 'bg-gray-50'"
+                      @click="offlineServiceVisible(service)"
                     >
-                      <Icon
-                        class="icon text-white"
-                        filled
-                        :name="`lucide:${service.online ? 'chevron-right' : 'info'}`"
-                      />
-                    </span>
-                  </div>
+                      <span>{{ service?.title }}</span>
+                      <span
+                        class="flex items-center justify-center rounded-full p-1"
+                        :class="service.online ? 'bg-green-600' : 'bg-blue-600'"
+                      >
+                        <Icon
+                          class="icon text-white"
+                          filled
+                          :name="`lucide:${service.online ? 'chevron-right' : 'info'}`"
+                        />
+                      </span>
+                    </div>
 
-                  <div class="col-span-full">
-                    <Transition name="fade">
-                      <div v-if="isOffline" v-html="offlineService.description" class="rounded-md border p-4"></div>
-                    </Transition>
-                  </div>
+                    <div v-if="offlineService?.id === service.id" class="col-span-full">
+                      <Transition name="fade">
+                        <div v-html="offlineService.description" class="rounded-md border p-4"></div>
+                      </Transition>
+                    </div>
+                  </template>
                 </div>
               </div>
             </div>
@@ -228,15 +230,5 @@ const scrollToSection = (section: HTMLInputElement | null, type: "project" | "se
 .project-clip-border {
   @apply absolute right-0 top-0 h-full w-full bg-[#E4E4E7];
   clip-path: polygon(92% 0, 100% 50%, 92% 100%, 91% 100%, 99% 50%, 91% 0);
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.3s;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
 }
 </style>

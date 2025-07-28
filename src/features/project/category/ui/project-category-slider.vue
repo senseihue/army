@@ -1,13 +1,16 @@
 <script setup lang="ts">
 import type { CarouselConfig } from "vue3-carousel"
 import { Carousel, Navigation } from "vue3-carousel"
+import { breakpointsTailwind } from "@vueuse/core"
 
 const carouselConfig = computed<Partial<CarouselConfig>>(() => ({
   gap: 1,
   snapAlign: "start",
-  itemsToShow: 6,
+  itemsToShow: breakpoints.lg ? 6 : breakpoints.md ? 3 : 1,
   wrapAround: false
 }))
+
+const breakpoints = useBreakpoints(breakpointsTailwind)
 </script>
 
 <template>
@@ -35,8 +38,6 @@ const carouselConfig = computed<Partial<CarouselConfig>>(() => ({
 </template>
 
 <style lang="scss">
-
-
 .service-slider {
   &__grid {
     @apply grid grid-cols-1;
@@ -48,11 +49,11 @@ const carouselConfig = computed<Partial<CarouselConfig>>(() => ({
 }
 
 .carousel__next {
-  @apply absolute bg-gray-300 rounded-full right-0 -top-8;
+  @apply absolute -top-8 right-0 rounded-full bg-gray-300;
 }
 
 .carousel__prev {
-  @apply absolute bg-gray-300 rounded-full left-[88%] lg:left-[94%] -top-8;
+  @apply absolute -top-8 left-[88%] rounded-full bg-gray-300 lg:left-[94%];
 }
 
 .carousel__next:hover,

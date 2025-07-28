@@ -23,7 +23,7 @@
       >
         <option selected :value="undefined">{{ $t("labels.all_amount") }}</option>
         <option v-for="item in amountList" :key="item?.id" :value="item?.id">
-          {{ item.from }} ~ {{ item.to }}
+          {{ item.content }}
         </option>
       </select>
 
