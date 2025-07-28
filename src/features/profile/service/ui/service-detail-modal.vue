@@ -7,6 +7,7 @@ import { ValidateEach } from "@vuelidate/components"
 import UiDatePicker from "@vuepic/vue-datepicker"
 
 const vuelidate = useVuelidate()
+const { t } = useI18n({ useScope: "local" })
 const { required } = useRule()
 const { $session } = useNuxtApp()
 const { profile } = $session || {}
@@ -27,6 +28,7 @@ const requiredParams = ref<any[]>([])
 const requiredBody = ref<any[]>([])
 
 const showForm = ref(false)
+const resultErrored = ref(false)
 
 const getRequestParams = async (service: IPersonalService) => {
   if (service.params) {
@@ -103,8 +105,11 @@ const onBeforeShow = async (service: IPersonalService) => {
   if (Object.keys(requiredParams.value).length > 0) {
     showForm.value = true
   } else {
+    resultErrored.value = false
     showForm.value = false
-    getPersonalServiceDetail(activeService.value.link, requestConfig.value)
+    getPersonalServiceDetail(activeService.value.link, requestConfig.value).catch((err) => {
+      resultErrored.value = true
+    })
   }
 }
 
@@ -149,37 +154,42 @@ const onClose = () => {
           </ui-form-group>
         </template>
       </validate-each>
-      <!--      <validate-each v-for="(item, index) in bodyCollection" :key="index" :state="item" :rules="rules">
-              <template #default="{ v }">
-                <ui-form-group
-                  v-slot="{ id }"
-                  required
-                  :hint="v[item.key].$errors[0]?.$message"
-                  :invalid="!!v[item.key].$errors[0]?.$message"
-                  :label="item.title"
-                >
-                  <ui-date-picker
-                    v-if="item.type !== 'date'"
-                    v-model="v[item.key].$model"
-                    model-type="yyyy-MM-dd"
-                    format="dd.MM.yyyy"
-                    auto-apply
-                    teleport
-                    position="left"
-                    :id
-                  />
-                  <ui-input v-else v-model="v[item.key].$model" :type="item.type || 'text'" :id />
-                </ui-form-group>
-              </template>
-            </validate-each>-->
+      <validate-each v-for="(item, index) in bodyCollection" :key="index" :state="item" :rules="rules">
+        <template #default="{ v }">
+          <ui-form-group
+            v-slot="{ id }"
+            required
+            :hint="v[item.key].$errors[0]?.$message"
+            :invalid="!!v[item.key].$errors[0]?.$message"
+            :label="item.title"
+          >
+            <ui-date-picker
+              v-if="item.type !== 'date'"
+              v-model="v[item.key].$model"
+              model-type="yyyy-MM-dd"
+              format="dd.MM.yyyy"
+              auto-apply
+              teleport
+              position="left"
+              :id
+            />
+            <ui-input v-else v-model="v[item.key].$model" :type="item.type || 'text'" :id />
+          </ui-form-group>
+        </template>
+      </validate-each>
     </div>
     <div v-else class="grid grid-cols-1 gap-4 p-4 sm:grid-cols-2">
-      <template v-for="(item, index) in current?.data" :key="index">
-        <ui-form-group v-for="(value, key) in item" v-slot="{ id }" :label="key.toLocaleString().toUpperCase()">
+      <template v-if="!resultErrored" v-for="(item, index) in current?.data" :key="index">
+        <ui-form-group v-for="(value, key) in item" v-slot="{ id }" :key :label="key.toLocaleString().toUpperCase()">
           <ui-input readonly :model-value="value" :id />
         </ui-form-group>
         <hr class="col-span-full py-4" />
       </template>
+      <div v-else class="col-span-full py-12 text-center">
+        <p class="font-semibold text-blue-midnight">
+          {{ t("occurred_error") }}
+        </p>
+      </div>
     </div>
     <template v-if="showForm" #footer="{ hide }">
       <div class="flex flex-col-reverse items-center justify-end gap-3 p-4 sm:flex-row">
@@ -195,3 +205,16 @@ const onClose = () => {
 </template>
 
 <style scoped></style>
+<i18n>
+{
+  "en": {
+    "occurred_error": "An error occurred while processing your request",
+  },
+  "ru": {
+    "occurred_error": "Произошла ошибка при обработке вашего запроса"
+  },
+  "uz": {
+    "occurred_error": "So'rovingizni qayta ishlashda xatolik yuz berdi"
+  }
+}
+</i18n>
