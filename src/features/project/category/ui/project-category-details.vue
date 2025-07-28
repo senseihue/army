@@ -85,7 +85,7 @@
               <div class="relative grid w-full gap-5 rounded-xl bg-white p-4" ref="serviceSection">
                 <h3 class="font-semibold">{{ $t("labels.where_to_start") }}</h3>
 
-                <div v-if="category?.service_categories?.length" class="rounded-2xl border ">
+                <div v-if="category?.service_categories?.length" class="rounded-2xl border">
                   <project-category-slider>
                     <project-category-slide
                       v-for="(slide, idx) in category?.service_categories"
@@ -102,48 +102,27 @@
                 <div v-else class="text-center">Loading...</div>
 
                 <div v-if="serviceList.length" class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-                  <a
-                    v-for="(online, idx) in serviceList"
-                    class="flex min-h-[93px] items-center justify-between rounded-xl border bg-gray-50 px-4 py-6 transition-all hover:bg-gray-100"
-                    href="https://new.birdarcha.uz/"
-                    target="_blank"
+                  <div
+                    v-for="(service, idx) in serviceList"
+                    class="flex min-h-[93px] cursor-pointer items-center justify-between rounded-xl border bg-gray-50 px-4 py-6 transition-all hover:bg-gray-100"
                     :key="idx"
+                    @click="offlineServiceVisible(service)"
                   >
-                    <span>{{ online?.title }}</span>
-                    <span class="flex items-center justify-center rounded-full bg-green-400 p-1">
-                      <Icon class="icon text-white" filled name="lucide:chevron-right" />
-                    </span>
-                  </a>
-                </div>
-
-                <div>
-                  <ui-button
-                    v-if="serviceList.length"
-                    color="gray"
-                    size="lg"
-                    rounded
-                    :after-icon="visibleOffline ? 'lucide:minus' : 'lucide:plus'"
-                    :label="$t('labels.offline_procedures')"
-                    @click="visibleOffline = !visibleOffline"
-                  />
-                </div>
-
-                <div
-                  v-if="serviceList.length && visibleOffline"
-                  class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
-                >
-                  <div v-for="(offline, idx) in serviceList" :key="idx">
-                    <a
-                      v-if="visibleOffline"
-                      class="flex min-h-[93px] items-center justify-between rounded-xl border bg-gray-50 px-4 py-6 transition-all hover:bg-gray-100"
-                      target="_blank"
-                      :href="`/service/${offline.id}`"
+                    <span>{{ service?.title }}</span>
+                    <span
+                      class="flex items-center justify-center rounded-full p-1"
+                      :class="service.online ? 'bg-green-600' : 'bg-blue-600'"
                     >
-                      <span>{{ offline?.title }}</span>
-                      <span class="flex items-center justify-center rounded-full bg-gray-400 p-1">
-                        <Icon class="icon text-white" filled name="lucide:chevron-right" />
-                      </span>
-                    </a>
+                      <Icon
+                        class="icon text-white"
+                        filled
+                        :name="`lucide:${service.online ? 'chevron-right' : 'info'}`"
+                      />
+                    </span>
+                  </div>
+
+                  <div class="col-span-full">
+                    <div v-if="isOffline" v-html="offlineService.description" class="rounded-md border p-4"></div>
                   </div>
                 </div>
               </div>
@@ -169,11 +148,12 @@ const route = useRoute()
 const category = ref<IProjectCategoryById>()
 const projectList = ref<IProject[]>([])
 const serviceList = ref<any[]>([])
-const visibleOffline = ref<boolean>(false)
+const isOffline = ref<boolean>(false)
 const serviceId = ref<number | undefined>()
 const toolbarType = ref<string>("project")
 const serviceSection = ref<HTMLInputElement | null>(null)
 const projectSection = ref<HTMLInputElement | null>(null)
+const offlineService = ref<any>()
 
 const query = ref({
   sector: undefined,
@@ -198,7 +178,24 @@ const onClickCategory = async (id: number) => {
     })
     serviceList.value = data.content || []
   }
-  visibleOffline.value = false
+}
+
+const offlineServiceVisible = (service: any) => {
+  if (service.online && !service.info && service.link) {
+    const a = document.createElement("a")
+    a.setAttribute("href", service.link)
+    a.setAttribute("target", "_blank")
+    document.body.appendChild(a)
+    a.click()
+  } else {
+    if (offlineService.value?.id === service.id) {
+      isOffline.value = false
+      offlineService.value = null
+    } else {
+      offlineService.value = service
+      isOffline.value = true
+    }
+  }
 }
 
 onMounted(() => {

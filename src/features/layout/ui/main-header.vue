@@ -7,7 +7,6 @@ import {
   MainHeaderLanguage,
   MainHeaderMenu,
   MainHeaderMenuToggle,
-  MainHeaderAlert
 } from "~/features/layout"
 import { AuthProfileButtonGroup } from "~/widgets/auth"
 

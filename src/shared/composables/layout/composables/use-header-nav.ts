@@ -25,7 +25,6 @@ export const useHeaderNav = () => {
         { label: t("nav.guide.explore"), to: "/guide/explore" },
         { label: t("nav.guide.partnership"), to: "/guide/partnership" },
         { label: t("nav.guide.privatization"), to: "/guide/privatization" },
-        { label: t("nav.guide.project"), to: "/guide/project/category" },
         { label: t("nav.guide.register-investor"), to: "/guide/register-investor" }
       ]
     },
@@ -38,6 +37,7 @@ export const useHeaderNav = () => {
       label: t("nav.media.label"),
       to: "/media/news"
     },
+    { label: t("nav.guide.single_window"), to: "/guide/project/category" },
     {
       label: t("nav.about.label"),
       to: "/about",
