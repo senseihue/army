@@ -122,7 +122,9 @@
                   </div>
 
                   <div class="col-span-full">
-                    <div v-if="isOffline" v-html="offlineService.description" class="rounded-md border p-4"></div>
+                    <Transition name="fade">
+                      <div v-if="isOffline" v-html="offlineService.description" class="rounded-md border p-4"></div>
+                    </Transition>
                   </div>
                 </div>
               </div>
@@ -181,12 +183,10 @@ const onClickCategory = async (id: number) => {
 }
 
 const offlineServiceVisible = (service: any) => {
+  if (!service.link.startsWith("http")) service.link = "https://" + service.link
+
   if (service.online && !service.info && service.link) {
-    const a = document.createElement("a")
-    a.setAttribute("href", service.link)
-    a.setAttribute("target", "_blank")
-    document.body.appendChild(a)
-    a.click()
+    window.open(service.link, "_blank", "noopener")
   } else {
     if (offlineService.value?.id === service.id) {
       isOffline.value = false
@@ -228,5 +228,15 @@ const scrollToSection = (section: HTMLInputElement | null, type: "project" | "se
 .project-clip-border {
   @apply absolute right-0 top-0 h-full w-full bg-[#E4E4E7];
   clip-path: polygon(92% 0, 100% 50%, 92% 100%, 91% 100%, 99% 50%, 91% 0);
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
