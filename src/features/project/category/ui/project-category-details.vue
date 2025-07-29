@@ -122,7 +122,6 @@
                       </span>
                     </div>
 
-                    <!-- Описание вставляется после нужной строки -->
                     <template v-if="idx === descriptionInsertIndex">
                       <div v-if="offlineService?.description" class="col-span-full">
                         <Transition name="fade">
@@ -135,7 +134,6 @@
                     </template>
                   </template>
 
-                  <!-- Если описание должно быть после последнего элемента (и не вставилось) -->
                   <template v-if="descriptionInsertIndex >= serviceList.length">
                     <div class="col-span-full">
                       <Transition name="fade">
