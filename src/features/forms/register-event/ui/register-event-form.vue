@@ -64,7 +64,8 @@ const submit = async () => {
   const isValid = await vuelidate.value.$validate()
   if (isValid) {
     form.value.event_id = Number(route.query.event_id)
-    createApplication(form, loading)
+    await createApplication(form, loading)
+    vuelidate.value.$reset()
   }
 }
 </script>
