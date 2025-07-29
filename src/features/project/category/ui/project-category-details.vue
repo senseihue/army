@@ -103,16 +103,15 @@
 
                 <div v-if="serviceList.length" class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
                   <template v-for="(service, idx) in serviceList" :key="idx">
-                    <!-- Карточка -->
                     <div
-                      class="flex min-h-[93px] cursor-pointer items-center justify-between rounded-xl border px-4 py-6 transition-all hover:bg-gray-100"
-                      :class="offlineService?.id === service.id ? 'bg-gray-200' : 'bg-gray-50'"
+                      class="flex min-h-[93px] cursor-pointer items-center justify-between rounded-xl border px-4 py-6 transition-all hover:bg-gray-100 hover:text-black"
+                      :class="offlineService?.id === service.id ? 'bg-blue-command text-white' : 'bg-gray-50'"
                       @click="offlineServiceVisible(service)"
                     >
                       <span>{{ service?.title }}</span>
                       <span
                         class="flex items-center justify-center rounded-full p-1"
-                        :class="service.online ? 'bg-green-600' : 'bg-blue-600'"
+                        :class="service.online ? 'bg-green-600' : 'bg-blue-command'"
                       >
                         <Icon
                           class="icon text-white"
@@ -124,7 +123,11 @@
 
                     <div v-if="offlineService?.id === service.id" class="col-span-full">
                       <Transition name="fade">
-                        <div v-html="offlineService.description" class="rounded-md border p-4"></div>
+                        <div
+                          v-if="offlineService.description"
+                          v-html="offlineService.description"
+                          class="rounded-xl border border-blue-command p-4"
+                        ></div>
                       </Transition>
                     </div>
                   </template>
