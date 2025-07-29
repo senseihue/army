@@ -102,7 +102,8 @@
                 <div v-else class="text-center">Loading...</div>
 
                 <div v-if="serviceList.length" class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-                  <template v-for="(service, idx) in serviceList" :key="idx">
+                  <template v-for="(service, idx) in serviceList" :key="service.id">
+                    <!-- Карточка -->
                     <div
                       class="flex min-h-[93px] cursor-pointer items-center justify-between rounded-xl border px-4 py-6 transition-all hover:bg-gray-100 hover:text-black"
                       :class="offlineService?.id === service.id ? 'bg-blue-command text-white' : 'bg-gray-50'"
@@ -121,10 +122,25 @@
                       </span>
                     </div>
 
-                    <div v-if="offlineService?.id === service.id" class="col-span-full">
+                    <!-- Описание вставляется после нужной строки -->
+                    <template v-if="idx === descriptionInsertIndex">
+                      <div v-if="offlineService?.description" class="col-span-full">
+                        <Transition name="fade">
+                          <div
+                            v-html="offlineService.description"
+                            class="rounded-xl border border-blue-command p-4"
+                          ></div>
+                        </Transition>
+                      </div>
+                    </template>
+                  </template>
+
+                  <!-- Если описание должно быть после последнего элемента (и не вставилось) -->
+                  <template v-if="descriptionInsertIndex >= serviceList.length">
+                    <div class="col-span-full">
                       <Transition name="fade">
                         <div
-                          v-if="offlineService.description"
+                          v-if="offlineService?.description"
                           v-html="offlineService.description"
                           class="rounded-xl border border-blue-command p-4"
                         ></div>
@@ -187,6 +203,29 @@ const onClickCategory = async (id: number) => {
   }
 }
 
+const descriptionInsertIndex = computed(() => {
+  if (!offlineService.value) return -1
+
+  const index = serviceList.value.findIndex((s) => s.id === offlineService.value?.id)
+  if (index === -1) return -1
+
+  const cols = columns.value
+  return index + (cols - (index % cols)) - 1
+})
+
+const columns = ref(3) // по умолчанию для desktop
+
+const updateColumns = () => {
+  const width = window.innerWidth
+  if (width < 640) columns.value = 1
+  else if (width < 1024) columns.value = 2
+  else columns.value = 3
+}
+
+onUnmounted(() => {
+  window.removeEventListener("resize", updateColumns)
+})
+
 const offlineServiceVisible = (service: any) => {
   if (!service.link.startsWith("http")) service.link = "https://" + service.link
 
@@ -206,6 +245,9 @@ const offlineServiceVisible = (service: any) => {
 onMounted(() => {
   projectCategoryService.getProjectCategoryById(+route.params.id, category, loading)
   getProjectAllList()
+
+  updateColumns()
+  window.addEventListener("resize", updateColumns)
 })
 
 watch(
