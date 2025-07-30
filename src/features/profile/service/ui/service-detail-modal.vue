@@ -31,13 +31,10 @@ const showForm = ref(false)
 const getRequestParams = async (service: IPersonalService) => {
   if (service.params) {
     const params = {}
+
     service.params.forEach((item) => {
-      if (item.key === "inn" && profile.value.user.inn) {
-        params[item.key] = profile.value.user.tin
-      } else if (item.key === "pinfl" && profile.value.user.pin) {
-        params[item.key] = profile.value.user.pin
-      } else if (Object.prototype.hasOwnProperty.call(profile.value.user, item.key)) {
-        params[item.key] = profile.value.user[item.key]
+      if (Object.prototype.hasOwnProperty.call(profile.value, item.key)) {
+        params[item.key] = profile.value[item.key]
       } else {
         requiredParams.value.push(item)
         rules.value[item.key] = { required }
@@ -97,7 +94,6 @@ const onBeforeShow = async (service: IPersonalService) => {
     showForm.value = true
   } else {
     showForm.value = false
-    console.log("Request config:", requestConfig.value)
     getPersonalServiceDetail(activeService.value.link, requestConfig.value)
   }
 }
