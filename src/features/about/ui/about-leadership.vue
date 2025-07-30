@@ -13,8 +13,8 @@ const { t } = useI18n({ useScope: "local" })
 const carouselRef = ref<CarouselMethods>()
 const carouselConfig = computed<Partial<CarouselConfig>>(() => ({
   gap: 24,
-  snapAlign: "start",
-  wrapAround: true,
+  snapAlign: "center",
+  wrapAround: false,
   breakpoints: {
     1024: {
       itemsToShow: 2
