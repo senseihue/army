@@ -56,7 +56,7 @@ const config: Partial<CarouselConfig> = {
 <template>
   <div class="culture-section my-8">
     <div class="container-7xl">
-      <h3 class="mb-8 text-2xl font-bold text-blue-command lg:text-3xl">
+      <h3 class="mb-8 text-2xl font-bold lg:text-3xl">
         {{ title }}
       </h3>
       <div class="flex flex-col">
