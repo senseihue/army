@@ -25,7 +25,8 @@ export const usePersonalServiceService = () => {
   }
 
   const getPersonalServiceDetail = async (endpoint: string, config: AxiosRequestConfig = {}) => {
-    return personalServiceApi.getPersonalServiceDetail(endpoint, config).then(({ content, pageable }) => {
+    return personalServiceApi.getPersonalServiceDetail(endpoint, config)
+      .then(({ content, pageable }) => {
       personalServiceStore.current = content
       return Promise.resolve(content)
     })
