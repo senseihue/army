@@ -14,9 +14,9 @@ defineProps<IProps>()
 <template>
   <slide>
     <div
-      class="text-gray-[#475569] relative h-full w-full flex flex-col items-center justify-between cursor-pointer rounded-xl py-3 pl-2 pr-6 text-center transition duration-300"
+      class="text-gray-[#475569] relative h-full w-full flex flex-col items-center justify-evenly cursor-pointer rounded-xl py-3 pl-2 pr-6 text-center transition duration-300"
     >
-      <Icon v-if="icon" :name="icon" />
+      <Icon v-if="icon" class="text-xl" :name="icon"  />
 
       <div>
         <p class="line-clamp-2 grid h-full place-content-center text-[11px] font-[600]">

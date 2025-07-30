@@ -85,7 +85,7 @@
               <div class="relative grid w-full gap-5 rounded-xl bg-white p-4" ref="serviceSection">
                 <h3 class="font-semibold">{{ $t("labels.where_to_start") }}</h3>
 
-                <div v-if="category?.service_categories?.length" class="rounded-2xl border ">
+                <div v-if="category?.service_categories?.length" class="rounded-2xl border">
                   <project-category-slider>
                     <project-category-slide
                       v-for="(slide, idx) in category?.service_categories"
@@ -102,49 +102,49 @@
                 <div v-else class="text-center">Loading...</div>
 
                 <div v-if="serviceList.length" class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-                  <a
-                    v-for="(online, idx) in serviceList"
-                    class="flex min-h-[93px] items-center justify-between rounded-xl border bg-gray-50 px-4 py-6 transition-all hover:bg-gray-100"
-                    href="https://new.birdarcha.uz/"
-                    target="_blank"
-                    :key="idx"
-                  >
-                    <span>{{ online?.title }}</span>
-                    <span class="flex items-center justify-center rounded-full bg-green-400 p-1">
-                      <Icon class="icon text-white" filled name="lucide:chevron-right" />
-                    </span>
-                  </a>
-                </div>
-
-                <div>
-                  <ui-button
-                    v-if="serviceList.length"
-                    color="gray"
-                    size="lg"
-                    rounded
-                    :after-icon="visibleOffline ? 'lucide:minus' : 'lucide:plus'"
-                    :label="$t('labels.offline_procedures')"
-                    @click="visibleOffline = !visibleOffline"
-                  />
-                </div>
-
-                <div
-                  v-if="serviceList.length && visibleOffline"
-                  class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
-                >
-                  <div v-for="(offline, idx) in serviceList" :key="idx">
-                    <a
-                      v-if="visibleOffline"
-                      class="flex min-h-[93px] items-center justify-between rounded-xl border bg-gray-50 px-4 py-6 transition-all hover:bg-gray-100"
-                      target="_blank"
-                      :href="`/service/${offline.id}`"
+                  <template v-for="(service, idx) in serviceList" :key="service.id">
+                    <!-- Карточка -->
+                    <div
+                      class="flex min-h-[93px] cursor-pointer items-center justify-between rounded-xl border px-4 py-6 transition-all hover:bg-gray-100 hover:text-black"
+                      :class="offlineService?.id === service.id ? 'bg-blue-command text-white' : 'bg-gray-50'"
+                      @click="offlineServiceVisible(service)"
                     >
-                      <span>{{ offline?.title }}</span>
-                      <span class="flex items-center justify-center rounded-full bg-gray-400 p-1">
-                        <Icon class="icon text-white" filled name="lucide:chevron-right" />
+                      <span>{{ service?.title }}</span>
+                      <span
+                        class="flex items-center justify-center rounded-full p-1"
+                        :class="service.online ? 'bg-green-600' : 'bg-blue-command'"
+                      >
+                        <Icon
+                          class="icon text-white"
+                          filled
+                          :name="`lucide:${service.online ? 'chevron-right' : 'info'}`"
+                        />
                       </span>
-                    </a>
-                  </div>
+                    </div>
+
+                    <template v-if="idx === descriptionInsertIndex">
+                      <div v-if="offlineService?.description" class="col-span-full">
+                        <Transition name="fade">
+                          <div
+                            v-html="offlineService.description"
+                            class="rounded-xl border border-blue-command p-4"
+                          ></div>
+                        </Transition>
+                      </div>
+                    </template>
+                  </template>
+
+                  <template v-if="descriptionInsertIndex >= serviceList.length">
+                    <div class="col-span-full">
+                      <Transition name="fade">
+                        <div
+                          v-if="offlineService?.description"
+                          v-html="offlineService.description"
+                          class="rounded-xl border border-blue-command p-4"
+                        ></div>
+                      </Transition>
+                    </div>
+                  </template>
                 </div>
               </div>
             </div>
@@ -169,11 +169,12 @@ const route = useRoute()
 const category = ref<IProjectCategoryById>()
 const projectList = ref<IProject[]>([])
 const serviceList = ref<any[]>([])
-const visibleOffline = ref<boolean>(false)
+const isOffline = ref<boolean>(false)
 const serviceId = ref<number | undefined>()
 const toolbarType = ref<string>("project")
 const serviceSection = ref<HTMLInputElement | null>(null)
 const projectSection = ref<HTMLInputElement | null>(null)
+const offlineService = ref<any>()
 
 const query = ref({
   sector: undefined,
@@ -198,12 +199,53 @@ const onClickCategory = async (id: number) => {
     })
     serviceList.value = data.content || []
   }
-  visibleOffline.value = false
+}
+
+const descriptionInsertIndex = computed(() => {
+  if (!offlineService.value) return -1
+
+  const index = serviceList.value.findIndex((s) => s.id === offlineService.value?.id)
+  if (index === -1) return -1
+
+  const cols = columns.value
+  return index + (cols - (index % cols)) - 1
+})
+
+const columns = ref(3) // по умолчанию для desktop
+
+const updateColumns = () => {
+  const width = window.innerWidth
+  if (width < 640) columns.value = 1
+  else if (width < 1024) columns.value = 2
+  else columns.value = 3
+}
+
+onUnmounted(() => {
+  window.removeEventListener("resize", updateColumns)
+})
+
+const offlineServiceVisible = (service: any) => {
+  if (!service.link.startsWith("http")) service.link = "https://" + service.link
+
+  if (service.online && !service.info && service.link) {
+    window.open(service.link, "_blank", "noopener")
+  } else {
+    if (offlineService.value?.id === service.id) {
+      isOffline.value = false
+      offlineService.value = null
+    } else {
+      offlineService.value = service
+      isOffline.value = true
+    }
+  }
 }
 
 onMounted(() => {
   projectCategoryService.getProjectCategoryById(+route.params.id, category, loading)
   getProjectAllList()
+
+  updateColumns()
+  window.addEventListener("resize", updateColumns)
 })
 
 watch(

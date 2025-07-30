@@ -26,7 +26,10 @@
       "appeal": "Appeal",
       "event": "Events",
       "register-investor": "Investor registration",
-      "register-business": "Business registration"
+      "register-business": "Business registration",
+      "single_window": "Single window",
+      "project_category": "Project category",
+      "project_details": "Project details"
     },
     "advert": {
       "label": "Find an investor",
