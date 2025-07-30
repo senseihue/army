@@ -7,7 +7,7 @@
     <div class="container-7xl">
       <div class="p-section">
         <div class="relative">
-          <h2 class="text-2xl mb-10 font-bold lg:text-3xl text-blue-midnight text-center">Investment map of Uzbekistan</h2>
+          <h2 class="text-2xl mb-10 font-bold lg:text-3xl text-blue-midnight text-center">{{$t('labels.investment_of_uzbekistan')}}</h2>
 
           <div data-aos="zoom-in" data-aos-delay="100">
             <home-svg-map v-model="regionId" attached-element-id="map-card-header" class="my-4" />
