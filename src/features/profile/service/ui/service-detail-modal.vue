@@ -7,7 +7,6 @@ import { ValidateEach } from "@vuelidate/components"
 import UiDatePicker from "@vuepic/vue-datepicker"
 
 const vuelidate = useVuelidate()
-const { t } = useI18n({ useScope: "local" })
 const { required } = useRule()
 const { $session } = useNuxtApp()
 const { profile } = $session || {}
@@ -28,29 +27,19 @@ const requiredParams = ref<any[]>([])
 const requiredBody = ref<any[]>([])
 
 const showForm = ref(false)
-const resultErrored = ref(false)
 
 const getRequestParams = async (service: IPersonalService) => {
   if (service.params) {
     const params = {}
+
     service.params.forEach((item) => {
-      if (item.key === "page" || item.key === "size") {
-        return
-      }
-      console.log(item.key === "inn" && profile.value?.user.tin)
-      if (item.key === "inn" && profile.value?.user.tin) {
-        params[item.key] = profile.value?.user.tin
-      } else if (item.key === "pinfl" && profile.value?.user.pin) {
-        params[item.key] = profile.value?.user.pin
-      } else if (Object.prototype.hasOwnProperty.call(profile.value?.user, item.key) && profile.value?.user[item.key]) {
-        params[item.key] = profile.value?.user[item.key]
+      if (Object.prototype.hasOwnProperty.call(profile.value, item.key)) {
+        params[item.key] = profile.value[item.key]
       } else {
         requiredParams.value.push(item)
         rules.value[item.key] = { required }
       }
     })
-
-    console.log(rules.value, params)
 
     requestConfig.value.params = params
     return Promise.resolve()
@@ -80,7 +69,6 @@ const getRequestBody = async (service: IPersonalService) => {
 
 const onSave = async () => {
   const isValid = await vuelidate.value.$validate()
-  console.log(vuelidate.value)
   if (isValid) {
     if (paramsCollection.value.length > 0) {
       paramsCollection.value.forEach((item) => {
@@ -105,11 +93,8 @@ const onBeforeShow = async (service: IPersonalService) => {
   if (Object.keys(requiredParams.value).length > 0) {
     showForm.value = true
   } else {
-    resultErrored.value = false
     showForm.value = false
-    getPersonalServiceDetail(activeService.value.link, requestConfig.value).catch((err) => {
-      resultErrored.value = true
-    })
+    getPersonalServiceDetail(activeService.value.link, requestConfig.value)
   }
 }
 
@@ -128,11 +113,10 @@ const onClose = () => {
 </script>
 
 <template>
-  <ui-modal id="service-detail-modal" :label="activeService?.title" @shown="onBeforeShow" @before-hide="onClose">
+  <ui-modal id="service-detail-modal" :label="activeService?.title" @shown="onBeforeShow" @close="onClose">
     <div v-if="showForm" class="grid grid-cols-1 gap-4 p-4 sm:grid-cols-2">
       <validate-each v-for="(item, index) in paramsCollection" :key="index" :state="item" :rules="rules">
         <template #default="{ v }">
-          {{ item.key }}: {{ v[item.key] }}
           <ui-form-group
             v-slot="{ id }"
             required
@@ -179,17 +163,12 @@ const onClose = () => {
       </validate-each>
     </div>
     <div v-else class="grid grid-cols-1 gap-4 p-4 sm:grid-cols-2">
-      <template v-if="!resultErrored" v-for="(item, index) in current?.data" :key="index">
-        <ui-form-group v-for="(value, key) in item" v-slot="{ id }" :key :label="key.toLocaleString().toUpperCase()">
+      <template v-for="(item, index) in current?.data" :key="index">
+        <ui-form-group v-for="(value, key) in item" v-slot="{ id }" :label="key.toLocaleString().toUpperCase()">
           <ui-input readonly :model-value="value" :id />
         </ui-form-group>
         <hr class="col-span-full py-4" />
       </template>
-      <div v-else class="col-span-full py-12 text-center">
-        <p class="font-semibold text-blue-midnight">
-          {{ t("occurred_error") }}
-        </p>
-      </div>
     </div>
     <template v-if="showForm" #footer="{ hide }">
       <div class="flex flex-col-reverse items-center justify-end gap-3 p-4 sm:flex-row">
@@ -205,16 +184,3 @@ const onClose = () => {
 </template>
 
 <style scoped></style>
-<i18n>
-{
-  "en": {
-    "occurred_error": "An error occurred while processing your request",
-  },
-  "ru": {
-    "occurred_error": "Произошла ошибка при обработке вашего запроса"
-  },
-  "uz": {
-    "occurred_error": "So'rovingizni qayta ishlashda xatolik yuz berdi"
-  }
-}
-</i18n>
