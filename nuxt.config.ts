@@ -35,6 +35,7 @@ export default defineNuxtConfig({
     pageTransition: { name: "fade", mode: "out-in" },
     layoutTransition: { name: "fade", mode: "out-in" },
     head: {
+      script: [{ src: '/js/leader-line.min.js', defer: true }],
       link: [{ rel: "icon", type: "image/x-icon", href: process.env.APP_FAVICON }]
     }
   },

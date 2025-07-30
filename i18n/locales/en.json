@@ -123,7 +123,29 @@
     "project_location": "Project location",
     "project_information": "Project information",
     "project_category": "Project category",
-    "offline_procedures": "Offline procedures"
+    "offline_procedures": "Offline procedures",
+    "menu": "Menu",
+    "population": "Population",
+    "investment": "Investment projects",
+    "fdi": "FDI and credits",
+    "trade": "Foreign trade",
+    "sq": "Sq/km"
+  },
+  "regions": {
+    "UZ-AN": "Andijan",
+    "UZ-BU": "Bukhara",
+    "UZ-FA": "Fergana",
+    "UZ-JI": "Jizzakh",
+    "UZ-NG": "Namangan",
+    "UZ-NW": "Navoiy",
+    "UZ-QA": "Kashkadarya",
+    "UZ-QR": "Karakalpakstan",
+    "UZ-SA": "Samarkand",
+    "UZ-SI": "Sirdarya",
+    "UZ-SU": "Surkhandarya",
+    "UZ-TO": "Tashkent Region",
+    "UZ-TK": "Tashkent City",
+    "UZ-XO": "Khorezm"
   },
   "actions": {
     "sign_in": "Sign in",
