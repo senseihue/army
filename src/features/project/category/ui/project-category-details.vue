@@ -122,7 +122,6 @@
                       </span>
                     </div>
 
-                    <!-- Описание вставляется после нужной строки -->
                     <template v-if="idx === descriptionInsertIndex">
                       <div v-if="offlineService?.description" class="col-span-full">
                         <Transition name="fade">
@@ -135,7 +134,6 @@
                     </template>
                   </template>
 
-                  <!-- Если описание должно быть после последнего элемента (и не вставилось) -->
                   <template v-if="descriptionInsertIndex >= serviceList.length">
                     <div class="col-span-full">
                       <Transition name="fade">
@@ -163,9 +161,11 @@ import ProjectCard from "~/features/project/ui/project-card.vue"
 import { ProjectFilter, useProjectService } from "~/features/project"
 import ProjectCategorySlider from "~/features/project/category/ui/project-category-slider.vue"
 import ProjectCategorySlide from "~/features/project/category/ui/project-category-slide.vue"
+import { useServiceApi } from "~/features/service"
 
 const projectCategoryService = useProjectCategoryService()
 const projectService = useProjectService()
+const serviceApi = useServiceApi()
 const loading = ref<boolean>(false)
 const route = useRoute()
 const category = ref<IProjectCategoryById>()
@@ -196,8 +196,9 @@ const onClickCategory = async (id: number) => {
     serviceId.value = undefined
   } else {
     serviceId.value = id
-    const data = await $fetch("/gateway/siw/public/service", {
-      params: { size: 999, category_id: serviceId.value }
+    const data = await serviceApi.getServices({
+      size: 999,
+      category_id: serviceId.value
     })
     serviceList.value = data.content || []
   }

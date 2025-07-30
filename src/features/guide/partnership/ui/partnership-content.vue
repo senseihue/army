@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { t, tm, rt } = useI18n({ useScope: "local" })
+const { t, tm, rt, locale } = useI18n({ useScope: "local" })
 </script>
 
 <template>
@@ -7,7 +7,7 @@ const { t, tm, rt } = useI18n({ useScope: "local" })
     <div class="container-7xl">
       <div class="p-section">
         <div class="flex flex-col gap-4">
-          <img src="https://invest.miit.uz/uploads/photo_2024-02-(2).png" alt="Image" />
+          <img src="/img/guide/partnership/hero.png" alt="Image" />
           <p class="whitespace-pre-line text-gray-olive">{{ t("content") }}</p>
 
           <div class="my-4 flex flex-col gap-4">
@@ -37,6 +37,22 @@ const { t, tm, rt } = useI18n({ useScope: "local" })
             </ul>
           </div>
 
+          <div class="my-4 flex flex-col gap-4">
+            <h3 class="mb-4 text-center text-xl font-bold text-blue-command md:mb-8">
+              {{ t("tender.heading") }}
+            </h3>
+            <img v-if="locale === 'ru'" src="/img/guide/partnership/tender-ru.png" alt="" />
+            <img v-else src="/img/guide/partnership/tender.png" alt="" />
+          </div>
+          <div class="p-section"></div>
+
+          <div class="my-4 flex flex-col gap-4">
+            <h3 class="mb-4 text-center text-xl font-bold text-blue-command md:mb-8">{{ t("initiative.heading") }}</h3>
+            <img v-if="locale === 'ru'" src="/img/guide/partnership/intiative-ru.png" alt="" />
+            <img v-else src="/img/guide/partnership/invitation.png" alt="" />
+          </div>
+          <div class="p-section"></div>
+
           <ui-button
             class="sm:max-w-min"
             color="success"
@@ -64,6 +80,12 @@ const { t, tm, rt } = useI18n({ useScope: "local" })
         "1–10 million USD: approval by both the public partner and Department of the Implementation of PPP Projects",
         ">10 million USD: acknowledgment by the public partner and the Department for the Implementation of PPP Projects, followed by final approval by the Cabinet of Ministers."
       ]
+    },
+    "tender": {
+      "heading": "Standard Tender Process"
+    },
+    "initiative": {
+      "heading": "Private Initiative Project Implementation Process (Swiss Challenge Method)"
     },
     "project": {
       "heading": "Selection of the Public-Private Partnership Projects",
@@ -96,6 +118,12 @@ const { t, tm, rt } = useI18n({ useScope: "local" })
         ">10 миллионов долларов США: согласование государственным партнером и Департаментом реализации проектов ГЧП с последующим окончательным утверждением Кабинетом Министров."
       ]
     },
+    "tender": {
+      "heading": "Стандартный процесс тендера"
+    },
+    "initiative": {
+      "heading": "Процесс реализации инициативы частного партнера (метод Swiss Challenge)"
+    },
     "project": {
       "heading": "Отбор проектов государственно-частного партнерства",
       "text": "Государственный партнер выбирает частного партнера через тендерный процесс, который может проводиться в одну или две стадии."
@@ -126,6 +154,12 @@ const { t, tm, rt } = useI18n({ useScope: "local" })
         "1–10 million AQSh dollari: davlat sherik va GCHP loyihalarini amalga oshirish bo‘limi tomonidan tasdiqlash",
         "10 million AQSh dollaridan ortiq: davlat sherik va GCHP loyihalarini amalga oshirish bo‘limi tomonidan rozilik, so‘ng Vazirlar Mahkamasi tomonidan yakuniy tasdiqlash."
       ]
+    },
+    "tender": {
+      "heading": "Standart tanlov jarayoni"
+    },
+    "initiative": {
+      "heading": "Xususiy tashabbus loyihasini amalga oshirish jarayoni (Swiss Challenge usuli)"
     },
     "project": {
       "heading": "Davlat-xususiy sheriklik loyihalarini tanlash",

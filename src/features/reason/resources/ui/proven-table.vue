@@ -3,7 +3,7 @@ const { t, tm, rt } = useI18n({ useScope: "local" })
 </script>
 
 <template>
-  <div class="bg-blue-ateneo p-2 md:px-8 md:py-16">
+  <div class="bg-blue-ateneo p-2 md:px-8 md:py-16 flex flex-col justify-center">
     <h3 class="ignore-text-format mb-8 text-center text-lg font-bold text-blue-moonstone lg:text-xl">
       {{ t("title") }}
     </h3>
