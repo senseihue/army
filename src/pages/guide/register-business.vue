@@ -3,7 +3,7 @@ import { RegisterBusinessForm } from "~/features/forms/register-business/ui"
 </script>
 
 <template>
-  <section class="register-investor">
+  <section class="register-investor bg-blue-midnight">
     <div class="container-7xl p-section">
       <register-business-form />
     </div>

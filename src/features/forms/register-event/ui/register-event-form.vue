@@ -73,82 +73,120 @@ const submit = async () => {
 <template>
   <form class="register-event-form" @submit.prevent="submit">
     <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-      <h3 class="title-text col-span-full">
+      <h3 class="title-text  bg-blue-bondi text-white col-span-full">
         {{ t("applicant.title") }}
       </h3>
-      <ui-form-group v-bind:class="hasError('role')" v-slot="{ id }" :label="t('applicant.fields.role')">
-        <multiselect v-model="form.role" :options="roles" :id />
+      <ui-form-group v-slot="{ id }" :class="hasError('role')">
+        <multiselect
+          v-model="form.role"
+          class="!rounded-none !placeholder:text-black"
+          :placeholder="t('applicant.fields.role')"
+          :options="roles"
+          :id
+        />
       </ui-form-group>
-      <ui-form-group v-bind="hasError('first_name')" v-slot="{ id }" :label="t('applicant.fields.first_name')">
-        <ui-input v-model="form.first_name" name="first_name" :id />
+      <ui-form-group v-bind="hasError('first_name')" v-slot="{ id }">
+        <ui-input v-model="form.first_name" name="first_name" :id :placeholder="t('applicant.fields.first_name')" />
       </ui-form-group>
-      <ui-form-group v-bind="hasError('middle_name')" v-slot="{ id }" :label="t('applicant.fields.middle_name')">
-        <ui-input v-model="form.middle_name" name="middle_name" :id />
+      <ui-form-group v-bind="hasError('middle_name')" v-slot="{ id }">
+        <ui-input v-model="form.middle_name" name="middle_name" :id :placeholder="t('applicant.fields.middle_name')" />
       </ui-form-group>
-      <ui-form-group v-bind="hasError('last_name')" v-slot="{ id }" :label="t('applicant.fields.last_name')">
-        <ui-input v-model="form.last_name" name="last_name" :id />
+      <ui-form-group v-bind="hasError('last_name')" v-slot="{ id }">
+        <ui-input v-model="form.last_name" name="last_name" :id :placeholder="t('applicant.fields.last_name')" />
       </ui-form-group>
-      <ui-form-group v-bind:class="hasError('gender')" v-slot="{ id }" :label="t('applicant.fields.gender')">
-        <multiselect v-model="form.gender" :options="genders" :id />
+      <ui-form-group v-slot="{ id }" :class="hasError('gender')">
+        <multiselect
+          v-model="form.gender"
+          class="!rounded-none placeholder:text-black"
+          :options="genders"
+          :id
+          :placeholder="t('applicant.fields.gender')"
+        />
       </ui-form-group>
 
-      <ui-form-group v-bind="hasError('birth_date')" v-slot="{ id }" :label="t('applicant.fields.birth_date')">
+      <ui-form-group v-bind="hasError('birth_date')" v-slot="{ id }">
         <ui-date-picker
           v-model="form.birth_date"
+          class="!rounded-none placeholder:text-black"
           model-type="yyyy-MM-dd"
           format="dd.MM.yyyy"
           auto-apply
           teleport
           position="left"
+          :placeholder="t('applicant.fields.birth_date')"
           :id
         />
       </ui-form-group>
-      <ui-form-group v-bind="hasError('email')" v-slot="{ id }" :label="t('applicant.fields.email')">
-        <ui-input v-model="form.email" name="email" type="email" :id />
+      <ui-form-group v-bind="hasError('email')" v-slot="{ id }">
+        <ui-input v-model="form.email" name="email" type="email" :id :placeholder="t('applicant.fields.email')" />
       </ui-form-group>
-      <ui-form-group v-bind="hasError('phone')" v-slot="{ id }" :label="t('applicant.fields.phone')">
-        <ui-mask-input v-model="form.phone" unmasked mask="+### (##) ### ## ##" name="phone" :id />
+      <ui-form-group v-bind="hasError('phone')" v-slot="{ id }">
+        <ui-mask-input
+          v-model="form.phone"
+          unmasked
+          mask="+### (##) ### ## ##"
+          name="phone"
+          v
+          :id
+          :placeholder="t('applicant.fields.phone')"
+        />
       </ui-form-group>
-      <ui-form-group v-bind="hasError('passport')" v-slot="{ id }" :label="t('applicant.fields.passport_id')">
-        <ui-input v-model="form.passport" name="passport" :id />
+      <ui-form-group v-bind="hasError('passport')" v-slot="{ id }">
+        <ui-input v-model="form.passport" name="passport" :id :placeholder="t('applicant.fields.passport_id')" />
       </ui-form-group>
-      <ui-form-group v-bind="hasError('country_id')" v-slot="{ id }" :label="t('applicant.fields.country')">
-        <country-select v-model="form.country_id" name="country_id" :id />
+      <ui-form-group v-bind="hasError('country_id')" v-slot="{ id }">
+        <country-select v-model="form.country_id" name="country_id" :id :placeholder="t('applicant.fields.country')" />
       </ui-form-group>
-      <ui-form-group v-bind="hasError('address')" v-slot="{ id }" :label="t('applicant.fields.living_address')">
-        <ui-input v-model="form.address" name="address" :id />
+      <ui-form-group v-bind="hasError('address')" v-slot="{ id }">
+        <ui-input v-model="form.address" name="address" :id :placeholder="t('applicant.fields.living_address')" />
       </ui-form-group>
-      <ui-form-group v-bind="hasError('birthplace')" v-slot="{ id }" :label="t('applicant.fields.birth_place')">
-        <ui-input v-model="form.birthplace" name="birthplace" :id />
+      <ui-form-group v-bind="hasError('birthplace')" v-slot="{ id }">
+        <ui-input v-model="form.birthplace" name="birthplace" :id :placeholder="t('applicant.fields.birth_place')" />
       </ui-form-group>
-      <ui-form-group v-bind="hasError('organization')" v-slot="{ id }" :label="t('applicant.fields.organization')">
-        <ui-input v-model="form.organization" name="organization" :id />
+      <ui-form-group v-bind="hasError('organization')" v-slot="{ id }">
+        <ui-input
+          v-model="form.organization"
+          name="organization"
+          :id
+          :placeholder="t('applicant.fields.organization')"
+        />
       </ui-form-group>
-      <ui-form-group v-bind="hasError('position')" v-slot="{ id }" :label="t('applicant.fields.position')">
-        <ui-input v-model="form.position" name="position" :id />
+      <ui-form-group v-bind="hasError('position')" v-slot="{ id }">
+        <ui-input v-model="form.position" name="position" :id :placeholder="t('applicant.fields.position')" />
       </ui-form-group>
       <ui-form-group
         v-if="form.role === 'attendee' || form.role === 'speaker' || form.role === 'moderator'"
         v-bind="hasError('position')"
         v-slot="{ id }"
-        :label="t('applicant.fields.activity')"
       >
-        <ui-input v-model="form.activity" name="activity" :id />
+        <ui-input v-model="form.activity" name="activity" :placeholder="t('applicant.fields.activity')" :id />
       </ui-form-group>
     </div>
     <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-      <h3 class="title-text col-span-full">
+      <h3 class="title-text text-white col-span-full">
         {{ t("files.title") }}
       </h3>
-      <ui-form-group v-bind="hasError('filePassport')" v-slot="{ id }" :label="t('files.passport')">
-        <ui-file-input v-model="form.filePassport" name="filePassport" :multiple="false" :id />
+      <ui-form-group v-bind="hasError('filePassport')" v-slot="{ id }">
+        <ui-file-input
+          v-model="form.filePassport"
+          name="filePassport"
+          :placeholder="t('files.passport')"
+          :multiple="false"
+          :id
+        />
       </ui-form-group>
-      <ui-form-group v-bind="hasError('filePhoto')" v-slot="{ id }" :label="t('files.photo')">
-        <ui-file-input v-model="form.filePhoto" name="filePhoto" :multiple="false" :id />
+      <ui-form-group v-bind="hasError('filePhoto')" v-slot="{ id }">
+        <ui-file-input
+          v-model="form.filePhoto"
+          name="filePhoto"
+          :placeholder="t('files.photo')"
+          :multiple="false"
+          :id
+        />
       </ui-form-group>
       <div></div>
       <div class="flex items-center gap-2">
-        <ul class="ml-5 list-disc">
+        <ul class="ml-5 text-white list-disc">
           <li>{{ t("labels.photo_recent") }}</li>
           <li>{{ t("labels.photo_face_clear") }}</li>
           <li>{{ t("labels.photo_natural") }}</li>
@@ -161,13 +199,13 @@ const submit = async () => {
       </div>
     </div>
     <div class="col-span-full mt-6 flex items-center justify-center gap-8 pt-8 text-center">
-      <nuxt-link-locale :to="{ path: '/event'}" class=" w-full sm:max-w-56">
-        <ui-button  class="ui-button-rounded w-full" type="button" size="lg" color="danger" >
+      <nuxt-link-locale class="w-full sm:max-w-56" :to="{ path: '/event' }">
+        <ui-button class="ui-button-rounded w-full" type="button" size="lg" color="danger">
           {{ t("cancel-button") }}
         </ui-button>
       </nuxt-link-locale>
 
-      <ui-button  class="ui-button-rounded w-full sm:max-w-56" size="lg" type="submit" color="success" :loading>
+      <ui-button class="ui-button-rounded w-full sm:max-w-56" size="lg" type="submit" color="success" :loading>
         {{ t("submit-button") }}
       </ui-button>
     </div>

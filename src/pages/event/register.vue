@@ -14,14 +14,14 @@ definePageMeta({
 </script>
 
 <template>
-  <div class="">
+  <div class="bg-blue-midnight">
     <div class="container-7xl">
       <div class="p-section">
         <div class="mb-12 text-center">
-          <h3 class="mb-4 text-3xl font-bold">
+          <h3 class="mb-4 text-3xl text-white font-bold">
             {{ t("title") }}
           </h3>
-          <p class="mx-auto max-w-3xl">
+          <p class="mx-auto text-white max-w-3xl">
             {{ t("description") }}
           </p>
         </div>
