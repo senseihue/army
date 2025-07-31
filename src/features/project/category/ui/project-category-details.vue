@@ -46,7 +46,7 @@
               @click="scrollToSection(projectSection, 'project')"
             >
               <Icon
-                name="lucide:briefcase-business"
+                name="vuesax-school:briefcase"
                 :class="toolbarType === 'project' ? '!text-blue-command' : 'text-blue-command/40'"
               />
             </div>
@@ -55,7 +55,7 @@
               @click="scrollToSection(serviceSection, 'service')"
             >
               <Icon
-                name="lucide:signpost-big"
+                name="vuesax-essetional:signpost"
                 :class="toolbarType === 'service' ? '!text-blue-command' : 'text-blue-command/40'"
               />
             </div>
@@ -86,7 +86,7 @@
                 <h3 class="font-semibold">{{ $t("labels.where_to_start") }}</h3>
 
                 <div v-if="category?.service_categories?.length" class="rounded-2xl border">
-                  <project-category-slider>
+                  <project-category-slider :items-count="category?.service_categories?.length">
                     <project-category-slide
                       v-for="(slide, idx) in category?.service_categories"
                       :key="idx"

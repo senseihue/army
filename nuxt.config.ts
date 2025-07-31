@@ -21,6 +21,46 @@ export default defineNuxtConfig({
       recaptchaKey: process.env.APP_RECAPTCHA_KEY
     }
   },
+  icon: {
+    clientBundle: {
+      sizeLimitKb: 1000
+    },
+    customCollections: [
+      { prefix: "vuesax-archive", dir: "./src/shared/modules/vuesax-icons/archive" },
+      { prefix: "vuesax-arrow", dir: "./src/shared/modules/vuesax-icons/arrow" },
+      { prefix: "vuesax-astrology", dir: "./src/shared/modules/vuesax-icons/astrology" },
+      { prefix: "vuesax-building", dir: "./src/shared/modules/vuesax-icons/building" },
+      { prefix: "vuesax-business", dir: "./src/shared/modules/vuesax-icons/business" },
+      { prefix: "vuesax-call", dir: "./src/shared/modules/vuesax-icons/call" },
+      { prefix: "vuesax-car", dir: "./src/shared/modules/vuesax-icons/car" },
+      { prefix: "vuesax-computers", dir: "./src/shared/modules/vuesax-icons/computers" },
+      { prefix: "vuesax-content", dir: "./src/shared/modules/vuesax-icons/content" },
+      { prefix: "vuesax-crypto", dir: "./src/shared/modules/vuesax-icons/crypto" },
+      { prefix: "vuesax-crypto-currency", dir: "./src/shared/modules/vuesax-icons/crypto-currency" },
+      { prefix: "vuesax-delivery", dir: "./src/shared/modules/vuesax-icons/delivery" },
+      { prefix: "vuesax-design", dir: "./src/shared/modules/vuesax-icons/design" },
+      { prefix: "vuesax-email", dir: "./src/shared/modules/vuesax-icons/email" },
+      { prefix: "vuesax-essetional", dir: "./src/shared/modules/vuesax-icons/essetional" },
+      { prefix: "vuesax-files", dir: "./src/shared/modules/vuesax-icons/files" },
+      { prefix: "vuesax-grid", dir: "./src/shared/modules/vuesax-icons/grid" },
+      { prefix: "vuesax-location", dir: "./src/shared/modules/vuesax-icons/location" },
+      { prefix: "vuesax-media", dir: "./src/shared/modules/vuesax-icons/media" },
+      { prefix: "vuesax-money", dir: "./src/shared/modules/vuesax-icons/money" },
+      { prefix: "vuesax-money-2", dir: "./src/shared/modules/vuesax-icons/money-2" },
+      { prefix: "vuesax-notification", dir: "./src/shared/modules/vuesax-icons/notification" },
+      { prefix: "vuesax-programing", dir: "./src/shared/modules/vuesax-icons/programing" },
+      { prefix: "vuesax-school", dir: "./src/shared/modules/vuesax-icons/school" },
+      { prefix: "vuesax-search", dir: "./src/shared/modules/vuesax-icons/search" },
+      { prefix: "vuesax-security", dir: "./src/shared/modules/vuesax-icons/security" },
+      { prefix: "vuesax-settings", dir: "./src/shared/modules/vuesax-icons/settings" },
+      { prefix: "vuesax-shop", dir: "./src/shared/modules/vuesax-icons/shop" },
+      { prefix: "vuesax-support", dir: "./src/shared/modules/vuesax-icons/support" },
+      { prefix: "vuesax-time", dir: "./src/shared/modules/vuesax-icons/time" },
+      { prefix: "vuesax-type", dir: "./src/shared/modules/vuesax-icons/type" },
+      { prefix: "vuesax-users", dir: "./src/shared/modules/vuesax-icons/users" },
+      { prefix: "vuesax-weather", dir: "./src/shared/modules/vuesax-icons/weather" }
+    ]
+  },
   dir: {
     layouts: "./app/layouts",
     plugins: "./app/plugins",
