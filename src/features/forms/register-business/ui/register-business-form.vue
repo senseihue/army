@@ -45,88 +45,95 @@ const submit = async () => {
 
 <template>
   <form class="register-business-form" @submit.prevent="submit">
-    <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
-      <h3 class="title col-span-full">{{ t("company-information.title") }}:</h3>
-      <ui-form-group
-        v-bind="hasError('company_name')"
-        v-slot="{ id }"
-        :label="t('company-information.fields.company-name')"
-      >
-        <ui-input v-model="form.company_name" name="company_name" :id />
+    <div class="grid gap-4 sm:grid-cols-2">
+      <h3 class="title col-span-full bg-blue-bondi text-white">{{ t("company-information.title") }}:</h3>
+      <ui-form-group v-bind="hasError('company_name')" v-slot="{ id }">
+        <ui-input
+          v-model="form.company_name"
+          name="company_name"
+          :id
+          :placeholder="t('company-information.fields.company-name')"
+        />
       </ui-form-group>
 
-      <ui-form-group v-bind="hasError('tin')" v-slot="{ id }" :label="t('company-information.fields.tin')">
-        <ui-input v-model="form.tin" name="tin" :id />
+      <ui-form-group v-bind="hasError('tin')" v-slot="{ id }">
+        <ui-input v-model="form.tin" name="tin" :id :placeholder="t('company-information.fields.tin')" />
       </ui-form-group>
 
-      <ui-form-group
-        v-bind="hasError('legal_address')"
-        v-slot="{ id }"
-        :label="t('company-information.fields.legal-address')"
-      >
-        <ui-input v-model="form.legal_address" name="legal_address" :id />
+      <ui-form-group v-bind="hasError('legal_address')" v-slot="{ id }">
+        <ui-input
+          v-model="form.legal_address"
+          name="legal_address"
+          :id
+          :placeholder="t('company-information.fields.legal-address')"
+        />
       </ui-form-group>
-      <ui-form-group v-bind="hasError('website')" v-slot="{ id }" :label="t('company-information.fields.website')">
-        <ui-input v-model="form.website" name="website" :id />
+      <ui-form-group v-bind="hasError('website')" v-slot="{ id }">
+        <ui-input v-model="form.website" name="website" :placeholder="t('company-information.fields.website')" :id />
       </ui-form-group>
     </div>
 
-    <hr />
-
-    <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
-      <h3 class="title col-span-full">{{ t("applicant.title") }}:</h3>
-      <ui-form-group v-bind="hasError('name')" v-slot="{ id }" :label="t('applicant.fields.name')">
-        <ui-input v-model="form.name" name="name" :id />
+    <div class="grid gap-4 sm:grid-cols-2">
+      <h3 class="title col-span-full bg-blue-command text-white">{{ t("applicant.title") }}:</h3>
+      <ui-form-group v-bind="hasError('name')" v-slot="{ id }">
+        <ui-input v-model="form.name" name="name" :placeholder="t('applicant.fields.name')" :id />
       </ui-form-group>
-      <ui-form-group v-bind="hasError('surname')" v-slot="{ id }" :label="t('applicant.fields.surname')">
-        <ui-input v-model="form.surname" name="surname" :id />
+      <ui-form-group v-bind="hasError('surname')" v-slot="{ id }">
+        <ui-input v-model="form.surname" name="surname" :placeholder="t('applicant.fields.surname')" :id />
       </ui-form-group>
-      <ui-form-group v-bind="hasError('phone')" v-slot="{ id }" :label="t('applicant.fields.mobile')">
-        <ui-mask-input v-model="form.phone" unmasked mask="+### (##) ### ## ##" name="phone" :id />
+      <ui-form-group v-bind="hasError('phone')" v-slot="{ id }">
+        <ui-mask-input
+          v-model="form.phone"
+          unmasked
+          mask="+### (##) ### ## ##"
+          name="phone"
+          :placeholder="t('applicant.fields.mobile')"
+          :id
+        />
       </ui-form-group>
-      <ui-form-group v-bind="hasError('email')" v-slot="{ id }" :label="t('applicant.fields.email')">
-        <ui-input v-model="form.email" type="email" name="email" :id />
-      </ui-form-group>
-    </div>
-
-    <hr />
-
-    <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
-      <h3 class="title col-span-full">{{ t("project-information.title") }}:</h3>
-      <ui-form-group
-        v-bind="hasError('project_name')"
-        v-slot="{ id }"
-        :label="t('project-information.fields.project-name')"
-      >
-        <ui-input v-model="form.project_name" name="project_name" :id />
-      </ui-form-group>
-      <ui-form-group
-        v-bind="hasError('project_purpose')"
-        v-slot="{ id }"
-        :label="t('project-information.fields.project-purpose')"
-      >
-        <ui-input v-model="form.project_purpose" name="project_purpose" :id />
-      </ui-form-group>
-      <ui-form-group
-        v-bind="hasError('required_investment')"
-        v-slot="{ id }"
-        :label="t('project-information.fields.total-investment')"
-      >
-        <ui-input v-model="form.required_investment" name="required_investment" :id />
-      </ui-form-group>
-      <ui-form-group
-        v-bind="hasError('own_contribution')"
-        v-slot="{ id }"
-        :label="t('project-information.fields.own-contribution')"
-      >
-        <ui-input v-model="form.own_contribution" name="own_contribution" :id />
+      <ui-form-group v-bind="hasError('email')" v-slot="{ id }">
+        <ui-input v-model="form.email" type="email" name="email" :placeholder="t('applicant.fields.email')" :id />
       </ui-form-group>
     </div>
 
-    <hr />
+    <div class="grid gap-4 sm:grid-cols-2">
+      <h3 class="title col-span-full bg-blue-bondi text-white">{{ t("project-information.title") }}:</h3>
+      <ui-form-group v-bind="hasError('project_name')" v-slot="{ id }">
+        <ui-input
+          v-model="form.project_name"
+          name="project_name"
+          :placeholder="t('project-information.fields.project-name')"
+          :id
+        />
+      </ui-form-group>
+      <ui-form-group v-bind="hasError('project_purpose')" v-slot="{ id }">
+        <ui-input
+          v-model="form.project_purpose"
+          name="project_purpose"
+          :placeholder="t('project-information.fields.project-purpose')"
+          :id
+        />
+      </ui-form-group>
+      <ui-form-group v-bind="hasError('required_investment')" v-slot="{ id }">
+        <ui-input
+          v-model="form.required_investment"
+          name="required_investment"
+          :placeholder="t('project-information.fields.total-investment')"
+          :id
+        />
+      </ui-form-group>
+      <ui-form-group v-bind="hasError('own_contribution')" v-slot="{ id }">
+        <ui-input
+          v-model="form.own_contribution"
+          name="own_contribution"
+          :placeholder="t('project-information.fields.own-contribution')"
+          :id
+        />
+      </ui-form-group>
+    </div>
 
-    <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
-      <h3 class="title col-span-full">
+    <div class="grid gap-4 sm:grid-cols-2">
+      <h3 class="title col-span-full bg-blue-command text-white">
         {{ t("file.title") }}
       </h3>
       <ui-form-group v-bind="hasError('file')" v-slot="{ id }" class="col-span-full">
@@ -153,7 +160,7 @@ const submit = async () => {
   @apply mx-auto grid max-w-3xl gap-6;
 
   .title {
-    @apply text-lg font-bold;
+    @apply mt-4 rounded-3xl px-6 py-3 text-center font-bold;
   }
 }
 </style>
