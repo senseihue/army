@@ -15,6 +15,8 @@ const { params, items, loading } = usePersonalServiceStore()
 const personalServiceCategoryStore = usePersonalServiceCategoryStore()
 const { current } = storeToRefs(personalServiceCategoryStore)
 
+const modal = useModal()
+const activeService = ref<IPersonalService | null>(null)
 const categories = computed(() => [
   {
     type: "my_company",
@@ -63,6 +65,11 @@ const onChangeCategory = async () => {
   await getPersonalServiceList()
 }
 
+const changeService = (service: IPersonalService) => {
+  activeService.value = service
+  modal.show("service-detail-modal", service)
+}
+
 onMounted(() => {
   current.value = categories.value[0]
   get()
@@ -76,7 +83,7 @@ onMounted(() => {
       <service-category-tabs :categories="categories" @change="onChangeCategory" />
       <ui-loader v-if="loading" />
       <template v-else>
-        <service-grid />
+        <service-grid @show:details="changeService" />
         <ui-pagination
           v-model="params.page"
           :total="params.total"
@@ -84,7 +91,6 @@ onMounted(() => {
           @update:model-value="getPersonalServiceList"
         />
       </template>
-
 
       <service-detail-modal />
     </div>
