@@ -1,50 +1,51 @@
 <script lang="ts" setup>
 const props = defineProps<{ id?: string }>()
 
-const { data: regions } = useFetch<any[]>('/gateway/integration/public/territorial-entity/regions', { server: false })
-const data = computed(() => regions.value?.find((item) => item.code === props.id))
+const { data } = useFetch<any>("/gateway/siw/public/territory", {
+  server: false, params: {size: 12}
+})
+const region = computed(() => data.value?.content.find((reg: any) => reg.region.code === props.id))
 </script>
 
 <template>
   <transition mode="out-in" name="fade">
     <div
-      v-if="data"
-      class="top-16 mx-auto w-full border border-midnight bg-white lg:absolute lg:max-w-72"
-      :class="data.align"
+      v-if="region"
+      class="border-blue-midnight top-16 mx-auto w-full border bg-white lg:absolute lg:max-w-72"
     >
-      <div id="map-card-header" class="flex items-center justify-between bg-midnight py-4 font-bold text-white">
-        <p class="px-6">{{ $t(`regions.${data.code}`) }}</p>
+      <div id="map-card-header" class="bg-blue-midnight flex items-center justify-between py-4 font-bold text-white">
+        <p class="px-6">{{ region.region.region }}</p>
 
         <a
-          v-if="data.presentation"
-          href="file"
-          :title="$t('labels.presentation')"
-          target="_blank"
+          v-if="region.presentation"
           class="flex items-center px-4"
+          href="file"
+          target="_blank"
+          :title="$t('labels.presentation')"
         >
-          <Icon name="ci:external-link" class="text-2xl leading-none" />
+          <Icon class="text-2xl leading-none" name="ci:external-link" />
         </a>
       </div>
 
       <div class="grid gap-4 px-6 py-4">
         <div>
-          <h2 class="text-title text-command">{{ data.population }}</h2>
-          <p class="font-bold text-midnight">{{ $t('main.map.card.population') }}</p>
+          <h2 class="text-title text-blue-command">{{ region.population }}</h2>
+          <p class="text-blue-midnight font-bold">{{ $t("labels.population") }}</p>
         </div>
 
         <div>
-          <h2 class="text-title text-command">{{ data.projects }}</h2>
-          <p class="font-bold text-midnight">{{ $t('main.map.card.investment') }}</p>
+          <h2 class="text-title text-blue-command">{{ region.investment_projects }}</h2>
+          <p class="text-blue-midnight font-bold">{{ $t("labels.investment") }}</p>
         </div>
 
         <div>
-          <h2 class="text-title text-command">{{ data.fdi }}</h2>
-          <p class="font-bold text-midnight">{{ $t('main.map.card.fdi') }}</p>
+          <h2 class="text-title text-blue-command">{{ region.fdi_credits }}</h2>
+          <p class="text-blue-midnight font-bold">{{ $t("labels.fdi") }}</p>
         </div>
 
         <div>
-          <h2 class="text-title text-command">{{ data.trade }}</h2>
-          <p class="font-bold text-midnight">{{ $t('main.map.card.trade') }}</p>
+          <h2 class="text-title text-blue-command">{{ region.foreign_trade }}</h2>
+          <p class="text-blue-midnight font-bold">{{ $t("labels.trade") }}</p>
         </div>
 
         <!--        <div>-->
@@ -53,8 +54,8 @@ const data = computed(() => regions.value?.find((item) => item.code === props.id
         <!--        </div>-->
 
         <div>
-          <h2 class="text-title text-command">{{ data.square }}</h2>
-          <p class="font-bold text-midnight">{{ $t('main.map.card.sq') }}</p>
+          <h2 class="text-title text-blue-command">{{ region.area }}</h2>
+          <p class="text-blue-midnight font-bold">{{ $t("labels.sq") }}</p>
         </div>
       </div>
     </div>

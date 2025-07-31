@@ -4,7 +4,8 @@
       <div
         class="mb-4 flex min-h-56 items-center justify-center rounded-xl bg-blue-command p-4 text-center text-xl font-semibold text-white"
       >
-        <Icon class="h-48 w-48" :name="icon" />
+        <img v-if="image?.id" :src="image?.download_link" alt=""/>
+        <Icon v-else class="h-48 w-48" :name="icon" />
       </div>
 
       <h3 class="font-semibold">{{ title }}</h3>
@@ -26,6 +27,7 @@ interface IProps {
   title: string
   id: number
   icon: any
+  image: IFile
 }
 
 defineProps<IProps>()

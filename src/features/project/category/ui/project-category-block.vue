@@ -33,6 +33,7 @@
         :title="category.title"
         :id="category.id"
         :icon="category.icon"
+        :image="category.image"
       />
     </div>
   </div>

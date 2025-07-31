@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import { PressCard } from "~/features/media/press"
-import type { AsyncData } from "#app"
-import type { _AsyncData } from "#app/composables/asyncData"
 import { useGalleryService } from "~/features/media/gallery"
 
 interface IProps {

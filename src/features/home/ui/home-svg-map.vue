@@ -1,14 +1,10 @@
 <script lang="ts" setup>
-import regions from "~/app/assets/map/uzbekistan.json"
+import regions from "public/map/uzbekistan.json"
 
-const props = withDefaults(
-  defineProps<{
-    attachedElementId: string
-    disabled?: boolean
-    fillColor?: string
-  }>(),
-  { fillColor: "#0078B5" }
-)
+const props = defineProps<{
+  attachedElementId: string
+}>()
+
 const regionId = defineModel<any>()
 const line = ref<LeaderLine>()
 
@@ -17,7 +13,8 @@ const drawLine = async (id: string) => {
 
   if (regionId.value === id) return removeLine()
   removeLine()
-
+  console.log(id)
+  console.log(regionId.value)
   regionId.value = id
   await nextTick()
 
@@ -32,7 +29,6 @@ const drawLine = async (id: string) => {
     color: "#013D8C",
     startPlug: "disc",
     startPlugSize: 2,
-    startSocket: "top",
     startPlugOutline: true,
     startPlugColor: "#FFFFFF",
     startPlugOutlineColor: "#013D8C",
@@ -50,38 +46,6 @@ const removeLine = () => {
   line.value = undefined
 }
 
-const handleClick = (id: string) => {
-  if (!props.disabled) {
-    drawLine(id)
-  }
-}
-
-onMounted(() => {
-  setTimeout(() => {
-    const start = LeaderLine.pointAnchor(document.getElementById(regionId.value)!)
-
-    const end = document.getElementById(props.attachedElementId)!
-
-    if (!start || !end) return
-    const options: LeaderLine.Options = {
-      hide: true,
-      path: "grid",
-      color: "#013D8C",
-      startPlug: "disc",
-      startPlugSize: 2,
-      startSocket: "top",
-      startPlugOutline: true,
-      startPlugColor: "#FFFFFF",
-      startPlugOutlineColor: "#013D8C",
-      endPlug: "behind",
-      dash: { len: 4, animation: true }
-    }
-
-    line.value = new LeaderLine(start, end, options)
-    line.value?.show("draw")
-  }, 500)
-})
-
 onBeforeUnmount(() => removeLine())
 </script>
 
@@ -90,13 +54,12 @@ onBeforeUnmount(() => removeLine())
     <g>
       <path
         v-for="region in regions"
+        class="map-region"
         :d="region.path"
-        :data-disabled="props.disabled"
         :id="region.id"
         :key="region.id"
-        :class="['map-region']"
-        :style="regionId === region.id ? { fill: props.fillColor } : {}"
-        @click="handleClick(region.id)"
+        :class="{ '!fill-blue-command': regionId === region.id }"
+        @click="drawLine(region.id)"
       />
     </g>
   </svg>
@@ -104,17 +67,6 @@ onBeforeUnmount(() => removeLine())
 
 <style lang="scss">
 .map-region {
-  @apply fill-blue-bright relative stroke-white stroke-[3px] transition;
-  cursor: pointer;
-
-  &:hover {
-    @apply fill-blue-command/60;
-  }
-
-  &[data-disabled="true"] {
-    cursor: not-allowed;
-    pointer-events: none;
-    opacity: 0.9;
-  }
+  @apply relative cursor-pointer fill-blue-bright stroke-white stroke-[3px] transition hover:fill-blue-command/60;
 }
 </style>

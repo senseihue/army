@@ -5,6 +5,7 @@ declare global {
     order: number
     icon: string
     description: string
+    image: IFile
     draft?: boolean
   }
 
