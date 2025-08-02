@@ -10,6 +10,7 @@ interface Props {
 
 interface Emits {
   (e: "change", files?: File[]): void
+
   (e: "update:modelValue", files?: File[]): void
 }
 

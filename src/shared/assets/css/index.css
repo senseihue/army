@@ -50,3 +50,19 @@
 .fast-fade-leave-to {
     opacity: 0;
 }
+
+.multiselect, .dp__input {
+    @apply h-[54px] rounded-none;
+}
+
+.dp__input_wrap {
+    @apply h-full;
+}
+
+.multiselect-placeholder {
+    @apply text-black
+}
+
+.dp__input {
+    @apply placeholder:text-black rounded-none
+}

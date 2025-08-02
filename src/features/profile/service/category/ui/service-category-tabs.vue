@@ -42,7 +42,7 @@ const selectCategory = (category: IPersonalServiceCategory, index: number) => {
       <ui-icon-button variant="flat" rounded icon-name="lucide:chevron-left" color="secondary" @click="prev" />
       <ui-icon-button variant="flat" rounded icon-name="lucide:chevron-right" color="secondary" @click="next" />
     </div>
-    <div class="flex w-full items-center justify-between gap-4">
+    <div class="overflow-x-auto flex w-full items-center justify-between gap-4">
       <service-category-tab
         v-for="(item, index) in categories"
         :key="item.type"

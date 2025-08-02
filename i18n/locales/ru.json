@@ -25,6 +25,7 @@
       "project": "Проекты",
       "appeal": "Обращение",
       "event": "События",
+      "single_window": "Единое окно",
       "register-investor": "Регистрация инвестора",
       "register-business": "Регистрация бизнеса"
     },
@@ -62,6 +63,8 @@
     "search": "Поиск",
     "language": "Язык",
     "contacts": "Контакты",
+    "all_amount": "Все суммы",
+    "all_status": "Все статусы",
     "privacy_policy": "Политика конфиденциальности",
     "cookie_policy": "Политика cookie",
     "sitemap": "Карта сайта",

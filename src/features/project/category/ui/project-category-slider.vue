@@ -3,11 +3,22 @@ import type { CarouselConfig } from "vue3-carousel"
 import { Carousel, Navigation } from "vue3-carousel"
 import { breakpointsTailwind } from "@vueuse/core"
 
+interface IProps {
+  itemsCount?: number
+}
+
+const props = withDefaults(defineProps<IProps>(), {
+  itemsCount: 0
+})
+const disableArrows = computed(() => {
+  return props.itemsCount < 6 || (breakpoints.lg && props.itemsCount < 6) || (breakpoints.md && props.itemsCount < 3)
+})
 const carouselConfig = computed<Partial<CarouselConfig>>(() => ({
   gap: 1,
   snapAlign: "start",
   itemsToShow: breakpoints.lg ? 6 : breakpoints.md ? 3 : 1,
-  wrapAround: false
+  wrapAround: false,
+  mouseDrag: !disableArrows.value
 }))
 
 const breakpoints = useBreakpoints(breakpointsTailwind)
@@ -21,7 +32,7 @@ const breakpoints = useBreakpoints(breakpointsTailwind)
           <slot />
 
           <template #addons>
-            <navigation>
+            <navigation :disabled="disableArrows">
               <template #prev>
                 <Icon class="text-xl" name="ph:caret-left" />
               </template>

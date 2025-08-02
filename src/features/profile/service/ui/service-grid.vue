@@ -4,10 +4,13 @@ import { usePersonalServiceStore } from "~/entities/profile/personal-service"
 
 const { t } = useI18n({ useScope: "local" })
 const modal = useModal()
+const emits = defineEmits<{
+  (e: "show:details", service: IPersonalService): void
+}>()
 const personalServiceStore = usePersonalServiceStore()
 const { items, loading } = storeToRefs(personalServiceStore)
 const showServiceDetails = (service: IPersonalService) => {
-  modal.show("service-detail-modal", service)
+  emits("show:details", service)
 }
 </script>
 

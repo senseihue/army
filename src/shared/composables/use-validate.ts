@@ -6,7 +6,7 @@ import type { ValidationArgs } from "@vuelidate/core"
 
 type Form<T> = { [key in keyof T]: any }
 
-export function useValidate<T extends Form<V>, V extends ValidationArgs>(form: MaybeRef<T>, rules: Ref<V>) {
+export function   useValidate<T extends Form<V>, V extends ValidationArgs>(form: MaybeRef<T>, rules: Ref<V>) {
   const vuelidate = useVuelidate(rules, form)
 
   const hasError = (key: Paths<T>) => {
