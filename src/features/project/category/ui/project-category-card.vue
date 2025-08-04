@@ -2,9 +2,9 @@
   <div class="flex flex-col justify-between gap-3">
     <div>
       <div
-        class="mb-4 flex max-h-56 min-h-56 items-center justify-center rounded-xl bg-blue-command p-4 text-center text-xl font-semibold text-white"
+        class="mb-4 flex max-h-56 min-h-56 items-center justify-center rounded-xl bg-blue-command p-4 text-xl font-semibold text-white"
       >
-        <img v-if="image?.id" alt="" :src="image?.download_link" />
+        <img v-if="image?.id" class="aspect-video object-cover" alt="" :src="image?.download_link" />
         <Icon v-else class="h-48 w-48" :name="icon" />
       </div>
 
