@@ -2,7 +2,7 @@
 interface IProps {
   title: string
   description?: string
-  author?: ISearchResult['author']
+  author?: ISearchResult["author"]
   link: string
 }
 
@@ -11,11 +11,11 @@ defineProps<IProps>()
 
 <template>
   <div>
-    <nuxt-link class="text-command mb-2 block text-xl font-bold" :to="link">
+    <nuxt-link class="mb-2 block text-xl font-bold text-blue-command" :to="link">
       {{ title }}
     </nuxt-link>
     <p v-if="author" class="text-sm text-gray-600">
-      {{ $t('labels.written_by') }} {{ author.firstName }} {{ author.lastName }}
+      {{ $t("labels.written_by") }} {{ author.firstName }} {{ author.lastName }}
     </p>
     <p v-if="description" class="text-sm text-gray-600">
       {{ description }}
