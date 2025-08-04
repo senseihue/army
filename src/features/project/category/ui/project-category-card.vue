@@ -4,7 +4,7 @@
       <div
         class="mb-4 flex min-h-56 items-center justify-center rounded-xl bg-blue-command p-4 text-center text-xl font-semibold text-white"
       >
-        <img v-if="image?.id" :src="image?.download_link" alt=""/>
+        <img v-if="upload?.id" alt="" :src="upload?.download_link" />
         <Icon v-else class="h-48 w-48" :name="icon" />
       </div>
 
@@ -12,12 +12,12 @@
     </div>
 
     <div class="flex justify-end">
-      <NuxtLink
+      <NuxtLinkLocale
         class="inline-block rounded-[32px] bg-green-600 px-12 py-3 text-white hover:bg-green-700"
         :to="`/guide/project/category/${id}`"
       >
         {{ $t("labels.view_here") }}
-      </NuxtLink>
+      </NuxtLinkLocale>
     </div>
   </div>
 </template>
