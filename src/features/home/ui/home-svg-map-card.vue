@@ -2,25 +2,28 @@
 const props = defineProps<{ id?: string }>()
 
 const { data } = useFetch<any>("/gateway/siw/public/territory", {
-  server: false, params: {size: 12}
+  server: false,
+  params: { size: 14 }
 })
 const region = computed(() => data.value?.content.find((reg: any) => reg.region.code === props.id))
+const positionCard = computed(() => (region.value?.position ? "right-0" : "left-0"))
 </script>
 
 <template>
   <transition mode="out-in" name="fade">
     <div
       v-if="region"
-      class="border-blue-midnight top-16 mx-auto w-full border bg-white lg:absolute lg:max-w-72"
+      class="top-16 mx-auto w-full border border-blue-midnight bg-white lg:absolute lg:max-w-72"
+      :class="positionCard"
     >
-      <div id="map-card-header" class="bg-blue-midnight flex items-center justify-between py-4 font-bold text-white">
-        <p class="px-6">{{ region.region.region }}</p>
+      <div id="map-card-header" class="flex items-center justify-between bg-blue-midnight py-4 font-bold text-white">
+        <p class="px-6">{{ region.region?.region }}</p>
 
         <a
-          v-if="region.presentation"
+          v-if="region.presentation?.id"
           class="flex items-center px-4"
-          href="file"
           target="_blank"
+          :href="region.presentation?.download_link"
           :title="$t('labels.presentation')"
         >
           <Icon class="text-2xl leading-none" name="ci:external-link" />
@@ -30,22 +33,22 @@ const region = computed(() => data.value?.content.find((reg: any) => reg.region.
       <div class="grid gap-4 px-6 py-4">
         <div>
           <h2 class="text-title text-blue-command">{{ region.population }}</h2>
-          <p class="text-blue-midnight font-bold">{{ $t("labels.population") }}</p>
+          <p class="font-bold text-blue-midnight">{{ $t("labels.population") }}</p>
         </div>
 
         <div>
           <h2 class="text-title text-blue-command">{{ region.investment_projects }}</h2>
-          <p class="text-blue-midnight font-bold">{{ $t("labels.investment") }}</p>
+          <p class="font-bold text-blue-midnight">{{ $t("labels.investment") }}</p>
         </div>
 
         <div>
           <h2 class="text-title text-blue-command">{{ region.fdi_credits }}</h2>
-          <p class="text-blue-midnight font-bold">{{ $t("labels.fdi") }}</p>
+          <p class="font-bold text-blue-midnight">{{ $t("labels.fdi") }}</p>
         </div>
 
         <div>
           <h2 class="text-title text-blue-command">{{ region.foreign_trade }}</h2>
-          <p class="text-blue-midnight font-bold">{{ $t("labels.trade") }}</p>
+          <p class="font-bold text-blue-midnight">{{ $t("labels.trade") }}</p>
         </div>
 
         <!--        <div>-->
@@ -55,7 +58,7 @@ const region = computed(() => data.value?.content.find((reg: any) => reg.region.
 
         <div>
           <h2 class="text-title text-blue-command">{{ region.area }}</h2>
-          <p class="text-blue-midnight font-bold">{{ $t("labels.sq") }}</p>
+          <p class="font-bold text-blue-midnight">{{ $t("labels.sq") }}</p>
         </div>
       </div>
     </div>

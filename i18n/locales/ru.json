@@ -89,7 +89,8 @@
     "project_location": "Местоположение проекта",
     "project_information": "Информация о проекте",
     "project_category": "Категория проекта",
-    "offline_procedures": "Офлайн-процедуры"
+    "offline_procedures": "Офлайн-процедуры",
+    "presentation": "Презентация"
   },
   "actions": {
     "sign_in": "Войти",
