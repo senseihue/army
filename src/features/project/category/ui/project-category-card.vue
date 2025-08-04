@@ -4,7 +4,7 @@
       <div
         class="mb-4 flex min-h-56 items-center justify-center rounded-xl bg-blue-command p-4 text-center text-xl font-semibold text-white"
       >
-        <img v-if="upload?.id" alt="" :src="upload?.download_link" />
+        <img v-if="image?.id" alt="" :src="image?.download_link" />
         <Icon v-else class="h-48 w-48" :name="icon" />
       </div>
 
