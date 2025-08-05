@@ -77,7 +77,9 @@ const getRequestBody = async (service: IPersonalService) => {
         body[item.key] = profile.value?.user[item.key]
       } else {
         requiredParams.value.push(item)
-        rules.value.body[item.key] = { required }
+        if (item.required) {
+          rules.value.body[item.key] = { required }
+        }
       }
     })
 
@@ -160,7 +162,7 @@ const onClose = () => {
       <template v-for="item in paramsCollection" :key="item.key">
         <ui-form-group
           v-slot="{ id }"
-          required
+          :required="item.required"
           :hint="errors.params[item.key]?.$errors[0]?.$message"
           :invalid="errors.params[item.key]?.$error"
           :label="item.title"
@@ -181,7 +183,7 @@ const onClose = () => {
       <template v-for="item in bodyCollection" :key="item.key">
         <ui-form-group
           v-slot="{ id }"
-          required
+          :required="item.required"
           :hint="errors.body[item.key]?.$errors[0]?.$message"
           :invalid="errors.body[item.key]?.$error"
           :label="item.title"
