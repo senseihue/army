@@ -53,7 +53,9 @@ const getRequestParams = async (service: IPersonalService) => {
         params[item.key] = profile.value?.user[item.key]
       } else {
         requiredParams.value.push(item)
-        rules.value.params[item.key] = { required }
+        if (item.required) {
+          rules.value.params[item.key] = { required }
+        }
       }
     })
 

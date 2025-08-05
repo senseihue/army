@@ -5,7 +5,9 @@ declare global {
 
   interface IPersonalServiceParams {
     title: string,
-    key: string
+    key: string,
+    type: string,
+    required: boolean,
   }
 
   interface IPersonalService {
