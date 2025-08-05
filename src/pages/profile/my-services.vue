@@ -13,7 +13,7 @@ const { t } = useI18n({ useScope: "local" })
 const { getPersonalServiceList } = usePersonalServiceService()
 const { params, items, loading } = usePersonalServiceStore()
 const personalServiceCategoryStore = usePersonalServiceCategoryStore()
-const { current } = storeToRefs(personalServiceCategoryStore)
+const { current, active } = storeToRefs(personalServiceCategoryStore)
 
 const modal = useModal()
 const activeService = ref<IPersonalService | null>(null)
@@ -72,6 +72,7 @@ const changeService = (service: IPersonalService) => {
 
 onMounted(() => {
   current.value = categories.value[0]
+  active.value = 0
   get()
 })
 </script>
