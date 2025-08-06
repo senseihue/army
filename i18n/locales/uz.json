@@ -56,6 +56,8 @@
     "footer_desc": "Invest.gov.uz investitsiya portali materiallaridan asl manba va Portalga havola ko‘rsatilmagan holda har qanday foydalanish (ko‘paytirish, chop etish, nusxalash, qayta chop etish, tarqatish, tarjima qilish, efirga uzatish, qayta ishlash va tarqatishning boshqa usullari) qat’iyan man etiladi.\n\n"
   },
   "labels": {
+    "select_type": "Foydalanuvchi turini tanlang",
+    "select_residency": "Rezidentlikni tanlang",
     "investment_related": "Investitsiya bilan bog'liq",
     "official_correspondence": "Rasmiy yozishmalar",
     "contact_us": "Biz bilan bog'lanish",
@@ -93,6 +95,11 @@
     "presentation": "Taqdimot"
   },
   "actions": {
+    "investor": "Investor",
+    "entrepreneur": "Tadbirkor",
+    "resident": "Rezident",
+    "non_resident": "Norezident",
+    "sign_up": "Roʻyxatdan oʻtish",
     "sign_in": "Kirish",
     "sign_out": "Chiqish",
     "contact_us": "Biz bilan bog'lanish",

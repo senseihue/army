@@ -90,6 +90,8 @@
     "footer_desc": "Any use (reproduction, publication, copying, reprinting, distribution, translation, broadcasting,\n              processing and other methods of distribution) of the materials of the Investment Portal - Invest.gov.uz,\n              without indicating the original source and a link to the Portal is strictly prohibited"
   },
   "labels": {
+    "select_type": "Select user type",
+    "select_residency": "Select residency",
     "investment_related": "Investment-related",
     "official_correspondence": "Official correspondence",
     "contact_us": "Contact us",
@@ -150,6 +152,11 @@
     "UZ-XO": "Khorezm"
   },
   "actions": {
+    "investor": "Investor",
+    "entrepreneur": "Entrepreneur",
+    "resident": "Resident",
+    "non_resident": "Non-resident",
+    "sign_up": "Sign Up",
     "sign_in": "Sign in",
     "sign_out": "Sign out",
     "contact_us": "Contact us",

@@ -1,23 +1,15 @@
 <script setup lang="ts">
-import { useAuthService } from "~/features/auth"
+import { AuthRoleSelectModal } from "@/features/auth/ui"
 
 const { $session } = useNuxtApp()
-const { getRedirectUrl } = useAuthService()
+const modal = useModal()
 
-const getUrl = () => {
-  getRedirectUrl(`${window.location.origin}/sso`)
-}
 </script>
 
 <template>
   <client-only>
-    <ui-button
-      v-bind="$attrs"
-      v-if="$session?.loggedIn"
-      rounded
-      color="success"
-      :label="$t('labels.sign_in')"
-      @click="getUrl"
-    />
+    <ui-button v-bind="$attrs" v-if="$session?.loggedIn" rounded color="success" :label="$t('labels.sign_in')"
+      @click="() => modal.show('auth-role-select-modal')" />
+    <auth-role-select-modal />
   </client-only>
 </template>
