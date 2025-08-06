@@ -1,4 +1,8 @@
 {
+  "thead": {
+    "sequence": "№",
+    "actions": "Actions"
+  },
   "nav": {
     "about": {
       "label": "About agency",
@@ -132,7 +136,12 @@
     "sq": "Sq/km",
     "investment_of_uzbekistan": "Investment map of Uzbekistan",
     "presentation": "Presentation",
-    "working_days": "Working days"
+    "working_days": "Working days",
+    "lot_id": "Lot Id",
+    "name": "Name",
+    "date_from": "Date from",
+    "date_to": "Date to",
+    "results": "Results"
   },
   "regions": {
     "UZ-AN": "Andijan",

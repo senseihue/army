@@ -23,7 +23,13 @@
               <div
                 class="flex h-full max-h-32 min-h-32 w-full min-w-32 max-w-32 shrink-0 items-center justify-center rounded-lg bg-blue-command"
               >
-                <Icon class="size-28 text-white" :name="category?.icon || 'ph:star'" />
+                <img
+                  v-if="category?.upload?.id"
+                  class="aspect-video h-28 w-28 object-cover"
+                  alt=""
+                  :src="category?.upload?.download_link"
+                />
+                <Icon v-else class="size-28 text-white" :name="category?.icon || 'ph:star'" />
               </div>
 
               <div class="w-full">
@@ -231,7 +237,7 @@ const offlineServiceVisible = (service: any) => {
   if (!service.link.startsWith("http")) service.link = "https://" + service.link
 
   if (service.online && !service.info && service.link) {
-    window.open(service?.link, service?.is_external ? "_blank" : '_self', "noopener")
+    window.open(service?.link, service?.is_external ? "_blank" : "_self", "noopener")
   } else {
     if (offlineService.value?.id === service.id) {
       isOffline.value = false
