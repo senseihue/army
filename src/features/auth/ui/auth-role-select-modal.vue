@@ -14,7 +14,7 @@ const form = ref<{ type: "investor" | "entrepreneur"; residency: "resident" | "n
 
 const signIn = () => {
   modal.hide("auth-role-select-modal")
-  if (form.value.residency === "resident") getRedirectUrl()
+  if (form.value.residency === "resident") getRedirectUrl(`${window.location.origin}/sso`)
   else navigateTo(localePath("/auth/sign-in"))
 }
 
