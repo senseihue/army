@@ -4,3 +4,15 @@ declare global {
     profile: ISessionProfile
   }
 }
+
+export class SignIn {
+  email: string = ""
+  password: string = ""
+  hash?: string
+}
+
+export class ForgotPassword {
+  email: string = ""
+  hash?: string
+
+}

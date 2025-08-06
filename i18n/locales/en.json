@@ -210,7 +210,8 @@
       "entity_sent": "{name} has been sent",
       "entity_unblocked": "{name} has been unblocked",
       "saved": "Saved successfully",
-      "registration": "Registration successful!"
+      "registration": "Registration successful!",
+        "password_reset": "Reset password link has been sent to your email",
     }
   }
 }

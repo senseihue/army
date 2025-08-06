@@ -153,7 +153,8 @@
       "entity_sent": "{name} yuborildi",
       "entity_unblocked": "{name} blokdan chiqarildi",
       "saved": "Muvaffaqiyatli saqlandi",
-      "registration": "Ro'yxatdan o'tish muvaffaqiyatli yakunlandi!"
+      "registration": "Ro'yxatdan o'tish muvaffaqiyatli yakunlandi!",
+      "password_reset": "Parolni tiklash havolasi elektron pochtangizga yuborildi"
     }
   }
 }

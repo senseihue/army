@@ -1,12 +1,16 @@
 import { useAuthApi } from "~/features/auth/auth.api"
+import type { SignIn } from "~/entities/auth"
+import { useReCaptcha } from "vue-recaptcha-v3"
 
 export const useAuthService = () => {
   const route = useRoute()
   const alert = useAlert()
+  const { $t } = useI18n()
   const authApi = useAuthApi()
   const localePath = useLocalePath()
-  const { $session } = useNuxtApp()
+  const { $session, $toast } = useNuxtApp()
 
+  const reCAPTCHA = useReCaptcha()
   const getRedirectUrl = (origin?: string) =>
     authApi.getRedirectUrl(origin).then(({ content }) => {
       window.open(content, "_self")
@@ -24,7 +28,7 @@ export const useAuthService = () => {
     authApi
       .signIn(code)
       .then(({ content }) => {
-        const token  = useCookie('token')
+        const token = useCookie("token")
         token.value = content.token
         $session.profile.value = content.profile
 
@@ -45,7 +49,6 @@ export const useAuthService = () => {
         }
       })
       .catch((error) => {
-
         alert
           .errorDialog({
             timer: 5000,
@@ -58,5 +61,44 @@ export const useAuthService = () => {
       .finally(() => ($session.loading.value = false))
   }
 
-  return { getRedirectUrl, signIn }
+  const signInNonResident = async (dto: Ref<SignIn>, loading: Ref<boolean>) => {
+    loading.value = true
+
+    await reCAPTCHA?.recaptchaLoaded()
+    dto.value.hash = await reCAPTCHA?.executeRecaptcha("signin")
+    return authApi
+      .signInNonResident(dto.value)
+      .then(({ content }) => {
+        const token = useCookie("token")
+        token.value = content.token
+        $session.profile.value = content.profile
+
+        navigateTo(localePath("/profile"))
+      })
+      .catch((error) => {
+        alert.errorDialog(error?.response?.data?.message || "Login failed")
+      })
+      .finally(() => (loading.value = false))
+  }
+  const resetPasswordNonResident = async (dto: Ref<SignIn>, loading: Ref<boolean>) => {
+    loading.value = true
+
+    await reCAPTCHA?.recaptchaLoaded()
+    dto.value.hash = await reCAPTCHA?.executeRecaptcha("resetpassword")
+    return authApi
+      .signInNonResident(dto.value)
+      .then(({ content }) => {
+        const token = useCookie("token")
+        token.value = content.token
+        $session.profile.value = content.profile
+        $toast.success($t("messages.success.password_reset"))
+        navigateTo(localePath("/auth/sign-in"))
+      })
+      .catch((error) => {
+        alert.errorDialog(error?.response?.data?.message || "Login failed")
+      })
+      .finally(() => (loading.value = false))
+  }
+
+  return { getRedirectUrl, signIn, signInNonResident, resetPasswordNonResident }
 }

@@ -10,6 +10,7 @@ const { createRegistration } = useRegisterBusinessService()
 
 const form = ref<RegisterBusiness>(new RegisterBusiness())
 const loading = ref(false)
+const route = useRoute()
 
 const { required, email, minLength } = useRule()
 const rules = ref({
@@ -34,13 +35,19 @@ const rules = ref({
   own_contribution: {
     required
   },
-  file: { required }
+  file: { required },
 })
 const { vuelidate, hasError } = useValidate(form, rules)
 const submit = async () => {
   const isValid = await vuelidate.value.$validate()
   if (isValid) createRegistration(form, loading)
 }
+
+onMounted(() => {
+  if (route.query.type && route.query.type !== 'resident') {
+    form.value.isResident = false
+  }
+})
 </script>
 
 <template>
@@ -70,6 +77,9 @@ const submit = async () => {
       </ui-form-group>
       <ui-form-group v-bind="hasError('website')" v-slot="{ id }">
         <ui-input v-model="form.website" name="website" :placeholder="t('company-information.fields.website')" :id />
+      </ui-form-group>
+      <ui-form-group  v-slot="{ id }">
+        <ui-checkbox v-model="form.isResident" name="isResident" label-class="text-white" :label="t('company-information.fields.is_resident')" :id />
       </ui-form-group>
     </div>
 
@@ -174,7 +184,8 @@ const submit = async () => {
         "company-name": "Company Name",
         "tin": "TIN",
         "legal-address": "Legal Address",
-        "website": "Website"
+        "website": "Website",
+        "is_resident": "I am a resident of the Republic of Uzbekistan"
       }
     },
     "applicant": {
@@ -208,7 +219,8 @@ const submit = async () => {
         "company-name": "Название компании",
         "tin": "ИНН",
         "legal-address": "Юридический адрес",
-        "website": "Веб-сайт"
+        "website": "Веб-сайт",
+        "is_resident": "Я являюсь резидентом Республики Узбекистан"
       }
     },
     "applicant": {
@@ -242,7 +254,8 @@ const submit = async () => {
         "company-name": "Kompaniya nomi",
         "tin": "STIR",
         "legal-address": "Yuridik manzil",
-        "website": "Veb-sayt"
+        "website": "Veb-sayt",
+        "is_resident": "Men O'zbekiston Respublikasi rezidentiman"
       }
     },
     "applicant": {

@@ -12,4 +12,5 @@ export class RegisterBusiness {
   required_investment: string = ""
   own_contribution: string = ""
   file!: File[]
+  isResident: boolean = true
 }

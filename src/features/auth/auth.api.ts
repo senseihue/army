@@ -9,6 +9,10 @@ export const useAuthApi = () => {
     return $http.$post(`${BASE_URL}/auth`, null, { params: { code } })
   }
 
+  const signInNonResident = (data: Record<string, any>): AsyncResponseContainer<ISignInResponse> => {
+    return $http.$post(`${BASE_URL}/auth`, data)
+  }
+
   const getProfile = (): AsyncResponseContainer<ISessionProfile> => {
     return $http.$get(`${BASE_URL}/profile`)
   }
@@ -16,6 +20,7 @@ export const useAuthApi = () => {
   return {
     getRedirectUrl,
     signIn,
-    getProfile
+    getProfile,
+    signInNonResident
   }
 }
