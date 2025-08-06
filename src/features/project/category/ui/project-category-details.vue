@@ -231,7 +231,7 @@ const offlineServiceVisible = (service: any) => {
   if (!service.link.startsWith("http")) service.link = "https://" + service.link
 
   if (service.online && !service.info && service.link) {
-    window.open(service.link, "_blank", "noopener")
+    window.open(service?.link, service?.is_external ? "_blank" : '_self', "noopener")
   } else {
     if (offlineService.value?.id === service.id) {
       isOffline.value = false
