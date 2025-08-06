@@ -1,5 +1,5 @@
 <template>
-  <div class="container-7xl p-section">
+  <div class="mx-auto w-full max-w-[1088px] px-4 p-section">
     <div class="mb-12">
       <h3 class="mb-4 text-lg font-bold text-gray-600">{{ t("title") }}</h3>
       <p class="text-gray-600">
