@@ -13,6 +13,18 @@ export const useAuthApi = () => {
     return $http.$post(`${BASE_URL}/auth`, data)
   }
 
+  const sendNewPassword = (data: Record<string, any>): AsyncResponseContainer<ISignInResponse> => {
+    return $http.$post(`${BASE_URL}/auth`, data)
+  }
+
+  const resetPassword = (data: Record<string, any>): AsyncResponseContainer<ISignInResponse> => {
+    return $http.$post(`${BASE_URL}/auth`, data)
+  }
+
+  const changePassword = (data: Record<string, any>): AsyncResponseContainer<ISignInResponse> => {
+    return $http.$post(`${BASE_URL}/auth`, data)
+  }
+
   const getProfile = (): AsyncResponseContainer<ISessionProfile> => {
     return $http.$get(`${BASE_URL}/profile`)
   }
@@ -21,6 +33,9 @@ export const useAuthApi = () => {
     getRedirectUrl,
     signIn,
     getProfile,
-    signInNonResident
+    sendNewPassword,
+    resetPassword,
+    signInNonResident,
+    changePassword
   }
 }

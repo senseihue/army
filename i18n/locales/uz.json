@@ -44,7 +44,8 @@
     "profile": {
       "main": "Profil",
       "my_services": "Mening xizmatlarim",
-      "my_projects": "Mening loyihalarim"
+      "my_projects": "Mening loyihalarim",
+      "change_password": "Parolni o'zgartirish"
     }
   },
   "project_status": {

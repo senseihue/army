@@ -8,7 +8,7 @@ const { t } = useI18n({
   useScope: "local"
 })
 
-const { resetPasswordNonResident } = useAuthService()
+const { sendNewPasswordNonResident } = useAuthService()
 
 const form = ref<ForgotPassword>(new ForgotPassword())
 const loading = ref(false)
@@ -20,7 +20,7 @@ const rules = ref({
 const { vuelidate, hasError } = useValidate(form, rules)
 const submit = async () => {
   const isValid = await vuelidate.value.$validate()
-  if (isValid) resetPasswordNonResident(form, loading)
+  if (isValid) sendNewPasswordNonResident(form, loading)
 }
 </script>
 

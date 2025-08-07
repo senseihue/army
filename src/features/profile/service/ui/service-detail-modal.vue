@@ -3,6 +3,7 @@ import { usePersonalServiceService } from "~/features/profile/service"
 import type { AxiosRequestConfig } from "axios"
 import { usePersonalServiceStore } from "~/entities/profile/personal-service"
 import UiDatePicker from "@vuepic/vue-datepicker"
+import { DistrictSelect, TerritorySelect } from "~/features/territory"
 
 const { t } = useI18n({ useScope: "local" })
 const { required } = useRule()
@@ -39,6 +40,8 @@ const state = ref({
   params: {},
   body: {}
 })
+
+const regionId = ref()
 
 const getRequestParams = async (service: IPersonalService) => {
   if (service.params) {
@@ -91,6 +94,10 @@ const getRequestBody = async (service: IPersonalService) => {
   return Promise.resolve()
 }
 
+const onRegionChange = (_code: number, option: ITerritory["region"]) => {
+  regionId.value = option.id
+}
+
 const onSave = async () => {
   const { vuelidate } = useValidate(state, rules)
   const isValid = await vuelidate.value.$validate()
@@ -108,7 +115,6 @@ const onSave = async () => {
       showForm.value = false
       loading.value = false
     })
-
   }
 }
 
@@ -153,6 +159,7 @@ const onClose = () => {
 <template>
   <ui-modal
     id="service-detail-modal"
+    size="xl"
     :loading
     :label="activeService?.title"
     @before-show="onBeforeShow"
@@ -167,8 +174,20 @@ const onClose = () => {
           :invalid="errors.params[item.key]?.$error"
           :label="item.title"
         >
+          <territory-select
+            v-if="item.type === 'region'"
+            v-model="state.params[item.key]"
+            value-prop="code"
+            @select="onRegionChange"
+          />
+          <district-select
+            v-else-if="item.type === 'district'"
+            v-model="state.params[item.key]"
+            fetch-on-open
+            :region-id="regionId"
+          />
           <ui-date-picker
-            v-if="item.type === 'date'"
+            v-else-if="item.type === 'date'"
             v-model="state.params[item.key]"
             model-type="yyyy-MM-dd"
             format="dd.MM.yyyy"
@@ -188,8 +207,20 @@ const onClose = () => {
           :invalid="errors.body[item.key]?.$error"
           :label="item.title"
         >
+          <territory-select
+            v-if="item.type === 'region'"
+            v-model="state.body[item.key]"
+            value-prop="code"
+            @select="onRegionChange"
+          />
+          <district-select
+            v-else-if="item.type === 'district'"
+            v-model="state.body[item.key]"
+            fetch-on-open
+            :region-id="regionId"
+          />
           <ui-date-picker
-            v-if="item.type === 'date'"
+            v-else-if="item.type === 'date'"
             v-model="state.body[item.key]"
             model-type="yyyy-MM-dd"
             format="dd.MM.yyyy"

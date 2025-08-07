@@ -46,7 +46,8 @@
     "profile": {
       "main": "Profile",
       "my_services": "My services",
-      "my_projects": "My projects"
+      "my_projects": "My projects",
+      "change_password": "Change password",
     }
   },
   "sitemap": {

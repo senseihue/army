@@ -14,4 +14,12 @@ declare global {
     foreign_trade: string
     draft: boolean
   }
+  interface IDistrict {
+    "id": number,
+    "name":  string,
+    "mhobt": string,
+    "mhobt7": string,
+    "centre":  string,
+    "type": string
+  }
 }

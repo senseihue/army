@@ -5,12 +5,12 @@ const { t } = useI18n({ useScope: "local" })
 </script>
 
 <template>
-  <section class="register-investor">
+  <section class="register-investor bg-blue-midnight">
     <div class="container-7xl">
       <div class="p-section">
         <div class="mb-12 text-center">
-          <h3 class="mb-4 text-center text-3xl font-bold">{{ t("title") }}</h3>
-          <p class="mx-auto max-w-3xl">{{ t("description") }}</p>
+          <h3 class="mb-4 text-center text-3xl font-bold text-white">{{ t("title") }}</h3>
+          <p class="mx-auto max-w-3xl text-white">{{ t("description") }}</p>
         </div>
 
         <register-investor-form />

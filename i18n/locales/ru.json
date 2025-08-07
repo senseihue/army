@@ -44,7 +44,8 @@
     "profile": {
       "main": "Профиль",
       "my_services": "Мои услуги",
-      "my_projects": "Мои проекты"
+      "my_projects": "Мои проекты",
+      "change_password": "Изменить пароль",
     }
   },
   "project_status": {
