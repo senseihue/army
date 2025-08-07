@@ -1,0 +1,1 @@
+export { default as AuthSelectRadio } from "./auth-select-radio.vue"
