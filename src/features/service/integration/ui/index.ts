@@ -1,3 +1,6 @@
-export { default as ServiceIntegrationHero } from "./service-integration-hero.vue"
-export { default as ServiceIntegrationList } from "./service-integration-list.vue"
+export { default as ServiceIntegrationEAuctionHero } from "./service-integration-e-auction-hero.vue"
+export { default as ServiceIntegrationEAuctionList } from "./service-integration-e-auction-list.vue"
 export { default as ServiceIntegrationEAuctionModal } from "./service-integration-e-auction-modal.vue"
+export { default as ServiceIntegrationUzExHero } from "./service-integration-uz-ex-hero.vue"
+export { default as ServiceIntegrationUzExList } from "./service-integration-uz-ex-list.vue"
+export { default as ServiceIntegrationUzExModal } from "./service-integration-uz-ex-modal.vue"

@@ -2,8 +2,9 @@
   <div class="bg-gray-100">
     <div class="container-7xl">
       <div class="p-section">
-        <div>
-          <h3 class="py-2 text-xl font-bold">Савдодаги ЛОТлар</h3>
+        <div class="flex items-center justify-between gap-3 py-2">
+          <h3 class="text-xl font-bold">{{ $t("labels.lots_on_sale") }}</h3>
+          <ui-icon-button icon-name="ph:arrow-left" size="sm" color="secondary" />
         </div>
 
         <ui-table no-wrap :cols :rows>
@@ -12,15 +13,11 @@
           </template>
 
           <template #actions="{ row }">
-            <service-integration-menu :id="row?.id" :name="row?.name" />
+            <service-integration-e-auction-menu :id="row?.id" :name="row?.name" />
           </template>
         </ui-table>
 
-        <ui-table-footer
-          v-model:page="params.page"
-          v-model:per-page="params.size"
-          :total="params.total"
-        />
+        <ui-table-footer v-model:page="params.page" v-model:per-page="params.size" :total="params.total" />
       </div>
     </div>
   </div>
@@ -28,7 +25,7 @@
 
 <script setup lang="ts">
 import { useServiceIntegration } from "~/entities/service/integration"
-import ServiceIntegrationMenu from "~/features/service/integration/ui/service-integration-menu.vue"
+import ServiceIntegrationEAuctionMenu from "~/features/service/integration/ui/service-integration-e-auction-menu.vue"
 
 const { t } = useI18n()
 const serviceIntegrationStore = useServiceIntegration()

@@ -9,5 +9,5 @@ declare global {
 }
 
 export class IServiceIntegrationParams {
-  keyword: string = ""
+  lot_id: string = ""
 }

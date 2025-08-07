@@ -1,16 +1,16 @@
 <template>
   <div>
-    <service-integration-hero />
-    <service-integration-list />
+    <service-integration-e-auction-hero />
+    <service-integration-e-auction-list />
     <service-integration-e-auction-modal />
   </div>
 </template>
 
 <script setup lang="ts">
 import {
-  ServiceIntegrationEAuctionModal,
-  ServiceIntegrationHero,
-  ServiceIntegrationList
+  ServiceIntegrationEAuctionHero,
+  ServiceIntegrationEAuctionList,
+  ServiceIntegrationEAuctionModal
 } from "~/features/service/integration"
 </script>
 
