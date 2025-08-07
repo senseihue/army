@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { ChangePassword, ResetPassword } from "~/entities/auth"
-import { useAuthService } from "~/features/auth"
+import { ChangePassword, useAuthService } from "~/entities/auth"
 
 const { t } = useI18n({
   useScope: "local"

@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { PurposeOfContactSelect, useContactUsService } from "~/features/forms/contact-us"
 import { ContactUs } from "~/entities/forms/contact-us"
-import { ForgotPassword, SignIn } from "~/entities/auth"
-import { useAuthService } from "~/features/auth"
+import { ForgotPassword, SignIn , useAuthService} from "~/entities/auth"
 
 const { t } = useI18n({
   useScope: "local"

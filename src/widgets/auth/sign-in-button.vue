@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useAuthService } from "~/features/auth"
+import { useAuthService } from "~/entities/auth"
 
 const { $session } = useNuxtApp()
 const { getRedirectUrl } = useAuthService()

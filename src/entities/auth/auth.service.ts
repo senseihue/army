@@ -1,5 +1,5 @@
-import { useAuthApi } from "~/features/auth/auth.api"
-import { ChangePassword, type ForgotPassword, type ResetPassword, type SignIn } from "~/entities/auth"
+import { useAuthApi } from "~/entities/auth/auth.api"
+import { ChangePassword, type ForgotPassword, type ResetPassword, type SignIn } from "~/entities/auth/index"
 
 import { useReCaptcha } from "vue-recaptcha-v3"
 

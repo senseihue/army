@@ -1,7 +1,6 @@
 <script lang="ts" setup>
-import { useAuthService } from "~/features/auth"
+import { useAuthService } from "~/entities/auth"
 
-const route = useRoute()
 const { signIn } = useAuthService()
 
 onMounted(() => signIn())
