@@ -2,9 +2,6 @@
 import { ProfileHeader } from "~/features/profile"
 import { ProfileChangePasswordForm } from "~/features/profile/ui"
 
-const { $session } = useNuxtApp()
-const { profile, loading } = $session || {}
-
 definePageMeta({
   protected: true,
   // validate: () => {

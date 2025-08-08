@@ -5,7 +5,7 @@ import { useTerritoryApi } from "~/features/territory"
 interface IProps {
   autoSelect?: boolean
   fetchOnOpen?: boolean
-  regionId: number
+  regionCode: number
 }
 
 const props = defineProps<IProps>()
@@ -18,7 +18,7 @@ const params = computed<Record<string, any>>(() => ({
   keyword: "",
   page: 1,
   size: 100,
-  region_id: props.regionId
+  region_code: props.regionCode
 }))
 
 const map = (value: IDistrict[]): ISelect[] => value?.map((item) => ({ value: item.mhobt, label: item.name }))

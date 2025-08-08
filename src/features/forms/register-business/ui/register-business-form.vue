@@ -12,12 +12,15 @@ const form = ref<RegisterBusiness>(new RegisterBusiness())
 const loading = ref(false)
 const route = useRoute()
 
-const { required, email, minLength } = useRule()
+const { required, email, minLength, requiredIf } = useRule()
 const rules = ref({
   company_name: { required },
   tin: { required },
   legal_address: { required },
   website: { required },
+  pin: {
+    requiredIf: requiredIf(computed(() => form.value.is_resident))
+  },
 
   name: { required },
   surname: { required },
@@ -35,7 +38,7 @@ const rules = ref({
   own_contribution: {
     required
   },
-  file: { required },
+  file: { required }
 })
 const { vuelidate, hasError } = useValidate(form, rules)
 const submit = async () => {
@@ -44,8 +47,8 @@ const submit = async () => {
 }
 
 onMounted(() => {
-  if (route.query.type && route.query.type !== 'resident') {
-    form.value.isResident = false
+  if (route.query.type && route.query.type !== "resident") {
+    form.value.is_resident = false
   }
 })
 </script>
@@ -78,8 +81,17 @@ onMounted(() => {
       <ui-form-group v-bind="hasError('website')" v-slot="{ id }">
         <ui-input v-model="form.website" name="website" :placeholder="t('company-information.fields.website')" :id />
       </ui-form-group>
-      <ui-form-group  v-slot="{ id }">
-        <ui-checkbox v-model="form.isResident" name="isResident" label-class="text-white" :label="t('company-information.fields.is_resident')" :id />
+      <ui-form-group v-if="form.is_resident" v-bind="hasError('pin')" v-slot="{ id }">
+        <ui-input v-model="form.pin" :id :placeholder="t('company-information.fields.pin')" />
+      </ui-form-group>
+      <ui-form-group v-slot="{ id }" class="col-span-full">
+        <ui-checkbox
+          v-model="form.is_resident"
+          name="is_resident"
+          label-class="text-white"
+          :label="t('company-information.fields.is_resident')"
+          :id
+        />
       </ui-form-group>
     </div>
 
@@ -185,7 +197,8 @@ onMounted(() => {
         "tin": "TIN",
         "legal-address": "Legal Address",
         "website": "Website",
-        "is_resident": "I am a resident of the Republic of Uzbekistan"
+        "is_resident": "I am a resident of the Republic of Uzbekistan",
+        "pin": "PINOI"
       }
     },
     "applicant": {
@@ -220,7 +233,8 @@ onMounted(() => {
         "tin": "ИНН",
         "legal-address": "Юридический адрес",
         "website": "Веб-сайт",
-        "is_resident": "Я являюсь резидентом Республики Узбекистан"
+        "is_resident": "Я являюсь резидентом Республики Узбекистан",
+        "pin": "ПИНФЛ"
       }
     },
     "applicant": {
@@ -255,7 +269,8 @@ onMounted(() => {
         "tin": "STIR",
         "legal-address": "Yuridik manzil",
         "website": "Veb-sayt",
-        "is_resident": "Men O'zbekiston Respublikasi rezidentiman"
+        "is_resident": "Men O'zbekiston Respublikasi rezidentiman",
+        "pin": "PINFL"
       }
     },
     "applicant": {

@@ -42,12 +42,14 @@ declare global {
 }
 
 export class RegisterInvestor {
+  company_name: string = ""
   comments: string = ""
   email: string = ""
   phone: string = ""
   country: string = ""
   website: string = ""
   position: string = ""
+  pin?: string
   name: string = ""
   surname: string = ""
   contact_person: string = ""
@@ -63,5 +65,5 @@ export class RegisterInvestor {
   investment_experience: string = ""
   source: string = ""
   source_variant: string = ""
-  isResident: boolean = true
+  is_resident: boolean = true
 }

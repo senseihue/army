@@ -1,6 +1,7 @@
 export class RegisterBusiness {
   company_name: string = ""
   tin: string = ""
+  pin: string = ""
   website: string = ""
   legal_address: string = ""
   name: string = ""
@@ -12,5 +13,5 @@ export class RegisterBusiness {
   required_investment: string = ""
   own_contribution: string = ""
   file!: File[]
-  isResident: boolean = true
+  is_resident: boolean = true
 }

@@ -6,6 +6,7 @@ import { TargetIndustrySelect } from "~/features/target-industry"
 import { TerritorySelect } from "~/features/territory"
 import InvestmentTypeSelect from "~/features/investment/ui/investment-type-select.vue"
 import InvestmentAmountSelect from "~/features/investment/ui/investment-amount-select.vue"
+import { helpers } from "@vuelidate/validators"
 
 const { t } = useI18n({ useScope: "local" })
 const { register } = useRegisterInvestorService()
@@ -26,11 +27,9 @@ const business: SelectOptions = [
   { label: t("short-answers.yes"), value: true },
   { label: t("short-answers.no"), value: false }
 ]
-
 const form = ref<RegisterInvestor>(new RegisterInvestor())
 const loading = ref(false)
-
-const { required, email, minLength } = useRule()
+const { required, email, minLength, requiredIf } = useRule()
 const rules = ref({
   company_name: { required },
   country: { required },
@@ -39,6 +38,11 @@ const rules = ref({
   position: { required },
   phone: { required, minLength: minLength(12) },
   email: { required, email },
+  pin: {
+    requiredIf: requiredIf(
+      computed(() => form.value.is_resident),
+    )
+  },
 
   target_industry_id: { required },
   region_id: { required },
@@ -59,7 +63,7 @@ const submit = async () => {
 
 onMounted(() => {
   if (route.query.type && route.query.type !== "resident") {
-    form.value.isResident = false
+    form.value.is_resident = false
   }
 })
 </script>
@@ -106,9 +110,12 @@ onMounted(() => {
       <ui-form-group v-slot="{ id }">
         <ui-input v-model="form.website" :id :placeholder="t('basic-information.fields.website')" />
       </ui-form-group>
+      <ui-form-group v-if="form.is_resident" v-bind="hasError('pin')" v-slot="{ id }">
+        <ui-input v-model="form.pin" :id :placeholder="t('basic-information.fields.pin')" />
+      </ui-form-group>
       <ui-form-group v-slot="{ id }" class="col-span-full">
         <ui-checkbox
-          v-model="form.isResident"
+          v-model="form.is_resident"
           name="isResident"
           label-class="text-white"
           :label="t('basic-information.fields.is_resident')"
@@ -273,7 +280,8 @@ onMounted(() => {
         "email": "Email",
         "phone": "Phone",
         "website": "Website",
-        "is_resident": "I am a resident of the Republic of Uzbekistan"
+        "is_resident": "I am a resident of the Republic of Uzbekistan",
+        "pin": "PINOI"
       },
       "description": "Please provide your basic information to proceed with the registration."
     },
@@ -385,7 +393,8 @@ onMounted(() => {
         "email": "Электронная почта",
         "phone": "Телефон",
         "website": "Веб-сайт",
-        "is_resident": "Я являюсь резидентом Республики Узбекистан"
+        "is_resident": "Я являюсь резидентом Республики Узбекистан",
+        "pin": "ПИНФЛ"
       },
       "description": "Пожалуйста, предоставьте вашу основную информацию для продолжения регистрации."
     },
@@ -440,7 +449,8 @@ onMounted(() => {
         "website": "Veb-sayt",
         "is_resident": "Men O'zbekiston Respublikasi rezidentiman",
         "name": "Ism",
-        "surname": "Familiya"
+        "surname": "Familiya",
+        "pin": "PINFL"
       },
       "description": "Ro'yxatdan o'tishni davom ettirish uchun asosiy ma'lumotlaringizni taqdim eting."
     },

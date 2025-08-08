@@ -94,8 +94,8 @@ const getRequestBody = async (service: IPersonalService) => {
   return Promise.resolve()
 }
 
-const onRegionChange = (_code: number, option: ITerritory["region"]) => {
-  regionId.value = option.id
+const onRegionChange = (code: string, _option: ITerritory["region"]) => {
+  regionId.value = code
 }
 
 const onSave = async () => {
@@ -184,7 +184,7 @@ const onClose = () => {
             v-else-if="item.type === 'district'"
             v-model="state.params[item.key]"
             fetch-on-open
-            :region-id="regionId"
+            :region-code="regionId"
           />
           <ui-date-picker
             v-else-if="item.type === 'date'"

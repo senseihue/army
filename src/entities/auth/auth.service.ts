@@ -6,7 +6,7 @@ import { useReCaptcha } from "vue-recaptcha-v3"
 export const useAuthService = () => {
   const route = useRoute()
   const alert = useAlert()
-  const { $t } = useI18n()
+  const { t } = useI18n()
   const authApi = useAuthApi()
   const localePath = useLocalePath()
   const { $session, $toast } = useNuxtApp()
@@ -92,7 +92,7 @@ export const useAuthService = () => {
         const token = useCookie("token")
         token.value = content.token
         $session.profile.value = content.profile
-        $toast.success($t("messages.success.password_reset"))
+        $toast.success(t("messages.success.password_reset"))
         navigateTo(localePath("/auth/sign-in"))
       })
       .catch((error) => {
@@ -127,7 +127,7 @@ export const useAuthService = () => {
     return authApi
       .changePassword(dto.value)
       .then(() => {
-        $toast.success($t("messages.success.saved"))
+        $toast.success(t("messages.success.saved"))
         dto.value = new ChangePassword()
       })
       .catch((error) => {
