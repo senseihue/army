@@ -91,7 +91,8 @@
     "project_information": "Loyiha haqida ma'lumot",
     "project_category": "Loyiha toifasi",
     "offline_procedures": "Oflayn tartiblar",
-    "presentation": "Taqdimot"
+    "presentation": "Taqdimot",
+    "working_days": "Ish kunlari"
   },
   "actions": {
     "sign_in": "Kirish",

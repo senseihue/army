@@ -91,7 +91,8 @@
     "project_information": "Информация о проекте",
     "project_category": "Категория проекта",
     "offline_procedures": "Офлайн-процедуры",
-    "presentation": "Презентация"
+    "presentation": "Презентация",
+    "working_days": "Рабочие дни"
   },
   "actions": {
     "sign_in": "Войти",
