@@ -22,7 +22,7 @@ export const useAuthApi = () => {
   }
 
   const changePassword = (data: Record<string, any>): AsyncResponseContainer<ISignInResponse> => {
-    return $http.$post(`${BASE_URL}/auth/change-password`, data)
+    return $http.$post(`${BASE_URL}/profile/change-password`, data)
   }
 
   const getProfile = (): AsyncResponseContainer<ISessionProfile> => {
