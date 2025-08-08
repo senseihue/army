@@ -10,13 +10,17 @@ const { createRegistration } = useRegisterBusinessService()
 
 const form = ref<RegisterBusiness>(new RegisterBusiness())
 const loading = ref(false)
+const route = useRoute()
 
-const { required, email, minLength } = useRule()
+const { required, email, minLength, requiredIf } = useRule()
 const rules = ref({
   company_name: { required },
   tin: { required },
   legal_address: { required },
   website: { required },
+  pin: {
+    requiredIf: requiredIf(computed(() => form.value.is_resident))
+  },
 
   name: { required },
   surname: { required },
@@ -41,6 +45,12 @@ const submit = async () => {
   const isValid = await vuelidate.value.$validate()
   if (isValid) createRegistration(form, loading)
 }
+
+onMounted(() => {
+  if (route.query.type && route.query.type !== "resident") {
+    form.value.is_resident = false
+  }
+})
 </script>
 
 <template>
@@ -70,6 +80,18 @@ const submit = async () => {
       </ui-form-group>
       <ui-form-group v-bind="hasError('website')" v-slot="{ id }">
         <ui-input v-model="form.website" name="website" :placeholder="t('company-information.fields.website')" :id />
+      </ui-form-group>
+      <ui-form-group v-if="form.is_resident" v-bind="hasError('pin')" v-slot="{ id }">
+        <ui-input v-model="form.pin" :id :placeholder="t('company-information.fields.pin')" />
+      </ui-form-group>
+      <ui-form-group v-slot="{ id }" class="col-span-full">
+        <ui-checkbox
+          v-model="form.is_resident"
+          name="is_resident"
+          label-class="text-white"
+          :label="t('company-information.fields.is_resident')"
+          :id
+        />
       </ui-form-group>
     </div>
 
@@ -174,7 +196,9 @@ const submit = async () => {
         "company-name": "Company Name",
         "tin": "TIN",
         "legal-address": "Legal Address",
-        "website": "Website"
+        "website": "Website",
+        "is_resident": "I am a resident of the Republic of Uzbekistan",
+        "pin": "PINOI"
       }
     },
     "applicant": {
@@ -208,7 +232,9 @@ const submit = async () => {
         "company-name": "Название компании",
         "tin": "ИНН",
         "legal-address": "Юридический адрес",
-        "website": "Веб-сайт"
+        "website": "Веб-сайт",
+        "is_resident": "Я являюсь резидентом Республики Узбекистан",
+        "pin": "ПИНФЛ"
       }
     },
     "applicant": {
@@ -242,7 +268,9 @@ const submit = async () => {
         "company-name": "Kompaniya nomi",
         "tin": "STIR",
         "legal-address": "Yuridik manzil",
-        "website": "Veb-sayt"
+        "website": "Veb-sayt",
+        "is_resident": "Men O'zbekiston Respublikasi rezidentiman",
+        "pin": "PINFL"
       }
     },
     "applicant": {

@@ -2,9 +2,12 @@
 interface IProps {
   iconName: string
   title: string
+  showRefresher?: boolean
 }
 
-defineProps<IProps>()
+withDefaults(defineProps<IProps>(), {
+  showRefresher: true
+})
 defineEmits<{
   (e: "refresh"): void
 }>()
@@ -18,7 +21,7 @@ defineEmits<{
         {{ title }}
       </h2>
     </div>
-    <ui-button class="rounded-xl" color="secondary" variant="flat" @click="$emit('refresh')">
+    <ui-button v-if="showRefresher" class="rounded-xl" color="secondary" variant="flat" @click="$emit('refresh')">
       <span>{{ $t("actions.refresh") }}</span>
       <icon name="lucide:refresh-ccw" />
     </ui-button>

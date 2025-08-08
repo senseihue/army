@@ -5,6 +5,7 @@ import { useTerritoryApi } from "~/features/territory"
 interface IProps {
   autoSelect?: boolean
   fetchOnOpen?: boolean
+  regionCode: number
 }
 
 const props = defineProps<IProps>()
@@ -13,36 +14,32 @@ const model = defineModel<number | number[] | string | string[]>()
 const territoryApi = useTerritoryApi()
 const el = ref()
 
-const params = ref<Record<string, any>>({
+const params = computed<Record<string, any>>(() => ({
   keyword: "",
   page: 1,
-  size: 100
-})
+  size: 100,
+  region_code: props.regionCode
+}))
 
-const map = (value: ITerritory[]): ISelect[] =>
-  value?.map(({ region }) => ({
-    ...region,
-    value: region.id,
-    label: region.region,
-  }))
+const map = (value: IDistrict[]): ISelect[] => value?.map((item) => ({ value: item.mhobt, label: item.name }))
 
-const { loading, onOpen, onClose, onSearch, options } = useSelect<ITerritory>({
+const { loading, onOpen, onClose, onSearch, options } = useSelect<IDistrict>({
   el,
   map,
   model,
   params,
   autoSelect: props.autoSelect,
   fetchOnOpen: props.fetchOnOpen,
-  api: territoryApi.getTerritoryList
+  api: territoryApi.getDistrictList
 })
 </script>
 
 <template>
   <ui-select
     v-model="model"
+    append-to-body
     v-bind="$attrs"
     autocomplete="off"
-    append-to-body
     searchable
     :options="options"
     :loading="loading"

@@ -6,12 +6,14 @@ import { TargetIndustrySelect } from "~/features/target-industry"
 import { TerritorySelect } from "~/features/territory"
 import InvestmentTypeSelect from "~/features/investment/ui/investment-type-select.vue"
 import InvestmentAmountSelect from "~/features/investment/ui/investment-amount-select.vue"
+import { helpers } from "@vuelidate/validators"
 
 const { t } = useI18n({ useScope: "local" })
 const { register } = useRegisterInvestorService()
 
 type SelectOptions = Array<ISelect>
 
+const route = useRoute()
 const aboutUs: SelectOptions = [
   { label: t("additional-information.options.about_us.google"), value: "google" },
   { label: t("additional-information.options.about_us.linkedin"), value: "linkedin" },
@@ -25,18 +27,22 @@ const business: SelectOptions = [
   { label: t("short-answers.yes"), value: true },
   { label: t("short-answers.no"), value: false }
 ]
-
 const form = ref<RegisterInvestor>(new RegisterInvestor())
 const loading = ref(false)
-
-const { required, email, minLength } = useRule()
+const { required, email, minLength, requiredIf } = useRule()
 const rules = ref({
   company_name: { required },
   country: { required },
-  contact_person: { required },
+  name: { required },
+  surname: { required },
   position: { required },
   phone: { required, minLength: minLength(12) },
   email: { required, email },
+  pin: {
+    requiredIf: requiredIf(
+      computed(() => form.value.is_resident),
+    )
+  },
 
   target_industry_id: { required },
   region_id: { required },
@@ -54,147 +60,192 @@ const submit = async () => {
   const isValid = await vuelidate.value.$validate()
   if (isValid) register(form, loading)
 }
+
+onMounted(() => {
+  if (route.query.type && route.query.type !== "resident") {
+    form.value.is_resident = false
+  }
+})
 </script>
 
 <template>
   <form class="register-investor-form" @submit.prevent="submit">
     <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
-      <h3 class="title col-span-full">{{ t("basic-information.title") }}</h3>
-      <ui-form-group
-        v-bind="hasError('company_name')"
-        v-slot="{ id }"
-        class="col-span-full"
-        :label="t('basic-information.fields.company-name')"
-      >
-        <ui-input v-model="form.company_name" name="name" :id />
+      <h3 class="title col-span-full bg-blue-bondi text-white">{{ t("basic-information.title") }}</h3>
+      <ui-form-group v-bind="hasError('company_name')" v-slot="{ id }" class="col-span-full">
+        <ui-input
+          v-model="form.company_name"
+          name="name"
+          :id
+          :placeholder="t('basic-information.fields.company-name')"
+        />
       </ui-form-group>
 
-      <ui-form-group v-bind="hasError('country')" v-slot="{ id }" :label="t('basic-information.fields.country')">
-        <ui-input v-model="form.country" name="country" :id />
+      <ui-form-group v-bind="hasError('country')" v-slot="{ id }">
+        <ui-input v-model="form.country" name="country" :id :placeholder="t('basic-information.fields.country')" />
       </ui-form-group>
 
-      <ui-form-group
-        v-bind="hasError('contact_person')"
-        v-slot="{ id }"
-        :label="t('basic-information.fields.contact-person')"
-      >
-        <ui-input v-model="form.contact_person" name="contactPerson" :id />
+      <ui-form-group v-bind="hasError('name')" v-slot="{ id }">
+        <ui-input v-model="form.name" name="name" :id :placeholder="t('basic-information.fields.name')" />
       </ui-form-group>
-      <ui-form-group v-bind="hasError('position')" v-slot="{ id }" :label="t('basic-information.fields.position')">
-        <ui-input v-model="form.position" name="position" :id />
+      <ui-form-group v-bind="hasError('surname')" v-slot="{ id }">
+        <ui-input v-model="form.surname" name="surname" :id :placeholder="t('basic-information.fields.surname')" />
       </ui-form-group>
-      <ui-form-group v-bind="hasError('email')" v-slot="{ id }" :label="t('basic-information.fields.email')">
-        <ui-input v-model="form.email" name="email" :id />
+      <ui-form-group v-bind="hasError('position')" v-slot="{ id }">
+        <ui-input v-model="form.position" name="position" :id :placeholder="t('basic-information.fields.position')" />
       </ui-form-group>
-      <ui-form-group v-bind="hasError('phone')" v-slot="{ id }" :label="t('basic-information.fields.phone')">
-        <ui-mask-input v-model="form.phone" unmasked mask="+### (##) ### ## ##" name="phone" :id />
+      <ui-form-group v-bind="hasError('email')" v-slot="{ id }">
+        <ui-input v-model="form.email" name="email" :id :placeholder="t('basic-information.fields.email')" />
       </ui-form-group>
-      <ui-form-group v-slot="{ id }" :label="t('basic-information.fields.website')">
-        <ui-input v-model="form.website" :id />
+      <ui-form-group v-bind="hasError('phone')" v-slot="{ id }">
+        <ui-mask-input
+          v-model="form.phone"
+          unmasked
+          mask="+### (##) ### ## ##"
+          name="phone"
+          :id
+          :placeholder="t('basic-information.fields.phone')"
+        />
+      </ui-form-group>
+      <ui-form-group v-slot="{ id }">
+        <ui-input v-model="form.website" :id :placeholder="t('basic-information.fields.website')" />
+      </ui-form-group>
+      <ui-form-group v-if="form.is_resident" v-bind="hasError('pin')" v-slot="{ id }">
+        <ui-input v-model="form.pin" :id :placeholder="t('basic-information.fields.pin')" />
+      </ui-form-group>
+      <ui-form-group v-slot="{ id }" class="col-span-full">
+        <ui-checkbox
+          v-model="form.is_resident"
+          name="isResident"
+          label-class="text-white"
+          :label="t('basic-information.fields.is_resident')"
+          :id
+        />
       </ui-form-group>
     </div>
-    <hr />
     <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
-      <h3 class="title col-span-full">
+      <h3 class="title col-span-full bg-blue-bondi text-white">
         {{ t("financial-information.title") }}
       </h3>
-      <ui-form-group
-        v-bind="hasError('annual_revenue')"
-        v-slot="{ id }"
-        class="col-span-full"
-        :label="t('financial-information.fields.annual-revenue')"
-      >
-        <ui-input v-model="form.annual_revenue" name="annualRevenue" :id />
+      <ui-form-group v-bind="hasError('annual_revenue')" v-slot="{ id }" class="col-span-full">
+        <ui-input
+          v-model="form.annual_revenue"
+          name="annualRevenue"
+          :id
+          :placeholder="t('financial-information.fields.annual-revenue')"
+        />
       </ui-form-group>
-      <ui-form-group
-        v-bind="hasError('net_profit')"
-        v-slot="{ id }"
-        :label="t('financial-information.fields.net-profit')"
-      >
-        <ui-input v-model="form.net_profit" name="netProfit" :id />
+      <ui-form-group v-bind="hasError('net_profit')" v-slot="{ id }">
+        <ui-input
+          v-model="form.net_profit"
+          name="netProfit"
+          :id
+          :placeholder="t('financial-information.fields.net-profit')"
+        />
       </ui-form-group>
-      <ui-form-group
-        v-bind="hasError('number_of_employees')"
-        v-slot="{ id }"
-        :label="t('financial-information.fields.employees')"
-      >
-        <ui-input v-model="form.number_of_employees" name="numberOfEmployees" :id />
+      <ui-form-group v-bind="hasError('number_of_employees')" v-slot="{ id }">
+        <ui-input
+          v-model="form.number_of_employees"
+          name="numberOfEmployees"
+          :id
+          :placeholder="t('financial-information.fields.employees')"
+        />
       </ui-form-group>
     </div>
-    <hr />
     <div class="grid gap-x-4 gap-y-4 sm:grid-cols-2">
-      <h3 class="title col-span-full">{{ t("investment-preferences.title") }}</h3>
-      <ui-form-group
-        v-bind="hasError('target_industry_id')"
-        v-slot="{ id }"
-        :label="t('investment-preferences.fields.target-industry')"
-      >
-        <target-industry-select v-model="form.target_industry_id" name="target_industry_id" :searchable="false" :id />
-      </ui-form-group>
-      <ui-form-group
-        v-bind="hasError('region_id')"
-        v-slot="{ id }"
-        :label="t('investment-preferences.fields.preferred-region')"
-      >
-        <territory-select v-model="form.region_id" name="region_id" :searchable="false" :id />
-      </ui-form-group>
-      <ui-form-group
-        v-bind="hasError('investment_type_id')"
-        v-slot="{ id }"
-        :label="t('investment-preferences.fields.investment-type')"
-      >
-        <investment-type-select v-model="form.investment_type_id" name="investment_type_id" :searchable="false" :id />
-      </ui-form-group>
-      <ui-form-group
-        v-bind="hasError('investment_amount_id')"
-        v-slot="{ id }"
-        :label="t('investment-preferences.fields.investment-amount')"
-      >
-        <investment-amount-select
-          v-model="form.investment_amount_id"
-          name="investment_amount_id"
+      <h3 class="title col-span-full bg-blue-bondi text-white">{{ t("investment-preferences.title") }}</h3>
+      <ui-form-group v-bind="hasError('target_industry_id')" v-slot="{ id }">
+        <target-industry-select
+          v-model="form.target_industry_id"
+          name="target_industry_id"
+          :placeholder="t('investment-preferences.fields.target-industry')"
           :searchable="false"
           :id
         />
       </ui-form-group>
-      <ui-form-group
-        v-if="form.investment_amount_id === 'other'"
-        v-slot="{ id }"
-        :label="t('investment-preferences.fields.investment-amount')"
-      >
-        <ui-input v-model="form.investment_amount_variant" name="amountRange" :id />
+      <ui-form-group v-bind="hasError('region_id')" v-slot="{ id }">
+        <territory-select
+          v-model="form.region_id"
+          name="region_id"
+          :placeholder="t('investment-preferences.fields.preferred-region')"
+          :searchable="false"
+          :id
+        />
+      </ui-form-group>
+      <ui-form-group v-bind="hasError('investment_type_id')" v-slot="{ id }">
+        <investment-type-select
+          v-model="form.investment_type_id"
+          name="investment_type_id"
+          :placeholder="t('investment-preferences.fields.investment-type')"
+          :searchable="false"
+          :id
+        />
+      </ui-form-group>
+      <ui-form-group v-bind="hasError('investment_amount_id')" v-slot="{ id }">
+        <investment-amount-select
+          v-model="form.investment_amount_id"
+          name="investment_amount_id"
+          :placeholder="t('investment-preferences.fields.investment-amount')"
+          :searchable="false"
+          :id
+        />
+      </ui-form-group>
+      <ui-form-group v-if="form.investment_amount_id === 'other'" v-slot="{ id }">
+        <ui-input
+          v-model="form.investment_amount_variant"
+          name="amountRange"
+          :placeholder="t('investment-preferences.fields.investment-amount')"
+          :id
+        />
       </ui-form-group>
     </div>
-    <hr />
     <div class="grid gap-x-4 gap-y-4 sm:grid-cols-2">
-      <h3 class="title col-span-full">{{ t("experience.title") }}</h3>
-      <ui-form-group v-bind="hasError('has_business')" v-slot="{ id }" :label="t('experience.fields.have-a-business')">
-        <multiselect v-model="form.has_business" name="has_business" :options="business" :id />
+      <h3 class="title col-span-full bg-blue-bondi text-white">{{ t("experience.title") }}</h3>
+      <ui-form-group v-bind="hasError('has_business')" v-slot="{ id }">
+        <multiselect
+          v-model="form.has_business"
+          name="has_business"
+          :placeholder="t('experience.fields.have-a-business')"
+          :options="business"
+          :id
+        />
       </ui-form-group>
-      <ui-form-group
-        v-bind="hasError('investment_experience')"
-        v-slot="{ id }"
-        :label="t('experience.fields.investment-experience')"
-      >
-        <ui-input v-model="form.investment_experience" name="investment_experience" :id />
+      <ui-form-group v-bind="hasError('investment_experience')" v-slot="{ id }">
+        <ui-input
+          v-model="form.investment_experience"
+          name="investment_experience"
+          :placeholder="t('experience.fields.investment-experience')"
+          :id
+        />
       </ui-form-group>
     </div>
-    <hr />
     <div class="grid gap-x-4 gap-y-4 sm:grid-cols-2">
-      <h3 class="title col-span-full">{{ t("additional-information.title") }}</h3>
-      <ui-form-group v-bind="hasError('source')" v-slot="{ id }" :label="t('additional-information.fields.find-type')">
-        <multiselect v-model="form.source" name="source" :options="aboutUs" :id @change="form.source_variant = ''" />
+      <h3 class="title col-span-full bg-blue-bondi text-white">{{ t("additional-information.title") }}</h3>
+      <ui-form-group v-bind="hasError('source')" v-slot="{ id }">
+        <multiselect
+          v-model="form.source"
+          name="source"
+          :placeholder="t('additional-information.fields.find-type')"
+          :options="aboutUs"
+          :id
+          @change="form.source_variant = ''"
+        />
       </ui-form-group>
-      <ui-form-group v-bind="hasError('comments')" v-slot="{ id }" :label="t('additional-information.fields.comments')">
-        <ui-input v-model="form.comments" name="comments" :id />
+      <ui-form-group v-bind="hasError('comments')" v-slot="{ id }">
+        <ui-input
+          v-model="form.comments"
+          name="comments"
+          :id
+          :placeholder="t('additional-information.fields.comments')"
+        />
       </ui-form-group>
-      <ui-form-group
-        v-bind="hasError('source_variant')"
-        v-if="form.source === 'other'"
-        v-slot="{ id }"
-        :label="t('additional-information.fields.aboutUsOther')"
-      >
-        <ui-input v-model="form.source_variant" name="source_variant" :id />
+      <ui-form-group v-bind="hasError('source_variant')" v-if="form.source === 'other'" v-slot="{ id }">
+        <ui-input
+          v-model="form.source_variant"
+          name="source_variant"
+          :id
+          :placeholder="t('additional-information.fields.aboutUsOther')"
+        />
       </ui-form-group>
     </div>
 
@@ -209,9 +260,8 @@ const submit = async () => {
   @apply mx-auto grid max-w-3xl gap-6;
 
   .title {
-    @apply text-lg font-bold;
+    @apply mt-4 rounded-3xl px-6 py-3 text-center font-bold;
   }
-
 }
 </style>
 
@@ -222,12 +272,16 @@ const submit = async () => {
       "title": "Basic Information",
       "fields": {
         "company-name": "Company Name",
+        "name": "Name",
+        "surname": "Surname",
         "country": "Country",
         "contact-person": "Contact Person",
         "position": "Position",
         "email": "Email",
         "phone": "Phone",
-        "website": "Website"
+        "website": "Website",
+        "is_resident": "I am a resident of the Republic of Uzbekistan",
+        "pin": "PINOI"
       },
       "description": "Please provide your basic information to proceed with the registration."
     },
@@ -330,13 +384,17 @@ const submit = async () => {
     "basic-information": {
       "title": "Основная информация",
       "fields": {
+        "name": "Имя",
+        "surname": "Фамилия",
         "company-name": "Название компании",
         "country": "Страна",
         "contact-person": "Контактное лицо",
         "position": "Должность",
         "email": "Электронная почта",
         "phone": "Телефон",
-        "website": "Веб-сайт"
+        "website": "Веб-сайт",
+        "is_resident": "Я являюсь резидентом Республики Узбекистан",
+        "pin": "ПИНФЛ"
       },
       "description": "Пожалуйста, предоставьте вашу основную информацию для продолжения регистрации."
     },
@@ -388,7 +446,11 @@ const submit = async () => {
         "position": "Lavozim",
         "email": "Elektron pochta",
         "phone": "Telefon",
-        "website": "Veb-sayt"
+        "website": "Veb-sayt",
+        "is_resident": "Men O'zbekiston Respublikasi rezidentiman",
+        "name": "Ism",
+        "surname": "Familiya",
+        "pin": "PINFL"
       },
       "description": "Ro'yxatdan o'tishni davom ettirish uchun asosiy ma'lumotlaringizni taqdim eting."
     },

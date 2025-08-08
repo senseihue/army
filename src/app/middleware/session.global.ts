@@ -1,4 +1,4 @@
-import { useAuthApi } from "~/features/auth"
+import { useAuthApi } from "~/entities/auth"
 
 export default defineNuxtRouteMiddleware(async (to) => {
   const authApi = useAuthApi()
