@@ -6,7 +6,7 @@ import { MainFooter, MainHeader } from "~/features/layout"
   <div class="flex min-h-dvh flex-col">
     <main-header />
 
-    <main class="grow">
+    <main class="flex flex-col grow">
       <slot />
     </main>
 

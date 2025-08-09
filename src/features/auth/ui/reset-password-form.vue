@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ResetPassword, useAuthService } from "~/entities/auth"
+import { useAuthService } from "~/features/auth"
+import { ResetPassword } from "~/entities/auth"
 
 const { t } = useI18n({
   useScope: "local"
@@ -13,7 +14,14 @@ const loading = ref(false)
 const { required, minLength, sameAs } = useRule()
 const rules = ref({
   password: { required, minLength: minLength(8) },
-  password_confirmation: { required, minLength: minLength(8), sameAs: sameAs(computed(() => form.value.password), t('reset_password.fields.password')) }
+  password_confirmation: {
+    required,
+    minLength: minLength(8),
+    sameAs: sameAs(
+      computed(() => form.value.password),
+      t("reset_password.fields.password")
+    )
+  }
 })
 const { vuelidate, hasError } = useValidate(form, rules)
 const submit = async () => {
@@ -28,7 +36,12 @@ const submit = async () => {
       <h3 class="title col-span-full text-center text-white">{{ t("reset_password.title") }}</h3>
 
       <ui-form-group v-bind="hasError('password')" v-slot="{ id }" class="col-span-full">
-        <ui-password-input v-model="form.password" name="password" :placeholder="t('reset_password.fields.password')" :id />
+        <ui-password-input
+          v-model="form.password"
+          name="password"
+          :placeholder="t('reset_password.fields.password')"
+          :id
+        />
       </ui-form-group>
       <ui-form-group v-bind="hasError('password_confirmation')" v-slot="{ id }" class="col-span-full">
         <ui-password-input

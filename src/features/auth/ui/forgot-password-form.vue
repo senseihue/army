@@ -1,11 +1,8 @@
 <script setup lang="ts">
-import { PurposeOfContactSelect, useContactUsService } from "~/features/forms/contact-us"
-import { ContactUs } from "~/entities/forms/contact-us"
-import { ForgotPassword, SignIn , useAuthService} from "~/entities/auth"
+import { useAuthService } from "~/features/auth"
+import { ForgotPassword } from "~/entities/auth"
 
-const { t } = useI18n({
-  useScope: "local"
-})
+const { t } = useI18n({ useScope: "local" })
 
 const { sendNewPasswordNonResident } = useAuthService()
 
@@ -13,10 +10,13 @@ const form = ref<ForgotPassword>(new ForgotPassword())
 const loading = ref(false)
 
 const { required, email } = useRule()
+
 const rules = ref({
   email: { required, email }
 })
+
 const { vuelidate, hasError } = useValidate(form, rules)
+
 const submit = async () => {
   const isValid = await vuelidate.value.$validate()
   if (isValid) sendNewPasswordNonResident(form, loading)
@@ -67,7 +67,7 @@ const submit = async () => {
 {
   "en": {
     "forgot_password": {
-      "title": "Sign in",
+      "title": "Forgot Password?",
       "fields": {
         "email": "Email"
       }
@@ -77,7 +77,7 @@ const submit = async () => {
   },
   "ru": {
     "forgot_password": {
-      "title": "Вход в систему",
+      "title": "Забыли пароль?",
       "fields": {
         "email": "Электронная почта"
       }
@@ -87,7 +87,7 @@ const submit = async () => {
   },
   "uz": {
     "forgot_password": {
-      "title": "Kirish",
+      "title": "Parolni unutdingizmi?",
       "fields": {
         "email": "Elektron pochta"
       }

@@ -9,5 +9,3 @@ import { SignInForm } from "~/features/auth/ui"
     </div>
   </div>
 </template>
-
-<style scoped></style>

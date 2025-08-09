@@ -1,6 +1,6 @@
 <script setup lang="ts">
+import { useAuthApi } from "~/features/auth"
 import { ProfileHeader, ProfileMainInfo, ProfilePassportInfo } from "~/features/profile"
-import { useAuthApi } from "~/entities/auth"
 
 definePageMeta({
   protected: true

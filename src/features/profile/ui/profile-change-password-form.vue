@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ChangePassword, useAuthService } from "~/entities/auth"
+import { useAuthService } from "~/features/auth"
+import { ChangePassword } from "~/entities/auth"
 
 const { t } = useI18n({
   useScope: "local"
@@ -81,7 +82,7 @@ const submit = async () => {
 
 <style>
 .change_password {
-  @apply mx-auto grid max-w-3xl w-full gap-6;
+  @apply mx-auto grid w-full max-w-3xl gap-6;
 
   .title {
     @apply text-lg font-bold;

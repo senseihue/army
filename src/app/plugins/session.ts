@@ -3,12 +3,10 @@ export default defineNuxtPlugin(() => {
   const localePath = useLocalePath()
 
   const token = useCookie("token")
-  const loaded = useState<boolean>("loaded", () => ref(false)) // Profile is loaded
-  const loading = useState<boolean>("loading", () => ref(false)) // Flag for loading
-  const profile = useState<ISessionProfile | undefined>("profile", () => ref())
-  const loggedIn = computed(() => {
-    return !!(profile.value?.user.id)
-  })
+  const loaded = ref(false) // Profile is loaded
+  const loading = ref(false) // Flag for loading
+  const profile = ref<ISessionProfile>()
+  const loggedIn = computed(() => !!profile.value?.user?.id)
 
   watch(loggedIn, (value) => {
     if (!value) {

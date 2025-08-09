@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import { SignIn, useAuthService } from "~/entities/auth"
+import { useAuthService } from "~/features/auth"
+import { SignIn } from "~/entities/auth"
 
-const { t } = useI18n({
-  useScope: "local"
-})
+const { t } = useI18n({ useScope: "local" })
 
 const { signInNonResident } = useAuthService()
 
@@ -15,10 +14,12 @@ const rules = ref({
   email: { required, email },
   password: { required }
 })
+
 const { vuelidate, hasError } = useValidate(form, rules)
+
 const submit = async () => {
   const isValid = await vuelidate.value.$validate()
-  if (isValid) signInNonResident(form, loading)
+  if (isValid) await signInNonResident(form, loading)
 }
 </script>
 
