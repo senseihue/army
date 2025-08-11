@@ -7,6 +7,10 @@ export const useTerritoryApi = () => {
     return $http.$get(`${BASE_URL}/territory`, { params })
   }
 
+  const getTerritoryPublicList = async (params: Record<string, any>): AsyncResponseContainer<IRegion[]> => {
+    return $http.$get(`${INTEGRATION_URL}/territorial-entity/regions`, { params })
+  }
+
   const getDistrictList = async (params: Record<string, any>): AsyncResponseContainer<ITerritory[]> => {
     return $http.$get(`${INTEGRATION_URL}/territorial-entity/districts`, { params })
   }
@@ -18,6 +22,7 @@ export const useTerritoryApi = () => {
   return {
     getTerritoryList,
     getDistrictList,
-    getTerritoryById
+    getTerritoryById,
+    getTerritoryPublicList
   }
 }

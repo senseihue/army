@@ -12,4 +12,17 @@ declare global {
   interface IProjectCategoryById extends IProjectCategory {
     service_categories: IProjectCategory[]
   }
+
+  interface  IProjectCategorySector {
+    id: number
+    content: string
+    created: string
+  }
+
+  interface IProjectCategoryAmount {
+    id: number
+    content: string
+    from: number
+    to: number
+  }
 }
