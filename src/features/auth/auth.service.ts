@@ -83,6 +83,7 @@ export const useAuthService = () => {
   }
   const sendNewPasswordNonResident = async (dto: Ref<ForgotPassword>, loading: Ref<boolean>) => {
     loading.value = true
+    dto.value.role = route.query?.role as string
 
     await reCAPTCHA?.recaptchaLoaded()
     dto.value.hash = await reCAPTCHA?.executeRecaptcha("sendnewpassword")

@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { useAuthService } from "~/features/auth"
 import { ChangePassword } from "~/entities/auth"
+import { useProfileService } from "~/features/profile"
 
 const { t } = useI18n({
   useScope: "local"
 })
 
-const { changePasswordNonResident } = useAuthService()
+const { changePasswordNonResident } = useProfileService()
 
 const form = ref<ChangePassword>(new ChangePassword())
 const loading = ref(false)

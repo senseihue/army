@@ -21,21 +21,11 @@ export const useAuthApi = () => {
     return $http.$post(`${BASE_URL}/auth/reset-password`, data)
   }
 
-  const changePassword = (data: Record<string, any>): AsyncResponseContainer<ISignInResponse> => {
-    return $http.$post(`${BASE_URL}/profile/change-password`, data)
-  }
-
-  const getProfile = (): AsyncResponseContainer<ISessionProfile> => {
-    return $http.$get(`${BASE_URL}/profile`)
-  }
-
   return {
     getRedirectUrl,
     signIn,
-    getProfile,
     sendNewPassword,
     resetPassword,
-    signInNonResident,
-    changePassword
+    signInNonResident
   }
 }
