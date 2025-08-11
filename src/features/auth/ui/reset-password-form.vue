@@ -7,8 +7,9 @@ const { t } = useI18n({
 })
 
 const { resetPasswordNonResident } = useAuthService()
+const route = useRoute()
 
-const form = ref<ResetPassword>(new ResetPassword())
+const form = ref<ResetPassword>(new ResetPassword(route.query))
 const loading = ref(false)
 
 const { required, minLength, sameAs } = useRule()
