@@ -17,7 +17,7 @@ const list = computed(() => [
 ])
 
 const user = computed(() => {
-  return profile.value[profile.value.role]
+  return profile.value ? profile.value[profile.value?.role] : {}
 })
 </script>
 
