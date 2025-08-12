@@ -9,7 +9,7 @@ export const useProjectApi = () => {
     return $http.$get(`${BASE_URL}/project/${id}`)
   }
 
-  const getPublicServiceSector = async (params: Record<string, any>): AsyncResponseContainer => {
+  const getPublicServiceSector = async (params: Record<string, any>): AsyncResponseContainer<IProjectSector[]> => {
     return $http.$get(`${BASE_URL}/service-sector`, { params })
   }
 

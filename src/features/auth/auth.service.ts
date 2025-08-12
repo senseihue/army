@@ -1,5 +1,5 @@
 import { useAuthApi } from "~/features/auth"
-import { ChangePassword, type ForgotPassword, type ResetPassword, type SignIn } from "~/entities/auth"
+import { ForgotPassword, type ResetPassword, type SignIn } from "~/entities/auth"
 
 import { useReCaptcha } from "vue-recaptcha-v3"
 
@@ -94,6 +94,7 @@ export const useAuthService = () => {
         token.value = content.token
         $session.profile.value = content.profile
         $toast.success(t("messages.success.password_reset"))
+        dto.value = new ForgotPassword()
         navigateTo(localePath("/auth/sign-in"))
       })
       .catch((error) => {
@@ -120,29 +121,12 @@ export const useAuthService = () => {
       })
       .finally(() => (loading.value = false))
   }
-  const changePasswordNonResident = async (dto: Ref<ChangePassword>, loading: Ref<boolean>) => {
-    loading.value = true
-
-    await reCAPTCHA?.recaptchaLoaded()
-    dto.value.hash = await reCAPTCHA?.executeRecaptcha("changepassword")
-    return authApi
-      .changePassword(dto.value)
-      .then(() => {
-        $toast.success(t("messages.success.saved"))
-        dto.value = new ChangePassword()
-      })
-      .catch((error) => {
-        alert.errorDialog(error?.response?.data?.message || "Login failed")
-      })
-      .finally(() => (loading.value = false))
-  }
 
   return {
     getRedirectUrl,
     signIn,
     signInNonResident,
     sendNewPasswordNonResident,
-    resetPasswordNonResident,
-    changePasswordNonResident
+    resetPasswordNonResident
   }
 }

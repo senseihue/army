@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { ProfileHeader } from "~/features/profile"
-import { ProfileChangePasswordForm } from "~/features/profile/ui"
+import { ProfileHeader, ProfileChangePasswordForm } from "~/features/profile"
 
 definePageMeta({ nonResidentOnly: true })
 </script>

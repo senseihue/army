@@ -13,6 +13,11 @@ const list = computed(() => [
     icon: "hugeicons:chart-evaluation",
     title: t("nav.profile.my_services"),
     to: localePath("/profile/my-services")
+  },
+  {
+    icon: "lucide:archive",
+    title: t("nav.profile.my_projects"),
+    to: localePath("/profile/my-projects")
   }
 ])
 </script>

@@ -130,7 +130,8 @@
     "project_location": "Местоположение проекта",
     "project_information": "Информация о проекте",
     "project_category": "Категория проекта",
-    "loading": "Загрузка..."
+    "loading": "Загрузка...",
+    "add_project": "Добавить проект",
   },
   "validations": {
     "email": "Неверный адрес электронной почты",

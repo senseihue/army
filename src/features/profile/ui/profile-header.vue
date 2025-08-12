@@ -21,9 +21,11 @@ defineEmits<{
         {{ title }}
       </h2>
     </div>
-    <ui-button v-if="showRefresher" class="rounded-xl" color="secondary" variant="flat" @click="$emit('refresh')">
-      <span>{{ $t("actions.refresh") }}</span>
-      <icon name="lucide:refresh-ccw" />
-    </ui-button>
+    <slot name="action">
+      <ui-button v-if="showRefresher" class="rounded-xl" color="secondary" variant="flat" @click="$emit('refresh')">
+        <span>{{ $t("actions.refresh") }}</span>
+        <icon name="lucide:refresh-ccw" />
+      </ui-button>
+    </slot>
   </div>
 </template>

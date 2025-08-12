@@ -4,7 +4,7 @@ import { ProfileSideBar } from "~/features/layout/profile"
 
 <template>
   <div class="container-7xl">
-    <div class="flex flex-col gap-4 pb-9 pt-5 md:flex-row md:gap-2">
+    <div class="flex flex-col gap-4 pb-9 pt-5 md:flex-row md:gap-[18px]">
       <profile-side-bar />
       <slot />
     </div>

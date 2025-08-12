@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ChangePassword } from "~/entities/auth"
+import { ChangePassword } from "~/entities/profile"
 import { useProfileService } from "~/features/profile"
 
 const { t } = useI18n({
