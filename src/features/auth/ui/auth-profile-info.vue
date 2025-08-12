@@ -15,6 +15,10 @@ const list = computed(() => [
     to: localePath("/profile/my-services")
   }
 ])
+
+const user = computed(() => {
+  return profile.value[profile.value.role]
+})
 </script>
 
 <template>
@@ -26,10 +30,10 @@ const list = computed(() => [
         <div>
           <div class="flex flex-col p-3">
             <div class="font-bold uppercase">
-              <p class="whitespace-nowrap">{{ profile?.user?.full_name }}</p>
+              <p class="whitespace-nowrap">{{ user?.name }} {{ user.surname  }}</p>
             </div>
             <div class="">
-              <p class="text-sm text-gray-600">{{ profile?.user?.user_id }}</p>
+              <p class="text-sm text-gray-600">{{ profile?.email }}</p>
             </div>
           </div>
 
