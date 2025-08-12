@@ -1,9 +1,23 @@
 <script lang="ts" setup>
 import { useAuthService } from "~/features/auth"
+import type { RouteLocation } from "vue-router"
 
 const { signIn, getRedirectUrl } = useAuthService()
+const route = useRoute()
 
-onMounted(() => getRedirectUrl(window.location.origin))
+definePageMeta({
+  validate: (route: RouteLocation) => {
+    if (!route.query.role) {
+      throw showError({
+        statusCode: 403,
+        statusMessage: "Forbidden"
+      })
+    }
+    return true
+  }
+})
+
+onMounted(() => getRedirectUrl(`${window.location.origin}/sso?role=${route.query.role}`))
 </script>
 
 <template>

@@ -5,8 +5,8 @@ export const useAuthApi = () => {
   const getRedirectUrl = (origin?: string, role?: string): AsyncResponseContainer<string> => {
     return $http.$get(`${BASE_URL}/auth`, { params: { state: origin, role } })
   }
-  const signIn = (code: string): AsyncResponseContainer<ISignInResponse> => {
-    return $http.$post(`${BASE_URL}/auth`, null, { params: { code } })
+  const signIn = (code: string, role: string): AsyncResponseContainer<ISignInResponse> => {
+    return $http.$post(`${BASE_URL}/auth`, null, { params: { code, role } })
   }
 
   const signInNonResident = (data: Record<string, any>): AsyncResponseContainer<ISignInResponse> => {
