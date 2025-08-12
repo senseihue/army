@@ -14,6 +14,7 @@ export const useAuthService = () => {
   const reCAPTCHA = useReCaptcha()
   const getRedirectUrl = (origin?: string, role?: string) =>
     authApi.getRedirectUrl(origin, role).then(({ content }) => {
+      console.log(content, "redirectUrl")
       window.open(content, "_self")
     })
   // https://sso.egov.uz/sso/oauth/Authorization.do?response_type=one_code&client_id=academy_uz&redirect_uri=https%3A%2F%2Fmy.academy.uz%2Fsso&scope=academy_uz&state=https://portal.academy.uz/sso
@@ -21,13 +22,15 @@ export const useAuthService = () => {
   const signIn = () => {
     const code = <string>route.query?.code
     const state = <string>route.query?.state
+    const role = <string>route.query?.role
+    console.log(route.query, 'route.query?.state')
 
     if (!code) return navigateTo(localePath("/"))
 
     $session.loading.value = true
 
     authApi
-      .signIn(code)
+      .signIn(code, role)
       .then(({ content }) => {
         const token = useCookie("token")
         token.value = content.token
