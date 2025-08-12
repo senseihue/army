@@ -3,7 +3,7 @@ import { useAuthService } from "~/features/auth"
 import { AuthSelectRadio } from "~/entities/auth/ui"
 
 class AuthRole {
-  type: "investor" | "entrepreneur" = "entrepreneur"
+  type: "investor" | "businessman" = "businessman"
   residency: "resident" | "not_resident" = "resident"
 
   isInvestor() {
@@ -24,7 +24,7 @@ const form = ref<AuthRole>(new AuthRole())
 
 const signIn = () => {
   modal.hide("auth-role-select-modal")
-  if (form.value.isResident()) getRedirectUrl(`${window.location.origin}/sso`)
+  if (form.value.isResident()) getRedirectUrl(`${window.location.origin}/sso`, form.value.type)
   else navigateTo(localePath("/auth/sign-in"))
 }
 
@@ -46,7 +46,7 @@ const signUp = () => {
 
       <auth-select-radio
         v-model="form.type"
-        value="entrepreneur"
+        value="businessman"
         image="/img/auth/entrepreneur.png"
         :label="$t('actions.entrepreneur')"
       />

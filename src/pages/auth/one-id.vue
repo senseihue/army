@@ -1,0 +1,15 @@
+<script lang="ts" setup>
+import { useAuthService } from "~/features/auth"
+
+const { signIn, getRedirectUrl } = useAuthService()
+
+onMounted(() => getRedirectUrl(window.location.origin))
+</script>
+
+<template>
+  <div>
+    <div class="grid min-h-dvh w-full place-items-center">
+      <ui-spinner size="size-32" />
+    </div>
+  </div>
+</template>

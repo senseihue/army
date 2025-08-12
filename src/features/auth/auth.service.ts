@@ -12,8 +12,8 @@ export const useAuthService = () => {
   const { $session, $toast } = useNuxtApp()
 
   const reCAPTCHA = useReCaptcha()
-  const getRedirectUrl = (origin?: string) =>
-    authApi.getRedirectUrl(origin).then(({ content }) => {
+  const getRedirectUrl = (origin?: string, role?: string) =>
+    authApi.getRedirectUrl(origin, role).then(({ content }) => {
       window.open(content, "_self")
     })
   // https://sso.egov.uz/sso/oauth/Authorization.do?response_type=one_code&client_id=academy_uz&redirect_uri=https%3A%2F%2Fmy.academy.uz%2Fsso&scope=academy_uz&state=https://portal.academy.uz/sso
