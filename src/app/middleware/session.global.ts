@@ -22,11 +22,9 @@ export default defineNuxtRouteMiddleware(async (to) => {
       loading.value = false
     }
   }
-
   if ($session?.token.value && !$session?.loaded.value) {
     await getProfile()
   }
-
   if (to.meta?.protected && !$session?.token.value) {
     const { origin } = useRequestURL()
 
