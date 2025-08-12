@@ -1,4 +1,4 @@
-import { useProfileApi } from "~/features/auth"
+import { useProfileApi } from "~/features/profile"
 import { ChangePassword } from "~/entities/auth"
 
 import { useReCaptcha } from "vue-recaptcha-v3"

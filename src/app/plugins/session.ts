@@ -6,7 +6,9 @@ export default defineNuxtPlugin(() => {
   const loaded = ref(false) // Profile is loaded
   const loading = ref(false) // Flag for loading
   const profile = ref<ISessionProfile>()
-  const loggedIn = computed(() => !!profile.value?.user?.id)
+  const loggedIn = computed(() => {
+    return !!profile.value?.user?.id
+  })
 
   watch(loggedIn, (value) => {
     if (!value) {
