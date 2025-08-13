@@ -221,7 +221,8 @@
       "entity_unblocked": "{name} has been unblocked",
       "saved": "Saved successfully",
       "registration": "Registration successful!",
-      "password_reset": "Reset password link has been sent to your email"
+      "password_reset": "Reset password link has been sent to your email",
+      "non_resident_registration": "Registration was successful. the password has been sent to your email address"
     }
   }
 }

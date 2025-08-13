@@ -164,7 +164,8 @@
       "entity_unblocked": "{name} blokdan chiqarildi",
       "saved": "Muvaffaqiyatli saqlandi",
       "registration": "Ro'yxatdan o'tish muvaffaqiyatli yakunlandi!",
-      "password_reset": "Parolni tiklash havolasi elektron pochtangizga yuborildi"
+      "password_reset": "Parolni tiklash havolasi elektron pochtangizga yuborildi",
+      "non_resident_registration": "Ro'yxatdan o'tish muvaffaqiyatli amalga oshirildi. Parol sizning elektron pochtangizga yuborildi"
     }
   }
 }
