@@ -10,44 +10,50 @@ declare global {
     type: string
     status: string
     budget: number
+    pp: string
+    irr: string
+    npv: string
+    email: string
+    phone: string
+    content: string
     upload: IFile
-    category: {
-      id: number
-      title: string
-    }
-    sector: {
-      id: number
-      title: string
-    }
+    presentation: IFile
+    category: IProjectCategory
+    sector: IProjectSector
     upload_id: number
+    presentation_id: number
     category_id: number
     sector_id: number
     project_status: string
+    latitude: number
     longitude: number
     createdAt: string
     updatedAt: string
+  }
+
+  interface IProjectSector {
+    id: number
+    title: string
   }
 }
 
 export class PersonalProject {
   id!: number
-  title: string =  ""
-  description: string =  ""
-  type: string =  ""
-  status: string =  ""
-  budget!: number
-  category?: {
-    id: number
-    title: string
-  }
-  sector?: {
-    id: number
-    title: string
-  }
-  category_id!: number
+  title: string = ""
+  content: string = ""
   sector_id!: number
-  project_status: string =  ""
+  upload!: File
+  presentation!: File
+  category_id!: number
+  latitude!: number
   longitude!: number
-  createdAt: string =  ""
-  updatedAt: string =  ""
+  budget: number = 0
+  pp: string = ""
+  irr: string = ""
+  npv: string = ""
+  status: string = ""
+  location?: string
+  project_status: string = ""
+  email: string = ""
+  phone: string = ""
 }

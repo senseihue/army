@@ -8,7 +8,7 @@ definePageMeta({
 const router = useRouter()
 
 const changeRoute = () => {
-  router.push('/profile/my-projects/form')
+  router.push("/profile/my-projects/form")
 }
 </script>
 
@@ -19,11 +19,9 @@ const changeRoute = () => {
         <ui-button class="rounded-xl" color="primary" variant="flat" @click="changeRoute">
           <span>{{ $t("actions.add_project") }}</span>
         </ui-button>
-
       </template>
     </profile-header>
     <div class="mt-2 grid w-full gap-4 rounded-2xl bg-white p-4">
-
       <project-grid />
     </div>
   </div>

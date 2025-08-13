@@ -131,7 +131,8 @@
     "project_information": "Информация о проекте",
     "project_category": "Категория проекта",
     "loading": "Загрузка...",
-    "add_project": "Добавить проект"
+    "add_project": "Добавить проект",
+    "publish": "Опубликовать"
   },
   "validations": {
     "email": "Неверный адрес электронной почты",

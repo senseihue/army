@@ -188,7 +188,8 @@
     "project_information": "Project information",
     "project_category": "Project category",
     "loading": "Loading...",
-    "add_project": "Add project"
+    "add_project": "Add project",
+    "publish": "Publish"
   },
   "validations": {
     "email": "Invalid email address",
