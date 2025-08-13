@@ -93,7 +93,7 @@ export const useAuthService = () => {
       .sendNewPassword(dto.value)
       .then(() => {
         $toast.success(t("messages.success.password_reset"))
-        navigateTo(localePath("/auth/sign-in"))
+        navigateTo(localePath(`/auth/sign-in?role=${route.query.role}`))
       })
       .catch((error) => {
         alert.errorDialog(error?.response?.data?.message || "Login failed")
