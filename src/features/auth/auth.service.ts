@@ -74,8 +74,7 @@ export const useAuthService = () => {
     return authApi
       .signInNonResident(dto.value)
       .then(({ content }) => {
-        const token = useCookie("token")
-        token.value = content.token
+        $session.token.value = content.token
         $session.profile.value = content.profile
 
         navigateTo(localePath("/profile"))
@@ -92,10 +91,7 @@ export const useAuthService = () => {
     dto.value.hash = await reCAPTCHA?.executeRecaptcha("sendnewpassword")
     return authApi
       .sendNewPassword(dto.value)
-      .then(({ content }) => {
-        const token = useCookie("token")
-        token.value = content.token
-        $session.profile.value = content.profile
+      .then(() => {
         $toast.success(t("messages.success.password_reset"))
         navigateTo(localePath("/auth/sign-in"))
       })
@@ -112,10 +108,7 @@ export const useAuthService = () => {
     dto.value.hash = await reCAPTCHA?.executeRecaptcha("resetpassword")
     return authApi
       .resetPassword(dto.value)
-      .then(({ content }) => {
-        const token = useCookie("token")
-        token.value = content.token
-        $session.profile.value = content.profile
+      .then(() => {
         navigateTo(localePath("/auth/sign-in"))
       })
       .catch((error) => {
