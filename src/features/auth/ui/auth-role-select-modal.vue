@@ -24,8 +24,8 @@ const form = ref<AuthRole>(new AuthRole())
 
 const signIn = () => {
   modal.hide("auth-role-select-modal")
-  if (form.value.isResident()) getRedirectUrl(`${window.location.origin}/sso`, form.value.type)
-  else navigateTo(localePath("/auth/sign-in"))
+  if (form.value.isResident()) getRedirectUrl(`${window.location.origin}/sso?role=${form.value.type}`, form.value.type)
+  else navigateTo(localePath(`/auth/sign-in?role=${form.value.type}`))
 }
 
 const signUp = () => {
