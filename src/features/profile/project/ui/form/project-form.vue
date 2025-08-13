@@ -15,7 +15,6 @@ const onSubmit = () => {
 <template>
   <form @submit.prevent="onSubmit">
     <div>
-      {{ $t('messages.') }}
       <project-file-upload label="" />
     </div>
   </form>
