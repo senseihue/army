@@ -45,7 +45,7 @@
       "main": "Профиль",
       "my_services": "Мои услуги",
       "my_projects": "Мои проекты",
-      "change_password": "Изменить пароль",
+      "change_password": "Изменить пароль"
     }
   },
   "project_status": {
@@ -131,7 +131,7 @@
     "project_information": "Информация о проекте",
     "project_category": "Категория проекта",
     "loading": "Загрузка...",
-    "add_project": "Добавить проект",
+    "add_project": "Добавить проект"
   },
   "validations": {
     "email": "Неверный адрес электронной почты",
