@@ -16,6 +16,13 @@ declare global {
     content: string
   }
 
+  interface IProjectBudget {
+    id: number
+    content: string
+    from: number
+    to: number
+  }
+
   interface IProjectById extends IProject {
     content: string
     presentation: IFile

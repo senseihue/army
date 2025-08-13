@@ -9,6 +9,7 @@ declare global {
     description: string
     type: string
     status: string
+    state: string
     budget: number
     pp: string
     irr: string
@@ -40,6 +41,7 @@ declare global {
 export class PersonalProject {
   id!: number
   title: string = ""
+  state: string = ""
   content: string = ""
   sector_id!: number
   upload!: File

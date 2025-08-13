@@ -1,7 +1,6 @@
 import { usePersonalProjectApi } from "~/features/profile/project"
 import type { PersonalProject } from "~/entities/profile/personal-project"
 import { usePersonalProjectStore } from "~/entities/profile/personal-project"
-import type { AxiosRequestConfig } from "axios"
 
 export const usePersonalProjectService = () => {
   const personalProjectApi = usePersonalProjectApi()

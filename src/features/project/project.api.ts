@@ -13,7 +13,7 @@ export const useProjectApi = () => {
     return $http.$get(`${BASE_URL}/service-sector`, { params })
   }
 
-  const getPublicAmount = async (params: Record<string, any>): AsyncResponseContainer => {
+  const getPublicAmount = async (params: Record<string, any>): AsyncResponseContainer<IProjectBudget> => {
     return $http.$get(`${BASE_URL}/public/project-amount`, { params })
   }
 

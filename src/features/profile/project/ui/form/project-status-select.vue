@@ -16,22 +16,22 @@ const roleList = computed(() => {
 {
   "en": {
     "project_status": {
-      "negotiation": "Under  negotiation",
-      "open": "Open for investment",
+      "under_negotiation": "Under  negotiation",
+      "open_for_investment": "Open for investment",
       "closed": "Closed"
     }
   },
   "ru": {
     "project_status": {
-      "negotiation": "На стадии переговоров",
-      "open": "Открыт для инвестиций",
+      "under_negotiation": "На стадии переговоров",
+      "open_for_investment": "Открыт для инвестиций",
       "closed": "Закрыт"
     }
   },
   "uz": {
     "project_status": {
-      "negotiation": "Kelishuv jarayonida",
-      "open": "Sarmoya uchun ochiq",
+      "under_negotiation": "Kelishuv jarayonida",
+      "open_for_investment": "Sarmoya uchun ochiq",
       "closed": "Yopiq"
     }
   }

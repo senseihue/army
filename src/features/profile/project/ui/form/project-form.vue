@@ -13,7 +13,7 @@ const { t } = useI18n({
 })
 
 const loading = ref(false)
-const mode = ref<'create' | 'edit' | "view">('create')
+const mode = ref<"create" | "edit" | "view">("create")
 
 const form = ref<PersonalProject>(new PersonalProject())
 const rules = ref({
@@ -21,7 +21,7 @@ const rules = ref({
   sector_id: { required },
   title: { required, minLength: minLength(3) },
   budget: { required },
-  project_status: { required },
+  status: { required },
   location: { required },
   irr: { required },
   upload: { required },
@@ -38,9 +38,16 @@ const onSubmit = async () => {
   if (isValid) savePersonalProject(form, loading)
 }
 
-onMounted(() => {
+onMounted(async () => {
   if (route.query.id) {
-    getPersonalProject(Number(route.query.id), form, loading)
+    await getPersonalProject(Number(route.query.id), form, loading)
+    if (form.value.state === "approved") {
+      mode.value = "view"
+    } else {
+      mode.value = "edit"
+    }
+  } else {
+    mode.value = "create"
   }
 })
 </script>
@@ -53,40 +60,51 @@ onMounted(() => {
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 md:gap-x-5 md:gap-y-4">
       <ui-form-group v-bind="hasError('category_id')" v-slot="{ id }" :label="t('fields.category')">
-        <project-category-select v-model="form.category_id" :id />
+        <project-category-select v-model="form.category_id" :readonly="mode === 'view'" :id />
       </ui-form-group>
       <ui-form-group v-bind="hasError('sector_id')" v-slot="{ id }" :label="t('fields.sector')">
-        <project-sector-select v-model="form.sector_id" :id />
+        <project-sector-select v-model="form.sector_id" :readonly="mode === 'view'" :id />
       </ui-form-group>
       <ui-form-group v-bind="hasError('title')" v-slot="{ id }" :label="t('fields.title')">
-        <ui-input v-model="form.title" :id />
+        <ui-input v-model="form.title" :readonly="mode === 'view'" :id />
       </ui-form-group>
       <ui-form-group v-bind="hasError('budget')" v-slot="{ id }" :label="t('fields.budget', { currency: 'USD' })">
-        <ui-input v-model="form.budget" type="number" :id />
+        <ui-input v-model="form.budget" type="number" :readonly="mode === 'view'" :id />
       </ui-form-group>
-      <ui-form-group v-bind="hasError('project_status')" v-slot="{ id }" :label="t('fields.status')">
-        <project-status-select v-model="form.project_status" :id />
+      <ui-form-group v-bind="hasError('status')" v-slot="{ id }" :label="t('fields.status')">
+        <project-status-select v-model="form.status" :readonly="mode === 'view'" :id />
       </ui-form-group>
 
       <ui-form-group v-bind="hasError('location')" v-slot="{ id }" :label="t('fields.location')">
-        <ui-input v-model="form.location" :id />
+        <ui-input v-model="form.location" :readonly="mode === 'view'" :id />
       </ui-form-group>
       <ui-form-group v-bind="hasError('irr')" v-slot="{ id }" :label="t('fields.irr')">
-        <ui-input v-model="form.irr" :id />
+        <ui-input v-model="form.irr" :readonly="mode === 'view'" :id />
       </ui-form-group>
       <ui-form-group v-bind="hasError('pp')" v-slot="{ id }" :label="t('fields.pp')">
-        <ui-input v-model="form.pp" :id />
+        <ui-input v-model="form.pp" :readonly="mode === 'view'" :id />
       </ui-form-group>
       <ui-form-group v-bind="hasError('npv')" v-slot="{ id }" :label="t('fields.npv')">
-        <ui-input v-model="form.npv" :id />
+        <ui-input v-model="form.npv" :readonly="mode === 'view'" :id />
       </ui-form-group>
       <ui-form-group v-bind="hasError('phone')" v-slot="{ id }" :label="t('fields.contact_phone')">
-        <ui-mask-input v-model="form.phone" unmasked mask="+### (##) ### ## ##" name="phone" :id />
+        <ui-mask-input
+          v-model="form.phone"
+          unmasked
+          mask="+### (##) ### ## ##"
+          name="phone"
+          :readonly="mode === 'view'"
+          :id
+        />
       </ui-form-group>
 
       <ui-form-group v-bind="hasError('email')" v-slot="{ id }" :label="t('fields.contact_email')">
-        <ui-input v-model="form.email" :id />
+        <ui-input v-model="form.email" :readonly="mode === 'view'" :id />
       </ui-form-group>
+      <ui-form-group class="col-span-full" v-bind="hasError('content')" v-slot="{ id }" :label="t('fields.description')">
+        <tiny-editor v-model="form.content" :readonly="mode === 'view'" :id />
+      </ui-form-group>
+
     </div>
   </form>
 </template>
