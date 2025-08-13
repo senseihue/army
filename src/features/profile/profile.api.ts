@@ -3,7 +3,7 @@ export const useProfileApi = () => {
   const { $http } = useNuxtApp()
 
   const changePassword = (data: Record<string, any>): AsyncResponseContainer<ISignInResponse> => {
-    return $http.$post(`${BASE_URL}/profile/change-password`, data)
+    return $http.$patch(`${BASE_URL}/profile/change-password`, data)
   }
 
   const getProfile = (): AsyncResponseContainer<ISessionProfile> => {
