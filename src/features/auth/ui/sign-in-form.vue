@@ -37,7 +37,7 @@ const submit = async () => {
       </ui-form-group>
 
       <div class="col-span-full text-end">
-        <nuxt-link-locale class="text-sm text-white underline" to="/auth/forgot-password">
+        <nuxt-link-locale class="text-sm text-white underline" :to="`/auth/forgot-password?role=${form.role}`">
           {{ t("forgot_password") }}
         </nuxt-link-locale>
       </div>
