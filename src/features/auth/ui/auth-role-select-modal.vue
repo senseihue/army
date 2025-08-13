@@ -3,7 +3,7 @@ import { useAuthService } from "~/features/auth"
 import { AuthSelectRadio } from "~/entities/auth/ui"
 
 class AuthRole {
-  type: "investor" | "businessman" = "businessman"
+  type: "investor" | "businessmen" = "businessmen"
   residency: "resident" | "not_resident" = "resident"
 
   isInvestor() {
@@ -46,7 +46,7 @@ const signUp = () => {
 
       <auth-select-radio
         v-model="form.type"
-        value="businessman"
+        value="businessmen"
         image="/img/auth/entrepreneur.png"
         :label="$t('actions.entrepreneur')"
       />
