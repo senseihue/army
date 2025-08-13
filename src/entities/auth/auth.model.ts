@@ -27,15 +27,13 @@ export class ResetPassword {
   hash?: string
   token?: string
   email?: string
-  role?: string
-  timestamp?: number
+  time?: number
 
   constructor(data?: any) {
     if (data) {
-      this.timestamp = data.timestamp
+      this.time = data.time
       this.email = data.email
       this.token = data.token
-      this.role = data.role
     }
   }
 

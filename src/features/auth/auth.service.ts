@@ -109,7 +109,8 @@ export const useAuthService = () => {
     return authApi
       .resetPassword(dto.value)
       .then(() => {
-        navigateTo(localePath("/auth/sign-in"))
+        $toast.success(t("messages.success.saved"))
+        navigateTo(localePath("/"))
       })
       .catch((error) => {
         alert.errorDialog(error?.response?.data?.message || "Login failed")
