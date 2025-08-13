@@ -25,26 +25,28 @@ export default defineNuxtRouteMiddleware(async (to) => {
   if ($session?.token.value && !$session?.loaded.value) {
     await getProfile()
   }
-  if (to.meta?.protected && !$session?.token.value) {
-    const { origin } = useRequestURL()
-
-    const { content } = await $fetch<IResponse<string>>("/gateway/core/auth", {
-      method: "GET",
-      params: { state: origin + "/sso" }
-    })
-
-    navigateTo(content, { external: true })
-    return abortNavigation()
-  }
-
   // For authenticated users
   const checkResidency = () => {
     if (!to.meta?.residentOnly && !to.meta?.nonResidentOnly) return
-    const user = $session?.profile.value?.user
+    const user = $session?.profile.value
     if (!user) throw showError({ statusCode: 401, statusMessage: "Unauthorized" })
-    if (to.meta.residentOnly && !user.isResident) throw showError({ statusCode: 403, statusMessage: "Forbidden" })
-    if (to.meta.nonResidentOnly && user.isResident) throw showError({ statusCode: 403, statusMessage: "Forbidden" })
+    if (to.meta.residentOnly && !user.is_resident) throw showError({ statusCode: 403, statusMessage: "Forbidden" })
+    if (to.meta.nonResidentOnly && user.is_resident) throw showError({ statusCode: 403, statusMessage: "Forbidden" })
   }
 
   checkResidency()
+
+  if (to.meta?.protected && !$session?.token.value) {
+    // const { origin } = useRequestURL()
+    //
+    // const { content } = await $fetch<IResponse<string>>("/gateway/core/auth", {
+    //   method: "GET",
+    //   params: { state: origin + "/sso" }
+    // })
+    //
+    // navigateTo(content, { external: true })
+    throw showError({ statusCode: 403, statusMessage: "Forbidden" })
+  }
+
+
 })
