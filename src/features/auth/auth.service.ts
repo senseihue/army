@@ -67,6 +67,7 @@ export const useAuthService = () => {
 
   const signInNonResident = async (dto: Ref<SignIn>, loading: Ref<boolean>) => {
     loading.value = true
+    dto.value.role = route.query?.role as string
 
     await reCAPTCHA?.recaptchaLoaded()
     dto.value.hash = await reCAPTCHA?.executeRecaptcha("signin")
@@ -86,7 +87,6 @@ export const useAuthService = () => {
   }
   const sendNewPasswordNonResident = async (dto: Ref<ForgotPassword>, loading: Ref<boolean>) => {
     loading.value = true
-    dto.value.role = route.query?.role as string
 
     await reCAPTCHA?.recaptchaLoaded()
     dto.value.hash = await reCAPTCHA?.executeRecaptcha("sendnewpassword")
@@ -123,29 +123,12 @@ export const useAuthService = () => {
       })
       .finally(() => (loading.value = false))
   }
-  const changePasswordNonResident = async (dto: Ref<ChangePassword>, loading: Ref<boolean>) => {
-    loading.value = true
-
-    await reCAPTCHA?.recaptchaLoaded()
-    dto.value.hash = await reCAPTCHA?.executeRecaptcha("changepassword")
-    return authApi
-      .changePassword(dto.value)
-      .then(() => {
-        $toast.success(t("messages.success.saved"))
-        dto.value = new ChangePassword()
-      })
-      .catch((error) => {
-        alert.errorDialog(error?.response?.data?.message || "Login failed")
-      })
-      .finally(() => (loading.value = false))
-  }
 
   return {
     getRedirectUrl,
     signIn,
     signInNonResident,
     sendNewPasswordNonResident,
-    resetPasswordNonResident,
-    changePasswordNonResident
+    resetPasswordNonResident
   }
 }

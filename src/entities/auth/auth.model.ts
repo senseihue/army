@@ -12,6 +12,7 @@ export class SignIn {
   email: string = ""
   password: string = ""
   hash?: string
+  role?: string
 }
 
 export class ForgotPassword {
