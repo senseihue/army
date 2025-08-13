@@ -41,15 +41,15 @@ export const useAuthService = () => {
             const url = new URL(state)
             url.searchParams.append("token", content.token)
             console.log(content, "For role")
-            // location.replace(url)
+            location.replace(url)
             console.log(state)
           } catch (error) {
             console.error("Invalid URL in state parameter:", error)
 
-            // navigateTo(localePath("/"))
+            navigateTo(localePath("/"))
           }
         } else {
-          // navigateTo(localePath("/"))
+          navigateTo(localePath("/"))
         }
       })
       .catch(() => {
