@@ -37,7 +37,7 @@ declare global {
     source: string
     source_variant: string
     comments: string
-    isResident: boolean
+    is_resident: boolean
   }
 }
 

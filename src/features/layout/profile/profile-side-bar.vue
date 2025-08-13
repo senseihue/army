@@ -25,7 +25,7 @@ const list = computed(() => [
     to: "/profile/my-projects"
   },
   {
-    show: !profile.value?.isResident,
+    show: !profile.value?.is_resident,
     icon: "solar:password-line-duotone",
     title: t("nav.profile.change_password"),
     to: "/profile/password"

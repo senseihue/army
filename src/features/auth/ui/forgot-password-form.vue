@@ -33,7 +33,7 @@ const submit = async () => {
       </ui-form-group>
 
       <div class="col-span-full text-end">
-        <nuxt-link-locale class="text-sm text-white underline" to="/auth/sign-in">
+        <nuxt-link-locale class="text-sm text-white underline" :to="`/auth/sign-in?role=${form.role}`">
           {{ t("sign_in") }}
         </nuxt-link-locale>
       </div>

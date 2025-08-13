@@ -2,7 +2,7 @@
 import { SignInForm } from "~/features/auth/ui"
 import type { RouteLocation } from "#vue-router"
 
-const roles = ["investor", "businessman"]
+const roles = ["investor", "businessmen"]
 
 definePageMeta({
   validate: (route: RouteLocation) => {

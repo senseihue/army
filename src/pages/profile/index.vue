@@ -28,7 +28,7 @@ const getProfile = async () => {
 <template>
   <div class="flex w-full flex-col gap-2">
     <profile-header icon-name="lucide:shield-user" :title="$t('nav.profile.main')" @refresh="getProfile" />
-    <profile-main-info />
-    <profile-passport-info />
+<!--    <profile-main-info />-->
+<!--    <profile-passport-info />-->
   </div>
 </template>

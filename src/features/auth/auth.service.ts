@@ -67,14 +67,14 @@ export const useAuthService = () => {
 
   const signInNonResident = async (dto: Ref<SignIn>, loading: Ref<boolean>) => {
     loading.value = true
+    dto.value.role = route.query?.role as string
 
     await reCAPTCHA?.recaptchaLoaded()
     dto.value.hash = await reCAPTCHA?.executeRecaptcha("signin")
     return authApi
       .signInNonResident(dto.value)
       .then(({ content }) => {
-        const token = useCookie("token")
-        token.value = content.token
+        $session.token.value = content.token
         $session.profile.value = content.profile
 
         navigateTo(localePath("/profile"))
@@ -86,19 +86,14 @@ export const useAuthService = () => {
   }
   const sendNewPasswordNonResident = async (dto: Ref<ForgotPassword>, loading: Ref<boolean>) => {
     loading.value = true
-    dto.value.role = route.query?.role as string
 
     await reCAPTCHA?.recaptchaLoaded()
     dto.value.hash = await reCAPTCHA?.executeRecaptcha("sendnewpassword")
     return authApi
       .sendNewPassword(dto.value)
-      .then(({ content }) => {
-        const token = useCookie("token")
-        token.value = content.token
-        $session.profile.value = content.profile
+      .then(() => {
         $toast.success(t("messages.success.password_reset"))
-        dto.value = new ForgotPassword()
-        navigateTo(localePath("/auth/sign-in"))
+        navigateTo(localePath(`/auth/sign-in?role=${route.query.role}`))
       })
       .catch((error) => {
         alert.errorDialog(error?.response?.data?.message || "Login failed")
@@ -113,10 +108,7 @@ export const useAuthService = () => {
     dto.value.hash = await reCAPTCHA?.executeRecaptcha("resetpassword")
     return authApi
       .resetPassword(dto.value)
-      .then(({ content }) => {
-        const token = useCookie("token")
-        token.value = content.token
-        $session.profile.value = content.profile
+      .then(() => {
         navigateTo(localePath("/auth/sign-in"))
       })
       .catch((error) => {

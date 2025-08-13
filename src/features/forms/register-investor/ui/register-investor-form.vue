@@ -116,7 +116,7 @@ onMounted(() => {
       <ui-form-group v-slot="{ id }" class="col-span-full">
         <ui-checkbox
           v-model="form.is_resident"
-          name="isResident"
+          name="is_resident"
           label-class="text-white"
           :label="t('basic-information.fields.is_resident')"
           :id
