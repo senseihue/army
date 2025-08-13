@@ -23,7 +23,7 @@ export const useAuthService = () => {
     const code = <string>route.query?.code
     const state = <string>route.query?.state
     const role = <string>route.query?.role
-    console.log(route.query, 'route.query?.state')
+    console.log(route.query, "route.query?.state")
 
     if (!code) return navigateTo(localePath("/"))
 
@@ -92,7 +92,7 @@ export const useAuthService = () => {
       .sendNewPassword(dto.value)
       .then(() => {
         $toast.success(t("messages.success.password_reset"))
-        navigateTo(localePath(`/auth/sign-in?role=${dto.value.role}`))
+        navigateTo(localePath({ path: "/auth/sign-in", query: { role: dto.value.role } }))
       })
       .catch((error) => {
         alert.errorDialog(error?.response?.data?.message || "Login failed")

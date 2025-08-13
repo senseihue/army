@@ -3,10 +3,10 @@ import { useAuthService } from "~/features/auth"
 import { ForgotPassword } from "~/entities/auth"
 
 const { t } = useI18n({ useScope: "local" })
-
+const route = useRoute()
 const { sendNewPasswordNonResident } = useAuthService()
 
-const form = ref<ForgotPassword>(new ForgotPassword())
+const form = ref<ForgotPassword>(new ForgotPassword(route.query))
 const loading = ref(false)
 
 const { required, email } = useRule()

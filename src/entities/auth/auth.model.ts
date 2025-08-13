@@ -26,6 +26,11 @@ export class ForgotPassword {
   email: string = ""
   hash?: string
   role?: string
+  constructor(data?: any) {
+    if (data) {
+      this.role = data.role
+    }
+  }
 }
 
 export class ResetPassword {
