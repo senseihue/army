@@ -121,7 +121,10 @@
     "product_name": "Tovar nomi",
     "product_quantity": "Tovar miqdori",
     "product_price": "Tovar narxi",
-    "date_listed": "Savdoga qoʻyilgan sana"
+    "date_listed": "Savdoga qoʻyilgan sana",
+    "start_date": "Boshlanish sanasi",
+    "uzs": "so'm",
+    "address": "Manzil"
   },
   "actions": {
     "sign_in": "Kirish",
@@ -154,7 +157,9 @@
     "project_category": "Loyiha toifasi",
     "loading": "Yuklanmoqda...",
     "participate": "Qatnashish",
-    "buy": "Sotib olish"
+    "buy": "Sotib olish",
+    "view": "Ko'rish",
+    "back": "Ortga"
   },
   "validations": {
     "email": "Noto'g'ri elektron pochta manzili",

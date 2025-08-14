@@ -121,7 +121,10 @@
     "product_name": "Название товара",
     "product_quantity": "Количество товара",
     "product_price": "Цена товара",
-    "date_listed": "Дата выставления на торги"
+    "date_listed": "Дата выставления на торги",
+    "start_date": "Дата начала",
+    "address": "Адрес",
+    "uzs": "cум"
   },
   "actions": {
     "sign_in": "Войти",
@@ -154,7 +157,9 @@
     "project_category": "Категория проекта",
     "loading": "Загрузка...",
     "participate": "Участвовать",
-    "buy": "Купить"
+    "buy": "Купить",
+    "back": "Назад",
+    "view": "Смотреть"
   },
   "validations": {
     "email": "Неверный адрес электронной почты",

@@ -1,15 +1,13 @@
 <script setup lang="ts">
-
 interface IProps {
   id: number
-  name: string
 }
 
 const props = defineProps<IProps>()
 
 const modal = useModal()
 
-const showEventModal = () => modal.show("e-auction", props.id)
+const showUzExModal = () => modal.show("uz-ex", props.id)
 </script>
 
 <template>
@@ -20,8 +18,8 @@ const showEventModal = () => modal.show("e-auction", props.id)
       color="secondary"
       icon-class="text-xl"
       icon-name="ph:eye"
-      :label="$t('actions.edit')"
-      @click="showEventModal"
+      :label="$t('actions.view')"
+      @click="showUzExModal"
     />
   </ui-button-group>
 </template>

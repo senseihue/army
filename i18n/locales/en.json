@@ -162,7 +162,10 @@
     "product_name": "Product name",
     "product_quantity": "Product quantity",
     "product_price": "Product price",
-    "date_listed": "Date listed for sale"
+    "date_listed": "Date listed for sale",
+    "start_date": "Start date",
+    "address": "Address",
+    "uzs": "UZS"
   },
   "regions": {
     "UZ-AN": "Andijan",
@@ -212,7 +215,9 @@
     "loading": "Loading...",
     "participate": "Participate",
     "purchase": "Purchase",
-    "buy": "Buy"
+    "buy": "Buy",
+    "back": "Back",
+    "view": "View"
   },
   "validations": {
     "email": "Invalid email address",

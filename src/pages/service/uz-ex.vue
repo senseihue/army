@@ -1,17 +1,13 @@
 <template>
   <div>
-    <service-integration-uz-ex-hero />
-    <service-integration-uz-ex-list />
-    <service-integration-uz-ex-modal />
+    <uz-ex-hero />
+    <uz-ex-list />
+    <uz-ex-modal />
   </div>
 </template>
 
 <script setup lang="ts">
-import {
-  ServiceIntegrationUzExHero,
-  ServiceIntegrationUzExList,
-  ServiceIntegrationUzExModal
-} from "~/features/service/integration"
+import { UzExHero, UzExList, UzExModal } from "~/features/service/integration/uz-ex"
 </script>
 
 <style scoped></style>

@@ -5,23 +5,23 @@ const { t } = useI18n({ useScope: "local" })
 
 <template>
   <client-only>
-    <div class="service-integration-hero" :style="{ minHeight }">
+    <div class="uz-ex-hero" :style="{ minHeight }">
       <!--  Background  -->
-      <div v-rellax class="service-integration-hero__background" data-rellax-speed="-5">
+      <div v-rellax class="uz-ex-hero__background" data-rellax-speed="-5">
         <img src="https://dev-portal.miit.uz/uploads/guide/hero.png" alt="Background" />
       </div>
 
       <!--  Content  -->
-      <div class="service-integration-hero__content container-7xl">
-        <h1 class="service-integration-hero__content-heading">{{ t("heading") }}</h1>
-        <p class="service-integration-hero__content-text">{{ t("text") }}</p>
+      <div class="uz-ex-hero__content container-7xl">
+        <h1 class="uz-ex-hero__content-heading">{{ t("heading") }}</h1>
+        <p class="uz-ex-hero__content-text">{{ t("text") }}</p>
       </div>
     </div>
   </client-only>
 </template>
 
 <style>
-.service-integration-hero {
+.uz-ex-hero {
   @apply relative flex min-h-screen flex-col overflow-hidden transition-all duration-500 ease-in-out;
 
   &__background {
@@ -49,16 +49,16 @@ const { t } = useI18n({ useScope: "local" })
 <i18n lang="json">
 {
   "en": {
-    "heading": "E-auksion",
-    "text": "Lorem ipsum dollar set"
+    "heading": "Uz-Ex",
+    "text": ""
   },
   "ru": {
-    "heading": "E-auksion",
-    "text": "Lorem ipsum dollar set"
+    "heading": "Uz-Ex",
+    "text": ""
   },
   "uz": {
-    "heading": "E-auksion",
-    "text": "Lorem ipsum dollar set"
+    "heading": "Uz-Ex",
+    "text": ""
   }
 }
 </i18n>

@@ -2,12 +2,15 @@
   <div class="bg-gray-100">
     <div class="container-7xl">
       <div class="p-section">
-        <div class="flex flex-col items-center justify-between gap-3 py-2 md:flex-row">
-          <h3 class="w-full text-xl font-bold">{{$t('labels.products_on_sale')}}</h3>
-          <div class="flex w-full items-center justify-end gap-3">
-            <territory-select class="!h-8 md:max-w-xs" placeholder="Region" />
-            <ui-icon-button icon-name="ph:arrow-left" size="sm" color="secondary" />
-          </div>
+        <div class="flex items-center justify-between gap-3 py-2">
+          <h3 class="w-full text-xl font-bold">{{ $t("labels.products_on_sale") }}</h3>
+          <ui-icon-button
+            icon-name="ph:arrow-left"
+            size="sm"
+            color="secondary"
+            :label="$t('actions.back')"
+            @click="goBack"
+          />
         </div>
 
         <ui-table no-wrap :cols :rows>
@@ -16,7 +19,7 @@
           </template>
 
           <template #actions="{ row }">
-            <service-integration-e-auction-menu :id="row?.id" :name="row?.name" />
+            <uz-ex-menu :id="row?.id" />
           </template>
         </ui-table>
 
@@ -27,13 +30,12 @@
 </template>
 
 <script setup lang="ts">
-import { useServiceIntegration } from "~/entities/service/integration"
-import ServiceIntegrationEAuctionMenu from "~/features/service/integration/ui/service-integration-e-auction-menu.vue"
-import { TerritorySelect } from "~/features/territory"
+import { useUzExStore } from "~/entities/service/integration/uz-ex"
+import UzExMenu from "~/features/service/integration/uz-ex/ui/uz-ex-menu.vue"
 
 const { t } = useI18n()
-const serviceIntegrationStore = useServiceIntegration()
-const { params } = storeToRefs(serviceIntegrationStore)
+const uzExStore = useUzExStore()
+const { params } = storeToRefs(uzExStore)
 
 const rows = computed(() => [
   {
@@ -46,7 +48,7 @@ const rows = computed(() => [
   }
 ])
 
-const cols = computed<ITableCol<IServiceIntegrationEAuction>[]>(() => [
+const cols = computed<ITableCol<IUzEx>[]>(() => [
   {
     name: "idx",
     label: t("thead.sequence"),
@@ -79,6 +81,10 @@ const cols = computed<ITableCol<IServiceIntegrationEAuction>[]>(() => [
     labelClass: "justify-end"
   }
 ])
+
+const goBack = () => {
+  router.back()
+}
 </script>
 
 <style scoped></style>
