@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ResetPasswordForm } from "~/features/auth/ui"
 
-const requiredQueries = ['timestamp', 'token', 'email', 'role']
+const requiredQueries = ['time', 'token', 'email']
 
 definePageMeta({
   validate: (route) => {

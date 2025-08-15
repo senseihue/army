@@ -2,6 +2,7 @@ declare global {
   interface IModal {
     "auth-role-select-modal": any
   }
+
   interface ISignInResponse {
     token: string
     profile: ISessionProfile
@@ -13,30 +14,41 @@ export class SignIn {
   password: string = ""
   hash?: string
   role?: string
+
+  constructor(data?: any) {
+    if (data) {
+      this.role = data.role
+    }
+  }
 }
 
 export class ForgotPassword {
   email: string = ""
   hash?: string
   role?: string
+  constructor(data?: any) {
+    if (data) {
+      this.role = data.role
+    }
+  }
 }
+
 export class ResetPassword {
   password: string = ""
   password_confirmation: string = ""
   hash?: string
   token?: string
   email?: string
+  time?: number
   role?: string
-  timestamp?: number
 
   constructor(data?: any) {
     if (data) {
-      this.timestamp = data.timestamp
+      this.time = data.time
       this.email = data.email
       this.token = data.token
       this.role = data.role
     }
   }
-
 }
 

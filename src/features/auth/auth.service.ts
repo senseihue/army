@@ -23,7 +23,7 @@ export const useAuthService = () => {
     const code = <string>route.query?.code
     const state = <string>route.query?.state
     const role = <string>route.query?.role
-    console.log(route.query, 'route.query?.state')
+    console.log(route.query, "route.query?.state")
 
     if (!code) return navigateTo(localePath("/"))
 
@@ -67,7 +67,6 @@ export const useAuthService = () => {
 
   const signInNonResident = async (dto: Ref<SignIn>, loading: Ref<boolean>) => {
     loading.value = true
-    dto.value.role = route.query?.role as string
 
     await reCAPTCHA?.recaptchaLoaded()
     dto.value.hash = await reCAPTCHA?.executeRecaptcha("signin")
@@ -93,7 +92,7 @@ export const useAuthService = () => {
       .sendNewPassword(dto.value)
       .then(() => {
         $toast.success(t("messages.success.password_reset"))
-        navigateTo(localePath(`/auth/sign-in?role=${route.query.role}`))
+        navigateTo(localePath({ path: "/auth/sign-in", query: { role: dto.value.role } }))
       })
       .catch((error) => {
         alert.errorDialog(error?.response?.data?.message || "Login failed")
@@ -106,10 +105,12 @@ export const useAuthService = () => {
 
     await reCAPTCHA?.recaptchaLoaded()
     dto.value.hash = await reCAPTCHA?.executeRecaptcha("resetpassword")
+
     return authApi
       .resetPassword(dto.value)
       .then(() => {
-        navigateTo(localePath("/auth/sign-in"))
+        $toast.success(t("messages.success.saved"))
+        navigateTo(localePath({ path: "/auth/sign-in", query: { role: dto.value.role } }))
       })
       .catch((error) => {
         alert.errorDialog(error?.response?.data?.message || "Login failed")

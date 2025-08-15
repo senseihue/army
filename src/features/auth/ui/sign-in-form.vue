@@ -3,10 +3,10 @@ import { useAuthService } from "~/features/auth"
 import { SignIn } from "~/entities/auth"
 
 const { t } = useI18n({ useScope: "local" })
-
+const route = useRoute()
 const { signInNonResident } = useAuthService()
 
-const form = ref<SignIn>(new SignIn())
+const form = ref<SignIn>(new SignIn(route.query))
 const loading = ref(false)
 
 const { required, email } = useRule()
