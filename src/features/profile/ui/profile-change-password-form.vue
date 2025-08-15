@@ -14,12 +14,12 @@ const loading = ref(false)
 const { required, minLength, sameAs } = useRule()
 const rules = ref({
   old_password: { required, minLength: minLength(8) },
-  password: { required, minLength: minLength(8) },
+  new_password: { required, minLength: minLength(8) },
   password_confirmation: {
     required,
     minLength: minLength(8),
     sameAs: sameAs(
-      computed(() => form.value.password),
+      computed(() => form.value.new_password),
       t("reset_password.fields.password")
     )
   }
@@ -27,7 +27,7 @@ const rules = ref({
 const { vuelidate, hasError } = useValidate(form, rules)
 const submit = async () => {
   const isValid = await vuelidate.value.$validate()
-  if (isValid) changePasswordNonResident(form, loading)
+  if (isValid) changePasswordNonResident(form, loading).then(() => vuelidate.value.$reset())
 }
 </script>
 
@@ -42,9 +42,9 @@ const submit = async () => {
           :id
         />
       </ui-form-group>
-      <ui-form-group v-bind="hasError('password')" v-slot="{ id }" class="col-span-full">
+      <ui-form-group v-bind="hasError('new_password')" v-slot="{ id }" class="col-span-full">
         <ui-password-input
-          v-model="form.password"
+          v-model="form.new_password"
           name="password"
           :placeholder="t('change_password.fields.password')"
           :id
