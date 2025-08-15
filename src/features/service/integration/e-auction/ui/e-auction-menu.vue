@@ -16,6 +16,7 @@ const showEAuctionModal = () => modal.show("e-auction", props.id)
     <ui-icon-button
       size="sm"
       variant="white"
+      :rounded="true"
       color="secondary"
       icon-class="text-xl"
       icon-name="ph:eye"

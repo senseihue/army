@@ -17,13 +17,16 @@ const onHide = () => {
 }
 
 const onSave = () => {
-  const link = document.createElement("a")
-  link.setAttribute("href", `https://e-auksion.uz/lot-view?lot_id=${form.value?.lot}`)
-  link.setAttribute("target", "_blank")
-  document.body.appendChild(link)
-  link.click()
-  document.body.removeChild(link)
   modal.hide("e-auction")
+
+  setTimeout(() => {
+    const link = document.createElement("a")
+    link.setAttribute("href", `https://e-auksion.uz/lot-view?lot_id=${form.value?.lot}`)
+    link.setAttribute("target", "_blank")
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+  }, 100)
 }
 </script>
 
@@ -37,8 +40,13 @@ const onSave = () => {
     @shown="onBeforeShow"
     @hide="onHide"
   >
-    <div class="grid gap-5 p-4">
-      <img class="h-32 w-32 rounded-md object-cover object-center" alt="" :src="form?.main_image" />
+    <div class="grid gap-3 p-4 text-sm">
+      <img
+        v-if="form?.main_image"
+        class="h-32 w-32 rounded-md object-cover object-center"
+        alt=""
+        :src="form?.main_image"
+      />
 
       <div class="lot-row">
         <p class="font-semibold">{{ $t("labels.lot_id") }}</p>

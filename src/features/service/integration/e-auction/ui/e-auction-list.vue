@@ -2,15 +2,9 @@
   <div class="bg-gray-100">
     <div class="container-7xl">
       <div class="p-section">
-        <div class="flex items-center justify-between gap-3 py-2">
+        <div class="flex items-center justify-between gap-3 py-4">
           <h3 class="text-xl font-bold">{{ $t("labels.lots_on_sale") }}</h3>
-          <ui-icon-button
-            icon-name="ph:arrow-left"
-            size="sm"
-            color="secondary"
-            :label="$t('actions.back')"
-            @click="goBack"
-          />
+          <ui-button size="sm" color="secondary" :label="$t('actions.back')" @click="goBack" />
         </div>
 
         <ui-table no-wrap :loading :cols :rows="items">
@@ -23,7 +17,13 @@
           </template>
         </ui-table>
 
-        <ui-table-footer v-model:page="params.page" v-model:per-page="params.size" :total="params.total" />
+        <ui-table-footer
+          v-model:page="params.page"
+          v-model:per-page="params.size"
+          class="!px-0"
+          :total="params.total"
+          @change="getEAuctionList"
+        />
       </div>
     </div>
   </div>
