@@ -1,6 +1,5 @@
 import { usePersonalProjectApi } from "~/features/profile/project"
-import { PersonalProject, usePersonalProjectStore  } from "~/entities/profile/personal-project"
-
+import { PersonalProject, usePersonalProjectStore } from "~/entities/profile/personal-project"
 
 export const usePersonalProjectService = () => {
   const personalProjectApi = usePersonalProjectApi()
@@ -25,28 +24,28 @@ export const usePersonalProjectService = () => {
     return personalProjectApi
       .getPersonalProject(id)
       .then(({ content }) => {
-        dto.value = content
+        dto.value = new PersonalProject(content)
         return Promise.resolve(content)
       })
       .finally(() => (loading.value = false))
   }
 
-  const savePersonalProject = async (loading: Ref<boolean>) => {
+  const savePersonalProject = async (dto: Ref<PersonalProject>, loading: Ref<boolean>) => {
     loading.value = true
-    const action = personalProjectStore.dto.id
+    const action = dto.value.id
       ? personalProjectApi.updatePersonalProject
       : personalProjectApi.createPersonalProject
 
-    return action(personalProjectStore.dto)
+    return action(dto.value)
       .then(({ content }) => {
-        personalProjectStore.dto.id = content.id
+        dto.value.id = content.id
         $toast.success("messages.success.saved")
         const formData = new FormData()
-        formData.append("upload", personalProjectStore.dto.upload[0])
-        formData.append("presentation", personalProjectStore.dto.presentation[0])
+        formData.append("upload", dto.value.upload[0])
+        formData.append("presentation", dto.value.presentation[0])
         personalProjectApi.createPersonalProjectDocuments(formData)
         router.push(localePath("/profile/my-projects"))
-        personalProjectStore.dto = new PersonalProject()
+        dto.value = new PersonalProject()
         return Promise.resolve(content)
       })
       .finally(() => (loading.value = false))

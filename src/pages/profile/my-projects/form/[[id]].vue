@@ -7,8 +7,9 @@ const router = useRouter()
 const { savePersonalProject } = usePersonalProjectService()
 const personalProjectStore = usePersonalProjectStore()
 const loading = ref(false)
+const form = ref(null)
 const saveProject = () => {
-  savePersonalProject(loading)
+  form.value.onSubmit()
 }
 const cancel = () => {
   personalProjectStore.dto = new PersonalProject()
@@ -32,7 +33,7 @@ const cancel = () => {
     </profile-header>
 
     <div class="mt-2 grid w-full gap-4 rounded-2xl bg-white p-4">
-      <project-form />
+      <project-form ref="form" />
     </div>
   </div>
 </template>

@@ -7,6 +7,9 @@ export default defineNuxtConfig({
   dev: !!parseInt(process.env.APP_DEV!),
   devtools: { enabled: true },
   srcDir: "src/",
+  experimental: {
+    renderJsonPayloads: true
+  },
 
   devServer: {
     port: parseInt(process.env.APP_PORT || "8000", 10),
@@ -88,7 +91,7 @@ export default defineNuxtConfig({
   ],
 
   routeRules: {
-    "/gateway/**": { proxy: process.env.APP_API_URL },
+    "/gateway/**": { proxy: process.env.APP_API_URL }
   },
 
   modules: [

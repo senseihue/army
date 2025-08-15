@@ -1,6 +1,6 @@
 export default defineNuxtRouteMiddleware(async (to) => {
   const { $session } = useNuxtApp()
-  const { loading } = $session
+  const { loading } = $session || {}
 
   const getProfile = async () => {
     loading.value = true
@@ -12,7 +12,6 @@ export default defineNuxtRouteMiddleware(async (to) => {
           Authorization: `Bearer ${$session.token.value}`
         }
       })
-
       $session.profile.value = content
       $session.loaded.value = true
     } catch {
@@ -47,6 +46,4 @@ export default defineNuxtRouteMiddleware(async (to) => {
     // navigateTo(content, { external: true })
     throw showError({ statusCode: 403, statusMessage: "Forbidden" })
   }
-
-
 })

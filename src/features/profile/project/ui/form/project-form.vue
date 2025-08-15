@@ -8,7 +8,7 @@ const { savePersonalProject, getPersonalProject } = usePersonalProjectService()
 
 const route = useRoute()
 const { required, email, minLength } = useRule()
-const { t } = useI18n({
+const { t, locale } = useI18n({
   useScope: "local"
 })
 
@@ -19,7 +19,9 @@ const form = ref<PersonalProject>(new PersonalProject())
 const rules = ref({
   category_id: { required },
   sector_id: { required },
-  title: { required, minLength: minLength(3) },
+  title_ru: { required, minLength: minLength(3) },
+  title_en: { required, minLength: minLength(3) },
+  title_uz: { required, minLength: minLength(3) },
   budget: { required },
   status: { required },
   location: { required },
@@ -29,13 +31,15 @@ const rules = ref({
   npv: { required },
   phone: { required, minLength: minLength(12) },
   email: { required, email },
-  content: { required },
+  content_uz: { required },
+  content_en: { required },
+  content_ru: { required }
   // presentation: { required }
 })
 const { hasError, vuelidate } = useValidate(form, rules)
 const onSubmit = async () => {
   const isValid = await vuelidate.value.$validate()
-  if (isValid) savePersonalProject(form, loading)
+  if (isValid) savePersonalProject(loading)
 }
 
 onMounted(async () => {
@@ -50,44 +54,58 @@ onMounted(async () => {
     mode.value = "create"
   }
 })
+
+defineExpose({
+  onSubmit
+})
 </script>
 
 <template>
   <form @submit.prevent="onSubmit">
-    <div class="flex justify-around mb-[50px]">
+    <div class="mb-[50px] flex justify-around">
       <project-file-upload :label="$t('labels.image')" />
       <project-file-upload content-type="application" :label="$t('labels.presentation')" />
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 md:gap-x-5 md:gap-y-4">
-      <ui-form-group v-bind="hasError('category_id')" v-slot="{ id }" :label="t('fields.category')">
+      <ui-form-group v-bind="hasError('category_id')" v-slot="{ id }" required :label="t('fields.category')">
         <project-category-select v-model="form.category_id" :readonly="mode === 'view'" :id />
       </ui-form-group>
-      <ui-form-group v-bind="hasError('sector_id')" v-slot="{ id }" :label="t('fields.sector')">
+      <ui-form-group v-bind="hasError('sector_id')" v-slot="{ id }" required :label="t('fields.sector')">
         <project-sector-select v-model="form.sector_id" :readonly="mode === 'view'" :id />
       </ui-form-group>
-      <ui-form-group v-bind="hasError('title')" v-slot="{ id }" :label="t('fields.title')">
-        <ui-input v-model="form.title" :readonly="mode === 'view'" :id />
+      <ui-form-group v-bind="hasError(`title_${locale}`)" required :label="t('fields.title')">
+        <template #corner>
+          <div :uz="hasError('title_uz')" :ru="hasError('title_ru')" :en="hasError('title_en')"></div>
+        </template>
+        <template #default="{ id }">
+          <ui-input v-model="form[`title_${locale}`]" :readonly="mode === 'view'" :id />
+        </template>
       </ui-form-group>
-      <ui-form-group v-bind="hasError('budget')" v-slot="{ id }" :label="t('fields.budget', { currency: 'USD' })">
+      <ui-form-group
+        v-bind="hasError('budget')"
+        v-slot="{ id }"
+        required
+        :label="t('fields.budget', { currency: 'USD' })"
+      >
         <ui-input v-model="form.budget" type="number" :readonly="mode === 'view'" :id />
       </ui-form-group>
-      <ui-form-group v-bind="hasError('status')" v-slot="{ id }" :label="t('fields.status')">
+      <ui-form-group v-bind="hasError('status')" v-slot="{ id }" required :label="t('fields.status')">
         <project-status-select v-model="form.status" :readonly="mode === 'view'" :id />
       </ui-form-group>
 
-      <ui-form-group v-bind="hasError('location')" v-slot="{ id }" :label="t('fields.location')">
+      <ui-form-group v-bind="hasError('location')" v-slot="{ id }" required :label="t('fields.location')">
         <ui-input v-model="form.location" :readonly="mode === 'view'" :id />
       </ui-form-group>
-      <ui-form-group v-bind="hasError('irr')" v-slot="{ id }" :label="t('fields.irr')">
+      <ui-form-group v-bind="hasError('irr')" v-slot="{ id }" required :label="t('fields.irr')">
         <ui-input v-model="form.irr" :readonly="mode === 'view'" :id />
       </ui-form-group>
-      <ui-form-group v-bind="hasError('pp')" v-slot="{ id }" :label="t('fields.pp')">
+      <ui-form-group v-bind="hasError('pp')" v-slot="{ id }" required :label="t('fields.pp')">
         <ui-input v-model="form.pp" :readonly="mode === 'view'" :id />
       </ui-form-group>
-      <ui-form-group v-bind="hasError('npv')" v-slot="{ id }" :label="t('fields.npv')">
+      <ui-form-group v-bind="hasError('npv')" v-slot="{ id }" required :label="t('fields.npv')">
         <ui-input v-model="form.npv" :readonly="mode === 'view'" :id />
       </ui-form-group>
-      <ui-form-group v-bind="hasError('phone')" v-slot="{ id }" :label="t('fields.contact_phone')">
+      <ui-form-group v-bind="hasError('phone')" v-slot="{ id }" required :label="t('fields.contact_phone')">
         <ui-mask-input
           v-model="form.phone"
           unmasked
@@ -98,17 +116,18 @@ onMounted(async () => {
         />
       </ui-form-group>
 
-      <ui-form-group v-bind="hasError('email')" v-slot="{ id }" :label="t('fields.contact_email')">
+      <ui-form-group v-bind="hasError('email')" v-slot="{ id }" required :label="t('fields.contact_email')">
         <ui-input v-model="form.email" :readonly="mode === 'view'" :id />
       </ui-form-group>
       <ui-form-group
-        v-bind="hasError('content')"
+        v-bind="hasError(`content_${locale}`)"
         v-slot="{ id }"
         class="col-span-full"
+        required
         :label="t('fields.description')"
       >
         <client-only>
-          <lazy-tiny-editor v-model="form.content" :readonly="mode === 'view'" :id />
+          <lazy-tiny-editor v-model="form[`content_${locale}`]" :readonly="mode === 'view'" :id />
         </client-only>
       </ui-form-group>
     </div>

@@ -5,8 +5,9 @@ declare global {
 
   interface IPersonalProject {
     id: number
-    title: string
-    description: string
+    title_ru: string
+    title_en: string
+    title_uz: string
     type: string
     status: string
     state: string
@@ -16,7 +17,9 @@ declare global {
     npv: string
     email: string
     phone: string
-    content: string
+    content_ru: string
+    content_en: string
+    content_uz: string
     upload: IFile
     presentation: IFile
     category: IProjectCategory
@@ -40,9 +43,21 @@ declare global {
 
 export class PersonalProject {
   id!: number
-  title: string = ""
+  title_ru: string = ""
+  title_en: string = ""
+  title_uz: string = ""
   state: string = ""
-  content: string = ""
+  content_ru: string = ""
+  content_en: string = ""
+  content_uz: string = ""
+  pp: string = ""
+  irr: string = ""
+  npv: string = ""
+  status: string = ""
+  project_status: string = ""
+  email: string = ""
+  phone: string = ""
+
   sector_id!: number
   upload!: File
   presentation!: File
@@ -50,12 +65,6 @@ export class PersonalProject {
   latitude!: number
   longitude!: number
   budget!: number
-  pp: string = ""
-  irr: string = ""
-  npv: string = ""
-  status: string = ""
-  location?: string
-  project_status: string = ""
-  email: string = ""
-  phone: string = ""
+  location!: string
+
 }
