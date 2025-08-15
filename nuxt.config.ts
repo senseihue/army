@@ -75,7 +75,7 @@ export default defineNuxtConfig({
     pageTransition: { name: "fade", mode: "out-in" },
     layoutTransition: { name: "fade", mode: "out-in" },
     head: {
-      script: [{ src: '/js/leader-line.min.js', defer: true }],
+      script: [{ src: "/js/leader-line.min.js", defer: true }],
       link: [{ rel: "icon", type: "image/x-icon", href: process.env.APP_FAVICON }]
     }
   },
@@ -88,7 +88,7 @@ export default defineNuxtConfig({
   ],
 
   routeRules: {
-    "/gateway/**": { proxy: process.env.APP_API_URL }
+    "/gateway/**": { proxy: process.env.APP_API_URL },
   },
 
   modules: [

@@ -19,7 +19,6 @@ export class ForgotPassword {
   email: string = ""
   hash?: string
   role?: string
-
 }
 export class ResetPassword {
   password: string = ""

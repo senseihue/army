@@ -2,6 +2,9 @@
 import { useAuthService } from "~/features/auth"
 
 const { signIn } = useAuthService()
+definePageMeta({
+  layout: "blank"
+})
 
 onMounted(() => signIn())
 </script>

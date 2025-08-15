@@ -49,7 +49,7 @@ export class PersonalProject {
   category_id!: number
   latitude!: number
   longitude!: number
-  budget: number = 0
+  budget!: number
   pp: string = ""
   irr: string = ""
   npv: string = ""

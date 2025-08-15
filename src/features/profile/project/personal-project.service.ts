@@ -1,6 +1,6 @@
 import { usePersonalProjectApi } from "~/features/profile/project"
-import type { PersonalProject } from "~/entities/profile/personal-project"
-import { usePersonalProjectStore } from "~/entities/profile/personal-project"
+import { PersonalProject, usePersonalProjectStore  } from "~/entities/profile/personal-project"
+
 
 export const usePersonalProjectService = () => {
   const personalProjectApi = usePersonalProjectApi()
@@ -31,23 +31,39 @@ export const usePersonalProjectService = () => {
       .finally(() => (loading.value = false))
   }
 
-  const savePersonalProject = async (dto: Ref<PersonalProject>, loading: Ref<boolean>) => {
+  const savePersonalProject = async (loading: Ref<boolean>) => {
     loading.value = true
-    const action = dto.value.id ? personalProjectApi.updatePersonalProject : personalProjectApi.createPersonalProject
+    const action = personalProjectStore.dto.id
+      ? personalProjectApi.updatePersonalProject
+      : personalProjectApi.createPersonalProject
 
-    return action(dto.value)
+    return action(personalProjectStore.dto)
       .then(({ content }) => {
-        dto.value.id = content.id
+        personalProjectStore.dto.id = content.id
         $toast.success("messages.success.saved")
+        const formData = new FormData()
+        formData.append("upload", personalProjectStore.dto.upload[0])
+        formData.append("presentation", personalProjectStore.dto.presentation[0])
+        personalProjectApi.createPersonalProjectDocuments(formData)
         router.push(localePath("/profile/my-projects"))
+        personalProjectStore.dto = new PersonalProject()
         return Promise.resolve(content)
       })
       .finally(() => (loading.value = false))
   }
 
+  const changeVisibilityPersonalProject = async (id: number, loading?: Ref<boolean>) => {
+    if (loading) {
+      loading.value = true
+    }
+
+    return personalProjectApi.changeVisibilityPersonalProject(id).finally(() => loading && (loading.value = false))
+  }
+
   return {
     getPersonalProjectList,
     getPersonalProject,
-    savePersonalProject
+    savePersonalProject,
+    changeVisibilityPersonalProject
   }
 }

@@ -24,13 +24,13 @@ const rules = ref({
   status: { required },
   location: { required },
   irr: { required },
-  upload: { required },
+  // upload: { required },
   pp: { required },
   npv: { required },
   phone: { required, minLength: minLength(12) },
   email: { required, email },
   content: { required },
-  presentation: { required }
+  // presentation: { required }
 })
 const { hasError, vuelidate } = useValidate(form, rules)
 const onSubmit = async () => {
@@ -54,9 +54,9 @@ onMounted(async () => {
 
 <template>
   <form @submit.prevent="onSubmit">
-    <div>
-      <project-file-upload label="" />
-      <project-file-upload label="" />
+    <div class="flex justify-around mb-[50px]">
+      <project-file-upload :label="$t('labels.image')" />
+      <project-file-upload content-type="application" :label="$t('labels.presentation')" />
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 md:gap-x-5 md:gap-y-4">
       <ui-form-group v-bind="hasError('category_id')" v-slot="{ id }" :label="t('fields.category')">
@@ -101,10 +101,16 @@ onMounted(async () => {
       <ui-form-group v-bind="hasError('email')" v-slot="{ id }" :label="t('fields.contact_email')">
         <ui-input v-model="form.email" :readonly="mode === 'view'" :id />
       </ui-form-group>
-      <ui-form-group class="col-span-full" v-bind="hasError('content')" v-slot="{ id }" :label="t('fields.description')">
-        <tiny-editor v-model="form.content" :readonly="mode === 'view'" :id />
+      <ui-form-group
+        v-bind="hasError('content')"
+        v-slot="{ id }"
+        class="col-span-full"
+        :label="t('fields.description')"
+      >
+        <client-only>
+          <lazy-tiny-editor v-model="form.content" :readonly="mode === 'view'" :id />
+        </client-only>
       </ui-form-group>
-
     </div>
   </form>
 </template>

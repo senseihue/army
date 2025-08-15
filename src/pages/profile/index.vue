@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ProfileHeader, ProfileMainInfo, ProfilePassportInfo, useProfileApi } from "~/features/profile"
-
+import { useAuthApi } from "~/features/auth"
+import { ProfileHeader, ProfileMainInfo, ProfilePassportInfo } from "~/features/profile"
 
 definePageMeta({
   protected: true
@@ -9,11 +9,11 @@ definePageMeta({
 const { $session } = useNuxtApp()
 const { loading } = $session || {}
 
-const profileApi = useProfileApi()
+const authApi = useAuthApi()
 const getProfile = async () => {
   loading.value = true
   try {
-    const { content } = await profileApi.getProfile()
+    const { content } = await authApi.getProfile()
     $session.profile.value = content
     $session.loaded.value = true
   } catch (error: any) {

@@ -1,91 +1,120 @@
 <script setup lang="ts">
 interface IProps {
   label: string
-  contentType?: string
+  contentType?: "application" | "image"
   mode?: boolean
   isCropper?: boolean
 }
 
-const props = defineProps<IProps>()
-const model = defineModel<IUpload>()
+const props = withDefaults(defineProps<IProps>(), {
+  contentType: "image"
+})
+const model = defineModel<IFile | File>()
 const modelId = defineModel<number>("id")
 
 const modal = useModal()
-
-const isImage = computed(() => model.value?.content_type?.includes("image"))
-
-const set = (upload: IUpload) => {
+const isImage = computed(() => props.contentType === "image")
+const url = ref(model.value?.download_link || "")
+const fileName = ref(model.value?.file_name || "")
+const set = (upload: File) => {
   model.value = upload
-  modelId.value = upload.id
+}
+const { files, open, reset, onCancel, onChange } = useFileDialog({
+  accept: props.contentType === "image" ? "image/*" : "application/*",
+  directory: false,
+  multiple: false
+})
+
+onChange((files) => {
+  if (files?.length) {
+    url.value = URL.createObjectURL(files[0])
+    fileName.value = files[0].name
+    set(files[0])
+  } else {
+    model.value = undefined
+    url.value = ""
+  }
+})
+
+onCancel(() => {
+  model.value = undefined
+  url.value = ""
+})
+
+const onReset = () => {
+  model.value = undefined
+  url.value = ""
+  fileName.value = ""
+  reset()
 }
 
-const onUpload = () => modal.show("upload", { set, content_type: props.contentType })
+const onUpload = () => open
 const onCropper = () => {
   if (!props.mode) modal.show("cropper", { set, upload: model.value })
 }
 
 const onRemove = () => {
   model.value = undefined
-  modelId.value = undefined
 }
 
 watch(
   () => model.value?.id,
   () => !modelId.value && (modelId.value = model.value?.id)
 )
+
+const { t } = useI18n({
+  useScope: "local"
+})
 </script>
 
 <template>
-  <div class="mb-2 flex items-start gap-4">
-    <div v-if="isImage">
-      <div
-        v-if="isCropper && !mode"
-        v-tooltip.bottom="$t('actions.edit')"
-        class="group relative cursor-pointer overflow-hidden rounded"
-        @click="onCropper"
-      >
-        <ui-avatar class="cursor-pointer" size="size-24" font-size="text-4xl" :label :src="model?.download_link" />
+  <div class="flex h-full flex-col items-center">
+    <div class="flex min-h-[200px] w-[200px] flex-col items-center gap-4 rounded-lg border border-solid px-4 py-2">
+      <div v-if="isImage">
+        <ui-avatar size="size-32" font-size="text-4xl" :src="url" />
+      </div>
 
-        <div class="absolute inset-0 bg-black/60 opacity-0 transition-all group-hover:opacity-100">
-          <div class="flex h-full w-full items-center justify-center">
-            <icon class="text-xl text-white" name="lucide:edit" />
-          </div>
+      <div v-else class="grid size-32 grow place-items-center rounded-lg border dark:border-gray-800">
+        <icon v-if="isImage" class="text-4xl" name="ph:image-duotone" />
+        <icon v-else class="text-4xl" name="ph:file-duotone" />
+      </div>
+
+      <div>
+        <p
+          class="text-center text-sm font-bold leading-4"
+          :class="{
+            invisible: !url && !fileName,
+            visible: url || fileName
+          }"
+        >
+          {{ fileName || "-" }}
+        </p>
+        <div class="mt-2 flex items-center justify-center gap-6">
+          <ui-icon-button
+            type="button"
+            variant="ghost"
+            icon-name="lucide:image-up"
+            icon-class="text-[24px]"
+            color="primary"
+            :label="$t('actions.upload')"
+            @click.stop="open"
+          />
+
+          <ui-icon-button
+            v-if="url"
+            type="button"
+            icon-class="text-[24px]"
+            icon-name="lucide:trash-2"
+            color="danger"
+            variant="ghost"
+            :label="$t('actions.remove')"
+            @click.stop="onReset"
+          />
         </div>
       </div>
-
-      <ui-avatar v-else size="size-24" font-size="text-4xl" :label :src="model?.download_link" />
     </div>
-
-    <div
-      v-else
-      v-tooltip.bottom="model?.file_name"
-      class="grid size-24 place-items-center rounded-lg border dark:border-gray-800"
-    >
-      <icon v-if="isImage" class="text-4xl" name="ph:image-duotone" />
-      <icon v-else class="text-4xl" name="ph:file-duotone" />
-    </div>
-
-    <ui-form-group v-if="!mode" :label>
-      <div class="mt-2 flex flex-col gap-2">
-        <ui-button
-          type="button"
-          variant="white"
-          color="secondary"
-          size="xs"
-          :label="$t('actions.upload')"
-          @click="onUpload"
-        />
-
-        <ui-button
-          v-if="model?.id"
-          type="button"
-          size="xs"
-          color="danger"
-          variant="white"
-          :label="$t('actions.remove')"
-          @click="onRemove"
-        />
-      </div>
-    </ui-form-group>
+    <p class="text-center text-sm font-bold leading-4">
+      {{ label }}
+    </p>
   </div>
 </template>
