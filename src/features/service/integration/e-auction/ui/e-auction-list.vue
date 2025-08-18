@@ -7,7 +7,7 @@
           <ui-button size="sm" color="secondary" :label="$t('actions.back')" @click="goBack" />
         </div>
 
-        <ui-table no-wrap :loading :cols :rows="items">
+        <ui-table no-wrap :loading :cols :rows="items" :empty-text="$t('messages.info.data_not_found')">
           <template #idx="{ idx, sequence }">
             {{ sequence(idx, params.page, params.size) }}
           </template>
