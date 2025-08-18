@@ -1,4 +1,8 @@
 {
+  "thead": {
+    "actions": "Amallar",
+    "sequence": "№"
+  },
   "nav": {
     "about": {
       "label": "Agentlik haqida",
@@ -94,7 +98,36 @@
     "project_category": "Loyiha toifasi",
     "offline_procedures": "Oflayn tartiblar",
     "presentation": "Taqdimot",
-    "working_days": "Ish kunlari"
+    "working_days": "Ish kunlari",
+    "lot_id": "Lot ID",
+    "name": "Nomi",
+    "date_from": "Boshlanish sanasi",
+    "date_to": "Tugash sanasi",
+    "results": "Natijalar",
+    "quantity": "Miqdor",
+    "unit": "Birlik",
+    "category": "Kategoriya",
+    "region": "Hudud",
+    "lots_on_sale": "Savdodagi LOTlar",
+    "lot_info": "LOT boʻyicha maʼlumotlar",
+    "lot_number": "LOT raqami",
+    "property_name": "Mulk nomi",
+    "property_type": "Mulk toifasi",
+    "property_category": "Mulk kategoriyasi",
+    "price": "Narxi",
+    "starting_price": "Boshlang‘ich narxi",
+    "auction_start_date": "Auksion boshlanish sanasi",
+    "auction_end_date": "Auksion tugaydigan sana",
+    "products_on_sale": "Savdodagi tovarlar",
+    "product_info": "Tovar boʻyicha maʼlumotlar",
+    "seller_name": "Sotuvchi nomi",
+    "product_name": "Tovar nomi",
+    "product_quantity": "Tovar miqdori",
+    "product_price": "Tovar narxi",
+    "date_listed": "Savdoga qoʻyilgan sana",
+    "start_date": "Boshlanish sanasi",
+    "uzs": "so'm",
+    "address": "Manzil"
   },
   "actions": {
     "investor": "Investor",
@@ -130,7 +163,11 @@
     "project_location": "Loyiha joylashuvi",
     "project_information": "Loyiha haqida ma'lumot",
     "project_category": "Loyiha toifasi",
-    "loading": "Yuklanmoqda..."
+    "loading": "Yuklanmoqda...",
+    "participate": "Qatnashish",
+    "buy": "Sotib olish",
+    "view": "Ko'rish",
+    "back": "Ortga"
   },
   "validations": {
     "email": "Noto'g'ri elektron pochta manzili",

@@ -1,4 +1,8 @@
 {
+  "thead": {
+    "actions": "Действия",
+    "sequence": "№"
+  },
   "nav": {
     "about": {
       "label": "Об агентстве",
@@ -94,7 +98,36 @@
     "project_category": "Категория проекта",
     "offline_procedures": "Офлайн-процедуры",
     "presentation": "Презентация",
-    "working_days": "Рабочие дни"
+    "working_days": "Рабочие дни",
+    "lot_id": "ID лота",
+    "name": "Название",
+    "date_from": "Дата начала",
+    "date_to": "Дата окончания",
+    "results": "Результаты",
+    "quantity": "Количество",
+    "unit": "Единица измерения",
+    "category": "Категория",
+    "region": "Регион",
+    "lots_on_sale": "ЛОТы на торгах",
+    "lot_info": "Информация о лоте",
+    "lot_number": "Номер ЛОТа",
+    "property_name": "Наименование имущества",
+    "property_type": "Тип имущества",
+    "property_category": "Категория имущества",
+    "price": "Цена",
+    "starting_price": "Начальная цена",
+    "auction_start_date": "Дата начала аукциона",
+    "auction_end_date": "Дата окончания аукциона",
+    "products_on_sale": "Товары на торгах",
+    "product_info": "Информация о товаре",
+    "seller_name": "Имя продавца",
+    "product_name": "Название товара",
+    "product_quantity": "Количество товара",
+    "product_price": "Цена товара",
+    "date_listed": "Дата выставления на торги",
+    "start_date": "Дата начала",
+    "address": "Адрес",
+    "uzs": "cум"
   },
   "actions": {
     "investor": "Инвестор",
@@ -130,7 +163,11 @@
     "project_location": "Местоположение проекта",
     "project_information": "Информация о проекте",
     "project_category": "Категория проекта",
-    "loading": "Загрузка..."
+    "loading": "Загрузка...",
+    "participate": "Участвовать",
+    "buy": "Купить",
+    "back": "Назад",
+    "view": "Смотреть"
   },
   "validations": {
     "email": "Неверный адрес электронной почты",
