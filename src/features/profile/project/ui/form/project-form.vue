@@ -79,18 +79,18 @@ defineExpose({
     <ui-spinner size="size-32" />
   </div>
   <template v-else>
-    <project-reject-reason :state="form.state" :reason="form.reason" />
-    <form  @submit.prevent="onSubmit">
+    <project-reject-reason :state="form.state" :reason="form.reject_reason" />
+    <form @submit.prevent="onSubmit">
       <div class="mb-[50px] flex items-end justify-around">
         <project-file-upload v-model="form.upload" :disabled :size-limit="10" :label="$t('labels.image')" />
         <ui-input-with-language
           v-model="form.presentation"
           v-slot="{ id, handle, model }"
           :errors="{
-          en: hasError(`presentation.en`),
-          uz: hasError(`presentation.uz`),
-          ru: hasError(`presentation.ru`)
-        }"
+            en: hasError(`presentation.en`),
+            uz: hasError(`presentation.uz`),
+            ru: hasError(`presentation.ru`)
+          }"
         >
           <project-file-upload
             content-type="application"
@@ -115,10 +115,10 @@ defineExpose({
           v-slot="{ id, handle, model }"
           required
           :errors="{
-          en: hasError(`title.en`),
-          uz: hasError(`title.uz`),
-          ru: hasError(`title.ru`)
-        }"
+            en: hasError(`title.en`),
+            uz: hasError(`title.uz`),
+            ru: hasError(`title.ru`)
+          }"
           :label="t('fields.title')"
         >
           <ui-input :model-value="model" :readonly="disabled" :id @update:model-value="handle" />
@@ -167,10 +167,10 @@ defineExpose({
           class="col-span-full"
           required
           :errors="{
-          en: hasError(`content.en`),
-          uz: hasError(`content.uz`),
-          ru: hasError(`content.ru`)
-        }"
+            en: hasError(`content.en`),
+            uz: hasError(`content.uz`),
+            ru: hasError(`content.ru`)
+          }"
           :label="t('fields.description')"
         >
           <client-only>
