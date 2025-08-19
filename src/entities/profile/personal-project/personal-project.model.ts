@@ -11,6 +11,7 @@ declare global {
     type: string
     status: string
     state: string
+    reject_reason: string
     budget: number
     pp: string
     irr: string
@@ -43,6 +44,7 @@ export class PersonalProject {
   id!: number
   title: IContent = new Content()
   state: string = ""
+  reject_reason: string = ""
   content: IContent = new Content()
   pp: string = ""
   irr: string = ""
