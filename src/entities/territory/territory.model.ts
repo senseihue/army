@@ -15,11 +15,17 @@ declare global {
     draft: boolean
   }
   interface IDistrict {
-    "id": number,
-    "name":  string,
-    "mhobt": string,
-    "mhobt7": string,
-    "centre":  string,
-    "type": string
+    id: number
+    name: string
+    mhobt: string
+    mhobt7: string
+    centre: string
+    type: string
+  }
+
+  interface IRegion {
+    id: number
+    region: string
+    code: string
   }
 }

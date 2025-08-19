@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import UiSelect from "@vueform/multiselect"
-import { useTerritoryApi } from "~/features/territory"
+import { useProjectCategoryApi } from "~/features/project/category"
 
 interface IProps {
   autoSelect?: boolean
@@ -10,29 +10,26 @@ interface IProps {
 const props = defineProps<IProps>()
 const model = defineModel<number | number[] | string | string[]>()
 
-const territoryApi = useTerritoryApi()
+const projectCategoryApi = useProjectCategoryApi()
 const el = ref()
 
 const params = ref<Record<string, any>>({
-  keyword: "",
+  name: "",
   page: 1,
   size: 100
 })
 
-const map = (value: IRegion[]): ISelect[] =>
-  value?.map(({ id, region }) => ({
-    value: id,
-    label: region,
-  }))
+const map = (value: IProjectCategoryAmount[]): ISelect[] =>
+  value?.map(({ id, content }) => ({ value: id, label: content }))
 
-const { loading, onOpen, onClose, onSearch, options } = useSelect<IRegion>({
+const { loading, onOpen, onClose, onSearch, options } = useSelect<IProjectCategoryAmount>({
   el,
   map,
   model,
   params,
   autoSelect: props.autoSelect,
   fetchOnOpen: props.fetchOnOpen,
-  api: territoryApi.getTerritoryPublicList
+  api: projectCategoryApi.getProjectAmount
 })
 </script>
 
@@ -41,8 +38,8 @@ const { loading, onOpen, onClose, onSearch, options } = useSelect<IRegion>({
     v-model="model"
     v-bind="$attrs"
     autocomplete="off"
-    append-to-body
     searchable
+    :can-deselect="false"
     :options="options"
     :loading="loading"
     :filter-results="false"

@@ -9,8 +9,18 @@ export const useProjectCategoryApi = () => {
     return $http.$get(`${BASE_URL}/project-category/${id}`)
   }
 
+  const getServiceSector = async (params: Record<string, any>): AsyncResponseContainer<IProjectCategorySector[]> => {
+    return $http.$get(`${BASE_URL}/service-sector`, { params })
+  }
+
+  const getProjectAmount = async (params: Record<string, any>): AsyncResponseContainer<IProjectCategoryAmount[]> => {
+    return $http.$get(`${BASE_URL}/project-amount`, { params })
+  }
+
   return {
     getProjectCategoryList,
-    getProjectCategoryById
+    getProjectCategoryById,
+    getServiceSector,
+    getProjectAmount
   }
 }
