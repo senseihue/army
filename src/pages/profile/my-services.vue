@@ -78,7 +78,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="w-full">
+  <div class="flex w-full flex-col gap-4">
     <profile-header icon-name="lucide:briefcase" :title="$t('nav.profile.my_services')" @refresh="get" />
     <div class="mt-2 grid w-full gap-4 rounded-2xl bg-white p-4">
       <service-category-tabs :categories="categories" @change="onChangeCategory" />

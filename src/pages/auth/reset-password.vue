@@ -16,7 +16,7 @@ definePageMeta({
 </script>
 
 <template>
-  <div class="grow bg-blue-command">
+  <div class="bg-blue-command">
     <div class="container-7xl p-section">
       <reset-password-form />
     </div>

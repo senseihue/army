@@ -127,7 +127,8 @@
     "date_listed": "Savdoga qoʻyilgan sana",
     "start_date": "Boshlanish sanasi",
     "uzs": "so'm",
-    "address": "Manzil"
+    "address": "Manzil",
+    "image": "Rasm"
   },
   "actions": {
     "investor": "Investor",
@@ -167,7 +168,9 @@
     "participate": "Qatnashish",
     "buy": "Sotib olish",
     "view": "Ko'rish",
-    "back": "Ortga"
+    "back": "Ortga",
+    "add_project": "Loyiha qo'shish",
+    "publish": "Nashr etish"
   },
   "validations": {
     "email": "Noto'g'ri elektron pochta manzili",

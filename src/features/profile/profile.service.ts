@@ -1,5 +1,5 @@
 import { useProfileApi } from "~/features/profile"
-import { ChangePassword } from "~/entities/auth"
+import { ChangePassword } from "~/entities/profile"
 
 import { useReCaptcha } from "vue-recaptcha-v3"
 

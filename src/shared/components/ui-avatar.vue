@@ -1,6 +1,6 @@
 <script setup lang="ts">
 export interface IProps {
-  label: string
+  label?: string
   chars?: number
   size?: string
   fontSize?: string
@@ -49,7 +49,7 @@ const stringToColor = (value: string, s = 20, l = 40) => {
 
 <template>
   <div v-bind="$attrs" :class="avatarClass" :style="avatarStyle">
-    <img v-if="src && isLoaded" :src="src" :alt="label" @load="isLoaded = true" />
+    <img v-if="src" :src="src" :alt="label" @load="isLoaded = true" />
     <span v-else :class="textClass">{{ acronym }}</span>
   </div>
 </template>

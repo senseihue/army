@@ -14,9 +14,10 @@
 @import "ui-tab.css";
 @import "ui-table.css";
 @import "ui-tooltip.css";
+@import "./plugins/index.css";
 
 html {
-  scrollbar-gutter: stable;
+    scrollbar-gutter: stable;
 }
 
 .container-7xl {

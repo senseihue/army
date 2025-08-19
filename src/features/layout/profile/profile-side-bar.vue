@@ -3,7 +3,7 @@ const localePath = useLocalePath()
 const { t } = useI18n()
 
 const { $session } = useNuxtApp()
-const { profile, loading } = $session || {}
+const { profile } = $session || {}
 
 const list = computed(() => [
   {
@@ -25,7 +25,7 @@ const list = computed(() => [
     to: "/profile/my-projects"
   },
   {
-    show: !profile.value?.is_resident,
+    show: !profile?.value?.is_resident,
     icon: "solar:password-line-duotone",
     title: t("nav.profile.change_password"),
     to: "/profile/password"
