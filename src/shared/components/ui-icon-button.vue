@@ -44,6 +44,7 @@ const buttonAttrs = computed(() => {
 
 <template>
     <component
+      v-tooltip.bottom="{ content: label, strategy: 'fixed' }"
       v-bind="{ ...$attrs, ...buttonAttrs }"
       :is="buttonAttrs.is"
       :class="buttonClass"

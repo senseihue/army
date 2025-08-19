@@ -3,9 +3,9 @@ export const currencyFormatter = new Intl.NumberFormat("ru", {
   maximumFractionDigits: 0
 })
 
-export const formatCurrency = (amount: number, currency: string) => {
+export const formatCurrency = (amount: number, currency: string, divisor: number = 100) => {
   return currencyFormatter
-    .format(amount / 100)
+    .format(amount / divisor)
     .concat(" ")
     .concat(currency)
 }

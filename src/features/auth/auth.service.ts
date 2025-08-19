@@ -84,20 +84,16 @@ export const useAuthService = () => {
       .finally(() => (loading.value = false))
   }
   const sendNewPasswordNonResident = async (dto: Ref<ForgotPassword>, loading: Ref<boolean>) => {
-    loading.value = true
-
-    await reCAPTCHA?.recaptchaLoaded()
-    dto.value.hash = await reCAPTCHA?.executeRecaptcha("sendnewpassword")
-    return authApi
-      .sendNewPassword(dto.value)
-      .then(() => {
-        $toast.success(t("messages.success.password_reset"))
-        navigateTo(localePath({ path: "/auth/sign-in", query: { role: dto.value.role } }))
-      })
-      .catch((error) => {
-        alert.errorDialog(error?.response?.data?.message || "Login failed")
-      })
-      .finally(() => (loading.value = false))
+    try {
+      loading.value = true
+      await reCAPTCHA?.recaptchaLoaded()
+      dto.value.hash = await reCAPTCHA?.executeRecaptcha("sendnewpassword")
+      await authApi.sendNewPassword(dto.value)
+      $toast.success(t("messages.success.password_reset"))
+      navigateTo(localePath({ path: "/auth/sign-in", query: { role: dto.value.role } }))
+    } finally {
+      loading.value = false
+    }
   }
 
   const resetPasswordNonResident = async (dto: Ref<ResetPassword>, loading: Ref<boolean>) => {
