@@ -24,7 +24,11 @@ export const usePersonalProjectService = () => {
     return personalProjectApi
       .getPersonalProject(id)
       .then(({ content }) => {
-        dto.value = new PersonalProject(content)
+        if (content.latitude && content.longitude) {
+          const location = [content.latitude, content.longitude].join(", ")
+          content.location = location
+        }
+        dto.value = { ...content }
         return Promise.resolve(content)
       })
       .finally(() => (loading.value = false))
@@ -32,18 +36,23 @@ export const usePersonalProjectService = () => {
 
   const savePersonalProject = async (dto: Ref<PersonalProject>, loading: Ref<boolean>) => {
     loading.value = true
-    const action = dto.value.id
-      ? personalProjectApi.updatePersonalProject
-      : personalProjectApi.createPersonalProject
+    const action = dto.value.id ? personalProjectApi.updatePersonalProject : personalProjectApi.createPersonalProject
 
     return action(dto.value)
       .then(({ content }) => {
         dto.value.id = content.id
         $toast.success("messages.success.saved")
+        const [latitude, longitude] = dto.value.location.replace(" ", "").split(",")
+        dto.value.latitude = Number(latitude)
+        dto.value.longitude = Number(longitude)
         const formData = new FormData()
-        formData.append("upload", dto.value.upload[0])
-        formData.append("presentation", dto.value.presentation[0])
-        personalProjectApi.createPersonalProjectDocuments(formData)
+        for (const property in dto.value.presentation) {
+          formData.append(`presentation_${property}`, dto.value.presentation[property])
+        }
+        formData.append("file", dto.value.upload)
+        formData.append("project_id", String(dto.value.id))
+        personalProjectApi.createPersonalProjectPresentation(formData)
+        personalProjectApi.createPersonalProjectUpload(formData)
         router.push(localePath("/profile/my-projects"))
         dto.value = new PersonalProject()
         return Promise.resolve(content)
@@ -56,7 +65,7 @@ export const usePersonalProjectService = () => {
       loading.value = true
     }
 
-    return personalProjectApi.changeVisibilityPersonalProject(id).finally(() => loading && (loading.value = false))
+    return personalProjectApi.changeVisibilityPersonalProject(id).then(getPersonalProjectList).finally(() => loading && (loading.value = false))
   }
 
   return {

@@ -4,17 +4,19 @@ interface IProps {
   contentType?: "application" | "image"
   mode?: boolean
   isCropper?: boolean
+  disabled?: boolean
+  sizeLimit?: number
 }
 
 const props = withDefaults(defineProps<IProps>(), {
   contentType: "image"
 })
-const model = defineModel<IFile | File>()
-const modelId = defineModel<number>("id")
+const model = defineModel<IFile | File | undefined>()
 
-const modal = useModal()
+const { $toast } = useNuxtApp()
+const { t } = useI18n()
 const isImage = computed(() => props.contentType === "image")
-const url = ref(model.value?.download_link || "")
+const url = ref<string | undefined>(model.value?.download_link || "")
 const fileName = ref(model.value?.file_name || "")
 const set = (upload: File) => {
   model.value = upload
@@ -27,6 +29,11 @@ const { files, open, reset, onCancel, onChange } = useFileDialog({
 
 onChange((files) => {
   if (files?.length) {
+    const filesize = (files[0].size / 1024 / 1024).toFixed(4) // MB
+    if (filesize > props.sizeLimit) {
+      $toast.error(t("messages.info.file_size_limit"))
+      return
+    }
     url.value = URL.createObjectURL(files[0])
     fileName.value = files[0].name
     set(files[0])
@@ -48,35 +55,40 @@ const onReset = () => {
   reset()
 }
 
-const onUpload = () => open
-const onCropper = () => {
-  if (!props.mode) modal.show("cropper", { set, upload: model.value })
-}
-
-const onRemove = () => {
-  model.value = undefined
-}
-
 watch(
-  () => model.value?.id,
-  () => !modelId.value && (modelId.value = model.value?.id)
+  () => model.value,
+  () => {
+    if (model.value instanceof File) {
+      url.value = URL.createObjectURL(model.value)
+      fileName.value = model.value.name
+    } else {
+      url.value = model.value?.download_link || ""
+      fileName.value = model.value?.file_name || ""
+    }
+  }
 )
-
-const { t } = useI18n({
-  useScope: "local"
-})
 </script>
 
 <template>
   <div class="flex h-full flex-col items-center">
     <div class="flex min-h-[200px] w-[200px] flex-col items-center gap-4 rounded-lg border border-solid px-4 py-2">
       <div v-if="isImage">
-        <ui-avatar size="size-32" font-size="text-4xl" :src="url" />
+        <ui-avatar
+          v-if="url"
+          color="text-blue-bondi"
+          bg-color="!bg-white"
+          size="size-32"
+          font-size="text-6xl"
+          :src="url"
+        />
+        <div v-else class="grid size-32 grow place-items-center rounded-lg  dark:border-gray-800">
+          <icon class="text-6xl text-blue-bondi" name="lucide:image-up" />
+        </div>
       </div>
 
-      <div v-else class="grid size-32 grow place-items-center rounded-lg border dark:border-gray-800">
+      <div v-else class="grid size-32 grow place-items-center rounded-lg  dark:border-gray-800">
         <icon v-if="isImage" class="text-4xl" name="ph:image-duotone" />
-        <icon v-else class="text-4xl" name="ph:file-duotone" />
+        <icon v-else class="text-6xl text-blue-bondi" name="lucide:file-chart-column" />
       </div>
 
       <div>
@@ -91,17 +103,29 @@ const { t } = useI18n({
         </p>
         <div class="mt-2 flex items-center justify-center gap-6">
           <ui-icon-button
+            v-if="model?.download_link"
             type="button"
             variant="ghost"
-            icon-name="lucide:image-up"
             icon-class="text-[24px]"
             color="primary"
+            icon-name="lucide:download"
+            :href="model?.download_link"
+            :label="$t('actions.download')"
+          />
+
+          <ui-icon-button
+            v-if="!disabled"
+            type="button"
+            variant="ghost"
+            icon-class="text-[24px]"
+            color="primary"
+            :icon-name="isImage ? 'lucide:image-up' : 'lucide:file-up'"
             :label="$t('actions.upload')"
             @click.stop="open"
           />
 
           <ui-icon-button
-            v-if="url"
+            v-if="url && !disabled"
             type="button"
             icon-class="text-[24px]"
             icon-name="lucide:trash-2"

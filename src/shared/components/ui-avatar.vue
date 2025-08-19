@@ -1,6 +1,6 @@
 <script setup lang="ts">
 export interface IProps {
-  label: string
+  label?: string
   chars?: number
   size?: string
   fontSize?: string

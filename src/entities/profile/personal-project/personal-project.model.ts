@@ -1,3 +1,5 @@
+import { Content } from "~/shared/types/content"
+
 declare global {
   interface IModal {
     "personal-project-cancel-reason": string
@@ -5,9 +7,7 @@ declare global {
 
   interface IPersonalProject {
     id: number
-    title_ru: string
-    title_en: string
-    title_uz: string
+    title: IContent
     type: string
     status: string
     state: string
@@ -17,11 +17,9 @@ declare global {
     npv: string
     email: string
     phone: string
-    content_ru: string
-    content_en: string
-    content_uz: string
+    content: IContent
     upload: IFile
-    presentation: IFile
+    presentation: IContent<File | undefined>
     category: IProjectCategory
     sector: IProjectSector
     upload_id: number
@@ -43,28 +41,23 @@ declare global {
 
 export class PersonalProject {
   id!: number
-  title_ru: string = ""
-  title_en: string = ""
-  title_uz: string = ""
+  title: IContent = new Content()
   state: string = ""
-  content_ru: string = ""
-  content_en: string = ""
-  content_uz: string = ""
+  content: IContent = new Content()
   pp: string = ""
   irr: string = ""
-  npv: string = ""
+  // npv: string = ""
   status: string = ""
-  project_status: string = ""
+  // project_status: string = ""
   email: string = ""
   phone: string = ""
 
   sector_id!: number
   upload!: File
-  presentation!: File
+  presentation: IContent<File | undefined> = new Content<undefined>()
   category_id!: number
   latitude!: number
   longitude!: number
   budget!: number
   location!: string
-
 }

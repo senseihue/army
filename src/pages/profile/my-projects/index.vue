@@ -16,7 +16,7 @@ const changeRoute = () => {
   <div class="flex w-full flex-col gap-4">
     <profile-header icon-name="lucide:archive" :title="$t('nav.profile.my_projects')">
       <template #action>
-        <ui-button class="rounded-xl" color="primary" variant="flat" @click="changeRoute">
+        <ui-button class="rounded-xl" color="primary" @click="changeRoute">
           <span>{{ $t("actions.add_project") }}</span>
         </ui-button>
       </template>

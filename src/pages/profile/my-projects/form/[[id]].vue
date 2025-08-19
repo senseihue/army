@@ -3,16 +3,16 @@ import { ProjectForm, usePersonalProjectService } from "~/features/profile/proje
 import { ProfileHeader } from "~/features/profile"
 import { PersonalProject, usePersonalProjectStore } from "~/entities/profile/personal-project"
 
+defineRouteRules({
+  ssr: false
+})
+
 const router = useRouter()
-const { savePersonalProject } = usePersonalProjectService()
-const personalProjectStore = usePersonalProjectStore()
-const loading = ref(false)
 const form = ref(null)
 const saveProject = () => {
   form.value.onSubmit()
 }
 const cancel = () => {
-  personalProjectStore.dto = new PersonalProject()
   router.push("/profile/my-projects")
 }
 </script>
@@ -25,7 +25,7 @@ const cancel = () => {
           <ui-button class="rounded-xl" color="secondary" @click.stop="cancel">
             {{ $t("actions.cancel") }}
           </ui-button>
-          <ui-button class="rounded-xl" color="primary" @click.stop="saveProject">
+          <ui-button v-if="form?.mode() !== 'view'" class="rounded-xl" color="primary" @click.stop="saveProject">
             {{ $t("actions.save") }}
           </ui-button>
         </div>

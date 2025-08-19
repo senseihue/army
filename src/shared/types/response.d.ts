@@ -1,6 +1,4 @@
-interface IContent {
-  en: string
-}
+
 
 interface IResult {
   code: string

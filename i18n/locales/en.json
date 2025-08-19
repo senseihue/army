@@ -135,7 +135,8 @@
     "sq": "Sq/km",
     "investment_of_uzbekistan": "Investment map of Uzbekistan",
     "presentation": "Presentation",
-    "working_days": "Working days"
+    "working_days": "Working days",
+    "image": "Image"
   },
   "regions": {
     "UZ-AN": "Andijan",
@@ -215,7 +216,8 @@
       "message_cannot_be_edited": "Message cannot be edited after sending.",
       "no_worries_message": "No worries, we'll send you reset instructions.",
       "page_not_found": "Page not found",
-      "welcome_message": "Welcome back! Please enter your details."
+      "welcome_message": "Welcome back! Please enter your details.",
+      "file_size_limit": "File size limit is {size} MB"
     },
     "success": {
       "entity_activated": "{name} has been activated",

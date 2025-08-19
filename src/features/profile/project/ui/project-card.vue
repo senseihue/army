@@ -1,14 +1,17 @@
 <script setup lang="ts">
+import { usePersonalProjectService } from "~/features/profile/project"
+
 interface IProps {
   project: IPersonalProject
 }
 
 const props = defineProps<IProps>()
+const { changeVisibilityPersonalProject } = usePersonalProjectService()
 const { t } = useI18n({ useScope: "local" })
-
+const localePath = useLocalePath()
 const cardClass = computed(() => ({
   "project-card": true,
-  ["project-card__" + props.project.status]: true
+  ["project-card__" + props.project.state]: true
 }))
 </script>
 
@@ -17,7 +20,7 @@ const cardClass = computed(() => ({
     <div class="project-card__header">
       <div></div>
       <span class="project-card__status">
-        {{ t(`status.${project.status}`) }}
+        {{ t(`status.${project.state}`) }}
       </span>
     </div>
     <div class="project-card__content">
@@ -38,8 +41,26 @@ const cardClass = computed(() => ({
             </span>
           </div>
           <div class="project-card__actions">
-            <ui-icon-button variant="ghost" icon-class="text-[24px] text-black" icon-name="lucide:file-search" />
-            <ui-icon-button v-if="project.status === 'rejected'" variant="ghost" icon-class="text-[24px] text-black" icon-name="lucide:pencil" />
+            <ui-icon-button
+              variant="ghost"
+              icon-class="text-[24px] text-black"
+              icon-name="lucide:file-search"
+              :to="localePath({ path: `/profile/my-projects/form/${project.id}` })"
+            />
+            <ui-icon-button
+              v-if="project.state === 'rejected'"
+              variant="ghost"
+              icon-class="text-[24px] text-black"
+              icon-name="lucide:pencil"
+              :to="localePath({ path: `/profile/my-projects/form/${project.id}` })"
+            />
+            <ui-icon-button
+              v-if="project.state === 'approved'"
+              variant="ghost"
+              icon-class="text-[24px] text-black"
+              :icon-name="project.draft ? 'lucide:eye-off' : 'lucide:eye'"
+              @click="changeVisibilityPersonalProject(project.id)"
+            />
           </div>
         </div>
       </div>
@@ -49,30 +70,31 @@ const cardClass = computed(() => ({
 
 <style scoped>
 .project-card {
-  @apply rounded-lg overflow-hidden bg-white flex flex-col;
+  @apply flex flex-col overflow-hidden rounded-lg bg-white;
 
   &__header {
-    @apply px-[10px] py-[5px] flex items-center justify-between  md:px-[15px] md:py-[5px];
-    @apply text-white text-[12px] font-medium leading-[21px] font-['Inter'];
+    @apply flex items-center justify-between px-[10px] py-[5px] md:px-[15px] md:py-[5px];
+    @apply font-['Inter'] text-[12px] font-medium leading-[21px] text-white;
   }
 
   &__title {
-    @apply text-[14px] font-medium leading-[21px] font-['Inter'] text-blue-midnight;
+    @apply font-['Inter'] text-[14px] font-medium leading-[21px] text-blue-midnight;
   }
 
   &__content {
-    @apply p-[10px] md:p-[10px] flex flex-col justify-between grow;
+    @apply flex grow flex-col justify-between p-[10px] md:p-[10px];
   }
 
   &__info {
-    @apply flex items-start gap-[10px] mt-[10px];
+    @apply mt-[10px] flex items-start gap-[10px];
   }
 
   &__image {
-    @apply min-w-[134px] h-[109px] overflow-hidden rounded-lg;
+    @apply h-[109px] min-w-[134px] overflow-hidden rounded-lg;
     @apply border border-solid border-[#E4E4E7];
+
     img {
-      @apply w-full h-full object-cover;
+      @apply h-full w-full object-cover;
     }
   }
 
@@ -81,11 +103,11 @@ const cardClass = computed(() => ({
   }
 
   &__label {
-    @apply text-[12px] font-medium leading-[21px] font-['Inter'] text-[#2a3040];
+    @apply font-['Inter'] text-[12px] font-medium leading-[21px] text-[#2a3040];
   }
 
   &__main {
-    @apply flex flex-col h-full w-full justify-between gap-[10px];
+    @apply flex h-full w-full flex-col justify-between gap-[10px];
   }
 
   &__actions {
@@ -101,8 +123,9 @@ const cardClass = computed(() => ({
   }
 }
 
-.project-card__in_moderation {
+.project-card__pending {
   @apply border-2 border-solid border-[#0078B5];
+
   .project-card__header {
     @apply bg-[#0078B5];
   }
@@ -110,6 +133,7 @@ const cardClass = computed(() => ({
 
 .project-card__rejected {
   @apply border-2 border-solid border-[#FF383C];
+
   .project-card__header {
     @apply bg-[#FF383C];
   }
@@ -122,7 +146,7 @@ const cardClass = computed(() => ({
     "status": {
       "approved": "Approved",
       "rejected": "Rejected",
-      "in_moderation": "In Moderation"
+      "pending": "In Moderation"
     },
     "created_at": "Added",
     "budget": "Budget"
@@ -131,7 +155,7 @@ const cardClass = computed(() => ({
     "status": {
       "approved": "Одобрено",
       "rejected": "Отклонено",
-      "in_moderation": "В модерации"
+      "pending": "В модерации"
     },
     "created_at": "Добавлен",
     "budget": "Бюджет"
@@ -140,7 +164,7 @@ const cardClass = computed(() => ({
     "status": {
       "approved": "Tasdiqlangan",
       "rejected": "Rad etilgan",
-      "in_moderation": "Moderatsiyada"
+      "pending": "Moderatsiyada"
     },
     "created_at": "Qo'shilgan",
     "budget": "Byudjet"

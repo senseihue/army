@@ -1,72 +1,29 @@
 <script setup lang="ts">
-import { ProjectCard } from "~/features/profile/project"
+import { ProjectCard, usePersonalProjectService } from "~/features/profile/project"
+import { usePersonalProjectStore } from "~/entities/profile/personal-project"
 
-const projects = [
-  {
-    title: "Производство воздушных, масляных и других фильтров для автомобилей",
-    status: "approved",
-    statusIcon: "hidden", // зелёная иконка с глазом-зачёркнутым
-    budget: 1_200_000,
-    createdAt: 1754919617,
-    upload: {
-      download_link: "https://picsum.photos/200/300"
-    }
-  },
-  {
-    title: "Производство свечей интерферона",
-    status: "in_moderation",
-    budget: 1_200_000,
-    createdAt: 1754919617,
-    upload: {
-      download_link: "https://picsum.photos/200/300"
-    }
-  },
-  {
-    title: "Производство свечей интерферона",
-    status: "in_moderation",
-    budget: 1_200_000,
-    createdAt: 1754919617,
-    upload: {
-      download_link: "https://picsum.photos/200/300"
-    }
-  },
-  {
-    title: "Производство свечей интерферона",
-    status: "rejected",
-    budget: 1_200_000,
-    createdAt: 1754919617,
-    upload: {
-      download_link: "https://picsum.photos/200/300"
-    }
-  },
-  {
-    title: "Совместное производство медных кабелей",
-    status: "in_moderation",
-    budget: 1_200_000,
-    createdAt: 1754919617,
-    upload: {
-      download_link: "https://picsum.photos/200/300"
-    }
-  },
-  {
-    title: "Производство свечей интерферона",
-    status: "approved",
-    statusIcon: "visible", // зелёная иконка с глазом
-    budget: 1_200_000,
-    createdAt: 1754919617,
-    upload: {
-      download_link: "https://picsum.photos/200/300"
-    }
-  }
-]
-
+const { getPersonalProjectList } = usePersonalProjectService()
+const personalProjectStore = usePersonalProjectStore()
+const { items, params, loading } = storeToRefs(personalProjectStore)
 const { t } = useI18n({ useScope: "local" })
+
+onMounted(() => {
+  getPersonalProjectList()
+})
 </script>
 
 <template>
-  <div class="grid grid-cols-1 gap-x-[18px] gap-y-[15px] sm:grid-cols-3">
-    <template v-if="projects.length > 0">
-      <project-card v-for="(project, index) in projects" :project :key="index" />
+  <div class="grid grid-cols-1 gap-x-[18px] gap-y-[15px] xl:grid-cols-3 md:grid-cols-2">
+    <template v-if="loading">
+      <div class="col-span-full grid min-h-96 place-items-center">
+        <ui-spinner size="size-32" />
+      </div>
+    </template>
+    <template v-if="items.length > 0 && !loading">
+      <project-card v-for="(project, index) in items" :project :key="index" />
+      <div class="col-span-full mt-8">
+        <ui-pagination v-model="params.page" :total="params.total" @update:model-value="getPersonalProjectList" />
+      </div>
     </template>
     <template v-else>
       <div class="col-span-full py-12 text-center">

@@ -8,7 +8,8 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   srcDir: "src/",
   experimental: {
-    renderJsonPayloads: true
+    renderJsonPayloads: true,
+    inlineRouteRules: true
   },
 
   devServer: {
