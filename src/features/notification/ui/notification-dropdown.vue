@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import { useNotificationStore } from "~/entities/notification"
-import { useNotificationService, NotificationItem  } from "~/features/notification"
-
+import { useNotificationService, NotificationItem } from "~/features/notification"
 
 const notificationStore = useNotificationStore()
 const { getNotificationList, readAll } = useNotificationService()
-const { loading, record } = storeToRefs(notificationStore)
+const { loading, items, count } = storeToRefs(notificationStore)
 onMounted(() => {
   getNotificationList()
 })
@@ -23,16 +22,16 @@ onMounted(() => {
         :label="$t('labels.notifications')"
       />
       <span
-        v-if="notificationStore.record?.count"
+        v-if="count"
         class="absolute -right-1 -top-1 min-w-4 rounded-full bg-danger-600 px-1 text-center text-xs text-white"
       >
-        {{ notificationStore.record?.count }}
+        {{ count }}
       </span>
     </div>
 
     <template #body>
-      <div v-if="record?.items?.length" class="grid divide-y overflow-y-auto dark:divide-gray-800">
-        <notification-item v-for="notification in record.items" :key="notification.id" :notification />
+      <div v-if="count > 0" class="grid divide-y overflow-y-auto dark:divide-gray-800">
+        <notification-item v-for="notification in items" :key="notification.id" :notification />
       </div>
 
       <div v-else>

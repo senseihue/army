@@ -2,7 +2,7 @@ export const useNotificationApi = () => {
   const BASE_URL = "/siw/notification"
   const { $http } = useNuxtApp()
 
-  const getNotificationList = (): AsyncResponseContainer<INotificationResponse> => {
+  const getNotificationList = (): AsyncResponseContainer<INotification[]> => {
     return $http.$get(`${BASE_URL}`)
   }
 
