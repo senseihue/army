@@ -15,7 +15,9 @@ const route = useRoute()
 const { required, email, minLength, requiredIf } = useRule()
 const rules = ref({
   company_name: { required },
-  tin: { required },
+  tin: {
+    requiredIf: requiredIf(computed(() => form.value.is_resident))
+},
   legal_address: { required },
   website: { required },
   pin: {
@@ -66,7 +68,7 @@ onMounted(() => {
         />
       </ui-form-group>
 
-      <ui-form-group v-bind="hasError('tin')" v-slot="{ id }">
+      <ui-form-group v-if="form.is_resident" v-bind="hasError('tin')" v-slot="{ id }">
         <ui-input v-model="form.tin" name="tin" :id :placeholder="t('company-information.fields.tin')" />
       </ui-form-group>
 
