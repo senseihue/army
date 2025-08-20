@@ -4,6 +4,7 @@ import { ProjectFileUpload, ProjectStatusSelect } from "~/features/profile/proje
 import { ProjectCategorySelect, ProjectSectorSelect } from "~/widgets/project"
 import { usePersonalProjectService } from "~/features/profile/project"
 import ProjectRejectReason from "~/features/profile/project/ui/form/project-reject-reason.vue"
+import ProjectBudget from "~/features/profile/project/ui/form/project-budget.vue"
 
 const { savePersonalProject, getPersonalProject } = usePersonalProjectService()
 
@@ -81,7 +82,7 @@ defineExpose({
   <template v-else>
     <project-reject-reason :state="form.state" :reason="form.reject_reason" />
     <form @submit.prevent="onSubmit">
-      <div class="mb-[50px] flex items-end justify-around">
+      <div class="mb-[50px] flex flex-wrap items-end justify-around gap-4">
         <project-file-upload v-model="form.upload" :disabled :size-limit="10" :label="$t('labels.image')" />
         <ui-input-with-language
           v-model="form.presentation"
@@ -103,7 +104,7 @@ defineExpose({
           />
         </ui-input-with-language>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 md:gap-x-5 md:gap-y-4">
+      <div class="grid grid-cols-1 gap-x-3 gap-y-2 md:grid-cols-2 md:gap-x-5 md:gap-y-4">
         <ui-form-group v-bind="hasError('category_id')" v-slot="{ id }" required :label="t('fields.category')">
           <project-category-select v-model="form.category_id" :disabled="disabled" :id />
         </ui-form-group>
@@ -138,12 +139,19 @@ defineExpose({
         <ui-form-group v-bind="hasError('location')" v-slot="{ id }" required :label="t('fields.location')">
           <ui-input v-model="form.location" :readonly="disabled" :id />
         </ui-form-group>
-        <ui-form-group v-bind="hasError('irr')" v-slot="{ id }" required :label="t('fields.irr')">
-          <ui-input v-model="form.irr" :readonly="disabled" :id />
-        </ui-form-group>
-        <ui-form-group v-bind="hasError('pp')" v-slot="{ id }" required :label="t('fields.pp')">
-          <ui-input v-model="form.pp" :readonly="disabled" :id />
-        </ui-form-group>
+        <project-budget
+          v-model:ids="form.deleted_budgets"
+          v-bind="hasError('budgets')"
+          v-model="form.budgets"
+          class="col-span-full"
+          :label="t('fields.budgets')"
+        />
+        <!--        <ui-form-group v-bind="hasError('irr')" v-slot="{ id }" required :label="t('fields.irr')">-->
+        <!--          <ui-input v-model="form.irr" :readonly="disabled" :id />-->
+        <!--        </ui-form-group>-->
+        <!--        <ui-form-group v-bind="hasError('pp')" v-slot="{ id }" required :label="t('fields.pp')">-->
+        <!--          <ui-input v-model="form.pp" :readonly="disabled" :id />-->
+        <!--        </ui-form-group>-->
         <!--      <ui-form-group v-bind="hasError('npv')" v-slot="{ id }" required :label="t('fields.npv')">-->
         <!--        <ui-input v-model="form.npv" :readonly="disabled" :id />-->
         <!--      </ui-form-group>-->
@@ -201,7 +209,8 @@ defineExpose({
       "contact_email": "Contact email",
       "description": "Description",
       "image": "Image",
-      "presentation": "Presentation"
+      "presentation": "Presentation",
+      "budgets": "Net cash flow by years (in USD)"
     }
   },
   "ru": {
@@ -219,7 +228,8 @@ defineExpose({
       "contact_email": "Контактный email",
       "description": "Описание",
       "image": "Изображение",
-      "presentation": "Презентация"
+      "presentation": "Презентация",
+      "budgets": "Чистый поток наличности по годам (в USD)"
     }
   },
   "uz": {
@@ -237,7 +247,8 @@ defineExpose({
       "contact_email": "Aloqa emaili",
       "description": "Tavsif",
       "image": "Rasm",
-      "presentation": "Taqdimot"
+      "presentation": "Taqdimot",
+      "budgets": "Yillik sof naqd pul oqimi (USD)"
     }
   }
 }
