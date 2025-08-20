@@ -18,7 +18,7 @@ export const usePersonalProjectApi = () => {
   }
 
   const updatePersonalProject = (data: PersonalProject): AsyncResponseContainer<IPersonalProject> => {
-    return $http.$put(`${BASE_URL}`, data)
+    return $http.$put(`${BASE_URL}`, data, { params: { id: data.id } })
   }
 
   const changeVisibilityPersonalProject = (id: number): AsyncResponseContainer<IPersonalProject> => {

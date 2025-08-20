@@ -37,14 +37,14 @@ export const usePersonalProjectService = () => {
   const savePersonalProject = async (dto: Ref<PersonalProject>, loading: Ref<boolean>) => {
     loading.value = true
     const action = dto.value.id ? personalProjectApi.updatePersonalProject : personalProjectApi.createPersonalProject
-
+    const [latitude, longitude] = dto.value.location.replace(" ", "").split(",")
+    dto.value.latitude = Number(latitude)
+    dto.value.longitude = Number(longitude)
     return action(dto.value)
       .then(({ content }) => {
         dto.value.id = content.id
         $toast.success("messages.success.saved")
-        const [latitude, longitude] = dto.value.location.replace(" ", "").split(",")
-        dto.value.latitude = Number(latitude)
-        dto.value.longitude = Number(longitude)
+
         const formData = new FormData()
         for (const property in dto.value.presentation) {
           formData.append(`presentation_${property}`, dto.value.presentation[property])
@@ -65,7 +65,10 @@ export const usePersonalProjectService = () => {
       loading.value = true
     }
 
-    return personalProjectApi.changeVisibilityPersonalProject(id).then(getPersonalProjectList).finally(() => loading && (loading.value = false))
+    return personalProjectApi
+      .changeVisibilityPersonalProject(id)
+      .then(getPersonalProjectList)
+      .finally(() => loading && (loading.value = false))
   }
 
   return {

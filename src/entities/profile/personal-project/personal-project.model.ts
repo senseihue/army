@@ -27,6 +27,7 @@ declare global {
     presentation_id: number
     category_id: number
     sector_id: number
+    budgets: IPersonalProjectBudget[]
     project_status: string
     latitude: number
     longitude: number
@@ -37,6 +38,11 @@ declare global {
   interface IProjectSector {
     id: number
     title: string
+  }
+
+  interface IPersonalProjectBudget {
+    id: number
+    sum: number
   }
 }
 
@@ -61,5 +67,12 @@ export class PersonalProject {
   latitude!: number
   longitude!: number
   budget!: number
+  budgets: IPersonalProjectBudget[] = [new ProjectBudget()]
+  deleted_budgets!: number[]
   location!: string
+}
+
+export class ProjectBudget {
+  id!: number
+  sum: string = ""
 }
