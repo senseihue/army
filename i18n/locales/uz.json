@@ -178,7 +178,8 @@
     "minLength": "Minimal talab qilingan uzunlik {min}",
     "required": "Ushbu maydon to'ldirilishi shart",
     "requiredIf": "Ushbu maydon to'ldirilishi shart",
-    "sameAs": "Qiymat \"{otherName}\" maydoni bilan mos kelishi kerak"
+    "sameAs": "Qiymat \"{otherName}\" maydoni bilan mos kelishi kerak",
+    "not": "Qiymat \"{otherName}\" ga teng bo'lmasligi kerak"
   },
   "messages": {
     "confirm": {

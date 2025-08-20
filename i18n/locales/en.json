@@ -236,7 +236,8 @@
     "minLength": "Minimum required length is {min}",
     "required": "This field is required",
     "requiredIf": "This field is required",
-    "sameAs": "Value must match the field \"{otherName}\""
+    "sameAs": "Value must match the field \"{otherName}\"",
+    "not": "Value must not be equal \"{otherName}\""
   },
   "messages": {
     "confirm": {
