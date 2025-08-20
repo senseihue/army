@@ -257,6 +257,10 @@
       "welcome_message": "Welcome back! Please enter your details.",
       "file_size_limit": "File size limit is {size} MB"
     },
+    "error": {
+      "user_not_found": "User not found",
+      "user_not_found_description": "The specified account is missing from the system or has not been activated yet. Check the correctness of the entered data or contact support."
+    },
     "success": {
       "entity_activated": "{name} has been activated",
       "entity_sent": "{name} has been sent",

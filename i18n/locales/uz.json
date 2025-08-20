@@ -198,6 +198,10 @@
       "page_not_found": "Sahifa topilmadi",
       "welcome_message": "Xush kelibsiz! Iltimos, ma'lumotlaringizni kiriting."
     },
+    "error": {
+      "user_not_found": "Foydalanuvchi topilmadi",
+      "user_not_found_description": "Ushbu hisob tizimda yo'q yoki hali faollashtirilmagan. Kiritilgan ma'lumotlarning to'g'riligini tekshiring yoki qo'llab-quvvatlash uchun murojaat qiling."
+    },
     "success": {
       "entity_activated": "{name} faollashtirildi",
       "entity_sent": "{name} yuborildi",

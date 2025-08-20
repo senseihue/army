@@ -7,7 +7,7 @@ const { profile, loading } = $session || {}
 </script>
 
 <template>
-  <div class="rou v                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         nded-2xl bg-white p-4">
+  <div class="rounded-2xl bg-white p-4">
     <p class="text-lg font-semibold text-blue-midnight">
       {{ t("main_info") }}
     </p>
