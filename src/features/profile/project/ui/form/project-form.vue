@@ -5,11 +5,11 @@ import { ProjectCategorySelect, ProjectSectorSelect } from "~/widgets/project"
 import { usePersonalProjectService } from "~/features/profile/project"
 import ProjectRejectReason from "~/features/profile/project/ui/form/project-reject-reason.vue"
 import ProjectBudget from "~/features/profile/project/ui/form/project-budget.vue"
-
+import { helpers } from '@vuelidate/validators'
 const { savePersonalProject, getPersonalProject } = usePersonalProjectService()
 
 const route = useRoute()
-const { required, email, minLength } = useRule()
+const { required, email, minLength, not } = useRule()
 const { t, locale } = useI18n({
   useScope: "local"
 })
@@ -27,7 +27,19 @@ const rules = ref({
     uz: { required, minLength: minLength(3) },
     ru: { required, minLength: minLength(3) }
   },
-  budget: { required },
+  budget: {
+    not: not((v) => {
+      return !v || v === 0
+    }),
+    required
+  },
+  budgets: {
+    $each: helpers.forEach({
+      sum: {
+        required
+      }
+    })
+  },
   status: { required },
   location: { required },
   irr: { required },

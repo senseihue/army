@@ -6,7 +6,8 @@ import {
   minLength,
   sameAs,
   required,
-  requiredIf
+  requiredIf,
+  not
 } from "@vuelidate/validators"
 
 const emailsRegex =
@@ -42,6 +43,7 @@ export const useRule = () => {
     required: withI18nMessage(required),
     sameAs: withI18nMessage(sameAs, { withArguments: true }),
     minLength: withI18nMessage(minLength, { withArguments: true }),
-    requiredIf: withI18nMessage(requiredIf, { withArguments: true })
+    requiredIf: withI18nMessage(requiredIf, { withArguments: true }),
+    not: withI18nMessage(not, { withArguments: true })
   }
 }
