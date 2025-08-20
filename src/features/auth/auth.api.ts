@@ -29,12 +29,20 @@ export const useAuthApi = () => {
     return $http.$get(`${BASE_URL}/profile`)
   }
 
+
+  const setToken = (fcm_token: string): AsyncResponseContainer => {
+    return $http.$post(`/admin/admin/fcm-token`, null, { params: { fcm_token } })
+  }
+
+
+
   return {
     getRedirectUrl,
     signIn,
     getProfile,
     sendNewPassword,
     resetPassword,
+    setToken,
     signInNonResident,
     changePassword
   }

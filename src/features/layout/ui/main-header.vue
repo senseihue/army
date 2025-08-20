@@ -6,9 +6,10 @@ import {
   MainHeaderNavMenu,
   MainHeaderLanguage,
   MainHeaderMenu,
-  MainHeaderMenuToggle,
+  MainHeaderMenuToggle
 } from "~/features/layout"
 import { AuthProfileButtonGroup } from "~/widgets/auth"
+import { NotificationDropdown } from "~/features/notification"
 
 const { hideNavMenu } = useHeader()
 const route = useRoute()
@@ -16,66 +17,66 @@ const position = computed(() => (route?.meta?.fixedHeader ? "fixed" : "sticky"))
 </script>
 
 <template>
-  <client-only>
-    <header class="main-header" :style="{ position }" @mouseleave="hideNavMenu">
-      <div class="main-header__inner">
-        <div class="container-7xl">
-          <div class="main-header__wrapper">
-            <div class="main-header__left">
-              <nuxt-link-locale to="/">
-                <logo class="h-9 object-contain" />
-              </nuxt-link-locale>
-            </div>
-
-            <div class="main-header__center">
-              <nav class="main-header__nav">
-                <main-header-nav />
-              </nav>
-            </div>
-
-            <div class="main-header__right">
-              <span class="main-header__divider" />
-
-              <ui-icon-button
-                rounded
-                variant="ghost"
-                color="secondary"
-                icon-class="text-xl"
-                icon-name="lucide:search"
-                to="/search"
-                :label="$t('labels.search')"
-              />
-
-              <main-header-language />
-
-              <ui-icon-button
-                rounded
-                variant="ghost"
-                color="secondary"
-                icon-class="text-xl"
-                icon-name="lucide:mail"
-                to="/contacts"
-                :label="$t('labels.contacts')"
-              />
-
-              <auth-profile-button-group />
-
-              <main-header-menu-toggle />
-            </div>
+  <header class="main-header" :style="{ position }" @mouseleave="hideNavMenu">
+    <div class="main-header__inner">
+      <div class="container-7xl">
+        <div class="main-header__wrapper">
+          <div class="main-header__left">
+            <nuxt-link-locale to="/">
+              <logo class="h-9 object-contain" />
+            </nuxt-link-locale>
           </div>
 
-          <nav class="main-header__sub-nav">
-            <main-header-nav />
-          </nav>
+          <div class="main-header__center">
+            <nav class="main-header__nav">
+              <main-header-nav />
+            </nav>
+          </div>
+
+          <div class="main-header__right">
+            <span class="main-header__divider" />
+
+            <ui-icon-button
+              rounded
+              variant="ghost"
+              color="secondary"
+              icon-class="text-xl"
+              icon-name="lucide:search"
+              to="/search"
+              :label="$t('labels.search')"
+            />
+
+            <main-header-language />
+
+            <ui-icon-button
+              rounded
+              variant="ghost"
+              color="secondary"
+              icon-class="text-xl"
+              icon-name="lucide:mail"
+              to="/contacts"
+              :label="$t('labels.contacts')"
+            />
+
+            <notification-dropdown />
+
+            <auth-profile-button-group />
+
+            <main-header-menu-toggle />
+          </div>
         </div>
 
-<!--        <main-header-alert />-->
+        <nav class="main-header__sub-nav">
+          <main-header-nav />
+        </nav>
       </div>
 
-      <main-header-menu />
-      <main-header-nav-menu />
-    </header>
-  </client-only>
+      <!--        <main-header-alert />-->
+    </div>
+
+    <main-header-menu />
+    <main-header-nav-menu />
+  </header>
 </template>
 
 <style>

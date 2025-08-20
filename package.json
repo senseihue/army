@@ -34,6 +34,7 @@
     "apexcharts": "3.53.0",
     "axios": "1.7.9",
     "dayjs": "1.11.13",
+    "firebase": "12.1.0",
     "floating-vue": "^5.2.2",
     "lodash-es": "^4.17.21",
     "maska": "^3.1.1",

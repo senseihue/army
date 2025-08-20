@@ -6,7 +6,7 @@ import { useReCaptcha } from "vue-recaptcha-v3"
 export const useProfileService = () => {
   const alert = useAlert()
   const { t } = useI18n()
-  const authApi = useProfileApi()
+  const profileApi = useProfileApi()
   const { $toast } = useNuxtApp()
 
   const reCAPTCHA = useReCaptcha()
@@ -16,7 +16,7 @@ export const useProfileService = () => {
 
     await reCAPTCHA?.recaptchaLoaded()
     dto.value.hash = await reCAPTCHA?.executeRecaptcha("changepassword")
-    return authApi
+    return profileApi
       .changePassword(dto.value)
       .then(() => {
         $toast.success(t("messages.success.saved"))

@@ -1,15 +1,25 @@
 import { useAuthApi } from "~/features/auth"
-import { ForgotPassword, type ResetPassword, type SignIn } from "~/entities/auth"
-
+import type { ForgotPassword, ResetPassword, SignIn } from "~/entities/auth"
 import { useReCaptcha } from "vue-recaptcha-v3"
+import { useNotificationService } from "~/features/notification"
 
 export const useAuthService = () => {
   const route = useRoute()
   const alert = useAlert()
   const { t } = useI18n()
   const authApi = useAuthApi()
+  const notificationService = useNotificationService()
   const localePath = useLocalePath()
   const { $session, $toast } = useNuxtApp()
+
+  const messaging = () => {
+    notificationService.subscribeToServiceWorker().then((fcmToken) => {
+      if (fcmToken) return authApi.setToken(fcmToken)
+    })
+
+    notificationService.subscribeToNotification()
+    notificationService.getNotificationList()
+  }
 
   const reCAPTCHA = useReCaptcha()
   const getRedirectUrl = (origin?: string, role?: string) =>
@@ -51,6 +61,7 @@ export const useAuthService = () => {
         } else {
           navigateTo(localePath("/"))
         }
+        messaging()
       })
       .catch(() => {
         alert
@@ -77,6 +88,7 @@ export const useAuthService = () => {
         $session.profile.value = content.profile
 
         navigateTo(localePath("/profile"))
+        messaging()
       })
       .catch((error) => {
         alert.errorDialog(error?.response?.data?.message || "Login failed")
