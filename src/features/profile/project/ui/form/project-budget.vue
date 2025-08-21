@@ -2,7 +2,7 @@
 import { ProjectBudget } from "~/entities/profile/personal-project"
 
 const model = defineModel<IPersonalProject["budgets"]>()
-const ids = defineModel<number[]>("ids")
+const ids = defineModel<number[]>("ids", { default: () => [] })
 
 const addBudget = () => {
   model.value.push(new ProjectBudget())

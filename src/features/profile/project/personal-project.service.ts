@@ -28,7 +28,7 @@ export const usePersonalProjectService = () => {
           const location = [content.latitude, content.longitude].join(", ")
           content.location = location
         }
-        dto.value = { ...content }
+        dto.value = { ...new PersonalProject(), ...content }
         return Promise.resolve(content)
       })
       .finally(() => (loading.value = false))
@@ -44,15 +44,20 @@ export const usePersonalProjectService = () => {
       .then(({ content }) => {
         dto.value.id = content.id
         $toast.success("messages.success.saved")
-
         const formData = new FormData()
-        for (const property in dto.value.presentation) {
-          formData.append(`presentation_${property}`, dto.value.presentation[property])
-        }
-        formData.append("file", dto.value.upload)
         formData.append("project_id", String(dto.value.id))
-        personalProjectApi.createPersonalProjectPresentation(formData)
-        personalProjectApi.createPersonalProjectUpload(formData)
+        for (const property in dto.value.presentation) {
+          if (dto.value.presentation[property] instanceof File) {
+            formData.append(`presentation_${property}`, dto.value.presentation[property])
+          }
+        }
+        if (dto.value.upload instanceof File) {
+          formData.append("file", dto.value.upload)
+          personalProjectApi.createPersonalProjectUpload(formData)
+        }
+        if (Object.values(dto.value.presentation).some((item) => item instanceof File))
+          personalProjectApi.createPersonalProjectPresentation(formData)
+
         router.push(localePath("/profile/my-projects"))
         dto.value = new PersonalProject()
         return Promise.resolve(content)
