@@ -7,7 +7,7 @@ import {
   sameAs,
   required,
   requiredIf,
-  not
+  not, required as r
 } from "@vuelidate/validators"
 
 const emailsRegex =
@@ -35,12 +35,16 @@ export const useRule = () => {
   const i18n = useI18n()
   const withI18nMessage = createI18nMessage({ t: i18n.t.bind(i18n) })
 
+  const each = {
+    required: helpers.withMessage(() => i18n.t("validations.required"), required)
+  }
   return {
     vin: withI18nMessage(vin),
     email: withI18nMessage(email),
     emails: withI18nMessage(emails),
     numeric: withI18nMessage(numeric),
     required: withI18nMessage(required),
+    each,
     sameAs: withI18nMessage(sameAs, { withArguments: true }),
     minLength: withI18nMessage(minLength, { withArguments: true }),
     requiredIf: withI18nMessage(requiredIf, { withArguments: true }),

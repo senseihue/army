@@ -12,7 +12,7 @@ export function   useValidate<T extends Form<V>, V extends ValidationArgs>(form:
   const hasError = (key: Paths<T>) => {
     const value = get(vuelidate.value, key)
     const invalid = value?.$error
-    const hint = value?.$errors[0]?.$message
+    const hint = value?.$errors[0]?.$message && Array.isArray(value?.$errors[0]?.$message) ? value?.$errors[0]?.$message[0][0] : value?.$errors[0]?.$message
     return { invalid, hint }
   }
 

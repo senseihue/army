@@ -34,12 +34,9 @@ const handle = (e: string | undefined) => {
           v-for="{ code } in locales"
           class="!rounded-b-none px-[10px] py-[5px] md:px-[15px] md:py-[5px]"
           type="button"
+          :variant="locale === code ? 'solid' : 'ghost'"
+          :color="errors[code]?.invalid ? 'danger' : 'primary'"
           size="xs"
-          :class="{
-            '!text-[#FF383C]': errors[code]?.invalid,
-            '!text-black': !errors[code]?.invalid && locale != code,
-            '!bg-transparent': locale != code
-          }"
           :label="code.toLocaleUpperCase()"
           :key="code"
           @click="locale = code"
@@ -47,7 +44,7 @@ const handle = (e: string | undefined) => {
       </div>
     </template>
     <template #default="{ id }">
-      <slot :id :model="model[locale]" :handle="handle"></slot>
+      <slot :locale="locale" :id :model="model[locale]" :handle="handle"></slot>
     </template>
   </ui-form-group>
 </template>
