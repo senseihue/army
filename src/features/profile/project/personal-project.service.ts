@@ -25,8 +25,7 @@ export const usePersonalProjectService = () => {
       .getPersonalProject(id)
       .then(({ content }) => {
         if (content.latitude && content.longitude) {
-          const location = [content.latitude, content.longitude].join(", ")
-          content.location = location
+          content.location = [content.latitude, content.longitude].join(", ")
         }
         dto.value = { ...new PersonalProject(), ...content }
         return Promise.resolve(content)
