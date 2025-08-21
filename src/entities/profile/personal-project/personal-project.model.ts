@@ -74,5 +74,5 @@ export class PersonalProject {
 
 export class ProjectBudget {
   id!: number
-  sum: string = ""
+  sum: number = 0
 }
