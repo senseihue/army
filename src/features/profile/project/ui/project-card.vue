@@ -48,7 +48,7 @@ const cardClass = computed(() => ({
               :to="localePath({ path: `/profile/my-projects/form/${project.id}` })"
             />
             <ui-icon-button
-              v-if="project.state === 'rejected'"
+              v-if="project.state !== 'pending'"
               variant="ghost"
               icon-class="text-[24px] text-black"
               icon-name="lucide:pencil"
