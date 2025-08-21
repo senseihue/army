@@ -52,8 +52,8 @@ export class PersonalProject {
   state: string = ""
   reject_reason: string = ""
   content: IContent = new Content()
-  pp: string = ""
-  irr: string = ""
+  // pp: string = ""
+  // irr: string = ""
   // npv: string = ""
   status: string = ""
   // project_status: string = ""
