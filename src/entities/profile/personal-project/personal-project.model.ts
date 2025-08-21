@@ -68,7 +68,7 @@ export class PersonalProject {
   longitude!: number
   budget: number = 0
   budgets: IPersonalProjectBudget[] = [new ProjectBudget()]
-  deleted_budgets!: number[]
+  deleted_budgets: number[] = []
   location!: string
 }
 

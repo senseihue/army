@@ -5,7 +5,7 @@ import { ProjectCategorySelect, ProjectSectorSelect } from "~/widgets/project"
 import { usePersonalProjectService } from "~/features/profile/project"
 import ProjectRejectReason from "~/features/profile/project/ui/form/project-reject-reason.vue"
 import ProjectBudget from "~/features/profile/project/ui/form/project-budget.vue"
-import { helpers, required as r } from '@vuelidate/validators'
+import { helpers } from '@vuelidate/validators'
 const { savePersonalProject, getPersonalProject } = usePersonalProjectService()
 
 const route = useRoute()
