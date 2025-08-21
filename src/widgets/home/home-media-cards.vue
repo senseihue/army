@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { PressCard } from "~/features/media"
 
-const { t } = useI18n({ useScope: "local" })
+const { t, locale } = useI18n({ useScope: "local" })
 
 const params = ref({
   page: 0,
@@ -12,7 +12,8 @@ const params = ref({
 const pressList = ref<IPress[]>([])
 
 const { data } = await useFetch<IResponse<IPress[]>>("/gateway/siw/public/post", {
-  params: params.value
+  params: params.value,
+  headers: { "Accept-Language": locale.value }
 })
 
 pressList.value = data.value?.content || []
@@ -38,7 +39,7 @@ pressList.value = data.value?.content || []
         </div>
         <div class="text-center">
           <nuxt-link-locale to="/media/news">
-            <ui-button size="lg" class="w-[200px]" color="success" rounded>
+            <ui-button class="w-[200px]" size="lg" color="success" rounded>
               {{ t("all-news") }}
             </ui-button>
           </nuxt-link-locale>

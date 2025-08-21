@@ -1,9 +1,12 @@
 <script lang="ts" setup>
 const props = defineProps<{ id?: string }>()
 
+const { locale } = useI18n()
+
 const { data } = useFetch<any>("/gateway/siw/public/territory", {
   server: false,
-  params: { size: 14 }
+  params: { size: 14 },
+  headers: { "Accept-Language": locale.value }
 })
 const region = computed(() => data.value?.content.find((reg: any) => reg.region.code === props.id))
 const positionCard = computed(() => (region.value?.position ? "right-0" : "left-0"))

@@ -13,7 +13,6 @@
             <home-svg-map v-model="regionId" attached-element-id="map-card-header" class="my-4" />
           </div>
 
-
           <home-svg-map-card :id="regionId"/>
         </div>
       </div>
