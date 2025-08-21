@@ -22,7 +22,19 @@ export default defineNuxtConfig({
       isDev: !!parseInt(process.env.APP_DEV!),
       apiUrl: process.env.APP_API_URL,
       cdnUrl: process.env.APP_CDN_URL,
-      recaptchaKey: process.env.APP_RECAPTCHA_KEY
+      recaptchaKey: process.env.APP_RECAPTCHA_KEY,
+      swPath: process.env.APP_SW_PATH,
+      firebase: {
+        apiKey: process.env.FIREBASE_API_KEY,
+        vapidKey: process.env.FIREBASE_VAPID_KEY,
+        authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+        projectId: process.env.FIREBASE_PROJECT_ID,
+        storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+        messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+        appId: process.env.FIREBASE_APP_ID,
+        measurementId: process.env.FIREBASE_MEASUREMENT_ID,
+        databaseURL: process.env.FIREBASE_DATABASE_URL
+      }
     }
   },
   icon: {
