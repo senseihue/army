@@ -1,12 +1,21 @@
 <script setup lang="ts">
 import { useRegisterBusinessService } from "~/features/forms/register-business"
 import { RegisterBusiness } from "~/entities/forms/register-business"
+import Multiselect from "@vueform/multiselect"
 
 const { t } = useI18n({
   useScope: "local"
 })
 
 const { createRegistration } = useRegisterBusinessService()
+const aboutUs: ISelect[] = [
+  { label: t("additional-information.options.about_us.google"), value: "google" },
+  { label: t("additional-information.options.about_us.linkedin"), value: "linkedin" },
+  { label: t("additional-information.options.about_us.instagram"), value: "instagram" },
+  { label: t("additional-information.options.about_us.telegram"), value: "telegram" },
+  { label: t("additional-information.options.about_us.forum"), value: "forum" },
+  { label: t("additional-information.options.about_us.other"), value: "other" }
+]
 
 const form = ref<RegisterBusiness>(new RegisterBusiness())
 const loading = ref(false)
@@ -17,13 +26,13 @@ const rules = ref({
   company_name: { required },
   tin: {
     requiredIf: requiredIf(computed(() => form.value.is_resident))
-},
+  },
   legal_address: { required },
   website: { required },
+
   pin: {
     requiredIf: requiredIf(computed(() => form.value.is_resident))
   },
-
   name: { required },
   surname: { required },
   phone: { required, minLength: minLength(12) }, // Assuming mobile should be at least 9 characters long
@@ -31,16 +40,9 @@ const rules = ref({
     required,
     email
   },
+  source: { required },
+  comments: { required }
 
-  project_name: { required },
-  project_purpose: { required },
-  required_investment: {
-    required
-  },
-  own_contribution: {
-    required
-  },
-  file: { required }
 })
 const { vuelidate, hasError } = useValidate(form, rules)
 const submit = async () => {
@@ -83,9 +85,7 @@ onMounted(() => {
       <ui-form-group v-bind="hasError('website')" v-slot="{ id }">
         <ui-input v-model="form.website" name="website" :placeholder="t('company-information.fields.website')" :id />
       </ui-form-group>
-      <ui-form-group v-if="form.is_resident" v-bind="hasError('pin')" v-slot="{ id }">
-        <ui-input v-model="form.pin" :id :placeholder="t('company-information.fields.pin')" />
-      </ui-form-group>
+
       <ui-form-group v-slot="{ id }" class="col-span-full">
         <ui-checkbox
           v-model="form.is_resident"
@@ -118,50 +118,38 @@ onMounted(() => {
       <ui-form-group v-bind="hasError('email')" v-slot="{ id }">
         <ui-input v-model="form.email" type="email" name="email" :placeholder="t('applicant.fields.email')" :id />
       </ui-form-group>
-    </div>
-
-    <div class="grid gap-4 sm:grid-cols-2">
-      <h3 class="title col-span-full bg-blue-bondi text-white">{{ t("project-information.title") }}:</h3>
-      <ui-form-group v-bind="hasError('project_name')" v-slot="{ id }">
-        <ui-input
-          v-model="form.project_name"
-          name="project_name"
-          :placeholder="t('project-information.fields.project-name')"
-          :id
-        />
-      </ui-form-group>
-      <ui-form-group v-bind="hasError('project_purpose')" v-slot="{ id }">
-        <ui-input
-          v-model="form.project_purpose"
-          name="project_purpose"
-          :placeholder="t('project-information.fields.project-purpose')"
-          :id
-        />
-      </ui-form-group>
-      <ui-form-group v-bind="hasError('required_investment')" v-slot="{ id }">
-        <ui-input
-          v-model="form.required_investment"
-          name="required_investment"
-          :placeholder="t('project-information.fields.total-investment')"
-          :id
-        />
-      </ui-form-group>
-      <ui-form-group v-bind="hasError('own_contribution')" v-slot="{ id }">
-        <ui-input
-          v-model="form.own_contribution"
-          name="own_contribution"
-          :placeholder="t('project-information.fields.own-contribution')"
-          :id
-        />
+      <ui-form-group v-if="form.is_resident" v-bind="hasError('pin')" v-slot="{ id }">
+        <ui-input v-model="form.pin" :id :placeholder="t('company-information.fields.pin')" />
       </ui-form-group>
     </div>
 
     <div class="grid gap-4 sm:grid-cols-2">
-      <h3 class="title col-span-full bg-blue-command text-white">
-        {{ t("file.title") }}
-      </h3>
-      <ui-form-group v-bind="hasError('file')" v-slot="{ id }" class="col-span-full">
-        <ui-file-input v-model="form.file" name="file" :multiple="false" :id :placeholder="t('file.placeholder')" />
+      <h3 class="title col-span-full bg-blue-bondi text-white">{{ t("additional-information.title") }}:</h3>
+      <ui-form-group v-bind="hasError('source')" v-slot="{ id }">
+        <multiselect
+          v-model="form.source"
+          name="source"
+          :placeholder="t('additional-information.fields.find-type')"
+          :options="aboutUs"
+          :id
+          @change="form.source_variant = ''"
+        />
+      </ui-form-group>
+      <ui-form-group v-bind="hasError('comments')" v-slot="{ id }">
+        <ui-input
+          v-model="form.comments"
+          name="comments"
+          :id
+          :placeholder="t('additional-information.fields.comments')"
+        />
+      </ui-form-group>
+      <ui-form-group v-bind="hasError('source_variant')" v-if="form.source === 'other'" v-slot="{ id }">
+        <ui-input
+          v-model="form.source_variant"
+          name="source_variant"
+          :id
+          :placeholder="t('additional-information.fields.aboutUsOther')"
+        />
       </ui-form-group>
     </div>
 
@@ -212,15 +200,25 @@ onMounted(() => {
         "email": "Email"
       }
     },
-    "project-information": {
-      "title": "Project Information",
+    "additional-information": {
+      "title": "Additional Information",
       "fields": {
-        "project-name": "Project Name",
-        "project-purpose": "Project Purpose",
-        "total-investment": "Total Investment (in USD)",
-        "own-contribution": "Own Contribution (in USD)"
+        "find-type": "How did you find out about us?",
+        "comments": "Comments",
+        "aboutUsOther": "Write your variant here"
+      },
+      "options": {
+        "about_us": {
+          "google": "Google",
+          "linkedin": "LinkedIn",
+          "instagram": "Instagram",
+          "telegram": "Telegram",
+          "forum": "Forum",
+          "other": "Other"
+        }
       }
     },
+
     "file": {
       "title": "Attach the file",
       "placeholder": "Drag and drop or upload file"
@@ -248,19 +246,15 @@ onMounted(() => {
         "email": "Электронная почта"
       }
     },
-    "project-information": {
-      "title": "Информация о проекте",
+    "additional-information": {
+      "title": "Дополнительная информация",
       "fields": {
-        "project-name": "Название проекта",
-        "project-purpose": "Цель проекта",
-        "total-investment": "Общая сумма необходимиых инвестиций (в долларах США)",
-        "own-contribution": "Собственный средства (в долларах США)"
+        "find-type": "Как вы узнали о нас?",
+        "comments": "Комментарии",
+        "aboutUsOther": "Напишите ваш вариант здесь"
       }
     },
-    "file": {
-      "title": "Прикрепите файл",
-      "placeholder": "Перетащите файл или загрузите его"
-    },
+
     "submit-button": "Зарегистрироваться"
   },
   "uz": {
@@ -284,19 +278,15 @@ onMounted(() => {
         "email": "Elektron pochta"
       }
     },
-    "project-information": {
-      "title": "Loyiha ma'lumotlari",
+    "additional-information": {
+      "title": "Qo'shimcha ma'lumotlar",
       "fields": {
-        "project-name": "Loyiha nomi",
-        "project-purpose": "Loyiha maqsadi",
-        "total-investment": "Talab etilayotan investitsiya miqdori (AQSH dollarida)",
-        "own-contribution": "Shundan o'z mablag'i (AQSH dollarida)"
+        "find-type": "Biz haqimizda qanday ma'lumot oldingiz?",
+        "comments": "Izohlar",
+        "aboutUsOther": "Bu yerda o'z variantingizni yozing"
       }
     },
-    "file": {
-      "title": "Fayl yuklash",
-      "placeholder": "Faylni tashlash yoki yuklash"
-    },
+
     "submit-button": "Ro'yxatdan o'tish"
   }
 }

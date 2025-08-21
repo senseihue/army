@@ -23,37 +23,32 @@ const aboutUs: SelectOptions = [
   { label: t("additional-information.options.about_us.other"), value: "other" }
 ]
 
-const business: SelectOptions = [
-  { label: t("short-answers.yes"), value: true },
-  { label: t("short-answers.no"), value: false }
-]
 const form = ref<RegisterInvestor>(new RegisterInvestor())
 const loading = ref(false)
 const { required, email, minLength, requiredIf } = useRule()
 const rules = ref({
   company_name: { required },
-  country: { required },
+  website: { required },
+  tin: {
+    requiredIf: requiredIf(computed(() => form.value.is_resident))
+  },
+
+  // applicant
   name: { required },
   surname: { required },
   position: { required },
   phone: { required, minLength: minLength(12) },
   email: { required, email },
   pin: {
-    requiredIf: requiredIf(
-      computed(() => form.value.is_resident),
-    )
+    requiredIf: requiredIf(computed(() => form.value.is_resident))
   },
 
-  target_industry_id: { required },
-  region_id: { required },
-  investment_type_id: { required },
-  investment_amount_id: { required, minLength: minLength(1) },
-
-  has_business: { required },
-  investment_experience: { required },
-
+  // additional information
   source: { required },
-  comments: { required }
+  comments: { required },
+  source_variant: {
+    requiredIf: requiredIf(computed(() => form.value.source === "other"))
+  }
 })
 const { vuelidate, hasError } = useValidate(form, rules)
 const submit = async () => {
@@ -72,7 +67,7 @@ onMounted(() => {
   <form class="register-investor-form" @submit.prevent="submit">
     <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
       <h3 class="title col-span-full bg-blue-bondi text-white">{{ t("basic-information.title") }}</h3>
-      <ui-form-group v-bind="hasError('company_name')" v-slot="{ id }" class="col-span-full">
+      <ui-form-group v-bind="hasError('company_name')" v-slot="{ id }">
         <ui-input
           v-model="form.company_name"
           name="name"
@@ -80,11 +75,18 @@ onMounted(() => {
           :placeholder="t('basic-information.fields.company-name')"
         />
       </ui-form-group>
-
-      <ui-form-group v-bind="hasError('country')" v-slot="{ id }">
-        <ui-input v-model="form.country" name="country" :id :placeholder="t('basic-information.fields.country')" />
+      <ui-form-group v-slot="{ id }">
+        <ui-input v-model="form.website" :id :placeholder="t('basic-information.fields.website')" />
+      </ui-form-group>
+      <ui-form-group v-if="form.is_resident" v-bind="hasError('tin')" v-slot="{ id }">
+        <ui-input v-model="form.tin" :id :placeholder="t('basic-information.fields.tin')" />
       </ui-form-group>
 
+    </div>
+    <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
+      <h3 class="title col-span-full bg-blue-bondi text-white">
+        {{ t("applicant.title") }}
+      </h3>
       <ui-form-group v-bind="hasError('name')" v-slot="{ id }">
         <ui-input v-model="form.name" name="name" :id :placeholder="t('basic-information.fields.name')" />
       </ui-form-group>
@@ -107,9 +109,7 @@ onMounted(() => {
           :placeholder="t('basic-information.fields.phone')"
         />
       </ui-form-group>
-      <ui-form-group v-slot="{ id }">
-        <ui-input v-model="form.website" :id :placeholder="t('basic-information.fields.website')" />
-      </ui-form-group>
+
       <ui-form-group v-if="form.is_resident" v-bind="hasError('pin')" v-slot="{ id }">
         <ui-input v-model="form.pin" :id :placeholder="t('basic-information.fields.pin')" />
       </ui-form-group>
@@ -119,102 +119,6 @@ onMounted(() => {
           name="is_resident"
           label-class="text-white"
           :label="t('basic-information.fields.is_resident')"
-          :id
-        />
-      </ui-form-group>
-    </div>
-    <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
-      <h3 class="title col-span-full bg-blue-bondi text-white">
-        {{ t("financial-information.title") }}
-      </h3>
-      <ui-form-group v-bind="hasError('annual_revenue')" v-slot="{ id }" class="col-span-full">
-        <ui-input
-          v-model="form.annual_revenue"
-          name="annualRevenue"
-          :id
-          :placeholder="t('financial-information.fields.annual-revenue')"
-        />
-      </ui-form-group>
-      <ui-form-group v-bind="hasError('net_profit')" v-slot="{ id }">
-        <ui-input
-          v-model="form.net_profit"
-          name="netProfit"
-          :id
-          :placeholder="t('financial-information.fields.net-profit')"
-        />
-      </ui-form-group>
-      <ui-form-group v-bind="hasError('number_of_employees')" v-slot="{ id }">
-        <ui-input
-          v-model="form.number_of_employees"
-          name="numberOfEmployees"
-          :id
-          :placeholder="t('financial-information.fields.employees')"
-        />
-      </ui-form-group>
-    </div>
-    <div class="grid gap-x-4 gap-y-4 sm:grid-cols-2">
-      <h3 class="title col-span-full bg-blue-bondi text-white">{{ t("investment-preferences.title") }}</h3>
-      <ui-form-group v-bind="hasError('target_industry_id')" v-slot="{ id }">
-        <target-industry-select
-          v-model="form.target_industry_id"
-          name="target_industry_id"
-          :placeholder="t('investment-preferences.fields.target-industry')"
-          :searchable="false"
-          :id
-        />
-      </ui-form-group>
-      <ui-form-group v-bind="hasError('region_id')" v-slot="{ id }">
-        <territory-select
-          v-model="form.region_id"
-          name="region_id"
-          :placeholder="t('investment-preferences.fields.preferred-region')"
-          :searchable="false"
-          :id
-        />
-      </ui-form-group>
-      <ui-form-group v-bind="hasError('investment_type_id')" v-slot="{ id }">
-        <investment-type-select
-          v-model="form.investment_type_id"
-          name="investment_type_id"
-          :placeholder="t('investment-preferences.fields.investment-type')"
-          :searchable="false"
-          :id
-        />
-      </ui-form-group>
-      <ui-form-group v-bind="hasError('investment_amount_id')" v-slot="{ id }">
-        <investment-amount-select
-          v-model="form.investment_amount_id"
-          name="investment_amount_id"
-          :placeholder="t('investment-preferences.fields.investment-amount')"
-          :searchable="false"
-          :id
-        />
-      </ui-form-group>
-      <ui-form-group v-if="form.investment_amount_id === 'other'" v-slot="{ id }">
-        <ui-input
-          v-model="form.investment_amount_variant"
-          name="amountRange"
-          :placeholder="t('investment-preferences.fields.investment-amount')"
-          :id
-        />
-      </ui-form-group>
-    </div>
-    <div class="grid gap-x-4 gap-y-4 sm:grid-cols-2">
-      <h3 class="title col-span-full bg-blue-bondi text-white">{{ t("experience.title") }}</h3>
-      <ui-form-group v-bind="hasError('has_business')" v-slot="{ id }">
-        <multiselect
-          v-model="form.has_business"
-          name="has_business"
-          :placeholder="t('experience.fields.have-a-business')"
-          :options="business"
-          :id
-        />
-      </ui-form-group>
-      <ui-form-group v-bind="hasError('investment_experience')" v-slot="{ id }">
-        <ui-input
-          v-model="form.investment_experience"
-          name="investment_experience"
-          :placeholder="t('experience.fields.investment-experience')"
           :id
         />
       </ui-form-group>
@@ -281,12 +185,13 @@ onMounted(() => {
         "phone": "Phone",
         "website": "Website",
         "is_resident": "I am a resident of the Republic of Uzbekistan",
-        "pin": "PINOI"
+        "pin": "PINOI",
+        "tin": "TIN"
       },
       "description": "Please provide your basic information to proceed with the registration."
     },
-    "financial-information": {
-      "title": "Financial Information",
+    "applicant": {
+      "title": "Applicant",
       "fields": {
         "annual-revenue": "Annual Revenue",
         "net-profit": "Net Profit",
@@ -394,12 +299,13 @@ onMounted(() => {
         "phone": "Телефон",
         "website": "Веб-сайт",
         "is_resident": "Я являюсь резидентом Республики Узбекистан",
-        "pin": "ПИНФЛ"
+        "pin": "ПИНФЛ",
+        "tin": "ИНН",
       },
       "description": "Пожалуйста, предоставьте вашу основную информацию для продолжения регистрации."
     },
-    "financial-information": {
-      "title": "Финансовая информация",
+    "applicant": {
+      "title": "Заявитель",
       "fields": {
         "annual-revenue": "Годовой доход",
         "net-profit": "Чистая прибыль",
@@ -428,6 +334,16 @@ onMounted(() => {
         "find-type": "Как вы узнали о нас?",
         "comments": "Комментарии",
         "aboutUsOther": "Напишите ваш вариант здесь"
+      },
+      "options": {
+        "about_us": {
+          "google": "Google",
+          "linkedin": "LinkedIn",
+          "instagram": "Instagram",
+          "telegram": "Telegram",
+          "forum": "Форум",
+          "other": "Другое"
+        }
       }
     },
     "short-answers": {
@@ -450,12 +366,13 @@ onMounted(() => {
         "is_resident": "Men O'zbekiston Respublikasi rezidentiman",
         "name": "Ism",
         "surname": "Familiya",
-        "pin": "PINFL"
+        "pin": "PINFL",
+        "tin": "STIR"
       },
       "description": "Ro'yxatdan o'tishni davom ettirish uchun asosiy ma'lumotlaringizni taqdim eting."
     },
-    "financial-information": {
-      "title": "Moliyaviy ma'lumotlar",
+    "applicant": {
+      "title": "Murojaatchi:",
       "fields": {
         "annual-revenue": "Yillik daromad",
         "net-profit": "Sof foyda",
@@ -484,6 +401,16 @@ onMounted(() => {
         "find-type": "Biz haqimizda qanday ma'lumot oldingiz?",
         "comments": "Izohlar",
         "aboutUsOther": "Bu yerda o'z variantingizni yozing"
+      },
+      "options": {
+        "about_us": {
+          "google": "Google",
+          "linkedin": "LinkedIn",
+          "instagram": "Instagram",
+          "telegram": "Telegram",
+          "forum": "Forum",
+          "other": "Boshqa"
+        }
       }
     },
     "short-answers": {

@@ -43,27 +43,21 @@ declare global {
 
 export class RegisterInvestor {
   company_name: string = ""
-  comments: string = ""
+  website: string = ""
+  tin!: string
+
+  //applicant
   email: string = ""
   phone: string = ""
-  country: string = ""
-  website: string = ""
   position: string = ""
-  pin?: string
   name: string = ""
   surname: string = ""
-  contact_person: string = ""
-  net_profit: string = ""
-  annual_revenue: string = ""
-  number_of_employees!: number
-  investment_type_id!: number
-  target_industry_id!: number
-  region_id!: number
-  investment_amount_id!: number
-  investment_amount_variant: string = ""
-  has_business!: boolean
-  investment_experience: string = ""
+  pin?: string
+
+
+  // additional fields
   source: string = ""
+  comments: string = ""
   source_variant: string = ""
   is_resident: boolean = true
 }
