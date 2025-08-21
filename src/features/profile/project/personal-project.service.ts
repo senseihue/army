@@ -47,6 +47,8 @@ export const usePersonalProjectService = () => {
         dto.value.longitude = Number(longitude)
         const formData = new FormData()
         for (const property in dto.value.presentation) {
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-expect-error
           formData.append(`presentation_${property}`, dto.value.presentation[property])
         }
         formData.append("file", dto.value.upload)
@@ -65,7 +67,10 @@ export const usePersonalProjectService = () => {
       loading.value = true
     }
 
-    return personalProjectApi.changeVisibilityPersonalProject(id).then(getPersonalProjectList).finally(() => loading && (loading.value = false))
+    return personalProjectApi
+      .changeVisibilityPersonalProject(id)
+      .then(getPersonalProjectList)
+      .finally(() => loading && (loading.value = false))
   }
 
   return {

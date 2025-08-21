@@ -7,6 +7,7 @@ interface IProps {
 
 const props = defineProps<IProps>()
 
+const localePath = useLocalePath()
 const { read } = useNotificationService()
 
 const style = computed(() => {
@@ -63,10 +64,22 @@ const style = computed(() => {
 
   return record[props.notification.type] || record["default"]
 })
+
+const onClick = () => {
+  read(props.notification.id)
+  if (props.notification.link) {
+    window.open(localePath(props.notification.link), "_blank")
+  }
+}
 </script>
 
 <template>
-  <a class="p-4 hover:bg-gray-100 dark:hover:bg-gray-950" target="_blank" :href="notification.link ?? '#'">
+  <a
+    class="p-4 hover:bg-gray-100 dark:hover:bg-gray-950"
+    target="_blank"
+    :href="notification.link ?? '#'"
+    @click.prevent="onClick"
+  >
     <div class="flex items-center gap-4" @click="read(notification.id)">
       <div v-if="style?.icon" class="grid h-10 w-10 shrink-0 place-items-center rounded-lg" :class="style?.background">
         <icon class="text-2xl text-white" :name="style?.icon" />

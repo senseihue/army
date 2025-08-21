@@ -24,6 +24,7 @@ export const useSelect = <T>({
     const { content } = await api(cleanParams({ ...params.value, page: 0 }))
     options.value = map(content)
     if (el.value) await observe()
+
     if (autoSelect) model.value = options.value.at(0)?.value!
     loading.value = false
   }
