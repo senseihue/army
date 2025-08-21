@@ -4,7 +4,7 @@ import { useNotificationService, NotificationItem } from "~/features/notificatio
 
 const notificationStore = useNotificationStore()
 const { getNotificationList, readAll } = useNotificationService()
-const { loading, items, count } = storeToRefs(notificationStore)
+const { items, count, sentinel } = storeToRefs(notificationStore)
 onMounted(() => {
   getNotificationList()
 })
@@ -30,8 +30,9 @@ onMounted(() => {
     </div>
 
     <template #body>
-      <div v-if="count > 0" class="grid divide-y overflow-y-auto dark:divide-gray-800">
+      <div v-if="count > 0" class="grid max-h-[350px] divide-y overflow-y-auto dark:divide-gray-800">
         <notification-item v-for="notification in items" :key="notification.id" :notification />
+        <div ref="sentinel" style="height: 1px; width: 100%"></div>
       </div>
 
       <div v-else>

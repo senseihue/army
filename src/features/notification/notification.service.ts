@@ -6,10 +6,9 @@ import { useNotificationApi } from "~/features/notification"
 export const useNotificationService = () => {
   const notificationApi = useNotificationApi()
   const notificationStore = useNotificationStore()
-  const { loading } = storeToRefs(notificationStore)
+  const { loading, sentinel, items, count, params } = storeToRefs(notificationStore)
 
   const { $session, $config, $firebaseMessaging } = useNuxtApp()
-  const { loggedIn } = $session || {}
   const notifications: INotification[] = [
     {
       id: 1,
@@ -111,19 +110,31 @@ export const useNotificationService = () => {
       created: "2023-10-11T17:00:00Z",
     },
   ];
-  const getNotificationList = () => {
-    if (!loggedIn.value) return
-    loading.value = true
-    notificationApi
-      .getNotificationList()
-      .then(({ content , pageable}) => {
-        notificationStore.items = notifications
-        notificationStore.count = content?.length || 0
-        notificationStore.params.total = pageable?.total ?? 0
-      })
-      .finally(() => (loading.value = false))
-  }
 
+
+  const getInfiniteNotificationList = async () => {
+    const { content, pageable } = await notificationApi.getNotificationList(cleanParams(params.value))
+
+    if (!content.length) return disconnect()
+    items.value = items.value.concat(content)
+    count.value = pageable?.total ?? 0
+    params.value.page++
+  }
+  console.log(sentinel, 'test')
+
+  const { observe, disconnect } = useInfinite(sentinel, getInfiniteNotificationList)
+
+  const getNotificationList = async () => {
+    try {
+      loading.value = true
+      const { content, pageable } = await notificationApi.getNotificationList(cleanParams({ size: 10 }))
+      items.value = notifications
+      count.value = pageable?.total ?? 0
+      await observe()
+    } finally {
+      loading.value = false
+    }
+  }
   const read = (id: number) => {
     loading.value = true
     notificationApi
@@ -141,8 +152,10 @@ export const useNotificationService = () => {
   }
 
   const subscribeToNotification = (): Unsubscribe => {
-    return onMessage($firebaseMessaging, () => {
-      if ($session.token.value) getNotificationList()
+    return onMessage($firebaseMessaging, async () => {
+      if ($session.token.value) {
+        await getNotificationList()
+      }
     })
   }
 
@@ -152,8 +165,7 @@ export const useNotificationService = () => {
         const sw = await navigator.serviceWorker.register($config.public.swPath)
 
         return await getToken($firebaseMessaging, {
-          serviceWorkerRegistration: sw,
-          vapidKey: $config.public.firebase.vapidKey
+          serviceWorkerRegistration: sw
         })
       }
     } catch (error) {

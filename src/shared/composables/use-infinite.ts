@@ -3,7 +3,7 @@ import type { Ref } from "vue"
 export const useInfinite = (el: Ref<HTMLElement>, load = async () => {}) => {
   const loading = ref<boolean>(false)
   const observer = ref<IntersectionObserver>()
-
+  console.log("el", el)
   const infiniteScroll = useDebounceFn(async ([{ isIntersecting, target }]: IntersectionObserverEntry[]) => {
     if (!isIntersecting) return
     if (target instanceof HTMLElement) {
@@ -19,6 +19,7 @@ export const useInfinite = (el: Ref<HTMLElement>, load = async () => {}) => {
 
   const observe = async () => {
     await nextTick()
+    console.log("el.value", el.value)
     observer.value?.observe(el.value)
   }
 
