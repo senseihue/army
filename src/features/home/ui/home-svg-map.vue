@@ -13,8 +13,7 @@ const drawLine = async (id: string) => {
 
   if (regionId.value === id) return removeLine()
   removeLine()
-  console.log(id)
-  console.log(regionId.value)
+
   regionId.value = id
   await nextTick()
 

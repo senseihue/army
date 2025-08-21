@@ -10,7 +10,7 @@ const { t } = useI18n({ useScope: "local" })
           <div class="w-full " data-aos="fade-right" data-aos-delay="50">
             <nuxt-img
               class="aspect-video max-h-[543px] object-cover object-center lg:aspect-auto"
-              src="/img/home/111img_0426.jpg"
+              src="/img/home/invest_guide.webp"
             />
           </div>
           <div class="mb-12" data-aos="fade-left" data-aos-delay="50">
@@ -27,7 +27,7 @@ const { t } = useI18n({ useScope: "local" })
           <div class="w-full lg:max-w-sm ml-auto" data-aos="fade-left" data-aos-delay="50">
             <nuxt-img
               class="aspect-video w-full object-cover object-center lg:aspect-auto"
-              src="https://dev-portal.miit.uz/uploads/new_uzb.jpg"
+              src="/img/home/new_uzb.webp"
             />
           </div>
         </div>

@@ -178,7 +178,8 @@
     "minLength": "Minimal talab qilingan uzunlik {min}",
     "required": "Ushbu maydon to'ldirilishi shart",
     "requiredIf": "Ushbu maydon to'ldirilishi shart",
-    "sameAs": "Qiymat \"{otherName}\" maydoni bilan mos kelishi kerak"
+    "sameAs": "Qiymat \"{otherName}\" maydoni bilan mos kelishi kerak",
+    "not": "Qiymat \"{otherName}\" ga teng bo'lmasligi kerak"
   },
   "messages": {
     "confirm": {
@@ -197,6 +198,10 @@
       "no_worries_message": "Xavotir olmang, sizga tiklash bo'yicha ko'rsatmalar yuboramiz.",
       "page_not_found": "Sahifa topilmadi",
       "welcome_message": "Xush kelibsiz! Iltimos, ma'lumotlaringizni kiriting."
+    },
+    "error": {
+      "user_not_found": "Foydalanuvchi topilmadi",
+      "user_not_found_description": "Ushbu hisob tizimda yo'q yoki hali faollashtirilmagan. Kiritilgan ma'lumotlarning to'g'riligini tekshiring yoki qo'llab-quvvatlash uchun murojaat qiling."
     },
     "success": {
       "entity_activated": "{name} faollashtirildi",

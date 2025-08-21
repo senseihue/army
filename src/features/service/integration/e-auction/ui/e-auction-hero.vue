@@ -4,7 +4,6 @@ const { t } = useI18n({ useScope: "local" })
 </script>
 
 <template>
-  <client-only>
     <div class="e-auction-hero" :style="{ minHeight }">
       <!--  Background  -->
       <div v-rellax class="e-auction-hero__background" data-rellax-speed="-5">
@@ -17,7 +16,6 @@ const { t } = useI18n({ useScope: "local" })
         <p class="e-auction-hero__content-text">{{ t("text") }}</p>
       </div>
     </div>
-  </client-only>
 </template>
 
 <style>

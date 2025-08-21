@@ -67,7 +67,7 @@ export const useAuthService = () => {
         alert
           .errorDialog({
             timer: 5000,
-            text: "Siz fanlar akademiyasining ruxsat etilgan xodimlari royxatidan topilmadingiz"
+            text: t("messages.error.user_not_found_description")
           })
           .then(() => {
             navigateTo(localePath("/"))

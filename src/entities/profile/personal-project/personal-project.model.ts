@@ -27,6 +27,7 @@ declare global {
     presentation_id: number
     category_id: number
     sector_id: number
+    budgets: IPersonalProjectBudget[]
     project_status: string
     latitude: number
     longitude: number
@@ -38,6 +39,11 @@ declare global {
     id: number
     title: string
   }
+
+  interface IPersonalProjectBudget {
+    id: number
+    sum: number
+  }
 }
 
 export class PersonalProject {
@@ -46,8 +52,8 @@ export class PersonalProject {
   state: string = ""
   reject_reason: string = ""
   content: IContent = new Content()
-  pp: string = ""
-  irr: string = ""
+  // pp: string = ""
+  // irr: string = ""
   // npv: string = ""
   status: string = ""
   // project_status: string = ""
@@ -60,6 +66,13 @@ export class PersonalProject {
   category_id!: number
   latitude!: number
   longitude!: number
-  budget!: number
+  budget: number = 0
+  budgets: IPersonalProjectBudget[] = [new ProjectBudget()]
+  deleted_budgets: number[] = []
   location!: string
+}
+
+export class ProjectBudget {
+  id!: number
+  sum: number = 0
 }

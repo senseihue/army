@@ -4,11 +4,12 @@ import { ProjectFileUpload, ProjectStatusSelect } from "~/features/profile/proje
 import { ProjectCategorySelect, ProjectSectorSelect } from "~/widgets/project"
 import { usePersonalProjectService } from "~/features/profile/project"
 import ProjectRejectReason from "~/features/profile/project/ui/form/project-reject-reason.vue"
-
+import ProjectBudget from "~/features/profile/project/ui/form/project-budget.vue"
+import { helpers } from '@vuelidate/validators'
 const { savePersonalProject, getPersonalProject } = usePersonalProjectService()
 
 const route = useRoute()
-const { required, email, minLength } = useRule()
+const { required, email, minLength, not, each } = useRule()
 const { t, locale } = useI18n({
   useScope: "local"
 })
@@ -26,13 +27,22 @@ const rules = ref({
     uz: { required, minLength: minLength(3) },
     ru: { required, minLength: minLength(3) }
   },
-  budget: { required },
+  budget: {
+    not: not((v) => {
+      return !v || v === 0
+    }),
+    required
+  },
+  budgets: {
+    $each: helpers.forEach({
+      sum: {
+        required: each.required,
+      }
+    })
+  },
   status: { required },
   location: { required },
-  irr: { required },
-  // upload: { required },
-  pp: { required },
-  // npv: { required },
+  upload: { required },
   phone: { required, minLength: minLength(12) },
   email: { required, email },
   content: {
@@ -81,8 +91,10 @@ defineExpose({
   <template v-else>
     <project-reject-reason :state="form.state" :reason="form.reject_reason" />
     <form @submit.prevent="onSubmit">
-      <div class="mb-[50px] flex items-end justify-around">
-        <project-file-upload v-model="form.upload" :disabled :size-limit="10" :label="$t('labels.image')" />
+      <div class="mb-[50px] flex flex-wrap items-end justify-around gap-4">
+        <ui-form-group v-bind="hasError('upload')" v-slot="{ id }">
+          <project-file-upload v-model="form.upload" :id :disabled :size-limit="10" :label="$t('labels.image')" />
+        </ui-form-group>
         <ui-input-with-language
           v-model="form.presentation"
           v-slot="{ id, handle, model }"
@@ -103,7 +115,7 @@ defineExpose({
           />
         </ui-input-with-language>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 md:gap-x-5 md:gap-y-4">
+      <div class="grid grid-cols-1 gap-x-3 gap-y-2 md:grid-cols-2 md:gap-x-5 md:gap-y-4">
         <ui-form-group v-bind="hasError('category_id')" v-slot="{ id }" required :label="t('fields.category')">
           <project-category-select v-model="form.category_id" :disabled="disabled" :id />
         </ui-form-group>
@@ -138,15 +150,13 @@ defineExpose({
         <ui-form-group v-bind="hasError('location')" v-slot="{ id }" required :label="t('fields.location')">
           <ui-input v-model="form.location" :readonly="disabled" :id />
         </ui-form-group>
-        <ui-form-group v-bind="hasError('irr')" v-slot="{ id }" required :label="t('fields.irr')">
-          <ui-input v-model="form.irr" :readonly="disabled" :id />
-        </ui-form-group>
-        <ui-form-group v-bind="hasError('pp')" v-slot="{ id }" required :label="t('fields.pp')">
-          <ui-input v-model="form.pp" :readonly="disabled" :id />
-        </ui-form-group>
-        <!--      <ui-form-group v-bind="hasError('npv')" v-slot="{ id }" required :label="t('fields.npv')">-->
-        <!--        <ui-input v-model="form.npv" :readonly="disabled" :id />-->
-        <!--      </ui-form-group>-->
+        <project-budget
+          v-model:ids="form.deleted_budgets"
+          v-bind="hasError('budgets')"
+          v-model="form.budgets"
+          class="col-span-full"
+          :label="t('fields.budgets')"
+        />
         <ui-form-group v-bind="hasError('phone')" v-slot="{ id }" required :label="t('fields.contact_phone')">
           <ui-mask-input
             v-model="form.phone"
@@ -162,7 +172,7 @@ defineExpose({
           <ui-input v-model="form.email" :readonly="disabled" :id />
         </ui-form-group>
         <ui-input-with-language
-          v-slot="{ id, handle, model }"
+          v-slot="{ id, handle, model, locale }"
           v-model="form.content"
           class="col-span-full"
           required
@@ -174,7 +184,7 @@ defineExpose({
           :label="t('fields.description')"
         >
           <client-only>
-            <lazy-tiny-editor :model-value="model" :disabled="disabled" :id @update:model-value="handle" />
+            <lazy-tiny-editor :model-value="model" :key="locale" :disabled="disabled" :id @update:model-value="handle" />
           </client-only>
         </ui-input-with-language>
       </div>
@@ -201,7 +211,8 @@ defineExpose({
       "contact_email": "Contact email",
       "description": "Description",
       "image": "Image",
-      "presentation": "Presentation"
+      "presentation": "Presentation",
+      "budgets": "Net cash flow by years (in USD)"
     }
   },
   "ru": {
@@ -219,7 +230,8 @@ defineExpose({
       "contact_email": "Контактный email",
       "description": "Описание",
       "image": "Изображение",
-      "presentation": "Презентация"
+      "presentation": "Презентация",
+      "budgets": "Чистый поток наличности по годам (в USD)"
     }
   },
   "uz": {
@@ -237,7 +249,8 @@ defineExpose({
       "contact_email": "Aloqa emaili",
       "description": "Tavsif",
       "image": "Rasm",
-      "presentation": "Taqdimot"
+      "presentation": "Taqdimot",
+      "budgets": "Yillik sof naqd pul oqimi (USD)"
     }
   }
 }

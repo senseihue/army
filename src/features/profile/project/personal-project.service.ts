@@ -28,7 +28,7 @@ export const usePersonalProjectService = () => {
           const location = [content.latitude, content.longitude].join(", ")
           content.location = location
         }
-        dto.value = { ...content }
+        dto.value = { ...new PersonalProject(), ...content }
         return Promise.resolve(content)
       })
       .finally(() => (loading.value = false))
@@ -37,24 +37,27 @@ export const usePersonalProjectService = () => {
   const savePersonalProject = async (dto: Ref<PersonalProject>, loading: Ref<boolean>) => {
     loading.value = true
     const action = dto.value.id ? personalProjectApi.updatePersonalProject : personalProjectApi.createPersonalProject
-
+    const [latitude, longitude] = dto.value.location.replace(" ", "").split(",")
+    dto.value.latitude = Number(latitude)
+    dto.value.longitude = Number(longitude)
     return action(dto.value)
       .then(({ content }) => {
         dto.value.id = content.id
         $toast.success("messages.success.saved")
-        const [latitude, longitude] = dto.value.location.replace(" ", "").split(",")
-        dto.value.latitude = Number(latitude)
-        dto.value.longitude = Number(longitude)
         const formData = new FormData()
-        for (const property in dto.value.presentation) {
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-expect-error
-          formData.append(`presentation_${property}`, dto.value.presentation[property])
-        }
-        formData.append("file", dto.value.upload)
         formData.append("project_id", String(dto.value.id))
-        personalProjectApi.createPersonalProjectPresentation(formData)
-        personalProjectApi.createPersonalProjectUpload(formData)
+        for (const property in dto.value.presentation) {
+          if (dto.value.presentation[property] instanceof File) {
+            formData.append(`presentation_${property}`, dto.value.presentation[property])
+          }
+        }
+        if (dto.value.upload instanceof File) {
+          formData.append("file", dto.value.upload)
+          personalProjectApi.createPersonalProjectUpload(formData)
+        }
+        if (Object.values(dto.value.presentation).some((item) => item instanceof File))
+          personalProjectApi.createPersonalProjectPresentation(formData)
+
         router.push(localePath("/profile/my-projects"))
         dto.value = new PersonalProject()
         return Promise.resolve(content)

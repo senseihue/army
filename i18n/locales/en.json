@@ -236,7 +236,8 @@
     "minLength": "Minimum required length is {min}",
     "required": "This field is required",
     "requiredIf": "This field is required",
-    "sameAs": "Value must match the field \"{otherName}\""
+    "sameAs": "Value must match the field \"{otherName}\"",
+    "not": "Value must not be equal \"{otherName}\""
   },
   "messages": {
     "confirm": {
@@ -256,6 +257,10 @@
       "page_not_found": "Page not found",
       "welcome_message": "Welcome back! Please enter your details.",
       "file_size_limit": "File size limit is {size} MB"
+    },
+    "error": {
+      "user_not_found": "User not found",
+      "user_not_found_description": "The specified account is missing from the system or has not been activated yet. Check the correctness of the entered data or contact support."
     },
     "success": {
       "entity_activated": "{name} has been activated",
