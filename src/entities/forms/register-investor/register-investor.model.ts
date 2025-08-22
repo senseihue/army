@@ -44,7 +44,6 @@ declare global {
 export class RegisterInvestor {
   company_name: string = ""
   website: string = ""
-  tin!: string
 
   //applicant
   email: string = ""

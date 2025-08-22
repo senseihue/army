@@ -7,18 +7,18 @@ export const useRegisterInvestorService = () => {
   const { registerInvestor } = useRegisterInvestorApi()
   const localePath = useLocalePath()
 
-  const register = async (dto: Ref<RegisterInvestor>, loading: Ref<boolean>) => {
+  const register = (dto: Ref<RegisterInvestor>, loading: Ref<boolean>) => {
     loading.value = true
 
     registerInvestor(dto.value)
       .then(() => {
-        $toast.success(t(dto.value.is_resident ? "messages.success.non_resident_registration" :"messages.success.registration"))
+        $toast.success(
+          t(dto.value.is_resident ? "messages.success.non_resident_registration" : "messages.success.registration")
+        )
         dto.value = new RegisterInvestor()
         navigateTo(localePath("/"))
       })
-      .finally(() => {
-        loading.value = false
-      })
+      .finally(() => (loading.value = false))
   }
 
   return {

@@ -4,9 +4,11 @@ import { Carousel, Slide } from "vue3-carousel"
 import { HomeTestimonialSlide } from "~/features/home"
 import StarIn from "~/app/assets/svg/starin.svg"
 
-const { t } = useI18n({ useScope: "local" })
+const { t, locale } = useI18n({ useScope: "local" })
 
-const {data} = await useFetch<IResponse<any>>("/gateway/siw/public/review")
+const { data } = await useFetch<IResponse<any>>("/gateway/siw/public/review", {
+  headers: { "Accept-Language": locale.value }
+})
 
 const carouselRef = ref<CarouselMethods>()
 const carouselConfig = computed<Partial<CarouselConfig>>(() => ({
@@ -84,13 +86,13 @@ const carouselConfig = computed<Partial<CarouselConfig>>(() => ({
 <i18n lang="json">
 {
   "en": {
-    "heading": "Views from the market",
+    "heading": "Views from the market"
   },
   "ru": {
-    "heading": "Мнение инвесторов",
+    "heading": "Мнение инвесторов"
   },
   "uz": {
-    "heading": "Investorlar fikri",
+    "heading": "Investorlar fikri"
   }
 }
 </i18n>

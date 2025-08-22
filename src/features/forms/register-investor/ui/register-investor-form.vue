@@ -2,11 +2,6 @@
 import Multiselect from "@vueform/multiselect"
 import { useRegisterInvestorService } from "~/features/forms/register-investor"
 import { RegisterInvestor } from "~/entities/forms/register-investor"
-import { TargetIndustrySelect } from "~/features/target-industry"
-import { TerritorySelect } from "~/features/territory"
-import InvestmentTypeSelect from "~/features/investment/ui/investment-type-select.vue"
-import InvestmentAmountSelect from "~/features/investment/ui/investment-amount-select.vue"
-import { helpers } from "@vuelidate/validators"
 
 const { t } = useI18n({ useScope: "local" })
 const { register } = useRegisterInvestorService()
@@ -29,10 +24,6 @@ const { required, email, minLength, requiredIf } = useRule()
 const rules = ref({
   company_name: { required },
   website: { required },
-  tin: {
-    requiredIf: requiredIf(computed(() => form.value.is_resident))
-  },
-
   // applicant
   name: { required },
   surname: { required },
@@ -78,11 +69,8 @@ onMounted(() => {
       <ui-form-group v-slot="{ id }">
         <ui-input v-model="form.website" :id :placeholder="t('basic-information.fields.website')" />
       </ui-form-group>
-      <ui-form-group v-if="form.is_resident" v-bind="hasError('tin')" v-slot="{ id }">
-        <ui-input v-model="form.tin" :id :placeholder="t('basic-information.fields.tin')" />
-      </ui-form-group>
-
     </div>
+
     <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
       <h3 class="title col-span-full bg-blue-bondi text-white">
         {{ t("applicant.title") }}
@@ -123,6 +111,7 @@ onMounted(() => {
         />
       </ui-form-group>
     </div>
+
     <div class="grid gap-x-4 gap-y-4 sm:grid-cols-2">
       <h3 class="title col-span-full bg-blue-bondi text-white">{{ t("additional-information.title") }}</h3>
       <ui-form-group v-bind="hasError('source')" v-slot="{ id }">
