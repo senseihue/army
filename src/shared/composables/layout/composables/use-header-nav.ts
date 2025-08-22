@@ -1,5 +1,3 @@
-import type { IHeaderNav } from "~/features/layout"
-
 export const useHeaderNav = () => {
   const { t } = useI18n()
 
@@ -33,11 +31,11 @@ export const useHeaderNav = () => {
       to: "/guide/register-business",
       dropdown: [{ label: t("nav.advert.registration"), to: "/guide/register-business" }]
     },
+    { label: t("nav.guide.single_window"), to: "/guide/project/category" },
     {
       label: t("nav.media.label"),
       to: "/media/news"
     },
-    { label: t("nav.guide.single_window"), to: "/guide/project/category" },
     {
       label: t("nav.about.label"),
       to: "/about",
