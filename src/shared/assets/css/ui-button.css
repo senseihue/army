@@ -157,6 +157,10 @@
   &.ui-button-gray {
     @apply bg-gray-200 hover:bg-gray-300 dark:hover:bg-gray-500;
   }
+
+  &.ui-button-midnight {
+    @apply bg-blue-midnight text-white hover:bg-blue-midnight/90 dark:hover:bg-blue-midnight/80;
+  }
 }
 
 /* White */
