@@ -31,6 +31,7 @@ declare global {
     zaklad_percent: number
     lat: string
     lng: string
+    images: any[]
     over_time: string
     order_end_time: string
     auction_time: string

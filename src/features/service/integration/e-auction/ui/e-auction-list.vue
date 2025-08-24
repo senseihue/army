@@ -15,19 +15,7 @@
         </div>
 
         <div class="mb-5 grid gap-5">
-          <e-auction-card
-            v-for="(lot, idx) in items"
-            :title="lot?.property_name"
-            :start-price="lot?.start_price"
-            :auction-start-time="lot?.auction_start_time"
-            :order-end-time="lot?.order_end_time"
-            :deposit="lot?.zakalad_amount"
-            :percent="lot?.zakalad_percent"
-            :lot-number="lot?.lot_number"
-            :address="lot?.address"
-            :image="lot?.image_link"
-            :key="idx"
-          />
+          <e-auction-card v-for="(lot, idx) in items" v-bind="{ lot }" :key="idx" />
         </div>
 
         <ui-pagination

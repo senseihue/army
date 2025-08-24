@@ -5,42 +5,49 @@
         <img
           class="h-[184px] w-full min-w-[245px] max-w-[245px] rounded-xl object-cover object-center"
           alt="img"
-          :src="image"
+          :src="lot?.image_link"
         />
       </div>
       <div class="flex w-full flex-col justify-between gap-3">
-        <h3 class="font-bold text-blue-midnight">{{ title }}</h3>
+        <h3 class="font-bold text-blue-midnight">{{ lot?.property_name }}</h3>
         <div class="grid grid-cols-1 gap-1 sm:grid-cols-2 lg:grid-cols-4">
           <div>
             <p class="mb-2 text-xs font-semibold">Стартовая цена</p>
-            <p class="text-sm font-bold text-blue-midnight">{{ startPrice }} UZS</p>
+            <p class="text-sm font-bold text-blue-midnight">{{ lot?.start_price }} UZS</p>
           </div>
 
           <div>
-            <p class="mb-2 text-xs font-semibold">Сумма задатка ({{ percent }})</p>
-            <p class="text-sm font-bold text-blue-midnight">{{ deposit }} UZS</p>
+            <p class="mb-2 text-xs font-semibold">Сумма задатка ({{ lot?.zakalad_percent }})</p>
+            <p class="text-sm font-bold text-blue-midnight">{{ lot?.zakalad_amount }} UZS</p>
           </div>
 
           <div>
             <p class="mb-2 text-xs font-semibold">Дата проведения торгов</p>
-            <p class="text-sm font-bold text-blue-midnight">{{ auctionStartTime }}</p>
+            <p class="text-sm font-bold text-blue-midnight">{{ lot?.auction_start_time }}</p>
           </div>
 
           <div>
             <p class="mb-2 text-xs font-semibold">Срок окончания приёма заявок</p>
-            <p class="text-sm font-bold text-blue-midnight">{{ orderEndTime }}</p>
+            <p class="text-sm font-bold text-blue-midnight">{{ lot?.order_end_time }}</p>
           </div>
         </div>
 
         <div class="flex flex-col justify-between gap-3 sm:flex-row sm:items-center">
           <div>
-            <p class="text-xs font-semibold mb-2">Адрес</p>
+            <p class="mb-2 text-xs font-semibold">Адрес</p>
             <p class="text-sm font-bold text-blue-midnight">
-              {{ address }}
+              {{ lot?.address }}
             </p>
           </div>
 
-          <ui-button class="text-sm" rounded size="sm" color="midnight" label="Подробнее" />
+          <ui-button
+            class="text-sm"
+            rounded
+            size="sm"
+            color="midnight"
+            label="Подробнее"
+            :to="`/service/e-auction/${lot?.lot_number}`"
+          />
         </div>
       </div>
     </div>
@@ -48,22 +55,14 @@
     <span
       class="absolute right-0 top-0 rounded-bl-xl rounded-tr-xl bg-blue-bondi px-4 py-2 text-xs font-medium text-white"
     >
-      №{{ lotNumber }}
+      №{{ lot?.lot_number }}
     </span>
   </div>
 </template>
 
 <script setup lang="ts">
 interface IProps {
-  title: string
-  auctionStartTime: string
-  startPrice: number
-  deposit: number
-  percent: number
-  orderEndTime: string
-  address: string
-  lotNumber: string
-  image: string
+  lot: IEAuction
 }
 
 const props = defineProps<IProps>()
