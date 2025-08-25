@@ -23,7 +23,7 @@ defineProps<IProps>()
     </nuxt-link-locale>
 
     <p v-if="publishDate" class="mb-2 text-sm text-gray-600" :class="dateClass">
-      {{ dayjs.utc(publishDate).format("MMMM D, YYYY HH:mm") }}
+      {{ dayjs.utc(publishDate).local().format("MMMM D, YYYY HH:mm") }}
     </p>
 
     <nuxt-link-locale class="line-clamp-2 text-lg font-bold" :to="path" :class="labelClass">

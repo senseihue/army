@@ -32,7 +32,7 @@ const dynamicBlocks: Record<string, any> = {
           <div class="hidden text-gray-600 md:col-span-2 md:block">
             <span>{{ t(category) }}</span>
             |
-            <span v-if="publishDate">{{ dayjs.utc(publishDate).format("MMMM D, YYYY HH:mm") }}</span>
+            <span v-if="publishDate">{{ dayjs.utc(publishDate).local().format("MMMM D, YYYY HH:mm") }}</span>
           </div>
 
           <div class="flex flex-col gap-6 md:col-span-4">
@@ -43,7 +43,7 @@ const dynamicBlocks: Record<string, any> = {
             <p class="text-gray-600 md:hidden">
               <span>{{ t(category) }}</span>
               |
-              <span v-if="publishDate">{{ dayjs.utc(publishDate).format("MMMM D, YYYY HH:mm") }}</span>
+              <span v-if="publishDate">{{ dayjs.utc(publishDate).local().format("MMMM D, YYYY HH:mm") }}</span>
             </p>
 
             <!--            <p class="font-helvetica text-gray-600">-->
