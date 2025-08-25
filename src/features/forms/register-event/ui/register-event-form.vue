@@ -76,7 +76,7 @@ const submit = async () => {
       <h3 class="title-text  bg-blue-bondi text-white col-span-full">
         {{ t("applicant.title") }}
       </h3>
-      <ui-form-group v-slot="{ id }" :class="hasError('role')">
+      <ui-form-group v-slot="{ id }" v-bind="hasError('role')">
         <multiselect
           v-model="form.role"
           class="!rounded-none !placeholder:text-black"
@@ -94,7 +94,7 @@ const submit = async () => {
       <ui-form-group v-bind="hasError('last_name')" v-slot="{ id }">
         <ui-input v-model="form.last_name" name="last_name" :id :placeholder="t('applicant.fields.last_name')" />
       </ui-form-group>
-      <ui-form-group v-slot="{ id }" :class="hasError('gender')">
+      <ui-form-group v-slot="{ id }" v-bind="hasError('gender')">
         <multiselect
           v-model="form.gender"
           class="!rounded-none placeholder:text-black"
@@ -226,7 +226,7 @@ const submit = async () => {
 }
 </style>
 
-<i18n>
+<i18n lang="json">
 {
   "en": {
     "applicant": {
