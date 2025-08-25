@@ -57,12 +57,12 @@ onMounted(() => projectCategoryService.getProjectCategoryList({}, list, loading)
     "description": "Welcome to the Uzbekistan Investor Portal, where you can explore a wide range of investment opportunities across various sectors. Below, you’ll find categories of projects available for investment. Click on each category to discover specific projects and learn more about their potential."
   },
   "ru": {
-    "title": "Title",
-    "description": "Description"
+    "title": "Исследуйте наши инвестиционные проекты",
+    "description": "Добро пожаловать на Инвестиционный портал Узбекистана, где вы можете изучить широкий спектр инвестиционных возможностей в различных секторах. Ниже представлены категории проектов, доступных для инвестирования. Нажмите на каждую категорию, чтобы узнать больше о конкретных проектах и их потенциале."
   },
   "uz": {
-    "title": "Title",
-    "description": "Description"
+    "title": "Investitsiya loyihalarimiz bilan tanishing",
+    "description": "O‘zbekiston Investitsiya Portaliga xush kelibsiz! Bu yerda siz turli sohalarda mavjud bo‘lgan keng investitsiya imkoniyatlari bilan tanishishingiz mumkin. Quyida investitsiya uchun ochiq bo‘lgan loyihalar toifalari keltirilgan. Har bir toifaga bosib, aniq loyihalar va ularning salohiyati haqida batafsil ma’lumot olishingiz mumkin."
   }
 }
 </i18n>
