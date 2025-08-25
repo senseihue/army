@@ -128,7 +128,19 @@
     "start_date": "Boshlanish sanasi",
     "uzs": "so'm",
     "address": "Manzil",
-    "image": "Rasm"
+    "image": "Rasm",
+    "deposit_amount": "Garov summasi",
+    "auction_date": "Savdo o‘tkazilish sanasi",
+    "application_deadline": "Arizalarni qabul qilish muddati",
+    "lot_status": "Lot holati",
+    "application_end": "Arizalarni topshirish yakuni",
+    "day": "Kun",
+    "hour": "Soat",
+    "minute": "Daqiqa",
+    "second": "Sonya",
+    "object_location": "Obyekt joylashuvi",
+    "lot_on_sale": "Sotuvdagi lot",
+    "general_view": "Umumiy ko‘rinish"
   },
   "actions": {
     "investor": "Investor",
@@ -170,7 +182,8 @@
     "view": "Ko'rish",
     "back": "Ortga",
     "add_project": "Loyiha qo'shish",
-    "publish": "Nashr etish"
+    "publish": "Nashr etish",
+    "submit_application": "Ariza topshirish"
   },
   "validations": {
     "email": "Noto'g'ri elektron pochta manzili",

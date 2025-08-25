@@ -169,7 +169,19 @@
     "start_date": "Start date",
     "address": "Address",
     "uzs": "UZS",
-    "image": "Image"
+    "image": "Image",
+    "deposit_amount": "Deposit amount",
+    "auction_date": "Auction date",
+    "application_deadline": "Application deadline",
+    "lot_status": "Lot status",
+    "application_end": "End of application submission",
+    "day": "Day",
+    "hour": "Hour",
+    "minute": "Minute",
+    "second": "Second",
+    "object_location": "Object location",
+    "lot_on_sale": "Lot on sale",
+    "general_view": "General view"
   },
   "regions": {
     "UZ-AN": "Andijan",
@@ -228,7 +240,8 @@
     "back": "Back",
     "view": "View",
     "add_project": "Add project",
-    "publish": "Publish"
+    "publish": "Publish",
+    "submit_application": "Submit application"
   },
   "validations": {
     "email": "Invalid email address",

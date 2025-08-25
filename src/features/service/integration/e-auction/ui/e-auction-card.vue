@@ -9,7 +9,7 @@
         />
       </div>
       <div class="flex w-full flex-col justify-between gap-3">
-        <h3 class="font-bold text-blue-midnight">{{ lot?.property_name }}</h3>
+        <h3 class="font-bold text-blue-midnight lg:max-w-2xl">{{ lot?.property_name }}</h3>
         <div class="grid grid-cols-1 gap-1 sm:grid-cols-2 lg:grid-cols-4">
           <div>
             <p class="mb-2 text-xs font-semibold">Стартовая цена</p>

@@ -53,13 +53,13 @@ const config: Partial<CarouselConfig> = {
 </script>
 
 <template>
-  <div class="culture-section">
+  <div class="auction-section">
     <div class="flex flex-col">
       <div class="mb-4">
         <carousel v-model="currentSlide" v-bind="config" id="main-slides" ref="carouselRef">
           <slide
             v-for="(image, idx) in slides"
-            data-vc-slide-item-after-content="Обший вид"
+            :data-vc-slide-item-after-content="$t('labels.general_view')"
             :key="idx"
             :style="{
               '--vc-slide-item-after-content': true
@@ -88,7 +88,7 @@ const config: Partial<CarouselConfig> = {
 </template>
 
 <style>
-.culture-section {
+.auction-section {
   .carousel {
     --vc-nav-background: rgba(255, 255, 255, 0.7);
     --vc-nav-border-radius: 100%;
@@ -113,15 +113,6 @@ const config: Partial<CarouselConfig> = {
     content: attr(data-vc-slide-item-after-content);
     display: block;
     @apply text-center;
-  }
-
-  & .swiper-button-prev,
-  & .swiper-button-next {
-    @apply relative text-black;
-
-    &::after {
-      @apply text-xl font-bold;
-    }
   }
 
   #thumbnails {

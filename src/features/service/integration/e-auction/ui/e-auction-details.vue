@@ -2,7 +2,18 @@
   <div class="p-section">
     <div v-if="loading"></div>
     <div v-else class="container-6xl">
-      <div class="grid gap-8">
+      <div class="grid gap-2">
+        <div class="flex items-center justify-between gap-3 py-4">
+          <h3 class="text-xl font-bold">{{ $t("labels.lot_on_sale") }}</h3>
+          <ui-button
+            size="sm"
+            icon-name="lucide:arrow-left"
+            variant="flat"
+            color="secondary"
+            :label="$t('actions.back')"
+            @click="goBack"
+          />
+        </div>
         <div class="grid gap-6 md:grid-cols-2">
           <e-auction-slides :slides="lot?.images" />
           <div>
@@ -11,36 +22,38 @@
               <h3 class="font-bold text-blue-midnight">{{ lot?.property }}</h3>
               <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
                 <div>
-                  <p class="mb-2 text-xs font-semibold">Стартовая цена</p>
+                  <p class="mb-2 text-xs font-semibold">{{ $t("labels.starting_price") }}</p>
                   <p class="text-sm font-bold text-blue-midnight">{{ lot?.price }} UZS</p>
                 </div>
 
                 <div>
-                  <p class="mb-2 text-xs font-semibold">Сумма задатка ({{ lot?.zaklad_percent }}%)</p>
+                  <p class="mb-2 text-xs font-semibold">
+                    {{ $t("labels.deposit_amount") }} ({{ lot?.zaklad_percent }}%)
+                  </p>
                   <p class="text-sm font-bold text-blue-midnight">{{ lot?.zaklad_summa }} UZS</p>
                 </div>
 
                 <div>
-                  <p class="mb-2 text-xs font-semibold">Дата проведения торгов</p>
+                  <p class="mb-2 text-xs font-semibold">{{ $t("labels.auction_date") }}</p>
                   <p class="text-sm font-bold text-blue-midnight">{{ lot?.auction_time }}</p>
                 </div>
 
                 <div>
-                  <p class="mb-2 text-xs font-semibold">Срок окончания приёма заявок</p>
+                  <p class="mb-2 text-xs font-semibold">{{ $t("labels.application_deadline") }}</p>
                   <p class="text-sm font-bold text-blue-midnight">{{ lot?.order_end_time }}</p>
                 </div>
               </div>
 
               <div class="flex flex-col justify-between gap-6">
                 <div>
-                  <p class="mb-2 text-xs font-semibold">Адрес</p>
+                  <p class="mb-2 text-xs font-semibold">{{ $t("labels.address") }}</p>
                   <p class="text-sm font-bold text-blue-midnight">
                     {{ lot?.address }}
                   </p>
                 </div>
 
                 <div>
-                  <p class="mb-2 text-xs font-semibold">Статус лота</p>
+                  <p class="mb-2 text-xs font-semibold">{{ $t("labels.lot_status") }}</p>
                   <p class="text-sm font-bold text-blue-midnight">
                     {{ lot?.lot_status }}
                   </p>
@@ -48,15 +61,15 @@
 
                 <div class="gpa-2 grid md:grid-cols-2">
                   <div class="rounded-md border border-blue-midnight p-3">
-                    <p class="text-center text-sm font-semibold text-blue-midnight">Окончание приёма заявок</p>
+                    <p class="text-center text-sm font-semibold text-blue-midnight">
+                      {{ $t("labels.application_end") }}
+                    </p>
                     <p class="text-center text-[40px] font-bold text-red-600">{{ timeLeft }}</p>
-                    <div
-                      class="grid grid-cols-4 gap-4 text-xs font-semibold uppercase text-blue-midnight"
-                    >
-                      <span class="inline-block text-center">D</span>
-                      <span class="inline-block text-center">H</span>
-                      <span class="inline-block text-center">M</span>
-                      <span class="inline-block text-center">S</span>
+                    <div class="flex justify-center gap-5 text-xs font-semibold uppercase text-blue-midnight">
+                      <span class="inline-block text-center">{{ $t("labels.day") }}</span>
+                      <span class="inline-block text-center">{{ $t("labels.hour") }}</span>
+                      <span class="inline-block text-center">{{ $t("labels.minute") }}</span>
+                      <span class="inline-block text-center">{{ $t("labels.second") }}</span>
                     </div>
                   </div>
 
@@ -66,7 +79,7 @@
                       rounded
                       size="sm"
                       color="primary"
-                      label="Подать заявку"
+                      :label="$t('actions.submit_application')"
                       @click="redirectEAuction"
                     />
                   </div>
@@ -75,8 +88,8 @@
             </div>
           </div>
         </div>
-        <div>
-          <h3 class="mb-2 text-sm font-bold text-blue-midnight">Местоположение объекта</h3>
+        <div class="mt-8">
+          <h3 class="mb-2 text-sm font-bold text-blue-midnight">{{ $t("labels.object_location") }}</h3>
 
           <iframe
             class="rounded-md border-0"
@@ -100,6 +113,8 @@ dayjs.extend(duration)
 const { getEAuctionById } = useEAuctionService()
 
 const route = useRoute()
+const router = useRouter()
+const localePath = useLocalePath()
 const loading = ref(false)
 const lot = ref<IEAuctionDetails>()
 const timeLeft = ref("00:00:00")
@@ -131,6 +146,8 @@ const updateTimer = () => {
 const redirectEAuction = () => {
   if (lot.value?.lot) window.open(`https://cabinet.e-auksion.uz/lot-to-apply?lot=${lot.value.lot}`, "_blank")
 }
+
+const goBack = () => router.push(localePath("/service/e-auction"))
 
 onMounted(() => {
   if (route.params.id) getEAuctionById(+route.params.id, lot, loading)
