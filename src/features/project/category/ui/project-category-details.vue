@@ -42,9 +42,11 @@
           </div>
         </div>
 
-        <div class="relative flex gap-3">
+        <div v-if="loading"></div>
+
+        <div v-else class="relative flex gap-3">
           <div
-            v-if="category?.service_categories?.length"
+            v-if="category?.service_categories?.length && projectList?.length"
             class="sticky top-32 flex h-fit flex-col gap-3 rounded-xl bg-white p-3 shadow-md"
           >
             <div
@@ -67,7 +69,7 @@
             </div>
           </div>
           <div class="grow">
-            <div class="grow">
+            <div v-if="projectList?.length" class="grow">
               <div class="mb-5 flex gap-6" ref="projectSection">
                 <div class="grid grow gap-5 rounded-xl bg-white p-4">
                   <h3 class="text-xl font-semibold">{{ $t("labels.investment_proposals") }}</h3>
@@ -79,19 +81,18 @@
                     v-model:status="query.status"
                   />
 
-                  <div v-if="projectList.length" class="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+                  <div class="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
                     <project-card v-for="project in projectList" v-bind="project" :key="project.id" />
                   </div>
-                  <p v-else class="text-center">Loading...</p>
                 </div>
               </div>
             </div>
 
-            <div class="flex gap-5">
+            <div v-if="category?.service_categories?.length" class="flex gap-5">
               <div class="relative grid w-full gap-5 rounded-xl bg-white p-4" ref="serviceSection">
                 <h3 class="font-semibold">{{ $t("labels.where_to_start") }}</h3>
 
-                <div v-if="category?.service_categories?.length" class="rounded-2xl border">
+                <div class="rounded-2xl border">
                   <project-category-slider :items-count="category?.service_categories?.length">
                     <project-category-slide
                       v-for="(slide, idx) in category?.service_categories"
@@ -104,8 +105,6 @@
                     />
                   </project-category-slider>
                 </div>
-
-                <div v-else class="text-center">Loading...</div>
 
                 <div v-if="serviceList.length" class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
                   <template v-for="(service, idx) in serviceList" :key="service.id">
