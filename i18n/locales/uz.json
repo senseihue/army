@@ -21,7 +21,7 @@
       "environment": "Qo‘llab-quvvatlovchi muhit"
     },
     "guide": {
-      "label": "Investitsiya qo‘llanmasi",
+      "label": "Investor uchun",
       "explore": "Sektorlaringizni o‘rganing",
       "partnership": "Davlat-xususiy sheriklik",
       "privatization": "Xususiylashtirish",
@@ -34,11 +34,11 @@
       "register-business": "Biznesni ro'yxatdan o'tkazish"
     },
     "advert": {
-      "label": "Investor topish",
+      "label": "Investor kerak",
       "registration": "Biznesni ro'yxatdan o'tkazish"
     },
     "media": {
-      "label": "Yangiliklar va tahlillar",
+      "label": "Yangiliklar",
       "news": "Yangiliklar",
       "publications": "Nashrlar",
       "pr_materials": "PR materiallar",
@@ -128,7 +128,8 @@
     "start_date": "Boshlanish sanasi",
     "uzs": "so'm",
     "address": "Manzil",
-    "image": "Rasm"
+    "image": "Rasm",
+    "notifications": "Bildirishnomalar"
   },
   "actions": {
     "investor": "Investor",

@@ -12,11 +12,11 @@ export const useRegisterInvestorService = () => {
 
     registerInvestor(dto.value)
       .then(() => {
-        $toast.success(
-          t(dto.value.is_resident ? "messages.success.non_resident_registration" : "messages.success.registration")
-        )
+        // $toast.success(
+        //   t(dto.value.is_resident ? "messages.success.non_resident_registration" : "messages.success.registration")
+        // )
         dto.value = new RegisterInvestor()
-        navigateTo(localePath("/"))
+        navigateTo(localePath("/success-registration"))
       })
       .finally(() => (loading.value = false))
   }

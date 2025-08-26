@@ -5,16 +5,17 @@ import { useNotificationService, NotificationItem } from "~/features/notificatio
 const notificationStore = useNotificationStore()
 const { getNotificationList, readAll, observe, disconnect } = useNotificationService()
 const { items, count, sentinel } = storeToRefs(notificationStore)
-
+const { $session } = useNuxtApp()
+const { loggedIn } = $session || {}
 onMounted(() => {
-  getNotificationList()
+  if (loggedIn?.value ) getNotificationList()
 })
 
 onBeforeUnmount(disconnect)
 </script>
 
 <template>
-  <ui-dropdown @show="observe">
+  <ui-dropdown v-if="loggedIn" @show="observe">
     <div class="relative">
       <ui-icon-button
         rounded

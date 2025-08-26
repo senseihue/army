@@ -66,7 +66,6 @@ export default defineNuxtPlugin(() => {
       return response
     },
     (error: AxiosError) => {
-      console.log(error)
       const code: Record<number, string> = {
         401: $i18n.t("messages.error.unauthorized"),
         403: $i18n.t("messages.error.forbidden")

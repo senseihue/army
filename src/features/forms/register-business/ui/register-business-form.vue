@@ -252,6 +252,16 @@ onMounted(() => {
         "find-type": "Как вы узнали о нас?",
         "comments": "Комментарии",
         "aboutUsOther": "Напишите ваш вариант здесь"
+      },
+      "options": {
+        "about_us": {
+          "google": "Google",
+          "linkedin": "LinkedIn",
+          "instagram": "Instagram",
+          "telegram": "Telegram",
+          "forum": "Форум",
+          "other": "Другое"
+        }
       }
     },
 
@@ -284,6 +294,16 @@ onMounted(() => {
         "find-type": "Biz haqimizda qanday ma'lumot oldingiz?",
         "comments": "Izohlar",
         "aboutUsOther": "Bu yerda o'z variantingizni yozing"
+      },
+      "options": {
+        "about_us": {
+          "google": "Google",
+          "linkedin": "LinkedIn",
+          "instagram": "Instagram",
+          "telegram": "Telegram",
+          "forum": "Forum",
+          "other": "Boshqa"
+        }
       }
     },
 
