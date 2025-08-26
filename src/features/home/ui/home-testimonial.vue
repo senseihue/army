@@ -4,7 +4,7 @@ import { Carousel, Slide } from "vue3-carousel"
 import { HomeTestimonialSlide } from "~/features/home"
 import StarIn from "~/app/assets/svg/starin.svg"
 
-const { t, locale } = useI18n({ useScope: "local" })
+const { locale } = useI18n()
 
 const { data } = await useFetch<IResponse<any>>("/gateway/siw/public/review", {
   headers: { "Accept-Language": locale.value }
@@ -39,7 +39,7 @@ const carouselConfig = computed<Partial<CarouselConfig>>(() => ({
             <icon class="text-4xl" name="ph:caret-left" />
           </div>
 
-          <h3 class="testimonial__heading">{{ t("heading") }}</h3>
+          <h3 class="testimonial__heading">{{ $t("heading") }}</h3>
 
           <div class="testimonial__nav-button" @click="carouselRef?.next()">
             <icon class="text-4xl" name="ph:caret-right" />

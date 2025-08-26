@@ -25,10 +25,10 @@ const breakpoints = useBreakpoints(breakpointsTailwind)
 </script>
 
 <template>
-  <section class="service-slider">
-    <div class="service-slider__grid">
-      <div class="service-slider__content" data-aos="fade-right" data-aos-delay="150">
-        <carousel v-bind="carouselConfig" class="service-carousel min-h-[88px]">
+  <section class="project-slider">
+    <div class="project-slider__grid">
+      <div class="project-slider__content" data-aos="fade-right" data-aos-delay="150">
+        <carousel v-bind="carouselConfig" class="min-h-[88px]">
           <slot />
 
           <template #addons>
@@ -48,8 +48,8 @@ const breakpoints = useBreakpoints(breakpointsTailwind)
   </section>
 </template>
 
-<style lang="scss">
-.service-slider {
+<style>
+.project-slider {
   &__grid {
     @apply grid grid-cols-1;
   }
@@ -57,23 +57,25 @@ const breakpoints = useBreakpoints(breakpointsTailwind)
   &__content {
     @apply flex flex-col rounded-2xl bg-white;
   }
+
+
+  .carousel__next {
+    @apply absolute -top-8 right-0 rounded-full bg-gray-300;
+  }
+
+  .carousel__prev {
+    @apply absolute -top-8 left-[88%] rounded-full bg-gray-300 lg:left-[94%];
+  }
+
+  .carousel__next:hover,
+  .carousel__prev:hover {
+    color: #4e1414;
+  }
+
+  .carousel__next--disabled,
+  .carousel__prev--disabled {
+    opacity: 0.3;
+  }
 }
 
-.carousel__next {
-  @apply absolute -top-8 right-0 rounded-full bg-gray-300;
-}
-
-.carousel__prev {
-  @apply absolute -top-8 left-[88%] rounded-full bg-gray-300 lg:left-[94%];
-}
-
-.carousel__next:hover,
-.carousel__prev:hover {
-  color: #4e1414;
-}
-
-.carousel__next--disabled,
-.carousel__prev--disabled {
-  opacity: 0.3;
-}
 </style>

@@ -2,7 +2,6 @@
   <div>
     <e-auction-hero />
     <e-auction-list />
-    <e-auction-modal />
   </div>
 </template>
 
