@@ -52,6 +52,7 @@ export class RegisterInvestor {
   name: string = ""
   surname: string = ""
   pin?: string
+  country_id!: number
 
 
   // additional fields

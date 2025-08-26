@@ -2,6 +2,8 @@
 import Multiselect from "@vueform/multiselect"
 import { useRegisterInvestorService } from "~/features/forms/register-investor"
 import { RegisterInvestor } from "~/entities/forms/register-investor"
+import UiFormGroup from "../../../../shared/components/ui-form-group.vue"
+import { CountrySelect } from "~/features/territory"
 
 const { t } = useI18n({ useScope: "local" })
 const { register } = useRegisterInvestorService()
@@ -32,6 +34,9 @@ const rules = ref({
   email: { required, email },
   pin: {
     requiredIf: requiredIf(computed(() => form.value.is_resident))
+  },
+  country_id: {
+    requiredIf: requiredIf(computed(() => !form.value.is_resident))
   },
 
   // additional information
@@ -69,6 +74,9 @@ onMounted(() => {
       <ui-form-group v-slot="{ id }">
         <ui-input v-model="form.website" :id :placeholder="t('basic-information.fields.website')" />
       </ui-form-group>
+      <ui-form-group v-if="!form.is_resident" v-bind="hasError('country_id')" v-slot="{ id }">
+        <country-select v-model="form.country_id" :id :placeholder="t('basic-information.fields.country')" />
+      </ui-form-group>
     </div>
 
     <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
@@ -101,6 +109,7 @@ onMounted(() => {
       <ui-form-group v-if="form.is_resident" v-bind="hasError('pin')" v-slot="{ id }">
         <ui-input v-model="form.pin" :id :placeholder="t('basic-information.fields.pin')" />
       </ui-form-group>
+
       <ui-form-group v-slot="{ id }" class="col-span-full">
         <ui-checkbox
           v-model="form.is_resident"
@@ -154,6 +163,9 @@ onMounted(() => {
 
   .title {
     @apply mt-4 rounded-3xl px-6 py-3 text-center font-bold;
+  }
+  .multiselect-placeholder {
+    @apply text-black;
   }
 }
 </style>
@@ -289,7 +301,7 @@ onMounted(() => {
         "website": "Веб-сайт",
         "is_resident": "Я являюсь резидентом Республики Узбекистан",
         "pin": "ПИНФЛ",
-        "tin": "ИНН",
+        "tin": "ИНН"
       },
       "description": "Пожалуйста, предоставьте вашу основную информацию для продолжения регистрации."
     },
