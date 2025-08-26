@@ -129,7 +129,19 @@
     "address": "Адрес",
     "uzs": "cум",
     "image": "Изображение",
-    "notifications": "Уведомления"
+    "notifications": "Уведомления",
+    "deposit_amount": "Сумма задатка",
+    "auction_date": "Дата проведения торгов",
+    "application_deadline": "Срок окончания приёма заявок",
+    "lot_status": "Статус лота",
+    "application_end": "Окончание приёма заявок",
+    "day": "День",
+    "hour": "Час",
+    "minute": "Минут",
+    "second": "Секунд",
+    "object_location": "Местоположение объекта",
+    "lot_on_sale": "Лот на продаже",
+    "general_view": "Общий вид"
   },
   "actions": {
     "investor": "Инвестор",
@@ -171,7 +183,8 @@
     "back": "Назад",
     "view": "Смотреть",
     "add_project": "Добавить проект",
-    "publish": "Опубликовать"
+    "publish": "Опубликовать",
+    "submit_application": "Подать заявку"
   },
   "validations": {
     "email": "Неверный адрес электронной почты",

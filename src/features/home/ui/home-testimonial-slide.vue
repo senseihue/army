@@ -11,7 +11,7 @@ defineProps<IProps>()
 <template>
   <div class="testimonial-slide">
     <div class="testimonial-slide__image-wrapper">
-      <img class="testimonial-slide__image" :src="image.download_link" :alt="author" />
+      <img class="testimonial-slide__image" :src="image?.download_link" :alt="author" />
       <span class="testimonial-slide__quote">‘‘</span>
     </div>
 

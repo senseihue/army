@@ -10,7 +10,7 @@ export const useEAuctionService = () => {
     loading.value = true
 
     eAuctionApi
-      .getEAuctionList(cleanParams(params.value))
+      .getEAuctionList(cleanParams( params.value))
       .then(({ content, pageable }) => {
         items.value = content
         params.value.total = pageable?.total ?? 0
