@@ -4,7 +4,7 @@ import { Carousel, Slide } from "vue3-carousel"
 import { HomeTestimonialSlide } from "~/features/home"
 import StarIn from "~/app/assets/svg/starin.svg"
 
-const { locale } = useI18n()
+const { t, locale } = useI18n({ useScope: "local" })
 
 const { content } = await $fetch<IResponse<any>>("/gateway/siw/public/review", {
   headers: { "Accept-Language": locale.value }
