@@ -1,9 +1,9 @@
 <template>
-  <div class="p-section">
+  <div class="py-8">
     <div v-if="loading"></div>
     <div v-else class="container-6xl">
       <div class="grid gap-2">
-        <div class="flex items-center justify-between gap-3 py-4">
+        <div class="flex items-center justify-between gap-3 mb-4">
           <h3 class="text-xl font-bold">{{ $t("labels.lot_on_sale") }}</h3>
           <ui-button
             size="sm"
@@ -59,11 +59,12 @@
                   </p>
                 </div>
 
-                <div class="gpa-2 grid md:grid-cols-2">
+                <div class="gpa-2 grid md:grid-cols-2" v-if="timeLeft !== '00:00:00:00'">
                   <div class="rounded-md border border-blue-midnight p-3">
                     <p class="text-center text-sm font-semibold text-blue-midnight">
                       {{ $t("labels.application_end") }}
                     </p>
+
                     <p class="text-center text-[40px] font-bold text-red-600">{{ timeLeft }}</p>
                     <div class="flex justify-center gap-5 text-xs font-semibold uppercase text-blue-midnight">
                       <span class="inline-block text-center">{{ $t("labels.day") }}</span>
