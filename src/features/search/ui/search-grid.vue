@@ -17,7 +17,7 @@ const { t } = useI18n({ useScope: "local" })
           {{ t("events") }}
         </h3>
         <div v-for="page in items.events" class="flex flex-col gap-6" :key="page.title">
-          <search-result-item :title="page.title" :link="page.link" :description="page.description" />
+          <search-result-item :title="page.title" :link="`/event/${page.id}`" :description="page.description" />
         </div>
       </div>
       <div v-if="items?.posts?.length">
@@ -27,7 +27,7 @@ const { t } = useI18n({ useScope: "local" })
         <div v-for="page in items.posts" class="flex flex-col gap-6" :key="page.title">
           <search-result-item
             :title="page.title"
-            :link="page.link"
+            :link="`/post/${page.id}`"
             :author="page.author"
             :description="page.description"
           />
@@ -38,17 +38,17 @@ const { t } = useI18n({ useScope: "local" })
           {{ t("gallery") }}
         </h3>
         <div v-for="page in items.gallery" class="flex flex-col gap-6" :key="page.title">
-          <search-result-item :title="page.title" :link="page.link" :description="page.description" />
+          <search-result-item :title="page.title" :link="`/gallery/${page.id}`" :description="page.description" />
         </div>
       </div>
-      <div v-if="items?.pages?.length">
-        <h3 class="mb-4 mt-10 text-sm font-bold uppercase text-gray-600">
-          {{ t("pages") }}
-        </h3>
-        <div v-for="page in items.pages" class="flex flex-col gap-6" :key="page.title">
-          <search-result-item :title="page.title" :link="page.link" :description="page.description" />
-        </div>
-      </div>
+      <!--      <div v-if="items?.pages?.length">-->
+      <!--        <h3 class="mb-4 mt-10 text-sm font-bold uppercase text-gray-600">-->
+      <!--          {{ t("pages") }}-->
+      <!--        </h3>-->
+      <!--        <div v-for="page in items.pages" class="flex flex-col gap-6" :key="page.title">-->
+      <!--          <search-result-item :title="page.title" :link="`/gallery/${page.id}`" :description="page.description" />-->
+      <!--        </div>-->
+      <!--      </div>-->
     </div>
   </section>
 </template>

@@ -11,12 +11,12 @@ const params = ref({
 
 const pressList = ref<IPress[]>([])
 
-const { data } = await useFetch<IResponse<IPress[]>>("/gateway/siw/public/post", {
+const { content } = await $fetch<IResponse<IPress[]>>("/gateway/siw/public/post", {
   params: params.value,
   headers: { "Accept-Language": locale.value }
 })
 
-pressList.value = data.value?.content || []
+pressList.value = content || []
 </script>
 
 <template>

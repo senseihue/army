@@ -6,7 +6,7 @@ import StarIn from "~/app/assets/svg/starin.svg"
 
 const { locale } = useI18n()
 
-const { data } = await useFetch<IResponse<any>>("/gateway/siw/public/review", {
+const { content } = await $fetch<IResponse<any>>("/gateway/siw/public/review", {
   headers: { "Accept-Language": locale.value }
 })
 
@@ -24,10 +24,14 @@ const carouselConfig = computed<Partial<CarouselConfig>>(() => ({
     }
   }
 }))
+
+const { t } = useI18n({
+  useScope: "local"
+})
 </script>
 
 <template>
-  <section class="testimonial">
+  <section class="testimonial" :key="locale">
     <div class="testimonial__background">
       <star-in class="testimonial__icon" />
     </div>
@@ -39,7 +43,7 @@ const carouselConfig = computed<Partial<CarouselConfig>>(() => ({
             <icon class="text-4xl" name="ph:caret-left" />
           </div>
 
-          <h3 class="testimonial__heading">{{ $t("heading") }}</h3>
+          <h3 class="testimonial__heading">{{ t("heading") }}</h3>
 
           <div class="testimonial__nav-button" @click="carouselRef?.next()">
             <icon class="text-4xl" name="ph:caret-right" />
@@ -47,7 +51,7 @@ const carouselConfig = computed<Partial<CarouselConfig>>(() => ({
         </div>
 
         <carousel v-bind="carouselConfig" ref="carouselRef">
-          <slide v-for="(slide, idx) in data?.content" class="h-full" :key="idx">
+          <slide v-for="(slide, idx) in content" class="h-full" :key="idx">
             <home-testimonial-slide :text="slide.comment" :image="slide.photo" :author="slide.author" />
           </slide>
         </carousel>

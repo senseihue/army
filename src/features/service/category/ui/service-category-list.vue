@@ -24,9 +24,12 @@ const params = ref({
 })
 
 const { history, canRedo, canUndo, redo, undo } = useRefHistory(current)
-
-const { data: categories } = await useFetch<IResponse<IServiceCategory[]>>("/gateway/siw/public/service/category", {
-  ...params.value
+const { locale } = useI18n()
+const { content } = await $fetch<IResponse<IServiceCategory[]>>("/gateway/siw/public/service/category", {
+  ...params.value,
+  headers: {
+    "Accept-Language": locale.value
+  }
 })
 
 const changeCategory = async (category: IServiceCategory) => {
@@ -49,12 +52,12 @@ const onBack = () => {
       <icon name="ph:arrow-u-up-left" />
     </div>
     <span class="ml-2">
-      {{ t('go_to_previous_category') }}
+      {{ t("go_to_previous_category") }}
     </span>
   </div>
   <div class="flex flex-wrap gap-4">
     <ui-button
-      v-for="category in categories?.content"
+      v-for="category in content"
       class="ui-button ui-button-solid ui-button-rounded ui-button-md ui-button-secondary flex !bg-gray-100 !font-medium !text-black"
       :key="category.id"
       @click="changeCategory(category)"

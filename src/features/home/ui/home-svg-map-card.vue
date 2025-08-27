@@ -3,12 +3,12 @@ const props = defineProps<{ id?: string }>()
 
 const { locale } = useI18n()
 
-const { data } = useFetch<any>("/gateway/siw/public/territory", {
+const { content } = await $fetch<any>("/gateway/siw/public/territory", {
   server: false,
   params: { size: 14 },
   headers: { "Accept-Language": locale.value }
 })
-const region = computed(() => data.value?.content.find((reg: any) => reg.region.code === props.id))
+const region = computed(() => content?.find((reg: any) => reg.region.code === props.id))
 const positionCard = computed(() => (region.value?.position ? "right-0" : "left-0"))
 </script>
 

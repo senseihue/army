@@ -1,11 +1,16 @@
 <script setup lang="ts">
 import AboutLeadership from "~/features/about/ui/about-leadership.vue"
 
-const { data } = await useFetch("/gateway/siw/public/leadership")
+const { locale } = useI18n()
+const { content } = await $fetch<IResponse<any>>("/gateway/siw/public/leadership", {
+  headers: {
+    "Accept-Language": locale.value
+  }
+})
 </script>
 
 <template>
-  <about-leadership :leaderships="data.content" />
+  <about-leadership :leaderships="content" />
 </template>
 
 <style scoped></style>

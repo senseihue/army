@@ -9,7 +9,7 @@ interface IProps {
 // defineProps<IProps>()
 const route = useRoute()
 const { getPressList } = usePressService()
-
+const {locale} = useI18n()
 const params = ref({
   category: route.params.id,
   page: 0,
@@ -27,12 +27,15 @@ const _getPressList = () => {
   })
 }
 
-const { data } = await useFetch<IResponse<IPress[]>>("/gateway/siw/public/post", {
-  params: params.value
+const { content, pageable } = await $fetch<IResponse<IPress[]>>("/gateway/siw/public/post", {
+  params: params.value,
+  headers: {
+    "Accept-Language": locale.value
+  }
 })
 
-pressList.value = data.value?.content || []
-params.value.total = data.value?.pageable?.total || 0
+pressList.value = content || []
+params.value.total = pageable?.total || 0
 </script>
 
 <template>
