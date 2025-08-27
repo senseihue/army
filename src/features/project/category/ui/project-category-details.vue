@@ -110,7 +110,7 @@
                   <template v-for="(service, idx) in serviceList" :key="service.id">
                     <!-- Карточка -->
                     <div
-                      class="flex min-h-[93px] cursor-pointer gap-[15px] items-center justify-between rounded-xl border px-4 py-6 transition-all hover:bg-gray-100 hover:text-black"
+                      class="flex min-h-[93px] cursor-pointer items-center justify-between gap-[15px] rounded-xl border px-4 py-6 transition-all hover:bg-gray-100 hover:text-black"
                       :class="offlineService?.id === service.id ? 'bg-blue-command text-white' : 'bg-gray-50'"
                       @click="offlineServiceVisible(service)"
                     >
@@ -167,13 +167,15 @@ import { ProjectFilter, useProjectService } from "~/features/project"
 import ProjectCategorySlider from "~/features/project/category/ui/project-category-slider.vue"
 import ProjectCategorySlide from "~/features/project/category/ui/project-category-slide.vue"
 import { useServiceApi } from "~/features/service"
+import { useProjectCategoryStore } from "~/entities/project/category"
 
 const projectCategoryService = useProjectCategoryService()
 const projectService = useProjectService()
 const serviceApi = useServiceApi()
-const loading = ref<boolean>(false)
+const projectCategoryStore = useProjectCategoryStore()
+const { category, loading } = storeToRefs(projectCategoryStore)
+
 const route = useRoute()
-const category = ref<IProjectCategoryById>()
 const projectList = ref<IProject[]>([])
 const serviceList = ref<any[]>([])
 const isOffline = ref<boolean>(false)
