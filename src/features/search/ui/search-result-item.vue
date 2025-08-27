@@ -11,9 +11,9 @@ defineProps<IProps>()
 
 <template>
   <div>
-    <nuxt-link class="mb-2 block text-xl font-bold text-blue-command" :to="link">
+    <nuxt-link-locale class="mb-2 block text-xl font-bold text-blue-command" :to="link">
       {{ title }}
-    </nuxt-link>
+    </nuxt-link-locale>
     <p v-if="author" class="text-sm text-gray-600">
       {{ $t("labels.written_by") }} {{ author.firstName }} {{ author.lastName }}
     </p>

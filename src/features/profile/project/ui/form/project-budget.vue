@@ -27,7 +27,7 @@ const deleteBudget = (index: number, budget: ProjectBudget) => {
     </template>
     <div class="grid gap-2">
       <div v-for="(budget, index) in model" class="flex items-center gap-[10px]" :key="index">
-        <ui-input v-model="budget.sum" class="w-full" />
+        <ui-input v-model="budget.sum" class="w-full" type="number" />
         <ui-icon-button
           v-if="model?.length > 1"
           type="button"

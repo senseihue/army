@@ -33,13 +33,13 @@ const rules = ref({
     }),
     required
   },
-  budgets: {
-    $each: helpers.forEach({
-      sum: {
-        required: each.required,
-      }
-    })
-  },
+  // budgets: {
+  //   $each: helpers.forEach({
+  //     sum: {
+  //       required: each.required,
+  //     }
+  //   })
+  // },
   status: { required },
   location: { required },
   upload: { required },

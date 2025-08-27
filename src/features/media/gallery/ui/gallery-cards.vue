@@ -17,7 +17,7 @@ const loading = ref(false)
 const galleryList = ref<IGallery[]>([])
 
 const { getGalleryList } = useGalleryService()
-
+const { locale } = useI18n()
 const _getGalleryList = () => {
   return getGalleryList(params.value, loading).then(({ content, pageable }) => {
     galleryList.value = content
@@ -25,12 +25,15 @@ const _getGalleryList = () => {
   })
 }
 
-const { data } = await useFetch<IResponse<IGallery[]>>("/gateway/siw/public/gallery", {
-  params: params.value
+const { content, pageable } = await $fetch<IResponse<IGallery[]>>("/gateway/siw/public/gallery", {
+  params: params.value,
+  headers: {
+    "Accept-Language": locale.value
+  }
 })
 
-galleryList.value = data.value?.content || []
-params.value.total = data.value?.pageable?.total || 0
+galleryList.value = content || []
+params.value.total = pageable?.total || 0
 </script>
 
 <template>
