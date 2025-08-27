@@ -155,7 +155,7 @@ const cardClass = computed(() => ({
     "status": {
       "approved": "Одобрено",
       "rejected": "Отклонено",
-      "pending": "В модерации"
+      "pending": "На модерации"
     },
     "created_at": "Добавлен",
     "budget": "Бюджет"

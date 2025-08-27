@@ -110,7 +110,7 @@
                   <template v-for="(service, idx) in serviceList" :key="service.id">
                     <!-- Карточка -->
                     <div
-                      class="flex min-h-[93px] cursor-pointer items-center justify-between rounded-xl border px-4 py-6 transition-all hover:bg-gray-100 hover:text-black"
+                      class="flex min-h-[93px] cursor-pointer gap-[15px] items-center justify-between rounded-xl border px-4 py-6 transition-all hover:bg-gray-100 hover:text-black"
                       :class="offlineService?.id === service.id ? 'bg-blue-command text-white' : 'bg-gray-50'"
                       @click="offlineServiceVisible(service)"
                     >
@@ -188,7 +188,7 @@ const query = ref({
   region: undefined,
   amount: undefined,
   status: undefined,
-  category: route.params.id
+  category_id: route.params.id
 })
 
 const getProjectAllList = () => {
