@@ -1,5 +1,4 @@
 export default defineNuxtPlugin(() => {
-  const router = useRouter()
   const localePath = useLocalePath()
 
   const token = useCookie("token")
@@ -10,19 +9,20 @@ export default defineNuxtPlugin(() => {
     return !!profile.value
   })
 
-  watch(loggedIn, (value) => {
-    if (!value) {
-      token.value = undefined
-      profile.value = undefined
-    }
-  })
-
   const clear = () => {
     token.value = undefined
     loading.value = false
     profile.value = undefined
-    router.replace(localePath("/"))
+    reloadNuxtApp({ path: localePath("/"), force: true })
   }
+
+  watch(
+    () => token.value,
+    (value) => {
+      if (!value?.length) clear()
+      else reloadNuxtApp({ path: localePath("/"), force: true })
+    }
+  )
 
   const session = {
     token,
