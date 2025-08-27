@@ -25,9 +25,6 @@ const carouselConfig = computed<Partial<CarouselConfig>>(() => ({
   }
 }))
 
-const { t } = useI18n({
-  useScope: "local"
-})
 </script>
 
 <template>
