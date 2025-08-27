@@ -91,9 +91,9 @@ watch(
         <icon v-else class="text-6xl text-blue-bondi" name="lucide:file-chart-column" />
       </div>
 
-      <div>
+      <div class="w-full">
         <p
-          class="text-center text-sm font-bold leading-4"
+          class="text-sm font-bold leading-4 truncate"
           :class="{
             invisible: !url && !fileName,
             visible: url || fileName
