@@ -22,7 +22,7 @@ const params = ref<Record<string, any>>({
 const map = (value: IRegion[]): ISelect[] =>
   value?.map(({ id, region }) => ({
     value: id,
-    label: region,
+    label: region
   }))
 
 const { loading, onOpen, onClose, onSearch, options } = useSelect<IRegion>({

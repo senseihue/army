@@ -18,34 +18,34 @@ const userInformation = computed(() => {
       <div class="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-2">
         <div class="flex flex-col gap-1">
           <label class="text-xs font-medium text-blue-command">
-            {{ t("surname") }}
+            {{ t("company_name") }}
           </label>
           <p class="text-sm font-medium">
-            {{ userInformation.surname }}
+            {{ userInformation.company_name }}
           </p>
         </div>
         <div class="flex flex-col gap-1">
           <label class="text-xs font-medium text-blue-command">
-            {{ t("name") }}
+            {{ t("legal_address") }}
           </label>
           <p class="text-sm font-medium">
-            {{ userInformation.name }}
+            {{ userInformation.legal_address || 'N/A' }}
           </p>
         </div>
         <div class="flex flex-col gap-1">
           <label class="text-xs font-medium text-blue-command">
-            {{ t("phone") }}
+            {{ t("website") }}
           </label>
           <p class="text-sm font-medium">
-            {{ userInformation.phone }}
+            {{ userInformation.website || 'N/A' }}
           </p>
         </div>
         <div class="flex flex-col gap-1">
           <label class="text-xs font-medium text-blue-command">
-            {{ t("email") }}
+            {{ t("country") }}
           </label>
           <p class="text-sm font-medium">
-            {{ userInformation.email }}
+            {{ userInformation.region?.name || 'N/A' }}
           </p>
         </div>
       </div>
@@ -57,24 +57,24 @@ const userInformation = computed(() => {
 {
   "en": {
     "main_info": "Basic information",
-    "name": "Name",
-    "surname": "Surname",
-    "phone": "Phone number",
-    "email": "Email"
+    "company_name": "Company Name",
+    "legal_address": "Legal Address",
+    "website": "Website",
+    "country": "Country"
   },
   "ru": {
     "main_info": "Основная информация",
-    "name": "Имя",
-    "surname": "Фамилия",
-    "phone": "Номер телефона",
-    "email": "Email"
+    "company_name": "Название компании",
+    "legal_address": "Юридический адрес",
+    "website": "Веб-сайт",
+    "country": "Страна"
   },
   "uz": {
     "main_info": "Asosiy ma'lumotlar",
-    "name": "Ism",
-    "surname": "Familiya",
-    "phone": "Telefon raqam",
-    "email": "Email"
+    "company_name": "Kompaniya nomi",
+    "legal_address": "Yuridik manzil",
+    "website": "Veb-sayt",
+    "country": "Mamlakat"
   }
 }
 </i18n>

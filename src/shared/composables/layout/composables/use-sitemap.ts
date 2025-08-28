@@ -11,9 +11,10 @@ export const useSitemap = () => {
         { label: t("sitemap.about.about_us"), to: "/about" },
         { label: t("sitemap.about.how_to_help"), to: "/about#how_to_help" },
         { label: t("sitemap.about.faq"), to: "/about#faq" },
-        { label: t("sitemap.about.contact_us"), to: "/about#contact_us" },
+        { label: t("sitemap.about.contact_us"), to: "/about#contact_us" }
       ]
-    },{
+    },
+    {
       label: t("nav.reason.label"),
       to: "/reason/economy",
       dropdown: [
@@ -51,7 +52,7 @@ export const useSitemap = () => {
         { label: t("sitemap.media.news"), to: "/media/news" },
         { label: t("sitemap.media.publications"), to: "/media/publications" },
         { label: t("sitemap.media.pr_materials"), to: "/media/pr_materials" },
-        { label: t("sitemap.media.blogs"), to: "/media/blogs" },
+        { label: t("sitemap.media.blogs"), to: "/media/blogs" }
       ]
     },
     {

@@ -5,7 +5,8 @@ import { ProjectCategorySelect, ProjectSectorSelect } from "~/widgets/project"
 import { usePersonalProjectService } from "~/features/profile/project"
 import ProjectRejectReason from "~/features/profile/project/ui/form/project-reject-reason.vue"
 import ProjectBudget from "~/features/profile/project/ui/form/project-budget.vue"
-import { helpers } from '@vuelidate/validators'
+import { TerritorySelect } from "~/features/territory"
+
 const { savePersonalProject, getPersonalProject } = usePersonalProjectService()
 
 const route = useRoute()
@@ -17,11 +18,11 @@ const { t, locale } = useI18n({
 const loading = ref(false)
 const isMount = ref(false)
 const mode = ref<"create" | "edit" | "view">("create")
-
 const form = ref<PersonalProject>(new PersonalProject())
 const rules = ref({
   category_id: { required },
   sector_id: { required },
+  region_id: { required },
   title: {
     en: { required, minLength: minLength(3) },
     uz: { required, minLength: minLength(3) },
@@ -67,9 +68,9 @@ const disabled = computed(() => mode.value === "view")
 onMounted(async () => {
   if (route.params.id) {
     await getPersonalProject(Number(route.params.id), form, loading)
-    if (form.value.state === "approved" || form.value.state === "pending") {
+    if (form.value.state === "pending") {
       mode.value = "view"
-    } else if (form.value.state === "rejected") {
+    } else if (form.value.state === "approved" || form.value.state === "rejected") {
       mode.value = "edit"
     }
   } else {
@@ -80,7 +81,8 @@ onMounted(async () => {
 
 defineExpose({
   onSubmit,
-  mode: () => mode.value
+  mode: () => mode.value,
+  loading
 })
 </script>
 
@@ -121,6 +123,9 @@ defineExpose({
         </ui-form-group>
         <ui-form-group v-bind="hasError('sector_id')" v-slot="{ id }" required :label="t('fields.sector')">
           <project-sector-select v-model="form.sector_id" :disabled="disabled" :id />
+        </ui-form-group>
+        <ui-form-group v-bind="hasError('region_id')" v-slot="{ id }" required :label="t('fields.region')">
+          <territory-select v-model="form.region_id" :disabled="disabled" :id />
         </ui-form-group>
         <ui-input-with-language
           v-model="form.title"
@@ -184,7 +189,13 @@ defineExpose({
           :label="t('fields.description')"
         >
           <client-only>
-            <lazy-tiny-editor :model-value="model" :key="locale" :disabled="disabled" :id @update:model-value="handle" />
+            <lazy-tiny-editor
+              :model-value="model"
+              :key="locale"
+              :disabled="disabled"
+              :id
+              @update:model-value="handle"
+            />
           </client-only>
         </ui-input-with-language>
       </div>
@@ -200,6 +211,7 @@ defineExpose({
     "fields": {
       "category": "Category",
       "sector": "Sector",
+      "region": "Region",
       "title": "Project title",
       "budget": "Budget ({ currency })",
       "status": "Status",
@@ -219,6 +231,7 @@ defineExpose({
     "fields": {
       "category": "Категория",
       "sector": "Сектор",
+      "region": "Регион",
       "title": "Название проекта",
       "budget": "Бюджет ({ currency })",
       "status": "Статус",
@@ -238,6 +251,7 @@ defineExpose({
     "fields": {
       "category": "Kategoriya",
       "sector": "Sektor",
+      "region": "Hudud",
       "title": "Loyiha nomi",
       "budget": "Byudjet ({ currency })",
       "status": "Holat",

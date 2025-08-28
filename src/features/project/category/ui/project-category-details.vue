@@ -76,7 +76,7 @@
 
                   <project-filter
                     v-model:amount="query.amount"
-                    v-model:region="query.region"
+                    v-model:region="query.region_id"
                     v-model:sector="query.sector"
                     v-model:status="query.status"
                   />
@@ -185,7 +185,7 @@ const offlineService = ref<any>()
 
 const query = ref({
   sector: undefined,
-  region: undefined,
+  region_id: undefined,
   amount: undefined,
   status: undefined,
   category_id: route.params.id

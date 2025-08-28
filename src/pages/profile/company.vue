@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useAuthApi } from "~/features/auth"
-import { ProfileHeader, ProfileMainInfo, ProfilePassportInfo } from "~/features/profile"
+import { ProfileCompanyInfo, ProfileHeader, ProfileMainInfo, ProfilePassportInfo } from "~/features/profile"
 
 definePageMeta({
   protected: true
@@ -27,8 +27,7 @@ const getProfile = async () => {
 
 <template>
   <div class="flex w-full flex-col gap-2">
-    <profile-header icon-name="lucide:shield-user" :title="$t('nav.profile.account')" @refresh="getProfile" />
-    <profile-main-info />
-<!--    <profile-passport-info />-->
+    <profile-header icon-name="lucide:shield-user" :title="$t('nav.profile.company')" @refresh="getProfile" />
+    <profile-company-info />
   </div>
 </template>

@@ -34,6 +34,10 @@ export const useAuthApi = () => {
     return $http.$post(`/admin/admin/fcm-token`, null, { params: { fcm_token } })
   }
 
+  const checkResetLink = (uuid: string): AsyncResponseContainer => {
+    return $http.$post(`/auth/check-reset-link`, null, { params: { uuid } })
+  }
+
 
 
   return {
@@ -44,6 +48,7 @@ export const useAuthApi = () => {
     resetPassword,
     setToken,
     signInNonResident,
-    changePassword
+    changePassword,
+    checkResetLink
   }
 }

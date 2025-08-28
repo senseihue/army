@@ -23,7 +23,9 @@ declare global {
     presentation: IContent<File | undefined>
     category: IProjectCategory
     sector: IProjectSector
+    region: ITerritory
     upload_id: number
+    region_id: number
     presentation_id: number
     category_id: number
     sector_id: number
@@ -61,6 +63,7 @@ export class PersonalProject {
   phone: string = ""
 
   sector_id!: number
+  region_id!: number
   upload!: File
   presentation: IContent<File | undefined> = new Content<undefined>()
   category_id!: number

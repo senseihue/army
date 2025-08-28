@@ -12,7 +12,9 @@ import { MainFooter, MainHeader } from "~/features/layout"
 
     <main-footer />
     <toaster close-button rich-colors invert position="top-right" />
-
+    <div id="auth-error">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium assumenda aut, dicta in ipsum mollitia odio sint unde. Aliquid consequatur deserunt dolorum ex, inventore minima nemo nostrum reprehenderit sequi veritatis.
+    </div>
   </div>
 
 </template>
