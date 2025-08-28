@@ -3,8 +3,7 @@
     <div v-if="loading"></div>
     <div v-else class="container-6xl">
       <div class="grid gap-2">
-        <div class="flex items-center justify-between gap-3 mb-4">
-          <h3 class="text-xl font-bold">{{ $t("labels.lot_on_sale") }}</h3>
+        <div class="flex flex-col items-start gap-3 mb-4">
           <ui-button
             size="sm"
             icon-name="lucide:arrow-left"
@@ -13,6 +12,7 @@
             :label="$t('actions.back')"
             @click="goBack"
           />
+          <h3 class="text-blue-midnight font-semibold text-xl">{{ $t("labels.e_auction") }}</h3>
         </div>
         <div class="grid gap-6 md:grid-cols-2">
           <e-auction-slides :slides="lot?.images" />
