@@ -8,6 +8,7 @@
     "buy": "Купить",
     "cancel": "Отмена",
     "contact_us": "Связаться с нами",
+    "download": "Скачать",
     "edit": "Редактировать",
     "email": "Электронная почта",
     "entrepreneur": "Предприниматель",
@@ -27,6 +28,7 @@
     "project_type": "Тип проекта",
     "publish": "Опубликовать",
     "refresh": "Обновить",
+    "remove": "Удалить",
     "resident": "Резидент",
     "save": "Сохранить",
     "sector": "Сектор",
@@ -37,6 +39,7 @@
     "sitemap": "Карта сайта",
     "status": "Статус",
     "submit_application": "Подать заявку",
+    "upload": "Загрузить",
     "view": "Смотреть",
     "view_here": "Смотреть здесь",
     "view_more": "Показать больше",
@@ -67,7 +70,6 @@
     "day": "День",
     "deposit_amount": "Сумма задатка",
     "detailed": "Подробнее",
-    "e_auction": "E-Auction",
     "email": "Электронная почта",
     "fdi": "ПИИ и кредиты",
     "general_view": "Общий вид",
@@ -187,6 +189,8 @@
       "partnership": "Государственно-частное партнерство",
       "privatization": "Приватизация",
       "project": "Проекты",
+      "project_category": "Категория проекта",
+      "project_details": "Детали проекта",
       "register-business": "Регистрация бизнеса",
       "register-investor": "Регистрация инвестора",
       "single_window": "Единое окно"
@@ -200,7 +204,9 @@
       "publications": "Публикации"
     },
     "profile": {
+      "account": "Данные аккаунта",
       "change_password": "Изменить пароль",
+      "company": "О Компании",
       "main": "Профиль",
       "my_projects": "Мои проекты",
       "my_services": "Мои услуги"
@@ -221,6 +227,38 @@
     "closed": "Закрытый",
     "open_for_investment": "Открыт для инвестиций",
     "under_negotiation": "В стадии переговоров"
+  },
+  "sitemap": {
+    "about": {
+      "about_us": "О нас",
+      "contact_us": "Связаться с нами",
+      "faq": "FAQ",
+      "how_to_help": "Как помочь",
+      "label": "Агентство по привлечению инвестиций"
+    },
+    "investment_guide": {
+      "agriculture": "Agriculture",
+      "automotive": "Automotive",
+      "chemicals": "Chemicals",
+      "construction": "Construction & Housing",
+      "education": "Education",
+      "energy": "Energy",
+      "finance": "Financial Services",
+      "label": "Investment Guide",
+      "metals": "Metals and Mining",
+      "pharma": "Pharmaceuticals",
+      "technology": "Technology",
+      "textiles": "Textiles",
+      "tourism": "Tourism"
+    },
+    "media": {
+      "blogs": "Блоги",
+      "gallery": "Галерея",
+      "label": "Новости и аналитика",
+      "news": "Новости",
+      "pr_materials": "PR-материалы",
+      "publications": "Публикации"
+    }
   },
   "thead": {
     "actions": "Действия",

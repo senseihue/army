@@ -40,9 +40,8 @@ export const usePersonalProjectService = () => {
     dto.value.latitude = Number(latitude)
     dto.value.longitude = Number(longitude)
     return action(dto.value)
-      .then(({ content }) => {
+      .then(async ({ content }) => {
         dto.value.id = content.id
-        $toast.success("messages.success.saved")
         const formData = new FormData()
         formData.append("project_id", String(dto.value.id))
         for (const property in dto.value.presentation) {
@@ -52,10 +51,11 @@ export const usePersonalProjectService = () => {
         }
         if (dto.value.upload instanceof File) {
           formData.append("file", dto.value.upload)
-          personalProjectApi.createPersonalProjectUpload(formData)
+          await personalProjectApi.createPersonalProjectUpload(formData)
         }
         if (Object.values(dto.value.presentation).some((item) => item instanceof File))
-          personalProjectApi.createPersonalProjectPresentation(formData)
+          await personalProjectApi.createPersonalProjectPresentation(formData)
+        $toast.success("messages.success.saved")
 
         router.push(localePath("/profile/my-projects"))
         dto.value = new PersonalProject()

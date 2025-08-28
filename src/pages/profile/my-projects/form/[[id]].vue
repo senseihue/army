@@ -1,11 +1,6 @@
 <script setup lang="ts">
-import { ProjectForm, usePersonalProjectService } from "~/features/profile/project"
+import { ProjectForm } from "~/features/profile/project"
 import { ProfileHeader } from "~/features/profile"
-import { PersonalProject, usePersonalProjectStore } from "~/entities/profile/personal-project"
-
-defineRouteRules({
-  ssr: false
-})
 
 const router = useRouter()
 const form = ref(null)
@@ -25,7 +20,7 @@ const cancel = () => {
           <ui-button class="rounded-xl" color="secondary" @click.stop="cancel">
             {{ $t("actions.cancel") }}
           </ui-button>
-          <ui-button v-if="form?.mode() !== 'view'" class="rounded-xl" color="primary" @click.stop="saveProject">
+          <ui-button v-if="form?.mode() !== 'view'" :loading="form?.loading" class="rounded-xl" color="primary" @click.stop="saveProject">
             {{ $t("actions.save") }}
           </ui-button>
         </div>

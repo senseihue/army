@@ -40,7 +40,11 @@ const statusModel = defineModel<string | number>("status")
 
 <style lang="scss">
 .filter-select {
-  @apply border-blue-command h-8 bg-blue-command  placeholder:text-white text-white;
+  @apply h-8 cursor-pointer border-blue-command bg-blue-command placeholder:text-white;
+}
+
+.filter-select .multiselect-single-label-text {
+  @apply text-white;
 }
 
 .multiselect-placeholder {

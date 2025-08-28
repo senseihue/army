@@ -8,6 +8,7 @@
     "buy": "Buy",
     "cancel": "Cancel",
     "contact_us": "Contact us",
+    "download": "Download",
     "edit": "Edit",
     "email": "Email",
     "entrepreneur": "Entrepreneur",
@@ -28,6 +29,7 @@
     "publish": "Publish",
     "purchase": "Purchase",
     "refresh": "Refresh",
+    "remove": "Remove",
     "resident": "Resident",
     "save": "Save",
     "sector": "Sector",
@@ -38,6 +40,7 @@
     "sitemap": "Sitemap",
     "status": "Status",
     "submit_application": "Submit application",
+    "upload": "Upload",
     "view": "View",
     "view_here": "View here",
     "view_more": "View more",
@@ -68,7 +71,6 @@
     "day": "Day",
     "deposit_amount": "Deposit amount",
     "detailed": "More details",
-    "e_auction": "E-Auction",
     "email": "Email",
     "fdi": "FDI and credits",
     "general_view": "General view",
@@ -204,7 +206,9 @@
       "publications": "Publications"
     },
     "profile": {
+      "account": "Account information",
       "change_password": "Change password",
+      "company": "About the company",
       "main": "Profile",
       "my_projects": "My projects",
       "my_services": "My services"

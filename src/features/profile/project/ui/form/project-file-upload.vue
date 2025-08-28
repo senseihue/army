@@ -109,6 +109,7 @@ watch(
             icon-class="text-[24px]"
             color="primary"
             icon-name="lucide:download"
+            target="_blank"
             :href="model?.download_link"
             :label="$t('actions.download')"
           />

@@ -8,6 +8,7 @@
     "buy": "Sotib olish",
     "cancel": "Bekor qilish",
     "contact_us": "Biz bilan bog'lanish",
+    "download": "Yuklab olish",
     "edit": "Tahrirlash",
     "email": "Elektron pochta",
     "entrepreneur": "Tadbirkor",
@@ -27,6 +28,7 @@
     "project_type": "Loyiha turi",
     "publish": "Nashr etish",
     "refresh": "Yangilash",
+    "remove": "O'chirish",
     "resident": "Rezident",
     "save": "Saqlash",
     "sector": "Sektor",
@@ -37,6 +39,7 @@
     "sitemap": "Sahifalar ro'yxati",
     "status": "Holati",
     "submit_application": "Ariza topshirish",
+    "upload": "Yuklash",
     "view": "Ko'rish",
     "view_here": "Bu yerda ko'rish",
     "view_more": "Ko'proq ko'rish",
@@ -67,14 +70,13 @@
     "day": "Kun",
     "deposit_amount": "Garov summasi",
     "detailed": "Batafsil",
-    "e_auction": "E-Auksion",
     "email": "Elektron pochta",
     "fdi": "PII va kreditlar",
     "general_view": "Umumiy ko‘rinish",
     "hour": "Soat",
     "image": "Rasm",
     "investment": "Investitsiya loyihalari",
-    "investment_of_uzbekistan": "O'zbekiston investitsiya xaritasi",
+    "investment_of_uzbekistan": "O'zbekiston sarmoyasi",
     "investment_proposals": "Investitsiya takliflari",
     "investment_related": "Investitsiya bilan bog'liq",
     "irr": "IRR",
@@ -187,6 +189,8 @@
       "partnership": "Davlat-xususiy sheriklik",
       "privatization": "Xususiylashtirish",
       "project": "Loyihalar",
+      "project_category": "Loyiha toifasi",
+      "project_details": "Loyiha tafsilotlari",
       "register-business": "Biznesni ro'yxatdan o'tkazish",
       "register-investor": "Investorlarni ro'yxatdan o'tkazish",
       "single_window": "Yagona darcha"
@@ -200,7 +204,9 @@
       "publications": "Nashrlar"
     },
     "profile": {
+      "account": "Akaunt ma'lumotlari",
       "change_password": "Parolni o'zgartirish",
+      "company": "Kompaniya Haqida",
       "main": "Profil",
       "my_projects": "Mening loyihalarim",
       "my_services": "Mening xizmatlarim"
@@ -221,6 +227,38 @@
     "closed": "Yopilgan",
     "open_for_investment": "Investitsiya uchun ochiq",
     "under_negotiation": "Muzokaralarda"
+  },
+  "sitemap": {
+    "about": {
+      "about_us": "Biz haqimizda",
+      "contact_us": "Aloqa",
+      "faq": "FAQ",
+      "how_to_help": "Qanday yordam berish kerak",
+      "label": "Investitsiyalarni rag'batlantirish agentligi"
+    },
+    "investment_guide": {
+      "agriculture": "Qishloq xo'jaligi",
+      "automotive": "Avtomobil sanoati",
+      "chemicals": "Kimyo sanoati",
+      "construction": "Qurilish va uy-joy",
+      "education": "Ta'lim",
+      "energy": "Energetika",
+      "finance": "Moliyaviy xizmatlar",
+      "label": "Investitsiya qo'llanmasi",
+      "metals": "Metallurgiya va kon sanoati",
+      "pharma": "Farmatsevtika",
+      "technology": "Texnologiyalar",
+      "textiles": "To'qimachilik",
+      "tourism": "Turizm"
+    },
+    "media": {
+      "blogs": "Bloglar",
+      "gallery": "Galereya",
+      "label": "Yangiliklar va tahlillar",
+      "news": "Yangiliklar",
+      "pr_materials": "PR materiallar",
+      "publications": "Nashrlar"
+    }
   },
   "thead": {
     "actions": "Amallar",

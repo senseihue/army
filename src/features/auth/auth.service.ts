@@ -22,6 +22,15 @@ export const useAuthService = () => {
   }
 
   const reCAPTCHA = useReCaptcha()
+  // const getRedirectUrl = (origin?: string, role?: string) =>
+  //   alert
+  //     .authError({
+  //       timer: 5000,
+  //       text: t("messages.error.user_not_found_description")
+  //     })
+  //     .then(() => {
+  //       navigateTo(localePath("/"))
+  //     })
   const getRedirectUrl = (origin?: string, role?: string) =>
     authApi.getRedirectUrl(origin, role).then(({ content }) => {
       console.log(content, "redirectUrl")
@@ -33,7 +42,6 @@ export const useAuthService = () => {
     const code = <string>route.query?.code
     const state = <string>route.query?.state
     const role = <string>route.query?.role
-    console.log(route.query, "route.query?.state")
 
     if (!code) return navigateTo(localePath("/"))
 
@@ -126,11 +134,14 @@ export const useAuthService = () => {
       .finally(() => (loading.value = false))
   }
 
+  const checkResetLink = (code: string) => authApi.checkResetLink(code)
+
   return {
     getRedirectUrl,
     signIn,
     signInNonResident,
     sendNewPasswordNonResident,
-    resetPasswordNonResident
+    resetPasswordNonResident,
+    checkResetLink
   }
 }

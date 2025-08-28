@@ -138,6 +138,18 @@ export const useAlert = () => {
       })
     )
   }
+  const authError = () => {
+    const options = {
+      title: t("messages.confirm.delete"),
+      confirmButtonText: t("actions.delete"),
+      cancelButtonText: t("actions.cancel"),
+      template: "#auth-error"
+    }
+
+    return new Promise((resolve) =>
+      errorDialog(options)
+    )
+  }
 
   return {
     confirmDialog,
@@ -150,6 +162,7 @@ export const useAlert = () => {
     showToast,
     confirmSignOut,
     confirmDeactivate,
-    confirmDelete
+    confirmDelete,
+    authError
   }
 }
