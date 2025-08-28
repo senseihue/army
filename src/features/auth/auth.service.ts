@@ -11,7 +11,7 @@ export const useAuthService = () => {
   const notificationService = useNotificationService()
   const localePath = useLocalePath()
   const { $session, $toast } = useNuxtApp()
-
+  const modal = useModal()
   const messaging = () => {
     notificationService.subscribeToServiceWorker().then((fcmToken) => {
       if (fcmToken) return authApi.setToken(fcmToken)
@@ -22,15 +22,6 @@ export const useAuthService = () => {
   }
 
   const reCAPTCHA = useReCaptcha()
-  // const getRedirectUrl = (origin?: string, role?: string) =>
-  //   alert
-  //     .authError({
-  //       timer: 5000,
-  //       text: t("messages.error.user_not_found_description")
-  //     })
-  //     .then(() => {
-  //       navigateTo(localePath("/"))
-  //     })
   const getRedirectUrl = (origin?: string, role?: string) =>
     authApi.getRedirectUrl(origin, role).then(({ content }) => {
       console.log(content, "redirectUrl")
@@ -72,14 +63,7 @@ export const useAuthService = () => {
         messaging()
       })
       .catch(() => {
-        alert
-          .errorDialog({
-            timer: 5000,
-            text: t("messages.error.user_not_found_description")
-          })
-          .then(() => {
-            navigateTo(localePath("/"))
-          })
+        modal.show('auth-error-modal')
       })
       .finally(() => ($session.loading.value = false))
   }
