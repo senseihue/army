@@ -24,7 +24,6 @@ const carouselConfig = computed<Partial<CarouselConfig>>(() => ({
     }
   }
 }))
-
 </script>
 
 <template>
@@ -47,11 +46,13 @@ const carouselConfig = computed<Partial<CarouselConfig>>(() => ({
           </div>
         </div>
 
-        <carousel v-bind="carouselConfig" ref="carouselRef">
-          <slide v-for="(slide, idx) in content" class="h-full" :key="idx">
-            <home-testimonial-slide :text="slide.comment" :image="slide.photo" :author="slide.author" />
-          </slide>
-        </carousel>
+        <client-only>
+          <carousel v-bind="carouselConfig" ref="carouselRef">
+            <slide v-for="(slide, idx) in content" class="h-full" :key="idx">
+              <home-testimonial-slide :text="slide.comment" :image="slide.photo" :author="slide.author" />
+            </slide>
+          </carousel>
+        </client-only>
       </div>
     </div>
   </section>

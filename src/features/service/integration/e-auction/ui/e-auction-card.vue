@@ -5,6 +5,7 @@
         <img
           class="h-[184px] w-full min-w-[245px] max-w-[245px] rounded-xl object-cover object-center"
           alt="img"
+          loading="lazy"
           :src="lot?.image_link"
         />
       </div>

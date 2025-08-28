@@ -6,7 +6,7 @@
 </template>
 
 <script setup lang="ts">
-import { EAuctionHero, EAuctionList, EAuctionModal } from "~/features/service/integration/e-auction"
+import { EAuctionHero, EAuctionList } from "~/features/service/integration/e-auction"
 </script>
 
 <style scoped></style>

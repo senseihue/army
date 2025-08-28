@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue"
-import { type CarouselConfig, Navigation } from "vue3-carousel"
-import { Carousel, Slide } from "vue3-carousel"
+import { Carousel, type CarouselConfig, Navigation, Slide } from "vue3-carousel"
 import "vue3-carousel/carousel.css"
 
 interface ISlide {
@@ -59,7 +58,7 @@ const config: Partial<CarouselConfig> = {
         <carousel v-model="currentSlide" v-bind="config" id="main-slides" ref="carouselRef">
           <slide
             v-for="(image, idx) in slides"
-            :data-vc-slide-item-after-content="$t('labels.general_view')"
+            :data-vc-slide-item-after-content="image?.image_position"
             :key="idx"
             :style="{
               '--vc-slide-item-after-content': true
@@ -112,7 +111,7 @@ const config: Partial<CarouselConfig> = {
   #main-slides .carousel__slide::after {
     content: attr(data-vc-slide-item-after-content);
     display: block;
-    @apply text-center;
+    @apply text-center uppercase text-blue-midnight text-sm font-semibold;
   }
 
   #thumbnails {

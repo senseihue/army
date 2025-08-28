@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ProjectCategoryDetails, ProjectCategoryHero } from "~/features/project/category"
+import { ProjectCategoryDetails, ProjectCategoryHeroDetails } from "~/features/project/category"
 
 definePageMeta({ fixedHeader: true })
 
@@ -9,7 +9,7 @@ useHead({ title: t("nav.guide.project_details") })
 
 <template>
   <div>
-    <project-category-hero />
+    <project-category-hero-details />
     <project-category-details />
   </div>
 </template>
