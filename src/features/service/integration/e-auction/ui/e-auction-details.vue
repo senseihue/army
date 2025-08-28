@@ -108,8 +108,10 @@
 import { EAuctionSlides, useEAuctionService } from "~/features/service/integration/e-auction"
 import dayjs from "dayjs"
 import duration from "dayjs/plugin/duration"
+import customParseFormat from "dayjs/plugin/customParseFormat"
 
 dayjs.extend(duration)
+dayjs.extend(customParseFormat)
 
 const { getEAuctionById } = useEAuctionService()
 
@@ -118,18 +120,18 @@ const router = useRouter()
 const localePath = useLocalePath()
 const loading = ref(false)
 const lot = ref<IEAuctionDetails>()
-const timeLeft = ref("00:00:00")
+const timeLeft = ref("00:00:00:00")
 let interval: any = null
 
 const updateTimer = () => {
   if (!lot.value?.order_end_time) return
 
-  const deadline = dayjs(lot.value?.order_end_time)
+  const deadline = dayjs(lot.value.order_end_time, "DD.MM.YYYY HH:mm:ss")
   const now = dayjs()
   const diff = deadline.diff(now)
 
   if (diff <= 0) {
-    timeLeft.value = "00:00:00"
+    timeLeft.value = "00:00:00:00"
     if (interval) clearInterval(interval)
     return
   }

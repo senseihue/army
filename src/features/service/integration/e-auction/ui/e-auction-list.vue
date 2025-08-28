@@ -2,8 +2,8 @@
   <div class="bg-gray-100">
     <div class="container-6xl">
       <div class="py-8">
-        <div class="flex items-center justify-between gap-3 mb-4">
-          <h3 class="text-xl font-bold">{{ $t("labels.lots_on_sale") }}</h3>
+
+        <div class="flex flex-col items-start gap-3 mb-4">
           <ui-button
             size="sm"
             icon-name="lucide:arrow-left"
@@ -12,6 +12,7 @@
             :label="$t('actions.back')"
             @click="goBack"
           />
+          <h3 class="text-blue-midnight font-semibold text-xl">{{ $t("labels.e_auction") }}</h3>
         </div>
 
         <div class="mb-5 grid gap-5">
