@@ -83,7 +83,7 @@ export const useAuthService = () => {
         messaging()
       })
       .catch((error) => {
-        alert.errorDialog(error?.response?.data?.message || "Login failed")
+        modal.show('auth-error-modal')
       })
       .finally(() => (loading.value = false))
   }
@@ -113,7 +113,7 @@ export const useAuthService = () => {
         navigateTo(localePath({ path: "/auth/sign-in", query: { role: dto.value.role } }))
       })
       .catch((error) => {
-        alert.errorDialog(error?.response?.data?.message || "Login failed")
+        modal.show('auth-error-modal')
       })
       .finally(() => (loading.value = false))
   }

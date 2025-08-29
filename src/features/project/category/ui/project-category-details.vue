@@ -75,9 +75,9 @@
                   <h3 class="text-xl font-semibold">{{ $t("labels.investment_proposals") }}</h3>
 
                   <project-filter
-                    v-model:amount="query.amount"
+                    v-model:amount="query.amount_id"
                     v-model:region="query.region_id"
-                    v-model:sector="query.sector"
+                    v-model:sector="query.sector_id"
                     v-model:status="query.status"
                   />
 
@@ -186,9 +186,9 @@ const projectSection = ref<HTMLInputElement | null>(null)
 const offlineService = ref<any>()
 
 const query = ref({
-  sector: undefined,
+  sector_id: undefined,
   region_id: undefined,
-  amount: undefined,
+  amount_id: undefined,
   status: undefined,
   category_id: route.params.id
 })
