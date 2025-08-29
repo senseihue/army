@@ -20,7 +20,7 @@ export default defineNuxtPlugin(() => {
     () => token.value,
     (value) => {
       if (!value?.length) clear()
-      else reloadNuxtApp({ path: localePath("/"), force: true })
+      // else reloadNuxtApp({ path: localePath("/"), force: true })
     }
   )
 

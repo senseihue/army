@@ -31,11 +31,11 @@ export const useAuthApi = () => {
 
 
   const setToken = (fcm_token: string): AsyncResponseContainer => {
-    return $http.$post(`/admin/admin/fcm-token`, null, { params: { fcm_token } })
+    return $http.$post(`${BASE_URL}/profile/fcm-token`, null, { params: { fcm_token } })
   }
 
   const checkResetLink = (uuid: string): AsyncResponseContainer => {
-    return $http.$post(`/auth/check-reset-link`, null, { params: { uuid } })
+    return $http.$post(`${BASE_URL}/auth/check-reset-link`, null, { params: { uuid } })
   }
 
 

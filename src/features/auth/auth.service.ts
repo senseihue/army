@@ -44,6 +44,7 @@ export const useAuthService = () => {
         const token = useCookie("token")
         token.value = content.token
         $session.profile.value = content.profile
+        messaging()
 
         if (state) {
           try {
@@ -60,7 +61,6 @@ export const useAuthService = () => {
         } else {
           navigateTo(localePath("/"))
         }
-        messaging()
       })
       .catch(() => {
         modal.show('auth-error-modal')
