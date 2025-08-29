@@ -41,6 +41,7 @@ export class ResetPassword {
   email?: string
   time?: number
   role?: string
+  uuid?: string
 
   constructor(data?: any) {
     if (data) {
@@ -48,6 +49,7 @@ export class ResetPassword {
       this.email = data.email
       this.token = data.token
       this.role = data.role
+      this.uuid = data.uuid
     }
   }
 }
