@@ -3,6 +3,16 @@ const { t } = useI18n({
   useScope: "local"
 })
 const modal = useModal()
+const route = useRoute()
+const localePath = useLocalePath()
+const close = () => {
+  if (route.path.includes('sso')) {
+    modal.hide("auth-error-modal")
+    navigateTo(localePath('/'))
+  } else {
+    modal.hide("auth-error-modal")
+  }
+}
 </script>
 
 <template>
@@ -11,7 +21,7 @@ const modal = useModal()
       <p class="text-justify font-normal">
         {{ t("description") }}
       </p>
-      <ui-button @click="modal.hide('auth-error-modal')">Ok</ui-button>
+      <ui-button @click="close">Ok</ui-button>
     </div>
   </ui-modal>
 </template>
