@@ -41,6 +41,13 @@ export const useAuthService = () => {
     authApi
       .signIn(code, role)
       .then(({ content }) => {
+        console.log(content, "content")
+        if (!content) {
+          modal.show("auth-error-modal")
+
+          navigateTo(localePath("/"))
+          return
+        }
         const token = useCookie("token")
         token.value = content.token
         $session.profile.value = content.profile
@@ -63,7 +70,8 @@ export const useAuthService = () => {
         }
       })
       .catch(() => {
-        modal.show('auth-error-modal')
+        modal.show("auth-error-modal")
+
       })
       .finally(() => ($session.loading.value = false))
   }
@@ -83,7 +91,7 @@ export const useAuthService = () => {
         messaging()
       })
       .catch((error) => {
-        modal.show('auth-error-modal')
+        modal.show("auth-error-modal")
       })
       .finally(() => (loading.value = false))
   }
@@ -113,7 +121,7 @@ export const useAuthService = () => {
         navigateTo(localePath({ path: "/auth/sign-in", query: { role: dto.value.role } }))
       })
       .catch((error) => {
-        modal.show('auth-error-modal')
+        modal.show("auth-error-modal")
       })
       .finally(() => (loading.value = false))
   }
