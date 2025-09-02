@@ -46,7 +46,6 @@
 
         <div v-else class="relative flex gap-3">
           <div
-            v-if="category?.service_categories?.length && projectList?.length"
             class="sticky top-32 flex h-fit flex-col gap-3 rounded-xl bg-white p-3 shadow-md"
           >
             <div
