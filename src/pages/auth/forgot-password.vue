@@ -1,6 +1,17 @@
 <script setup lang="ts">
 import { ForgotPasswordForm } from "~/features/auth/ui"
+import type { RouteLocation } from "#vue-router"
+const roles = ["investor", "businessmen"]
 
+definePageMeta({
+  validate: (route: RouteLocation) => {
+    if (!route.query?.role || (route.query?.role && !roles.includes(route.query.role as string))) {
+      throw showError({ statusCode: 403, statusMessage: "Forbidden" })
+    }
+
+    return true
+  }
+})
 </script>
 
 <template>
