@@ -11,6 +11,8 @@ declare global {
     related_number: number
   }
 
+  interface IAppealChat {}
+
   interface IAppealType {
     id: number
     content: string
@@ -22,6 +24,8 @@ declare global {
     name: string
   }
 }
+
+export class AppealChat {}
 
 export class Appeal {
   id!: number
