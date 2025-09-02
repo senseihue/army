@@ -48,12 +48,12 @@ const getRequestParams = async (service: IPersonalService) => {
     const params = {}
 
     service.params.forEach((item) => {
-      if (item.key === "inn" && profile.value?.user.tin) {
-        params[item.key] = profile.value?.user.tin
-      } else if (item.key === "pinfl" && profile.value?.user.pin) {
-        params[item.key] = profile.value?.user.pin
-      } else if (Object.prototype.hasOwnProperty.call(profile.value?.user, item.key) && profile.value?.user[item.key]) {
-        params[item.key] = profile.value?.user[item.key]
+      if (item.key === "inn" && profile.value?.[profile.value?.role].tin) {
+        params[item.key] = profile.value?.[profile.value?.role].tin
+      } else if (item.key === "pinfl" && profile.value?.[profile.value?.role].pin) {
+        params[item.key] = profile.value?.[profile.value?.role].pin
+      } else if (Object.prototype.hasOwnProperty.call(profile.value?.[profile.value?.role], item.key) && profile.value?.[profile.value?.role][item.key]) {
+        params[item.key] = profile.value?.[profile.value?.role][item.key]
       } else {
         requiredParams.value.push(item)
         if (item.required) {
@@ -72,12 +72,12 @@ const getRequestBody = async (service: IPersonalService) => {
     const body = {}
 
     service.body.forEach((item) => {
-      if (item.key === "inn" && profile.value?.user.tin) {
-        body[item.key] = profile.value?.user.tin
-      } else if (item.key === "pinfl" && profile.value?.user.pin) {
-        body[item.key] = profile.value?.user.pin
-      } else if (Object.prototype.hasOwnProperty.call(profile.value?.user, item.key) && profile.value?.user[item.key]) {
-        body[item.key] = profile.value?.user[item.key]
+      if (item.key === "inn" && profile.value?.[profile.value?.role].tin) {
+        body[item.key] = profile.value?.[profile.value?.role].tin
+      } else if (item.key === "pinfl" && profile.value?.[profile.value?.role].pin) {
+        body[item.key] = profile.value?.[profile.value?.role].pin
+      } else if (Object.prototype.hasOwnProperty.call(profile.value?.[profile.value?.role], item.key) && profile.value?.[profile.value?.role][item.key]) {
+        body[item.key] = profile.value?.[profile.value?.role][item.key]
       } else {
         requiredParams.value.push(item)
         if (item.required) {

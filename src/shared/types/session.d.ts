@@ -1,6 +1,6 @@
 interface ISessionProfile {
   email: string
-  role: string
+  role: "investor" | "businessmen"
   is_resident: boolean
   businessmen: Businessmen
   investor: Investor
