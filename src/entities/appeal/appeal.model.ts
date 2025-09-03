@@ -1,12 +1,17 @@
 declare global {
+  interface IModal {
+    appeal?: number
+  }
   interface IAppeal {
     id: number
     topic: IAppealTopic
     region: ITerritory
     type: IAppealType
+    status: string
     type_id: number
     topic_id: number
     region_id: number
+    createdAt: number
     comment: string
     related_number: number
   }
@@ -21,7 +26,15 @@ declare global {
 
   interface IAppealTopic {
     id: number
-    name: string
+    content: string
+  }
+
+  interface IAppealReplyParams extends IStoreListParams {
+    appeal_id: number
+  }
+
+  interface IAppealReply {
+    id: number
   }
 }
 
@@ -33,7 +46,8 @@ export class Appeal {
   topic_id!: number
   region_id!: number
   comment: string = ""
-  related_number!: number
+  name?: string
+  email?: string
 
   constructor(appeal?: IAppeal) {
     if (appeal) {
@@ -42,7 +56,7 @@ export class Appeal {
       this.topic_id = appeal.topic_id
       this.region_id = appeal.region_id
       this.comment = appeal.comment
-      this.related_number = appeal.related_number
     }
   }
 }
+

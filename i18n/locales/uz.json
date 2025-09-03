@@ -33,6 +33,7 @@
     "save": "Saqlash",
     "sector": "Sektor",
     "send": "Yuborish",
+    "send_appeal": "Fikr qoldirish",
     "sign_in": "Kirish",
     "sign_out": "Chiqish",
     "sign_up": "Roʻyxatdan oʻtish",
@@ -70,6 +71,7 @@
     "day": "Kun",
     "deposit_amount": "Garov summasi",
     "detailed": "Batafsil",
+    "e_auction": "E-Auction",
     "email": "Elektron pochta",
     "fdi": "PII va kreditlar",
     "general_view": "Umumiy ko‘rinish",
@@ -135,9 +137,7 @@
     "view_here": "Batafsil",
     "view_more": "Ko'proq ko'rish",
     "where_to_start": "Qayerdan boshlash kerak",
-    "working_days": "Ish kunlari",
-    "e_auction": "E-Auction"
-
+    "working_days": "Ish kunlari"
   },
   "messages": {
     "confirm": {
@@ -163,6 +163,7 @@
       "welcome_message": "Xush kelibsiz! Iltimos, ma'lumotlaringizni kiriting."
     },
     "success": {
+      "appeal_created": "Sizning murojaatlaringiz moderatsiyaga yuborildi.",
       "entity_activated": "{name} faollashtirildi",
       "entity_sent": "{name} yuborildi",
       "entity_unblocked": "{name} blokdan chiqarildi",
@@ -207,6 +208,7 @@
     },
     "profile": {
       "account": "Akaunt ma'lumotlari",
+      "appeals": "Shikoyatlar va takliflar",
       "change_password": "Parolni o'zgartirish",
       "company": "Kompaniya Haqida",
       "main": "Profil",

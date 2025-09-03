@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { SidebarMenu } from "vue-sidebar-menu"
 import type { SidebarMenuList } from "~/entities/layout/layout.model"
+import { AppealButtonGrid } from "~/features/appeal"
 
 const localePath = useLocalePath()
 const { t } = useI18n()
@@ -49,29 +50,37 @@ const menu = computed<SidebarMenuList>(() => [
     icon: { element: "icon", class: "text-xl", attributes: { name: "lucide:archive" } },
     href: localePath("/profile/my-projects"),
     class: getActive("/profile/my-projects")
+  },
+  {
+    title: t("nav.profile.appeals"),
+    icon: { element: "icon", class: "text-xl", attributes: { name: "lucide:message-circle-warning" } },
+    href: localePath("/profile/appeals"),
+    class: getActive("/profile/appeals")
   }
 ])
 const isCollapsed = ref(false)
-
 </script>
 
 <template>
-  <div class="h-fit min-w-[272px] max-w-full rounded-[14px] bg-white px-2 py-4 md:max-w-[272px]">
+  <div class="h-fit min-w-[272px] max-w-full md:max-w-[272px]">
     <client-only>
-      <sidebar-menu
-        class="app-sidebar lg:!flex"
-        hide-toggle
-        disable-hover
-        width="256px"
-        width-collapsed="64px"
-        :menu="menu"
-        :collapsed="isCollapsed"
-      >
-        <template #dropdown-icon>
-          <icon class="text-lg" name="lucide:chevron-right" />
-        </template>
-      </sidebar-menu>
+      <div class="mb-[10px] rounded-[14px] bg-white px-2 py-4">
+        <sidebar-menu
+          class="app-sidebar lg:!flex"
+          hide-toggle
+          disable-hover
+          width="256px"
+          width-collapsed="64px"
+          :menu="menu"
+          :collapsed="isCollapsed"
+        >
+          <template #dropdown-icon>
+            <icon class="text-lg" name="lucide:chevron-right" />
+          </template>
+        </sidebar-menu>
+      </div>
     </client-only>
+    <appeal-button-grid variant="col" />
   </div>
 </template>
 

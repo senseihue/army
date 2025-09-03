@@ -5,7 +5,6 @@ import { useAppealApi } from "~/features/appeal"
 interface IProps {
   autoSelect?: boolean
   fetchOnOpen?: boolean
-  parentId?: number
 }
 
 const props = defineProps<IProps>()
@@ -17,24 +16,19 @@ const el = ref()
 const params = ref<Record<string, any>>({
   name: "",
   page: 1,
-  size: 100,
-  parent_id: props.parentId
+  size: 100
 })
 
-watch(() => props.parentId, (v) => {
-  params.value.parent_id = v
-})
+const map = (value: IAppealTopic[]): ISelect[] => value?.map(({ id, content }) => ({ value: id, label: content }))
 
-const map = (value: IAppealType[]): ISelect[] => value?.map(({ id, content }) => ({ value: id, label: content }))
-
-const { loading, onOpen, onClose, onSearch, options } = useSelect<IAppealType>({
+const { loading, onOpen, onClose, onSearch, options } = useSelect<IAppealTopic>({
   el,
   map,
   model,
   params,
   autoSelect: props.autoSelect,
   fetchOnOpen: props.fetchOnOpen,
-  api: appealApi.getAppealTypeList
+  api: appealApi.getAppealTopicList
 })
 </script>
 

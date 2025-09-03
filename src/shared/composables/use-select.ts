@@ -21,15 +21,20 @@ export const useSelect = <T>({
 
   const getOptions = async () => {
     loading.value = true
-    const { content } = await api(cleanParams({ ...params.value, page: 0 }))
-    options.value = map(content)
-    if (el.value) await observe()
-
-    if (autoSelect) model.value = options.value.at(0)?.value!
-    loading.value = false
+    try {
+      const { content } = await api(cleanParams({ ...params.value, page: 0 }))
+      options.value = map(content)
+      if (el.value) await observe()
+      if (autoSelect) model.value = options.value.at(0)?.value!
+    } finally {
+      loading.value = false
+    }
   }
 
   const getInfiniteOptions = async () => {
+    if (params.value.total < params.value.size) {
+      return disconnect()
+    }
     const { content } = await api(cleanParams(params.value)).finally(() => (loading.value = false))
     if (!content?.length) return disconnect()
     options.value = options.value.concat(map(content))

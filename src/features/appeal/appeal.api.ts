@@ -1,44 +1,46 @@
-import type { Appeal } from "~/entities/appeal"
-import type { IAppealChat } from "~/entities/appeal/appeal.model"
+import type { AppealChat, Appeal } from "~/entities/appeal"
+import type { IAppealReplyParams } from "~/entities/appeal/appeal.model"
 
 export const useAppealApi = () => {
   const { $http } = useNuxtApp()
-  const baseUrl = "/appeal"
+  const baseUrl = "/siw/appeal"
+  const publicBaseUrl = "/siw/public"
 
   const getAppealList = (params: IStoreListParams): AsyncResponseContainer<IAppeal[]> => {
-    return $http.$get(`${baseUrl}/list`, { params })
+    return $http.$get(`${baseUrl}`, { params })
   }
 
   const getAppeal = (id: number): AsyncResponseContainer<IAppeal> => {
     return $http.$get(`${baseUrl}/${id}`)
   }
 
-  const getAppealChatList = (id: number): AsyncResponseContainer<IAppealChat[]> => {
-    return $http.$get(`${baseUrl}/chat/${id}`)
-  }
-
   const createAppeal = (data: Appeal): AsyncResponseContainer<IAppeal> => {
     return $http.$post(`${baseUrl}`, data)
   }
 
+  const getAppealChatList = (params: IAppealReplyParams): AsyncResponseContainer<IAppealChat[]> => {
+    return $http.$get(`${baseUrl}/response`, { params })
+  }
+
   const sendMessage = (data: AppealChat) => {
-    return $http.$post(`${baseUrl}/chat`, data)
+    return $http.$post(`${baseUrl}/reply`, data)
   }
 
-  const getAppealTypes = (params: IStoreListParams): AsyncResponseContainer<IAppealType[]> => {
-    return $http.$get(`${baseUrl}-type`, { params })
+  const getAppealTypeList = (params: IStoreListParams): AsyncResponseContainer<IAppealType[]> => {
+    return $http.$get(`${publicBaseUrl}/appeal-type`, { params })
   }
 
-  const getAppealTopic = (params: IStoreListParams): AsyncResponseContainer<IAppealTopic[]> => {
-    return $http.$get(`${baseUrl}-topic`, { params })
+  const getAppealTopicList = (params: IStoreListParams): AsyncResponseContainer<IAppealTopic[]> => {
+    return $http.$get(`${publicBaseUrl}/appeal-topic`, { params })
   }
 
   return {
     getAppealList,
     getAppeal,
-    getAppealTypes,
-    getAppealTopic,
+    getAppealTypeList,
+    getAppealTopicList,
     createAppeal,
+    sendMessage,
     getAppealChatList
   }
 }
