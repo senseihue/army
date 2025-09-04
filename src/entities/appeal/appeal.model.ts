@@ -1,7 +1,8 @@
 declare global {
   interface IModal {
-    "appeal"?: number
-    "appeal-reply"?: number
+    "appeal": number
+    "appeal-reply": number
+    "appeal-unauthorized": any
   }
 
   interface IAppeal {
@@ -28,6 +29,7 @@ declare global {
   interface IAppealTopic {
     id: number
     content: string
+    children?: IAppealType[]
   }
 
   interface IAppealReplyParams extends IStoreListParams {
@@ -48,6 +50,16 @@ export class AppealReply {
   response: string = ""
 }
 
+export class AppealResolve {
+  appeal_id!: number
+  resolved?: boolean
+  reason?: string
+
+  constructor(resolved?: boolean) {
+    this.resolved = resolved ?? true
+  }
+}
+
 export class Appeal {
   id!: number
   type_id!: number
@@ -56,6 +68,7 @@ export class Appeal {
   text: string = ""
   full_name?: string
   email?: string
+  reject_reason?: string
 
   constructor(appeal?: IAppeal) {
     if (appeal) {

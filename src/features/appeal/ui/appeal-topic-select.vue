@@ -19,11 +19,8 @@ const params = ref<Record<string, any>>({
   size: 100
 })
 
-const map = (value: IAppealTopic[]): ISelect[] => value?.map(({ id, content }) => ({ value: id, label: content }))
-
 const { loading, onOpen, onClose, onSearch, options } = useSelect<IAppealTopic>({
   el,
-  map,
   model,
   params,
   autoSelect: props.autoSelect,
@@ -37,6 +34,11 @@ const { loading, onOpen, onClose, onSearch, options } = useSelect<IAppealTopic>(
     v-model="model"
     v-bind="$attrs"
     autocomplete="off"
+    groups
+    group-options="children"
+    group-label="content"
+    value-prop="id"
+    label="content"
     searchable
     :options="options"
     :loading="loading"

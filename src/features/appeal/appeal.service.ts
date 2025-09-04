@@ -1,5 +1,5 @@
 import { useAppealApi } from "~/features/appeal"
-import { Appeal, AppealReply, useAppealReplyStore, useAppealStore } from "~/entities/appeal"
+import { Appeal, AppealReply, AppealResolve, useAppealReplyStore, useAppealStore } from "~/entities/appeal"
 
 export const useAppealService = () => {
   const appealApi = useAppealApi()
@@ -8,7 +8,7 @@ export const useAppealService = () => {
   const { t } = useI18n()
   const { $toast, $session } = useNuxtApp()
   const modal = useModal()
-
+  const route = useRoute()
   const { loggedIn } = $session || {}
 
   const getAppealList = async () => {
@@ -18,6 +18,9 @@ export const useAppealService = () => {
       .then(({ content, pageable }) => {
         appealStore.items = content
         appealStore.params.total = pageable?.total || 0
+        if (route.params.id) {
+          modal.show("appeal-reply", Number(route.params.id))
+        }
       })
       .finally(() => (appealStore.loading = false))
   }
@@ -42,7 +45,7 @@ export const useAppealService = () => {
       })
       .finally(() => (loading.value = false))
   }
-  const getInfiniteNotificationList = async () => {
+  const getInfiniteAppealReplyList = async () => {
     if (appealReplyStore.params.total % appealReplyStore.params.size === 0) {
       disconnect()
       return
@@ -60,7 +63,7 @@ export const useAppealService = () => {
       .finally(() => (appealReplyStore.loading = false))
   }
 
-  const { observe, disconnect } = useInfinite(appealReplyStore.sentinel, getInfiniteNotificationList)
+  const { observe, disconnect } = useInfinite(appealReplyStore.sentinel, getInfiniteAppealReplyList)
 
   const createAppeal = async (dto: Ref<Appeal>, loading: Ref<boolean>) => {
     loading.value = true
@@ -69,8 +72,10 @@ export const useAppealService = () => {
       .then(() => {
         dto.value = new Appeal()
         $toast.success(t("messages.success.appeal_created"))
+        if (loggedIn.value) {
+          getAppealList()
+        }
         modal.hide("appeal")
-        getAppealList()
       })
       .finally(() => (loading.value = false))
   }
@@ -80,9 +85,36 @@ export const useAppealService = () => {
     dto.value.appeal_id = appealReplyStore.params.appeal_id
     return appealApi
       .sendReply(dto.value)
-      .then(({content}) => {
+      .then(({ content }) => {
         appealReplyStore.items.unshift(content)
         dto.value = new AppealReply()
+      })
+      .finally(() => (loading.value = false))
+  }
+
+  const resolveAppeal = async (id: number, loading: Ref<boolean>) => {
+    loading.value = true
+    const data = new AppealResolve(true)
+    data.appeal_id = id
+
+    return appealApi
+      .resolveAppeal(data)
+      .then(() => {
+        $toast.success(t("messages.success.saved"))
+        getAppealList()
+      })
+      .finally(() => (loading.value = false))
+  }
+
+  const rejectAppeal = async (dto: Ref<AppealResolve>, loading: Ref<boolean>) => {
+    loading.value = true
+    return appealApi
+      .resolveAppeal(dto.value)
+      .then(() => {
+        $toast.success(t("messages.success.saved"))
+        dto.value = new AppealResolve()
+        getAppealList()
+        modal.hide("appeal-reject")
       })
       .finally(() => (loading.value = false))
   }
@@ -94,6 +126,8 @@ export const useAppealService = () => {
     sendAppealReply,
     getAppealReplyList,
     observe,
+    resolveAppeal,
+    rejectAppeal,
     disconnect
   }
 }

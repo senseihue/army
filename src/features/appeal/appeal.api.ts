@@ -1,4 +1,4 @@
-import type { AppealReply, Appeal } from "~/entities/appeal"
+import { type AppealReply, type Appeal, AppealResolve } from "~/entities/appeal"
 
 export const useAppealApi = () => {
   const { $http } = useNuxtApp()
@@ -36,6 +36,10 @@ export const useAppealApi = () => {
     return $http.$get(`${publicBaseUrl}/appeal-topic`, { params })
   }
 
+  const resolveAppeal = (data: AppealResolve): AsyncResponseContainer<any> => {
+    return $http.$post(`${baseUrl}/resolved`, data)
+  }
+
   return {
     getAppealList,
     getAppeal,
@@ -44,6 +48,7 @@ export const useAppealApi = () => {
     createAppeal,
     createPublicAppeal,
     sendReply,
+    resolveAppeal,
     getAppealReplyList
   }
 }

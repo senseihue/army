@@ -1,21 +1,46 @@
 <script setup lang="ts">
-import { AppealReply, useAppealService } from "~/features/appeal"
-import { useAppealReplyStore } from "~/entities/appeal"
+import { useAppealService } from "~/features/appeal"
+import { AppealResolve } from "~/entities/appeal"
 
 const { rejectAppeal } = useAppealService()
+const { hide } = useModal()
+const { required } = useRule()
 const loading = ref(false)
 
 const { t } = useI18n({ useScope: "local" })
 
-const form = ref<>()
+const form = ref<AppealResolve>(new AppealResolve(false))
+const rules = ref({
+  reason: { required }
+})
+const { hasError, vuelidate } = useValidate(form, rules)
+
+const onShown = (id: number) => {
+  vuelidate.value.$reset()
+  form.value.appeal_id = id
+}
+
+const submit = async () => {
+  const isValid = await vuelidate.value.$validate()
+  if (isValid) rejectAppeal(form, loading)
+}
+
+const cancel = () => {
+  vuelidate.value.$reset()
+  hide("appeal-reject")
+}
 </script>
 
 <template>
-  <ui-modal id="appeal-reject" size="sm" :loading :label="t('title_unauthorized')">
-    <form @submit.prevent="submit">
-      <ui-form-group>
-        <ui-textarea v-model="form.reason" />
+  <ui-modal id="appeal-reject" size="sm" :loading :label="t('title')" @before-show="onShown">
+    <form class="grid grid-cols-1 gap-4 px-4 py-[15px]" @submit.prevent="submit">
+      <ui-form-group v-bind="hasError('reason')" v-slot="{ id }" :label="t('fields.comment')">
+        <ui-textarea v-model="form.reason" rows="6" :id />
       </ui-form-group>
+      <div class="flex w-full items-center justify-end gap-2">
+        <ui-button color="secondary" :label="t('cancel')" type="button" @click="cancel"></ui-button>
+        <ui-button :label="t('submit')"></ui-button>
+      </div>
     </form>
   </ui-modal>
 </template>
@@ -26,46 +51,25 @@ const form = ref<>()
 {
   "en": {
     "submit": "Submit",
-    "title": "Describe the problem",
-    "title_unauthorized": "Please enter your name and email",
-    "next": "Next",
+    "title": "The problem has not been solved",
     "cancel": "Cancel",
     "fields": {
-      "name": "Name",
-      "email": "Email",
-      "type": "Scope of the problem",
-      "topic": "Scope of the problem",
-      "region": "Region",
       "comment": "Comment"
     }
   },
   "ru": {
     "submit": "Отправить",
-    "title": "Опишите проблему",
-    "title_unauthorized": "Пожалуйста, введите ваше имя и email",
-    "next": "Далее",
+    "title": "Проблема не решена",
     "cancel": "Отмена",
     "fields": {
-      "name": "Имя",
-      "email": "Email",
-      "type": "Тип проблемы",
-      "topic": "Сфера проблемы",
-      "region": "Регион",
       "comment": "Комментарии"
     }
   },
   "uz": {
     "submit": "Yuborish",
-    "title": "Muammoni tasvirlab bering",
-    "title_unauthorized": "Iltimos, ismingizni va elektron pochtangizni kiriting",
-    "next": "Keyingi",
+    "title": "Muammo hal qilinmadi",
     "cancel": "Bekor qilish",
     "fields": {
-      "name": "Ism",
-      "email": "Email",
-      "type": "Muammo turi",
-      "topic": "Muammo sohasi",
-      "region": "Hudud",
       "comment": "Izoh"
     }
   }

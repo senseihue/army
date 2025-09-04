@@ -91,15 +91,20 @@ const label = computed(() => (unauthorized.value ? t("title_unauthorized") : t("
         <ui-form-group v-bind="hasError('text')" v-slot="{ id }" :label="t('fields.comment')">
           <ui-textarea v-model="form.text" rows="8" :disabled="editing" :id></ui-textarea>
         </ui-form-group>
+        <ui-form-group v-if="editing && form.reject_reason" :label="t('fields.reson')">
+          <ui-textarea v-model="form.reject_reason" rows="8" :disabled="true"></ui-textarea>
+        </ui-form-group>
       </template>
-      <div class="flex w-full items-center justify-end gap-2">
+    </form>
+    <template #footer>
+      <div class="flex w-full items-center justify-end gap-2 p-4">
         <ui-button color="secondary" :label="t('cancel')" @click="cancel"></ui-button>
         <template v-if="!editing">
           <ui-button v-if="unauthorized" :label="t('next')" @click="next"></ui-button>
           <ui-button v-else :label="t('submit')" @click="submit"></ui-button>
         </template>
       </div>
-    </form>
+    </template>
   </ui-modal>
 </template>
 
@@ -119,7 +124,8 @@ const label = computed(() => (unauthorized.value ? t("title_unauthorized") : t("
       "type": "Scope of the problem",
       "topic": "Scope of the problem",
       "region": "Region",
-      "comment": "Comment"
+      "comment": "Comment",
+      "reason": "Reason for rejection"
     }
   },
   "ru": {
@@ -134,7 +140,8 @@ const label = computed(() => (unauthorized.value ? t("title_unauthorized") : t("
       "type": "Тип проблемы",
       "topic": "Сфера проблемы",
       "region": "Регион",
-      "comment": "Комментарии"
+      "comment": "Комментарии",
+      "reason": "Причина закрытия"
     }
   },
   "uz": {
@@ -149,7 +156,8 @@ const label = computed(() => (unauthorized.value ? t("title_unauthorized") : t("
       "type": "Muammo turi",
       "topic": "Muammo sohasi",
       "region": "Hudud",
-      "comment": "Izoh"
+      "comment": "Izoh",
+      "reason": "Rad etish sababi"
     }
   }
 }

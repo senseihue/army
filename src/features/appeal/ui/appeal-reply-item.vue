@@ -18,7 +18,7 @@ const classes = computed(() => ({
         {{ reply.owner ? t("appeal-reply.owner") : reply.admin }}
       </p>
       <p class="appeal-reply-item__date">
-        {{ formatDate(reply.created, "DD.MM.YYYY HH:MM") }}
+        {{ formatDate(reply.created, "DD.MM.YYYY hh:mm") }}
       </p>
     </div>
 

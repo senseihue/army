@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { AppealModal } from "~/features/appeal"
+import { AppealModal, AppealUnauthorizedModal } from "~/features/appeal"
 
 interface IProps {
   variant?: "col" | "row"
@@ -9,6 +9,8 @@ const props = withDefaults(defineProps<IProps>(), {
   variant: "row"
 })
 
+const { $session } = useNuxtApp()
+const { loggedIn } = $session || {}
 const { t } = useI18n({ useScope: "local" })
 
 const gridClass = computed(() => ({
@@ -18,6 +20,14 @@ const gridClass = computed(() => ({
 }))
 
 const { show } = useModal()
+
+const beforeShow = () => {
+  if (!loggedIn.value) {
+    show("appeal-unauthorized")
+  } else {
+    show("appeal")
+  }
+}
 </script>
 
 <template>
@@ -28,9 +38,10 @@ const { show } = useModal()
     <p class="appeal-button-grid__description">
       {{ t("description") }}
     </p>
-    <ui-button :label="$t('actions.send_appeal')" @click="show('appeal')"></ui-button>
+    <ui-button :label="$t('actions.send_appeal')" @click="beforeShow"></ui-button>
   </div>
   <appeal-modal />
+  <appeal-unauthorized-modal />
 </template>
 
 <style>
@@ -39,6 +50,7 @@ const { show } = useModal()
 
   &__col {
     @apply flex-col items-start justify-start rounded-2xl;
+
     .ui-button {
       @apply ml-auto;
     }
