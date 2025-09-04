@@ -45,7 +45,7 @@ const { show } = useModal()
   }
 
   &__row {
-    @apply flex-row items-center justify-end;
+    @apply flex-row items-center justify-end px-0;
 
     .appeal-button-grid__description {
       @apply hidden;

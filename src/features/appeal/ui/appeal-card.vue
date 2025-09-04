@@ -1,8 +1,12 @@
 <script setup lang="ts">
+import { useAppealStore } from "~/entities/appeal"
+
 interface IProps {
   appeal: IAppeal
 }
 
+const appealStore = useAppealStore()
+const {current } = storeToRefs(appealStore)
 const props = defineProps<IProps>()
 const { show } = useModal()
 const { t } = useI18n({ useScope: "local" })
@@ -10,6 +14,11 @@ const cardClass = computed(() => ({
   "appeal-card": true,
   ["appeal-card__" + props.appeal.status]: true
 }))
+
+const showReplyModal = () => {
+  current.value = props.appeal
+  show("appeal-reply", props.appeal.id)
+}
 </script>
 
 <template>
@@ -33,27 +42,11 @@ const cardClass = computed(() => ({
             </span>
           </div>
           <div class="appeal-card__actions">
-            <div >
-              <template v-if="">
-                <ui-icon-button
-                  variant="ghost"
-                  icon-class="text-[24px] text-black"
-                  icon-name="lucide:thumbs-up"
-                  @click="show('appeal-replies', appeal.id)"
-                />
-                <ui-icon-button
-                  variant="ghost"
-                  icon-class="text-[24px] text-black"
-                  icon-name="lucide:down"
-                  @click="show('appeal-replies', appeal.id)"
-                />
-              </template>
-            </div>
             <ui-icon-button
               variant="ghost"
               icon-class="text-[24px] text-black"
               icon-name="ph:chats-duotone"
-              @click="show('appeal-replies', appeal.id)"
+              @click="showReplyModal"
             />
             <ui-icon-button
               variant="ghost"
@@ -106,7 +99,7 @@ const cardClass = computed(() => ({
   }
 }
 
-.appeal-card__approved {
+.appeal-card__resolved {
   @apply border-2 border-solid border-[#10A230];
 
   .appeal-card__header {
@@ -114,7 +107,7 @@ const cardClass = computed(() => ({
   }
 }
 
-.appeal-card__in_moderation {
+.appeal-card__reviewed {
   @apply border-2 border-solid border-[#0078B5];
 
   .appeal-card__header {
@@ -122,7 +115,15 @@ const cardClass = computed(() => ({
   }
 }
 
-.appeal-card__rejected {
+.appeal-card__in_moderation {
+  @apply border-2 border-solid border-[#475569];
+
+  .appeal-card__header {
+    @apply bg-[#475569];
+  }
+}
+
+.appeal-card__not_resolved {
   @apply border-2 border-solid border-[#FF383C];
 
   .appeal-card__header {
@@ -135,8 +136,9 @@ const cardClass = computed(() => ({
 {
   "en": {
     "status": {
-      "approved": "Approved",
-      "rejected": "Rejected",
+      "resolved": "Resolved",
+      "reviewed": "Reviewed",
+      "not_resolved": "Not Resolved",
       "in_moderation": "In Moderation"
     },
     "created_at": "Added",
@@ -145,8 +147,9 @@ const cardClass = computed(() => ({
   },
   "ru": {
     "status": {
-      "approved": "Одобрено",
-      "rejected": "Отклонено",
+      "resolved": "Решено",
+      "reviewed": "На рассмотрении",
+      "not_resolved": "Не решено",
       "in_moderation": "На модерации"
     },
     "created_at": "Добавлен",
@@ -155,8 +158,9 @@ const cardClass = computed(() => ({
   },
   "uz": {
     "status": {
-      "approved": "Tasdiqlangan",
-      "rejected": "Rad etilgan",
+      "resolved": "Hal qilindi",
+      "reviewed": "Ko'rib chiqilmoqda",
+      "not_resolved": "Hal qilinmagan",
       "in_moderation": "Moderatsiyada"
     },
     "created_at": "Qo'shilgan",

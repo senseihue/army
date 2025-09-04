@@ -1,12 +1,11 @@
-import type { AppealChat, Appeal } from "~/entities/appeal"
-import type { IAppealReplyParams } from "~/entities/appeal/appeal.model"
+import type { AppealReply, Appeal } from "~/entities/appeal"
 
 export const useAppealApi = () => {
   const { $http } = useNuxtApp()
   const baseUrl = "/siw/appeal"
   const publicBaseUrl = "/siw/public"
 
-  const getAppealList = (params: IStoreListParams): AsyncResponseContainer<IAppeal[]> => {
+  const getAppealList = (params: Partial<IStoreListParams>): AsyncResponseContainer<IAppeal[]> => {
     return $http.$get(`${baseUrl}`, { params })
   }
 
@@ -17,12 +16,15 @@ export const useAppealApi = () => {
   const createAppeal = (data: Appeal): AsyncResponseContainer<IAppeal> => {
     return $http.$post(`${baseUrl}`, data)
   }
+  const createPublicAppeal = (data: Appeal): AsyncResponseContainer<IAppeal> => {
+    return $http.$post(`${publicBaseUrl}/appeal`, data)
+  }
 
-  const getAppealChatList = (params: IAppealReplyParams): AsyncResponseContainer<IAppealChat[]> => {
+  const getAppealReplyList = (params:  Partial<IAppealReplyParams>): AsyncResponseContainer<IAppealReply[]> => {
     return $http.$get(`${baseUrl}/response`, { params })
   }
 
-  const sendMessage = (data: AppealChat) => {
+  const sendReply = (data: AppealReply) => {
     return $http.$post(`${baseUrl}/reply`, data)
   }
 
@@ -40,7 +42,8 @@ export const useAppealApi = () => {
     getAppealTypeList,
     getAppealTopicList,
     createAppeal,
-    sendMessage,
-    getAppealChatList
+    createPublicAppeal,
+    sendReply,
+    getAppealReplyList
   }
 }

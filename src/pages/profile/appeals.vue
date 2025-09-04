@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ProfileHeader } from "~/features/profile"
-import { AppealGrid, useAppealService } from "~/features/appeal"
+import { AppealGrid, AppealReplyModal, useAppealService } from "~/features/appeal"
 
 definePageMeta({
   protected: true
@@ -19,6 +19,7 @@ const { getAppealList } = useAppealService()
     <div class="mt-2 grid w-full gap-4 rounded-2xl bg-white p-4">
       <appeal-grid />
     </div>
+    <appeal-reply-modal />
   </div>
 </template>
 

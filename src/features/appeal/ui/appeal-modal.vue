@@ -19,8 +19,8 @@ const rules = ref({
   type_id: { required },
   topic_id: { required },
   region_id: { required },
-  comment: { required },
-  name: { requiredIf: requiredIf(computed(() => unauthorized.value)) },
+  text: { required },
+  full_name: { requiredIf: requiredIf(computed(() => unauthorized.value)) },
   email: { requiredIf: requiredIf(computed(() => unauthorized.value)), email }
 })
 
@@ -31,7 +31,7 @@ const { t } = useI18n({ useScope: "local" })
 const onShown = (id: number) => {
   if (id) {
     editing.value = true
-    getAppeal(id, loading)
+    getAppeal(id, form, loading)
   } else {
     editing.value = false
     form.value = new Appeal()
@@ -45,9 +45,9 @@ const submit = async () => {
 }
 
 const next = async () => {
-  await vuelidate.value.email.$validate("email")
-  await vuelidate.value.name.$validate("name")
-  if (hasError("name").invalid || hasError("email").invalid) {
+  await vuelidate.value.email.$validate()
+  await vuelidate.value.full_name.$validate()
+  if (hasError("full_name").invalid || hasError("email").invalid) {
     return
   } else {
     unauthorized.value = false
@@ -63,11 +63,11 @@ const label = computed(() => (unauthorized.value ? t("title_unauthorized") : t("
 </script>
 
 <template>
-  <ui-modal id="appeal" :label @shown="onShown">
+  <ui-modal id="appeal" :loading :label @shown="onShown">
     <form class="grid grid-cols-1 gap-4 px-4 py-[15px]" @submit.prevent>
       <template v-if="unauthorized">
-        <ui-form-group v-bind="hasError('name')" v-slot="{ id }" :label="t('fields.name')">
-          <ui-input v-model="form.name" :id></ui-input>
+        <ui-form-group v-bind="hasError('full_name')" v-slot="{ id }" :label="t('fields.name')">
+          <ui-input v-model="form.full_name" :id></ui-input>
         </ui-form-group>
         <ui-form-group v-bind="hasError('email')" v-slot="{ id }" :label="t('fields.email')">
           <ui-input v-model="form.email" :id></ui-input>
@@ -88,8 +88,8 @@ const label = computed(() => (unauthorized.value ? t("title_unauthorized") : t("
         <ui-form-group v-bind="hasError('region_id')" v-slot="{ id }" :label="t('fields.region')">
           <territory-select v-model="form.region_id" :disabled="editing" :id></territory-select>
         </ui-form-group>
-        <ui-form-group v-bind="hasError('comment')" v-slot="{ id }" :label="t('fields.comment')">
-          <ui-textarea v-model="form.comment" rows="8" :disabled="editing" :id></ui-textarea>
+        <ui-form-group v-bind="hasError('text')" v-slot="{ id }" :label="t('fields.comment')">
+          <ui-textarea v-model="form.text" rows="8" :disabled="editing" :id></ui-textarea>
         </ui-form-group>
       </template>
       <div class="flex w-full items-center justify-end gap-2">

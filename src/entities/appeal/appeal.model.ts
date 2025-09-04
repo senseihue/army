@@ -1,22 +1,23 @@
 declare global {
   interface IModal {
-    appeal?: number
+    "appeal"?: number
+    "appeal-reply"?: number
   }
+
   interface IAppeal {
     id: number
     topic: IAppealTopic
     region: ITerritory
     type: IAppealType
-    status: string
+    status: "in_moderation" | "resolved" | "not_resolved" | "reviewed"
+    reject_reason: string
     type_id: number
     topic_id: number
     region_id: number
     createdAt: number
-    comment: string
+    text: string
     related_number: number
   }
-
-  interface IAppealChat {}
 
   interface IAppealType {
     id: number
@@ -35,18 +36,25 @@ declare global {
 
   interface IAppealReply {
     id: number
+    admin: string
+    created: string
+    response: string
+    owner: boolean
   }
 }
 
-export class AppealChat {}
+export class AppealReply {
+  appeal_id!: number
+  response: string = ""
+}
 
 export class Appeal {
   id!: number
   type_id!: number
   topic_id!: number
   region_id!: number
-  comment: string = ""
-  name?: string
+  text: string = ""
+  full_name?: string
   email?: string
 
   constructor(appeal?: IAppeal) {
@@ -55,8 +63,7 @@ export class Appeal {
       this.type_id = appeal.type_id
       this.topic_id = appeal.topic_id
       this.region_id = appeal.region_id
-      this.comment = appeal.comment
+      this.text = appeal.text
     }
   }
 }
-
