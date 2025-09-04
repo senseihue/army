@@ -5,5 +5,3 @@ declare global {
     icon: string
   }
 }
-
-export class PersonalServiceCategoryParams {}
