@@ -54,7 +54,7 @@ const buttonAttrs = computed(() => {
         <span class="ui-button-loading" />
       </slot>
 
-      <slot>
+      <slot v-else>
         <icon v-if="iconName" :class="iconClass" :name="iconName" />
       </slot>
     </component>

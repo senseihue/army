@@ -41,7 +41,6 @@ export const useAuthService = () => {
     authApi
       .signIn(code, role)
       .then(({ content }) => {
-        console.log(content, "content")
         if (!content) {
           modal.show("auth-error-modal")
 

@@ -4,7 +4,7 @@
       <div
         class="mb-4 flex max-h-56 min-h-56 items-center justify-center rounded-xl bg-blue-command p-4 text-xl font-semibold text-white"
       >
-        <img v-if="image?.id" class="aspect-video h-48 w-48 object-cover" alt="" :src="image?.download_link" />
+        <img v-if="image?.id" class="aspect-video h-48 w-48 object-cover" alt="" :src="image?.thumbnail_link" />
         <Icon v-else class="h-48 w-48" :name="icon" />
       </div>
 

@@ -45,7 +45,7 @@ params.value.total = pageable?.total || 0
             <press-card
               :label="news.title"
               :path="`/gallery/${news.id}`"
-              :image="news.files[0]?.download_link"
+              :image="news.files[0]?.thumbnail_link"
               :publish-date="news.publish_date"
             />
           </template>

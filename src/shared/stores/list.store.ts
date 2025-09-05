@@ -1,4 +1,4 @@
-export const createListParams = <T = Record<string, any>>(params: T) => {
+export const createListParams = <T = IStoreListParams>(params: T) => {
   return ref({
     page: 0,
     size: 10,
@@ -8,7 +8,7 @@ export const createListParams = <T = Record<string, any>>(params: T) => {
   })
 }
 
-export const createListState = <T>() => {
+export const createListState = <T> () => {
   const loading = ref(false)
 
   const items = ref<T[]>([])

@@ -48,7 +48,7 @@ const carouselConfig = computed<Partial<CarouselConfig>>(() => ({
         <carousel v-bind="carouselConfig" ref="carouselRef">
           <slide v-for="slide in leaderships" class="h-full">
             <about-leadership-slide
-              :avatar="slide.photo?.download_link"
+              :avatar="slide.photo?.thumbnail_link"
               :full-name="slide.name"
               :position="slide.position"
               :working-days="slide.working_days"

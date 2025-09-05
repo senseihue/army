@@ -31,7 +31,7 @@ const cardClass = computed(() => ({
       </div>
       <div class="project-card__info">
         <div class="project-card__image">
-          <img alt="" :src="project.upload?.download_link" />
+          <img alt="" :src="project.upload?.thumbnail_link" />
         </div>
         <div class="project-card__main">
           <div class="project-card__details">

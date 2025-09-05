@@ -33,6 +33,7 @@
     "save": "Сохранить",
     "sector": "Сектор",
     "send": "Отправить",
+    "send_appeal": "Оставить отзыв",
     "sign_in": "Войти",
     "sign_out": "Выйти",
     "sign_up": "Регистрация",
@@ -78,6 +79,7 @@
     "day": "День",
     "deposit_amount": "Сумма задатка",
     "detailed": "Подробнее",
+    "e_auction": "E-Auction",
     "email": "Электронная почта",
     "fdi": "ПИИ и кредиты",
     "general_view": "Общий вид",
@@ -143,8 +145,7 @@
     "view_here": "Подробнее",
     "view_more": "Показать больше",
     "where_to_start": "С чего начать",
-    "working_days": "Рабочие дни",
-    "e_auction": "E-Auction"
+    "working_days": "Рабочие дни"
   },
   "messages": {
     "confirm": {
@@ -170,6 +171,7 @@
       "welcome_message": "С возвращением! Пожалуйста, введите свои данные."
     },
     "success": {
+      "appeal_created": "Ваши обращения были отправлены на модерацию.",
       "entity_activated": "{name} был активирован",
       "entity_sent": "{name} был отправлен",
       "entity_unblocked": "{name} был разблокирован",
@@ -214,6 +216,7 @@
     },
     "profile": {
       "account": "Данные аккаунта",
+      "appeals": "Жалобы и предложения",
       "change_password": "Изменить пароль",
       "company": "О Компании",
       "main": "Профиль",

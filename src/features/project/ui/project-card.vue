@@ -1,7 +1,7 @@
 <template>
   <div class="group relative min-h-80 opacity-100">
     <div class="relative transition-all group-hover:opacity-90">
-      <img v-if="upload.id" class="h-80 w-full object-cover object-center" alt="" :src="upload.download_link" />
+      <img v-if="upload.id" class="h-80 w-full object-cover object-center" alt="" :src="upload.thumbnail_link" />
       <img v-else class="h-80 w-full object-cover object-center" src="/img/about/hero.webp" alt="image" />
       <div class="bg-blue-bondi absolute bottom-4 left-0 w-full max-w-[85%] rounded-r-2xl px-4 py-0.5 group-hover:hidden">
         <h3 class="text-lg font-semibold text-white">{{ title }}</h3>
