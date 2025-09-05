@@ -138,6 +138,15 @@ const resolve = () => {
   }
 }
 
+
+.appeal-card__new_appeal {
+  @apply border-2 border-solid border-blue-command;
+
+  .appeal-card__header {
+    @apply bg-blue-command;
+  }
+}
+
 .appeal-card__reviewed {
   @apply border-2 border-solid border-[#0078B5];
 
