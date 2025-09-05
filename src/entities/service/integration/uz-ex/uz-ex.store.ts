@@ -1,1 +1,1 @@
-export const useUzExStore = createListStore("uz-ex")
+export const useUzExStore = createListStore<IUzExResponse>("uz-ex")

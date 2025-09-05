@@ -3,7 +3,7 @@
     <div v-if="loading"></div>
     <div v-else class="container-6xl">
       <div class="grid gap-2">
-        <div class="flex flex-col items-start gap-3 mb-4">
+        <div class="mb-4 flex flex-col items-start gap-3">
           <ui-button
             size="sm"
             icon-name="lucide:arrow-left"
@@ -12,7 +12,7 @@
             :label="$t('actions.back')"
             @click="goBack"
           />
-          <h3 class="text-blue-midnight font-semibold text-xl">{{ $t("labels.e_auction") }}</h3>
+          <h3 class="text-xl font-semibold text-blue-midnight">{{ $t("labels.e_auction") }}</h3>
         </div>
         <div class="grid gap-6 md:grid-cols-2">
           <e-auction-slides :slides="lot?.images" />
@@ -59,20 +59,12 @@
                   </p>
                 </div>
 
-                <div class="gpa-2 grid md:grid-cols-2" v-if="timeLeft !== '00:00:00:00'">
-                  <div class="rounded-md border border-blue-midnight p-3">
-                    <p class="text-center text-sm font-semibold text-blue-midnight">
-                      {{ $t("labels.application_end") }}
-                    </p>
-
-                    <p class="text-center text-[40px] font-bold text-red-600">{{ timeLeft }}</p>
-                    <div class="flex justify-center gap-5 text-xs font-semibold uppercase text-blue-midnight">
-                      <span class="inline-block text-center">{{ $t("labels.day") }}</span>
-                      <span class="inline-block text-center">{{ $t("labels.hour") }}</span>
-                      <span class="inline-block text-center">{{ $t("labels.minute") }}</span>
-                      <span class="inline-block text-center">{{ $t("labels.second") }}</span>
-                    </div>
-                  </div>
+                <div v-show="timeLeft" class="gpa-2 grid md:grid-cols-2">
+                  <timer-card
+                    v-model="timeLeft"
+                    :label="$t('labels.application_end')"
+                    :end-time="lot?.order_end_time"
+                  />
 
                   <div class="flex w-full items-center justify-center">
                     <ui-button
@@ -106,12 +98,6 @@
 
 <script setup lang="ts">
 import { EAuctionSlides, useEAuctionService } from "~/features/service/integration/e-auction"
-import dayjs from "dayjs"
-import duration from "dayjs/plugin/duration"
-import customParseFormat from "dayjs/plugin/customParseFormat"
-
-dayjs.extend(duration)
-dayjs.extend(customParseFormat)
 
 const { getEAuctionById } = useEAuctionService()
 
@@ -120,31 +106,7 @@ const router = useRouter()
 const localePath = useLocalePath()
 const loading = ref(false)
 const lot = ref<IEAuctionDetails>()
-const timeLeft = ref("00:00:00:00")
-let interval: any = null
-
-const updateTimer = () => {
-  if (!lot.value?.order_end_time) return
-
-  const deadline = dayjs(lot.value.order_end_time, "DD.MM.YYYY HH:mm:ss")
-  const now = dayjs()
-  const diff = deadline.diff(now)
-
-  if (diff <= 0) {
-    timeLeft.value = "00:00:00:00"
-    if (interval) clearInterval(interval)
-    return
-  }
-
-  const d = dayjs.duration(diff)
-
-  const days = String(d.days()).padStart(2, "0")
-  const h = String(d.hours()).padStart(2, "0")
-  const m = String(d.minutes()).padStart(2, "0")
-  const s = String(d.seconds()).padStart(2, "0")
-
-  timeLeft.value = `${days}:${h}:${m}:${s}`
-}
+const timeLeft = ref(0)
 
 const redirectEAuction = () => {
   if (lot.value?.lot) window.open(`https://cabinet.e-auksion.uz/lot-to-apply?lot=${lot.value.lot}`, "_blank")
@@ -154,13 +116,5 @@ const goBack = () => router.push(localePath("/service/e-auction"))
 
 onMounted(() => {
   if (route.params.id) getEAuctionById(+route.params.id, lot, loading)
-  updateTimer()
-  interval = setInterval(updateTimer, 1000)
-})
-
-onUnmounted(() => {
-  if (interval) clearInterval(interval)
 })
 </script>
-
-<style scoped></style>

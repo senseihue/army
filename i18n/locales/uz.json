@@ -44,12 +44,20 @@
     "view": "Ko'rish",
     "view_here": "Bu yerda ko'rish",
     "view_more": "Ko'proq ko'rish",
-    "where_to_start": "Qayerdan boshlash kerak"
+    "where_to_start": "Qayerdan boshlash kerak",
+    "more": "Batafsil"
   },
   "description": {
     "footer_desc": "Invest.gov.uz investitsiya portali materiallaridan asl manba va Portalga havola ko‘rsatilmagan holda har qanday foydalanish (ko‘paytirish, chop etish, nusxalash, qayta chop etish, tarqatish, tarjima qilish, efirga uzatish, qayta ishlash va tarqatishning boshqa usullari) qat’iyan man etiladi.\n\n"
   },
   "labels": {
+    "start_cost": "Boshlang'ich narx",
+    "unit_start_cost": "Birlik uchun boshlang'ich narx",
+    "final_start_cost": "Yakuniy boshlang'ich narx",
+    "time_left_until_end": "Tugashiga qoldi",
+    "detailed_description": "Batafsil tavsif",
+    "total_cost": "Umumiy summa",
+    "end_date": "Tugash sanasi",
     "address": "Manzil",
     "all_amount": "Barcha miqdorlar",
     "all_regions": "Barcha hududlar",

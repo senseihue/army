@@ -9,5 +9,3 @@
 <script setup lang="ts">
 import { UzExHero, UzExList, UzExModal } from "~/features/service/integration/uz-ex"
 </script>
-
-<style scoped></style>
