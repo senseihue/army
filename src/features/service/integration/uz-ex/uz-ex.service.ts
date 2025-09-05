@@ -1,42 +1,21 @@
-import { useUzExApi } from "~/features/service/integration/uz-ex/uz-ex.api"
+import { useUzExApi } from "~/features/service/integration/uz-ex"
+import { useUzExStore } from "~/entities/service/integration/uz-ex"
 
 export const useUzExService = () => {
   const uzExApi = useUzExApi()
+  const uzExStore = useUzExStore()
 
-  const getUzExList = async (
-    params: Record<string, any>,
-    list: Ref<IProject[]>,
-    loading: Ref<boolean>
-  ): AsyncResponseContainer<IUzEx[]> => {
-    loading.value = true
+  const getUzExList = () => {
+    uzExStore.loading = true
 
-    return uzExApi
-      .getUzExList(params)
-      .then((response) => {
-        list.value = response.content
-        return response
+    uzExApi
+      .getUzExList(cleanParams(uzExStore.params))
+      .then(({ content, pageable }) => {
+        uzExStore.items = content
+        uzExStore.params.total = pageable?.total ?? 0
       })
-      .finally(() => (loading.value = false))
+      .finally(() => (uzExStore.loading = false))
   }
 
-  const getUzExById = async (
-    id: number,
-    project: Ref<IProjectById>,
-    loading: Ref<boolean>
-  ): AsyncResponseContainer<IUzEx> => {
-    loading.value = true
-
-    return uzExApi
-      .getUzExById(id)
-      .then((response) => {
-        project.value = response.content
-        return response
-      })
-      .finally(() => (loading.value = false))
-  }
-
-  return {
-    getUzExList,
-    getUzExById
-  }
+  return { getUzExList }
 }

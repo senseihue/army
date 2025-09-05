@@ -1,90 +1,42 @@
-<template>
-  <div class="bg-gray-100">
-    <div class="container-7xl">
-      <div class="p-section">
-        <div class="flex items-center justify-between gap-3 py-2">
-          <h3 class="w-full text-xl font-bold">{{ $t("labels.products_on_sale") }}</h3>
-          <ui-icon-button
-            icon-name="ph:arrow-left"
-            size="sm"
-            color="secondary"
-            :label="$t('actions.back')"
-            @click="goBack"
-          />
-        </div>
-
-        <ui-table no-wrap :cols :rows>
-          <template #idx="{ idx, sequence }">
-            {{ sequence(idx, params.page, params.size) }}
-          </template>
-
-          <template #actions="{ row }">
-            <uz-ex-menu :id="row?.id" />
-          </template>
-        </ui-table>
-
-        <ui-table-footer v-model:page="params.page" v-model:per-page="params.size" :total="params.total" />
-      </div>
-    </div>
-  </div>
-</template>
-
 <script setup lang="ts">
 import { useUzExStore } from "~/entities/service/integration/uz-ex"
-import UzExMenu from "~/features/service/integration/uz-ex/ui/uz-ex-menu.vue"
+import { useUzExService, UzExCard } from "~/features/service/integration/uz-ex"
 
-const { t } = useI18n()
 const uzExStore = useUzExStore()
-const { params } = storeToRefs(uzExStore)
+const uzExService = useUzExService()
 
-const rows = computed(() => [
-  {
-    id: 1,
-    name: "Арматура СТ 12-35 ГС немерной длины",
-    quantity: 12,
-    unit: "ton",
-    category: "none",
-    region: "Tashkent"
-  }
-])
+const { items, params, loading, isEmpty } = storeToRefs(uzExStore)
 
-const cols = computed<ITableCol<IUzEx>[]>(() => [
-  {
-    name: "idx",
-    label: t("thead.sequence"),
-    width: "40px",
-    dataClass: "text-center"
-  },
-  {
-    name: "name",
-    label: t("labels.name")
-  },
-  {
-    name: "quantity",
-    label: t("labels.quantity")
-  },
-  {
-    name: "unit",
-    label: t("labels.unit")
-  },
-  {
-    name: "category",
-    label: t("labels.category")
-  },
-  {
-    name: "region",
-    label: t("labels.region")
-  },
-  {
-    name: "actions",
-    label: t("thead.actions"),
-    labelClass: "justify-end"
-  }
-])
-
-const goBack = () => {
-  router.back()
-}
+onMounted(uzExService.getUzExList)
 </script>
 
-<style scoped></style>
+<template>
+  <section>
+    <div class="container-6xl">
+      <div class="p-section">
+        <div class="mb-4 grid gap-4 md:mb-6 md:gap-6">
+          <div v-if="loading" class="mx-auto w-auto">
+            <ui-spinner size="size-20 py-12" />
+          </div>
+
+          <div v-else-if="isEmpty" class="flex h-32 flex-col items-center">
+            <p class="text-center text-gray-600">
+              {{ $t("messages.info.data_not_found") }}
+            </p>
+          </div>
+
+          <template v-else>
+            <uz-ex-card v-for="record in items" :key="record?.lot_id" :record />
+          </template>
+        </div>
+
+        <ui-pagination
+          v-model="params.page"
+          :total="params.total"
+          :per-page="params.size"
+          @update:model-value="uzExService.getUzExList"
+        />
+      </div>
+    </div>
+  </section>
+</template>

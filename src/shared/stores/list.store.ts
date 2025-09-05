@@ -14,7 +14,10 @@ export const createListState = <T>() => {
   const items = ref<T[]>([])
   const filteredItems = ref<T[]>([])
 
-  return { loading, items, filteredItems }
+  const isEmpty = computed(() => !items.value?.length)
+  const isLoading = computed(() => loading.value && !isEmpty.value)
+
+  return { loading, items, filteredItems, isEmpty, isLoading }
 }
 
 export const createListStore = <T>(entity: string) => {

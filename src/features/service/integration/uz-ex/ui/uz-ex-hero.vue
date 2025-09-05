@@ -4,18 +4,18 @@ const { t } = useI18n({ useScope: "local" })
 </script>
 
 <template>
-    <div class="uz-ex-hero" :style="{ minHeight }">
-      <!--  Background  -->
-      <div v-rellax class="uz-ex-hero__background" data-rellax-speed="-5">
-        <img src="https://dev-portal.miit.uz/uploads/guide/hero.png" alt="Background" />
-      </div>
-
-      <!--  Content  -->
-      <div class="uz-ex-hero__content container-7xl">
-        <h1 class="uz-ex-hero__content-heading">{{ t("heading") }}</h1>
-        <p class="uz-ex-hero__content-text">{{ t("text") }}</p>
-      </div>
+  <div class="uz-ex-hero" :style="{ minHeight }">
+    <!--  Background  -->
+    <div v-rellax class="uz-ex-hero__background" data-rellax-speed="-5">
+      <img src="https://dev-portal.miit.uz/uploads/guide/hero.png" alt="Background" />
     </div>
+
+    <!--  Content  -->
+    <div class="uz-ex-hero__content container-7xl">
+      <h1 class="uz-ex-hero__content-heading">{{ t("heading") }}</h1>
+      <p class="uz-ex-hero__content-text">{{ t("text") }}</p>
+    </div>
+  </div>
 </template>
 
 <style>
@@ -47,15 +47,15 @@ const { t } = useI18n({ useScope: "local" })
 <i18n lang="json">
 {
   "en": {
-    "heading": "Uz-Ex",
+    "heading": "UzEx",
     "text": ""
   },
   "ru": {
-    "heading": "Uz-Ex",
+    "heading": "UzEx",
     "text": ""
   },
   "uz": {
-    "heading": "Uz-Ex",
+    "heading": "UzEx",
     "text": ""
   }
 }
