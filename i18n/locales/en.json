@@ -44,12 +44,20 @@
     "view": "View",
     "view_here": "View here",
     "view_more": "View more",
-    "where_to_start": "Where to start"
+    "where_to_start": "Where to start",
+    "more": "More"
   },
   "description": {
     "footer_desc": "Any use (reproduction, publication, copying, reprinting, distribution, translation, broadcasting,\n              processing and other methods of distribution) of the materials of the Investment Portal - Invest.gov.uz,\n              without indicating the original source and a link to the Portal is strictly prohibited"
   },
   "labels": {
+    "start_cost": "Starting price",
+    "unit_start_cost": "Starting unit price",
+    "final_start_cost": "Total starting price",
+    "time_left_until_end": "Time left until end",
+    "detailed_description": "Detailed description",
+    "total_cost": "Total cost",
+    "end_date": "End date",
     "address": "Address",
     "all_amount": "All amounts",
     "all_regions": "All regions",
