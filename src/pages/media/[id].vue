@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { PressHero, PressCards, PressTabs } from "~/features/media/press"
+import { PressHero, PressTabs } from "~/features/media/press"
 import { MediaCards } from "~/widgets/media"
 
 const mediaTypes = ["news", "publication", "pr_material", "blog", "gallery"]

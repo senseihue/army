@@ -5,6 +5,7 @@ import { useAppealService } from "~/features/appeal"
 interface IProps {
   appeal: IAppeal
 }
+
 const props = defineProps<IProps>()
 
 const { resolveAppeal } = useAppealService()
@@ -29,7 +30,6 @@ const showReplyModal = () => {
 const resolve = () => {
   resolveAppeal(props.appeal.id, loading)
 }
-
 </script>
 
 <template>
@@ -138,7 +138,6 @@ const resolve = () => {
   }
 }
 
-
 .appeal-card__new_appeal {
   @apply border-2 border-solid border-blue-command;
 
@@ -191,6 +190,10 @@ const resolve = () => {
       "in_moderation": {
         "label": "In Moderation",
         "icon": "lucide:user-round-search"
+      },
+      "new_appeal": {
+        "label": "New Appeal",
+        "icon": "lucide:plus-circle"
       }
     },
     "created_at": "Added",
@@ -214,6 +217,10 @@ const resolve = () => {
       "in_moderation": {
         "label": "На модерации",
         "icon": "lucide:user-round-search"
+      },
+      "new_appeal": {
+        "label": "Новая жалоба",
+        "icon": "lucide:plus-circle"
       }
     },
     "created_at": "Добавлен",
@@ -237,6 +244,10 @@ const resolve = () => {
       "in_moderation": {
         "label": "Moderatsiyada",
         "icon": "lucide:user-round-search"
+      },
+      "new_appeal": {
+        "label": "Yangi shikoyat",
+        "icon": "lucide:plus-circle"
       }
     },
     "created_at": "Qo'shilgan",
