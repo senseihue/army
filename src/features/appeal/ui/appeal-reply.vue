@@ -38,7 +38,7 @@ const send = async () => {
         </div>
       </template>
       <div ref="sentinel">
-        <div v-if="params.total % params.size === 0" class="col-span-full grid min-h-96 place-items-center">
+        <div v-if="params.total && params.total % params.size === 0" class="col-span-full grid min-h-96 place-items-center">
           <ui-spinner />
         </div>
       </div>

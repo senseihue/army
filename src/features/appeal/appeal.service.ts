@@ -36,24 +36,24 @@ export const useAppealService = () => {
       .finally(() => (loading.value = false))
   }
 
-  const getAppealReplyList = (loading: Ref<boolean>) => {
+  const getAppealReplyList = () => {
     appealReplyStore.loading = true
     appealApi
       .getAppealReplyList(cleanParams(appealReplyStore.params))
-      .then(({ content, pageable }) => {
+      .then(async ({ content, pageable }) => {
         appealReplyStore.items = content as IAppealReply[]
         appealReplyStore.params.total = pageable?.total || 0
+        await nextTick()
         observe()
       })
-      .finally(() => (loading.value = false))
+      .finally(() => ( appealReplyStore.loading = false))
   }
 
   const getInfiniteAppealReplyList = async () => {
-    if (appealReplyStore.params.total % appealReplyStore.params.size === 0) {
+    if (appealReplyStore.params.total && appealReplyStore.params.total % appealReplyStore.params.size === 0) {
       disconnect()
       return
     }
-    appealReplyStore.loading = true
     appealReplyStore.params.page++
     appealApi
       .getAppealReplyList(cleanParams(appealReplyStore.params))
@@ -61,7 +61,6 @@ export const useAppealService = () => {
         if (!content.length) return disconnect()
         appealReplyStore.items = appealReplyStore.items.concat(content)
       })
-      .finally(() => (appealReplyStore.loading = false))
   }
 
   const { observe, disconnect } = useInfinite(sentinel, getInfiniteAppealReplyList)

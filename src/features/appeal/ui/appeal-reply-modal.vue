@@ -4,15 +4,14 @@ import { useAppealReplyStore } from "~/entities/appeal"
 
 const { getAppealReplyList } = useAppealService()
 const appealReplyStore = useAppealReplyStore()
-const { params } = storeToRefs(appealReplyStore)
-const loading = ref(false)
+const { params, loading } = storeToRefs(appealReplyStore)
 
 const { t } = useI18n({ useScope: "local" })
 
 const onShown = async (id: number) => {
   params.value.appeal_id = id
   await nextTick()
-  getAppealReplyList(loading)
+  getAppealReplyList()
 }
 
 const close = () => {
