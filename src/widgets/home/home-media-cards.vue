@@ -32,7 +32,7 @@ pressList.value = content || []
             <press-card
               :label="news.title"
               :path="`/post/${news.id}`"
-              :image="news.photo?.download_link"
+              :image="news.photo?.thumbnail_link"
               :publish-date="news.publish_date"
             />
           </template>

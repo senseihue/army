@@ -26,7 +26,7 @@ const runtimeConfig = useRuntimeConfig()
 <template>
   <div class="grid grid-cols-1 gap-y-8 md:grid-cols-2">
     <div class="md:mr-24">
-      <img v-if="image" class="w-full" :src="image.download_link" :name />
+      <img v-if="image" class="w-full" :src="image.thumbnail_link" :name />
       <img v-else src="" alt="" />
     </div>
 
