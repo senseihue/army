@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const record = ref<IUzExResponse>()
+const timeLeft = ref<number>(0)
 const label = computed(() => `№ ${record.value?.lot_number}`)
 const redirectUrl = computed(() => `https://etender.uzex.uz/lot/${record.value?.lot_id}`)
 
@@ -16,7 +17,12 @@ const onHide = () => (record.value = undefined)
       <div class="uz-ex__header">
         <h3 class="uz-ex__title">{{ record?.proposal_name }}</h3>
 
-        <timer-card format="DD.MM.YYYY HH:mm" :label="$t('labels.time_left_until_end')" :end-time="record?.end_date" />
+        <timer-card
+          v-model="timeLeft"
+          format="DD.MM.YYYY HH:mm"
+          :label="$t('labels.time_left_until_end')"
+          :end-time="record?.end_date"
+        />
 
         <div class="uz-ex__stats">
           <div class="uz-ex__stat">
@@ -71,7 +77,7 @@ const onHide = () => (record.value = undefined)
       </div>
     </div>
 
-    <template #footer>
+    <template v-if="timeLeft" #footer>
       <div class="ui-modal-footer">
         <ui-button rounded label="Подать заявку" target="_blank" :href="redirectUrl" />
       </div>
