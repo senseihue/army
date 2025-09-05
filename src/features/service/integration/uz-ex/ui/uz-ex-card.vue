@@ -26,7 +26,7 @@ const showDetails = () => modal.show("uz-ex", props?.record)
 
         <div class="card__price">
           <p class="card__price-label">{{ $t("labels.end_date") }}</p>
-          <p class="card__price-value">{{ formatDate(record?.end_date, "DD.MM.YYYY HH:mm") }}</p>
+          <p class="card__price-value">{{ record?.end_date }}</p>
         </div>
       </div>
 
