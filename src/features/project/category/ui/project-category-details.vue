@@ -45,18 +45,7 @@
         <div v-if="loading"></div>
 
         <div v-else class="relative flex gap-3">
-          <div
-            class="sticky top-32 flex h-fit flex-col gap-3 rounded-xl bg-white p-3 shadow-md"
-          >
-            <div
-              class="flex cursor-pointer items-center justify-center rounded-lg border p-2 hover:bg-gray-100"
-              @click="scrollToSection(projectSection, 'project')"
-            >
-              <Icon
-                name="vuesax-school:briefcase"
-                :class="toolbarType === 'project' ? '!text-blue-command' : 'text-blue-command/40'"
-              />
-            </div>
+          <div class="sticky top-32 flex h-fit flex-col gap-3 rounded-xl bg-white p-3 shadow-md">
             <div
               class="flex cursor-pointer items-center justify-center rounded-lg border p-2 hover:bg-gray-100"
               @click="scrollToSection(serviceSection, 'service')"
@@ -66,27 +55,17 @@
                 :class="toolbarType === 'service' ? '!text-blue-command' : 'text-blue-command/40'"
               />
             </div>
+            <div
+              class="flex cursor-pointer items-center justify-center rounded-lg border p-2 hover:bg-gray-100"
+              @click="scrollToSection(projectSection, 'project')"
+            >
+              <Icon
+                name="vuesax-school:briefcase"
+                :class="toolbarType === 'project' ? '!text-blue-command' : 'text-blue-command/40'"
+              />
+            </div>
           </div>
           <div class="grow">
-            <div  class="grow">
-              <div class="mb-5 flex gap-6" ref="projectSection">
-                <div class="grid grow gap-5 rounded-xl bg-white p-4">
-                  <h3 class="text-xl font-semibold">{{ $t("labels.investment_proposals") }}</h3>
-
-                  <project-filter
-                    v-model:amount="query.amount_id"
-                    v-model:region="query.region_id"
-                    v-model:sector="query.sector_id"
-                    v-model:status="query.status"
-                  />
-
-                  <div  v-if="projectList?.length" class="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
-                    <project-card v-for="project in projectList" v-bind="project" :key="project.id" />
-                  </div>
-                </div>
-              </div>
-            </div>
-
             <div v-if="category?.service_categories?.length" class="flex gap-5">
               <div class="relative grid w-full gap-5 rounded-xl bg-white p-4" ref="serviceSection">
                 <h3 class="font-semibold">{{ $t("labels.where_to_start") }}</h3>
@@ -152,6 +131,25 @@
                 </div>
               </div>
             </div>
+
+            <div class="grow">
+              <div class="mt-5 flex gap-6" ref="projectSection">
+                <div class="grid grow gap-5 rounded-xl bg-white p-4">
+                  <h3 class="text-xl font-semibold">{{ $t("labels.investment_proposals") }}</h3>
+
+                  <project-filter
+                    v-model:amount="query.amount_id"
+                    v-model:region="query.region_id"
+                    v-model:sector="query.sector_id"
+                    v-model:status="query.status"
+                  />
+
+                  <div v-if="projectList?.length" class="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+                    <project-card v-for="project in projectList" v-bind="project" :key="project.id" />
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -179,7 +177,7 @@ const projectList = ref<IProject[]>([])
 const serviceList = ref<any[]>([])
 const isOffline = ref<boolean>(false)
 const serviceId = ref<number | undefined>()
-const toolbarType = ref<string>("project")
+const toolbarType = ref<string>("service")
 const serviceSection = ref<HTMLInputElement | null>(null)
 const projectSection = ref<HTMLInputElement | null>(null)
 const offlineService = ref<any>()
