@@ -50,7 +50,7 @@ export const useAppealService = () => {
   }
 
   const getInfiniteAppealReplyList = async () => {
-    if (appealReplyStore.params.total && appealReplyStore.params.total % appealReplyStore.params.size === 0) {
+    if (appealReplyStore.params.total < appealReplyStore.params.size) {
       disconnect()
       return
     }
