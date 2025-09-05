@@ -18,6 +18,7 @@ export const useInfinite = (el: Ref<HTMLElement>, load = async () => {}) => {
 
   const observe = async () => {
     await nextTick()
+    console.log("observing", el)
     observer.value?.observe(el.value)
   }
 

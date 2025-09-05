@@ -2,12 +2,12 @@
 import { AppealReplyItem, useAppealService } from "~/features/appeal"
 import { AppealReply, useAppealReplyStore, useAppealStore } from "~/entities/appeal"
 
-const { sendAppealReply, observe } = useAppealService()
+const { sendAppealReply } = useAppealService()
 const appealReplyStore = useAppealReplyStore()
 const appealStore = useAppealStore()
 const { t } = useI18n({ useScope: "local" })
 
-const { sentinel, items  } = storeToRefs(appealReplyStore)
+const { sentinel, items, params, loading: _loading } = storeToRefs(appealReplyStore)
 const { current } = storeToRefs(appealStore)
 
 const loading = ref(false)
@@ -22,21 +22,25 @@ const send = async () => {
   const isValid = await vuelidate.value.$validate()
   if (isValid) sendAppealReply(form, loading)
 }
-
-onMounted(observe)
 </script>
 
 <template>
   <div class="appeal-reply">
     <div class="appeal-reply__list">
-      <template v-if="items.length > 0">
-        <appeal-reply-item v-for="reply in items" :key="reply.id" :reply />
-        <div ref="sentinel"></div>
+      <template v-if="!_loading">
+        <template v-if="items.length > 0">
+          <appeal-reply-item v-for="reply in items" :key="reply.id" :reply />
+        </template>
+        <div v-else class="w-full grow py-12 text-center">
+          <p class="font-semibold text-blue-midnight">
+            {{ t("empty_appeals") }}
+          </p>
+        </div>
       </template>
-      <div v-else class=" grow w-full py-12 text-center ">
-        <p class="font-semibold text-blue-midnight">
-          {{ t("empty_appeals") }}
-        </p>
+      <div ref="sentinel">
+        <div v-if="params.total % params.size === 0" class="col-span-full grid min-h-96 place-items-center">
+          <ui-spinner />
+        </div>
       </div>
     </div>
 

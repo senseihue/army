@@ -5,6 +5,7 @@ export const useAppealService = () => {
   const appealApi = useAppealApi()
   const appealStore = useAppealStore()
   const appealReplyStore = useAppealReplyStore()
+  const { sentinel } = storeToRefs(appealReplyStore)
   const { t } = useI18n()
   const { $toast, $session } = useNuxtApp()
   const modal = useModal()
@@ -36,34 +37,34 @@ export const useAppealService = () => {
   }
 
   const getAppealReplyList = (loading: Ref<boolean>) => {
-    loading.value = true
-    appealApi
-      .getAppealReplyList(cleanParams(appealReplyStore.params))
-      .then(({ content, pageable }) => {
-        appealReplyStore.items = content as IAppealReply[]
-        appealReplyStore.params.total = pageable?.total || 0
-      })
-      .finally(() => (loading.value = false))
-  }
-  const getInfiniteAppealReplyList = async () => {
-    if (appealReplyStore.params.total % appealReplyStore.params.size === 0) {
-      disconnect()
-      return
-    }
     appealReplyStore.loading = true
     appealApi
       .getAppealReplyList(cleanParams(appealReplyStore.params))
       .then(({ content, pageable }) => {
         appealReplyStore.items = content as IAppealReply[]
         appealReplyStore.params.total = pageable?.total || 0
+        observe()
+      })
+      .finally(() => (loading.value = false))
+  }
+
+  const getInfiniteAppealReplyList = async () => {
+    if (appealReplyStore.params.total % appealReplyStore.params.size === 0) {
+      disconnect()
+      return
+    }
+    appealReplyStore.loading = true
+    appealReplyStore.params.page++
+    appealApi
+      .getAppealReplyList(cleanParams(appealReplyStore.params))
+      .then(({ content }) => {
         if (!content.length) return disconnect()
         appealReplyStore.items = appealReplyStore.items.concat(content)
-        appealReplyStore.params.page++
       })
       .finally(() => (appealReplyStore.loading = false))
   }
 
-  const { observe, disconnect } = useInfinite(appealReplyStore.sentinel, getInfiniteAppealReplyList)
+  const { observe, disconnect } = useInfinite(sentinel, getInfiniteAppealReplyList)
 
   const createAppeal = async (dto: Ref<Appeal>, loading: Ref<boolean>) => {
     loading.value = true
