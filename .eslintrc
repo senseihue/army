@@ -1,0 +1,35 @@
+{
+  "root": true,
+  "extends": [
+    "@nuxt/eslint-config",
+    "plugin:prettier/recommended"
+  ],
+  "plugins": [
+    "unicorn"
+  ],
+  "rules": {
+    "import/order": "off",
+    "vue/attributes-order": "off",
+    "vue/require-default-prop": "off",
+    "vue/no-multiple-template-root": "off",
+    "vue/component-name-in-template-casing": [
+      "error",
+      "kebab-case"
+    ],
+    "unicorn/filename-case": [
+      "error",
+      {
+        "case": "kebabCase"
+      }
+    ]
+  },
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "extraFileExtensions": [
+      ".vue"
+    ],
+    "ecmaFeatures": {
+      "jsx": false
+    }
+  }
+}
