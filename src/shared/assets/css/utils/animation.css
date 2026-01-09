@@ -1,0 +1,350 @@
+/* ========================================================================
+   Component: Animation
+ ========================================================================== */
+[class*="ui-animation-"] {
+  animation: 0.3s ease-in-out;
+}
+
+/* Animations
+ ========================================================================== */
+/*
+ * Fade
+ */
+.ui-animation-fade {
+  animation-name: fade;
+  animation-timing-function: ease-in-out;
+}
+/*
+ * Scale
+ */
+.ui-animation-scale-up {
+  animation-name: fade, scale-up;
+}
+.ui-animation-scale-down {
+  animation-name: fade, scale-down;
+}
+/*
+ * Slide
+ */
+.ui-animation-slide-top {
+  animation-name: fade, slide-top;
+}
+.ui-animation-slide-bottom {
+  animation-name: fade, slide-bottom;
+}
+.ui-animation-slide-left {
+  animation-name: fade, slide-left;
+}
+.ui-animation-slide-right {
+  animation-name: fade, slide-right;
+}
+/*
+ * Slide Small
+ */
+.ui-animation-slide-top-small {
+  animation-name: fade, slide-top-small;
+}
+.ui-animation-slide-bottom-small {
+  animation-name: fade, slide-bottom-small;
+}
+.ui-animation-slide-left-small {
+  animation-name: fade, slide-left-small;
+}
+.ui-animation-slide-right-small {
+  animation-name: fade, slide-right-small;
+}
+/*
+ * Slide Medium
+ */
+.ui-animation-slide-top-medium {
+  animation-name: fade, slide-top-medium;
+}
+.ui-animation-slide-bottom-medium {
+  animation-name: fade, slide-bottom-medium;
+}
+.ui-animation-slide-left-medium {
+  animation-name: fade, slide-left-medium;
+}
+.ui-animation-slide-right-medium {
+  animation-name: fade, slide-right-medium;
+}
+/*
+ * Kenburns
+ */
+.ui-animation-kenburns {
+  animation-name: kenburns;
+  animation-duration: 15s;
+}
+/*
+ * Shake
+ */
+.ui-animation-shake {
+  animation-name: shake;
+}
+/*
+ * SVG Stroke
+ * The `--animation-stroke` custom property contains the longest path length.
+ * Set it manually or use `svg="stroke-animation: true"` to set it automatically.
+ * All strokes are animated by the same pace and doesn't end simultaneously.
+ * To end simultaneously, `pathLength="1"` could be used, but it's not working in Safari yet.
+ */
+.ui-animation-stroke {
+  animation-name: stroke;
+  animation-duration: 2s;
+  stroke-dasharray: 1;
+}
+/* Direction modifier
+ ========================================================================== */
+.ui-animation-reverse {
+  animation-direction: reverse;
+  animation-timing-function: ease-in;
+}
+/* Duration modifier
+ ========================================================================== */
+.ui-animation-fast {
+  animation-duration: 0.15s;
+}
+
+/* Toggle animation based on the State of the Parent Element
+ ========================================================================== */
+.ui-animation-toggle:not(:hover):not(:focus) [class*="animation-"] {
+  animation-name: none;
+}
+
+.animation-duration-1 {
+  animation-duration: 1s !important;
+}
+.animation-duration-2 {
+  animation-duration: 2s !important;
+}
+.animation-duration-3 {
+  animation-duration: 3s !important;
+}
+
+.animation-delay-250 {
+  animation-delay: 250ms !important;
+}
+
+.animation-delay-500 {
+  animation-delay: 500ms !important;
+}
+
+.animation-delay-750 {
+  animation-delay: 750ms !important;
+}
+
+.animation-delay-1000 {
+  animation-delay: 1s !important;
+}
+
+.animation-delay-1250 {
+  animation-delay: 1.25s !important;
+}
+
+.animation-delay-1500 {
+  animation-delay: 1.5s !important;
+}
+
+.animation-delay-1750 {
+  animation-delay: 1.75s !important;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s !important;
+}
+
+/* Keyframes used by animation classes
+ ========================================================================== */
+/*
+ * Fade
+ */
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+/*
+ * Scale
+ */
+@keyframes scale-up {
+  0% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes scale-down {
+  0% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+/*
+ * Slide
+ */
+@keyframes slide-top {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@keyframes slide-bottom {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@keyframes slide-left {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes slide-right {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+/*
+ * Slide Small
+ */
+@keyframes slide-top-small {
+  0% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@keyframes slide-bottom-small {
+  0% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@keyframes slide-left-small {
+  0% {
+    transform: translateX(-10px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes slide-right-small {
+  0% {
+    transform: translateX(10px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+/*
+ * Slide Medium
+ */
+@keyframes slide-top-medium {
+  0% {
+    transform: translateY(-50px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@keyframes slide-bottom-medium {
+  0% {
+    transform: translateY(50px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@keyframes slide-left-medium {
+  0% {
+    transform: translateX(-50px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes slide-right-medium {
+  0% {
+    transform: translateX(50px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+/*
+ * Kenburns
+ */
+@keyframes kenburns {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.2);
+  }
+}
+/*
+ * Shake
+ */
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  10% {
+    transform: translateX(-9px);
+  }
+  20% {
+    transform: translateX(8px);
+  }
+  30% {
+    transform: translateX(-7px);
+  }
+  40% {
+    transform: translateX(6px);
+  }
+  50% {
+    transform: translateX(-5px);
+  }
+  60% {
+    transform: translateX(4px);
+  }
+  70% {
+    transform: translateX(-3px);
+  }
+  80% {
+    transform: translateX(2px);
+  }
+  90% {
+    transform: translateX(-1px);
+  }
+}
+/*
+ * Stroke
+ */
+@keyframes stroke {
+  0% {
+    stroke-dashoffset: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}

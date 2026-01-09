@@ -1,0 +1,74 @@
+{
+  "actions": {
+    "add": "Add",
+    "cancel": "Cancel",
+    "change_password": "Change password",
+    "delete": "Delete",
+    "edit": "Edit",
+    "save": "Save",
+    "sign_in": "Sign in",
+    "sign_out": "Sign out",
+    "toggle_sidebar": "Toggle sidebar"
+  },
+  "descriptions": {
+    "roles": "List of roles",
+    "sign_in": "Please enter your credentials.",
+    "users": "List of users"
+  },
+  "labels": {
+    "admin": "Admin",
+    "app_name": "Nuxt FSD",
+    "confirm_password": "Confirm password",
+    "created_at": "Created at",
+    "current_password": "Current password",
+    "dark_theme": "Dark theme",
+    "description": "Description",
+    "email": "Email",
+    "first_name": "First name",
+    "home": "Home",
+    "language": "Language",
+    "last_name": "Last name",
+    "light_theme": "Light theme",
+    "name": "Name",
+    "new_password": "New password",
+    "password": "Password",
+    "phone": "Phone",
+    "profile": "Profile",
+    "results": "results",
+    "role": "Role",
+    "roles": "Roles",
+    "updated_at": "Updated at",
+    "users": "Users"
+  },
+  "messages": {
+    "confirm": {
+      "delete": "Are you sure you want to delete?",
+      "sign_out": "Are you sure you want to sign out?"
+    },
+    "info": {
+      "entity_deleted": "{name} has been deleted"
+    },
+    "success": {
+      "saved": "Saved successfully"
+    }
+  },
+  "placeholders": {
+    "data_not_found": "Data not found",
+    "enter_email": "Enter your email",
+    "enter_password": "Enter your password",
+    "page_not_found": "Page not found",
+    "search": "Search",
+    "server_error": "Server error"
+  },
+  "thead": {
+    "actions": "Actions",
+    "sequence": "#"
+  },
+  "validations": {
+    "email": "Invalid email address",
+    "maxLength": "Maximum allowed length is {max}",
+    "minLength": "Minimum required length is {min}",
+    "required": "This field is required",
+    "sameAs": "Value must match the field \"{otherName}\""
+  }
+}

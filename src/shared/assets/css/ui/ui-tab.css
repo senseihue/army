@@ -1,0 +1,14 @@
+.ui-tabs {
+  @apply flex flex-nowrap items-start gap-1 overflow-x-auto p-1;
+  @apply rounded-lg border bg-gray-100 dark:border-gray-800 dark:bg-gray-950;
+}
+
+.ui-tab {
+  @apply box-border inline-flex items-center justify-center gap-2 truncate whitespace-nowrap rounded border border-transparent text-center font-medium;
+  @apply h-7 px-3 py-1.5 text-sm leading-none text-gray-600 dark:text-gray-400;
+  @apply duration-300 ease-in-out;
+}
+
+.ui-tab-active {
+  @apply bg-white text-gray-800 shadow dark:bg-gray-800 dark:text-gray-300;
+}
