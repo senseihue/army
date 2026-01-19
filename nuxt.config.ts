@@ -134,11 +134,12 @@ export default defineNuxtConfig({
   i18n: {
     lazy: true,
     strategy: "prefix",
-    defaultLocale: "en",
+    defaultLocale: "uz",
+    detectBrowserLanguage: false,
 
     compilation: {
       strictMessage: false,
-      escapeHtml: false
+      escapeHtml: false,
     },
     locales: [
       {

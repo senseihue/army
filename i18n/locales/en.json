@@ -223,7 +223,8 @@
       "company": "About the company",
       "main": "Profile",
       "my_projects": "My projects",
-      "my_services": "My services"
+      "my_services": "My services",
+      "passport_information": "Passport information"
     },
     "reason": {
       "culture": "Culture",

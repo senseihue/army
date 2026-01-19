@@ -21,7 +21,9 @@ export const colors = {
   },
   gray: {
     olive: "#3D3D3D",
-    sand: "#737373"
+    sand: "#737373",
+    1: '#70707a',
+    2: '#313135',
   },
   green: {
     benzol: "#00D066",

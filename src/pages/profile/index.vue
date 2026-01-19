@@ -16,7 +16,7 @@ const getProfile = async () => {
   loading.value = true
   try {
     const { content } = await authApi.getProfile()
-    $session.profile.value = content
+    $session.profile.value = content.user
     $session.loaded.value = true
   } catch (error: any) {
     $session.loaded.value = true
@@ -28,8 +28,8 @@ const getProfile = async () => {
 </script>
 
 <template>
-  <div class="flex w-full flex-col gap-2">
-    <profile-header icon-name="lucide:shield-user" :title="$t('nav.profile.account')" @refresh="getProfile" />
+  <div class="flex w-full flex-col  gap-2">
+    <profile-header :title="$t('nav.profile.passport_information')" @refresh="getProfile" />
     <profile-main-info />
 <!--    <profile-passport-info />-->
   </div>

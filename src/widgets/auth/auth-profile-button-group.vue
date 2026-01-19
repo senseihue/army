@@ -3,7 +3,7 @@ import { AuthProfileInfo } from "~/features/auth/ui"
 import { SignInButton } from "~/widgets/auth"
 
 const { $session } = useNuxtApp()
-const { profile, loggedIn } = $session || {}
+const { loggedIn } = $session || {}
 </script>
 
 <template>

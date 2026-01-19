@@ -221,7 +221,8 @@
       "company": "О Компании",
       "main": "Профиль",
       "my_projects": "Мои проекты",
-      "my_services": "Мои услуги"
+      "my_services": "Мои услуги",
+      "passport_information": "Паспортные данные"
     },
     "reason": {
       "culture": "Культура",

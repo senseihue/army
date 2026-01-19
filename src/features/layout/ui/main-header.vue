@@ -4,23 +4,21 @@ import Logo from "~/app/assets/svg/logo-white.svg"
 import {
   MainHeaderNav,
   MainHeaderNavMenu,
-  MainHeaderLanguage,
   MainHeaderMenu,
   MainHeaderMenuToggle
 } from "~/features/layout"
 import { AuthProfileButtonGroup } from "~/widgets/auth"
-import { NotificationDropdown } from "~/features/notification"
 
 const { hideNavMenu } = useHeader()
 const route = useRoute()
-const position = computed(() => (route?.meta?.fixedHeader ? "sticky" : "fixed"))
+const position = computed(() => (!route?.meta?.fixedHeader ? "fixed" : "sticky"))
 </script>
 
 <template>
-  <header class="main-header"  @mouseleave="hideNavMenu">
+  <header class="main-header container-7xl" :class="[position]" @mouseleave="hideNavMenu">
     <div class="main-header__inner">
-      <nuxt-link-locale to="/" class="font-display text-lg font-semibold text-zinc-100">
-        <logo class=" object-contain" />
+      <nuxt-link-locale class="font-display text-lg font-semibold text-zinc-100" to="/">
+        <logo class="object-contain" />
       </nuxt-link-locale>
       <div class="flex items-center gap-1">
         <main-header-nav />
@@ -29,9 +27,6 @@ const position = computed(() => (route?.meta?.fixedHeader ? "sticky" : "fixed"))
 
         <main-header-menu-toggle />
       </div>
-
-
-
 
       <!--        <main-header-alert />-->
     </div>
@@ -43,10 +38,10 @@ const position = computed(() => (route?.meta?.fixedHeader ? "sticky" : "fixed"))
 
 <style>
 .main-header {
-  @apply top-0 left-0 right-0 z-40 p-4;
+  @apply left-0 right-0 top-0 z-40 py-4;
 
   &__inner {
-    @apply max-w-5xl mx-auto flex items-center justify-between h-12 px-6 rounded-full bg-zinc-900/70 border border-zinc-800/50 backdrop-blur-md;
+    @apply mx-auto flex h-12 items-center justify-between rounded-full border border-zinc-800/50 bg-zinc-900/70 px-6 backdrop-blur-md;
   }
 
   &__wrapper {

@@ -1,263 +1,108 @@
 <script setup lang="ts">
-import { usePersonalServiceService } from "~/features/profile/service"
-import type { AxiosRequestConfig } from "axios"
-import { usePersonalServiceStore } from "~/entities/profile/personal-service"
-import UiDatePicker from "@vuepic/vue-datepicker"
-import { DistrictSelect, TerritorySelect } from "~/features/territory"
+import { Appeal } from "~/entities/appeal"
+import { useAppealService, AppealTopicSelect, AppealTypeSelect } from "~/features/appeal"
+import { TerritorySelect } from "~/features/territory"
+
+const { createAppeal, getAppeal } = useAppealService()
+const { $session } = useNuxtApp()
+const { loggedIn } = $session || {}
+
+const { required, email, requiredIf } = useRule()
+
+const modal = useModal()
+
+const editing = ref(false)
+const loading = ref(false)
+const unauthorized = ref(false)
+const form = ref<Appeal>(new Appeal())
+const rules = ref({
+  type_id: { required },
+  topic_id: { required },
+  region_id: { required },
+  text: { required },
+  full_name: { requiredIf: requiredIf(computed(() => unauthorized.value)) },
+  email: { requiredIf: requiredIf(computed(() => unauthorized.value)), email }
+})
+
+const { hasError, vuelidate } = useValidate(form, rules)
 
 const { t } = useI18n({ useScope: "local" })
-const { required } = useRule()
-const { $session } = useNuxtApp()
-const { profile } = $session || {}
-const { getPersonalServiceDetail } = usePersonalServiceService()
-const personalServiceStore = usePersonalServiceStore()
-const { current } = storeToRefs(personalServiceStore)
 
-const paramsCollection = computed(() => requiredParams.value)
-const bodyCollection = computed(() => requiredBody.value)
-const rules = ref({
-  params: {},
-  body: {}
-})
-const activeService = ref<IPersonalService | undefined>(undefined)
-
-const requestConfig = ref<AxiosRequestConfig>({
-  params: {},
-  method: "GET"
-})
-
-const requiredParams = ref<any[]>([])
-const requiredBody = ref<any[]>([])
-
-const showForm = ref(false)
-const loading = ref(false)
-
-const errors = ref({
-  params: {},
-  body: {}
-})
-const state = ref({
-  params: {},
-  body: {}
-})
-
-const regionId = ref()
-
-const getRequestParams = async (service: IPersonalService) => {
-  if (service.params) {
-    const params = {}
-
-    service.params.forEach((item) => {
-      if (item.key === "inn" && profile.value?.[profile.value?.role].tin) {
-        params[item.key] = profile.value?.[profile.value?.role].tin
-      } else if (item.key === "pinfl" && profile.value?.[profile.value?.role].pin) {
-        params[item.key] = profile.value?.[profile.value?.role].pin
-      } else if (Object.prototype.hasOwnProperty.call(profile.value?.[profile.value?.role], item.key) && profile.value?.[profile.value?.role][item.key]) {
-        params[item.key] = profile.value?.[profile.value?.role][item.key]
-      } else {
-        requiredParams.value.push(item)
-        if (item.required) {
-          rules.value.params[item.key] = { required }
-        }
-      }
-    })
-
-    requestConfig.value.params = params
-    return Promise.resolve()
-  }
-  return Promise.resolve()
-}
-const getRequestBody = async (service: IPersonalService) => {
-  if (service.body) {
-    const body = {}
-
-    service.body.forEach((item) => {
-      if (item.key === "inn" && profile.value?.[profile.value?.role].tin) {
-        body[item.key] = profile.value?.[profile.value?.role].tin
-      } else if (item.key === "pinfl" && profile.value?.[profile.value?.role].pin) {
-        body[item.key] = profile.value?.[profile.value?.role].pin
-      } else if (Object.prototype.hasOwnProperty.call(profile.value?.[profile.value?.role], item.key) && profile.value?.[profile.value?.role][item.key]) {
-        body[item.key] = profile.value?.[profile.value?.role][item.key]
-      } else {
-        requiredParams.value.push(item)
-        if (item.required) {
-          rules.value.body[item.key] = { required }
-        }
-      }
-    })
-
-    requestConfig.value.data = body
-    requestConfig.value.method = "POST"
-
-    return Promise.resolve()
-  }
-  return Promise.resolve()
-}
-
-const onRegionChange = (code: string, _option: ITerritory["region"]) => {
-  regionId.value = code
-}
-
-const onSave = async () => {
-  const { vuelidate } = useValidate(state, rules)
-  const isValid = await vuelidate.value.$validate()
-  errors.value = {
-    params: vuelidate.value.params,
-    body: vuelidate.value.body
-  }
-  if (isValid) {
-    errors.value = {
-      params: {},
-      body: {}
-    }
-    loading.value = true
-    await getPersonalServiceDetail(activeService.value.link, state.value).finally(() => {
-      showForm.value = false
-      loading.value = false
-    })
-  }
-}
-
-const onBeforeShow = async (service: IPersonalService) => {
-  await getRequestParams(service)
-  await getRequestBody(service)
-  activeService.value = service
-  if (Object.keys(requiredParams.value).length > 0) {
-    showForm.value = true
+const onShown = (id: number) => {
+  if (id) {
+    editing.value = true
+    getAppeal(id, form, loading)
   } else {
-    showForm.value = false
-    loading.value = true
+    editing.value = false
+    form.value = new Appeal()
+    vuelidate.value.$reset()
+    unauthorized.value = !loggedIn.value
+  }
+}
+const submit = async () => {
+  const valid = await vuelidate.value.$validate()
+  if (valid) await createAppeal(form, loading)
+}
 
-    await getPersonalServiceDetail(activeService.value.link, requestConfig.value).finally(() => (loading.value = false))
+const next = async () => {
+  await vuelidate.value.email.$validate()
+  await vuelidate.value.full_name.$validate()
+  if (hasError("full_name").invalid || hasError("email").invalid) {
+    return
+  } else {
+    unauthorized.value = false
   }
 }
 
-const onClose = () => {
-  showForm.value = false
-  requiredParams.value = []
-  requiredBody.value = []
-  rules.value = {
-    params: {},
-    body: {}
-  }
-  errors.value = {
-    params: {},
-    body: {}
-  }
-  state.value = {
-    params: {},
-    body: {}
-  }
-  current.value = undefined
-  requestConfig.value = {
-    params: {},
-    method: "GET"
-  }
+const cancel = () => {
+  vuelidate.value.$reset()
+  modal.hide("appeal")
 }
+
+const label = computed(() => (unauthorized.value ? t("title_unauthorized") : t("title")))
 </script>
 
 <template>
-  <ui-modal
-    id="service-detail-modal"
-    size="xl"
-    :loading
-    :label="activeService?.title"
-    @before-show="onBeforeShow"
-    @hide="onClose"
-  >
-    <div v-if="showForm" class="grid grid-cols-1 gap-4 p-4 sm:grid-cols-2">
-      <template v-for="item in paramsCollection" :key="item.key">
-        <ui-form-group
-          v-slot="{ id }"
-          :required="item.required"
-          :hint="errors.params[item.key]?.$errors[0]?.$message"
-          :invalid="errors.params[item.key]?.$error"
-          :label="item.title"
-        >
-          <territory-select
-            v-if="item.type === 'region'"
-            v-model="state.params[item.key]"
-            value-prop="code"
-            @select="onRegionChange"
-          />
-          <district-select
-            v-else-if="item.type === 'district'"
-            v-model="state.params[item.key]"
-            fetch-on-open
-            :region-code="regionId"
-          />
-          <ui-date-picker
-            v-else-if="item.type === 'date'"
-            v-model="state.params[item.key]"
-            model-type="yyyy-MM-dd"
-            format="dd.MM.yyyy"
-            auto-apply
-            teleport
-            position="left"
-            :id
-          />
-          <ui-input v-else v-model="state.params[item.key]" :type="item.type || 'text'" :id />
+  <ui-modal id="personal-education" :loading :label @shown="onShown">
+    <form class="grid grid-cols-1 gap-4 px-4 py-[15px]" @submit.prevent>
+      <template v-if="unauthorized">
+        <ui-form-group v-bind="hasError('full_name')" v-slot="{ id }" :label="t('fields.name')">
+          <ui-input v-model="form.full_name" :id></ui-input>
         </ui-form-group>
-      </template>
-      <template v-for="item in bodyCollection" :key="item.key">
-        <ui-form-group
-          v-slot="{ id }"
-          :required="item.required"
-          :hint="errors.body[item.key]?.$errors[0]?.$message"
-          :invalid="errors.body[item.key]?.$error"
-          :label="item.title"
-        >
-          <territory-select
-            v-if="item.type === 'region'"
-            v-model="state.body[item.key]"
-            value-prop="code"
-            @select="onRegionChange"
-          />
-          <district-select
-            v-else-if="item.type === 'district'"
-            v-model="state.body[item.key]"
-            fetch-on-open
-            :region-id="regionId"
-          />
-          <ui-date-picker
-            v-else-if="item.type === 'date'"
-            v-model="state.body[item.key]"
-            model-type="yyyy-MM-dd"
-            format="dd.MM.yyyy"
-            auto-apply
-            teleport
-            position="left"
-            :id
-          />
-          <ui-input v-else v-model="state.body[item.key]" :type="item.type || 'text'" :id />
+        <ui-form-group v-bind="hasError('email')" v-slot="{ id }" :label="t('fields.email')">
+          <ui-input v-model="form.email" :id></ui-input>
         </ui-form-group>
-      </template>
-    </div>
-    <div v-else class="grid grid-cols-1 gap-4 p-4 sm:grid-cols-2">
-      <template v-if="current?.data">
-        <template v-for="(item, index) in current?.data" :key="index">
-          <ui-form-group v-for="(value, key) in item" v-slot="{ id }" :label="key.toLocaleString().toUpperCase()">
-            <ui-input readonly :model-value="value" :id />
-          </ui-form-group>
-          <hr class="col-span-full py-4" />
-        </template>
       </template>
       <template v-else>
-        <div class="col-span-full py-12 text-center">
-          <p class="font-semibold text-blue-midnight">
-            {{ t("empty_data") }}
-          </p>
-        </div>
+        <ui-form-group v-bind="hasError('topic_id')" v-slot="{ id }" :label="t('fields.type')">
+          <appeal-topic-select v-model="form.topic_id" :disabled="editing" :id></appeal-topic-select>
+        </ui-form-group>
+        <ui-form-group v-bind="hasError('type_id')" v-slot="{ id }" :label="t('fields.topic')">
+          <appeal-type-select
+            v-model="form.type_id"
+            :disabled="editing"
+            :parent-id="form.topic_id"
+            :id
+          ></appeal-type-select>
+        </ui-form-group>
+        <ui-form-group v-bind="hasError('region_id')" v-slot="{ id }" :label="t('fields.region')">
+          <territory-select v-model="form.region_id" :disabled="editing" :id></territory-select>
+        </ui-form-group>
+        <ui-form-group v-bind="hasError('text')" v-slot="{ id }" :label="t('fields.comment')">
+          <ui-textarea v-model="form.text" rows="8" :disabled="editing" :id></ui-textarea>
+        </ui-form-group>
+        <ui-form-group v-if="editing && form.reject_reason" :label="t('fields.reson')">
+          <ui-textarea v-model="form.reject_reason" rows="8" :disabled="true"></ui-textarea>
+        </ui-form-group>
       </template>
-    </div>
-    <template v-if="showForm" #footer="{ hide }">
-      <div class="flex flex-col-reverse items-center justify-end gap-3 p-4 sm:flex-row">
-        <ui-button class="" color="secondary" @click="hide">
-          {{ $t("actions.cancel") }}
-        </ui-button>
-        <ui-button class="" @click="onSave">
-          {{ $t("actions.send") }}
-        </ui-button>
+    </form>
+    <template #footer>
+      <div class="flex w-full items-center justify-end gap-2 p-4">
+        <ui-button color="secondary" :label="t('cancel')" @click="cancel"></ui-button>
+        <template v-if="!editing">
+          <ui-button v-if="unauthorized" :label="t('next')" @click="next"></ui-button>
+          <ui-button v-else :label="t('submit')" @click="submit"></ui-button>
+        </template>
       </div>
     </template>
   </ui-modal>
@@ -268,13 +113,52 @@ const onClose = () => {
 <i18n>
 {
   "en": {
-    "empty_data": "No data available"
+    "submit": "Submit",
+    "title": "Describe the problem",
+    "title_unauthorized": "Please enter your name and email",
+    "next": "Next",
+    "cancel": "Cancel",
+    "fields": {
+      "name": "Name",
+      "email": "Email",
+      "type": "Scope of the problem",
+      "topic": "Scope of the problem",
+      "region": "Region",
+      "comment": "Comment",
+      "reason": "Reason for rejection"
+    }
   },
   "ru": {
-    "empty_data": "Нет доступных данных"
+    "submit": "Отправить",
+    "title": "Опишите проблему",
+    "title_unauthorized": "Пожалуйста, введите ваше имя и email",
+    "next": "Далее",
+    "cancel": "Отмена",
+    "fields": {
+      "name": "Имя",
+      "email": "Email",
+      "type": "Тип проблемы",
+      "topic": "Сфера проблемы",
+      "region": "Регион",
+      "comment": "Комментарии",
+      "reason": "Причина закрытия"
+    }
   },
   "uz": {
-    "empty_data": "Ma'lumotlar mavjud emas"
+    "submit": "Yuborish",
+    "title": "Muammoni tasvirlab bering",
+    "title_unauthorized": "Iltimos, ismingizni va elektron pochtangizni kiriting",
+    "next": "Keyingi",
+    "cancel": "Bekor qilish",
+    "fields": {
+      "name": "Ism",
+      "email": "Email",
+      "type": "Muammo turi",
+      "topic": "Muammo sohasi",
+      "region": "Hudud",
+      "comment": "Izoh",
+      "reason": "Rad etish sababi"
+    }
   }
 }
 </i18n>

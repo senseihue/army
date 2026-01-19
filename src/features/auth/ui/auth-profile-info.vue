@@ -14,18 +14,24 @@ const list = computed(() => [
 const user = computed(() => {
   return profile.value ? profile.value[profile.value?.role] : {}
 })
+
+
 </script>
 
 <template>
   <client-only>
-    <ui-dropdown  :distance="16">
-      <ui-icon-button rounded variant="ghost" color="secondary" icon-class="text-xl" icon-name="lucide:user" />
+    <ui-dropdown :distance="16">
+      <ui-button
+        class="ml-2 rounded-full !bg-zinc-100 px-4 py-1.5 text-sm font-medium !text-zinc-900 transition-colors hover:!bg-zinc-200"
+        rounded
+        :label="$t('nav.profile.main')"
+      />
 
       <template #body>
         <div>
           <div class="flex flex-col p-3">
             <div class="font-bold uppercase">
-              <p class="whitespace-nowrap">{{ user?.name }} {{ user.surname  }}</p>
+              <p class="whitespace-nowrap">{{ user?.name }} {{ user?.surname }}</p>
             </div>
             <div class="">
               <p class="text-sm text-gray-600">{{ profile?.email }}</p>

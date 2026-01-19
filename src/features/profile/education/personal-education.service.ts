@@ -1,39 +1,24 @@
-import { usePersonalServiceApi } from "~/features/profile/service"
-import { usePersonalServiceStore } from "~/entities/profile/personal-service"
-import { useServiceStore } from "~/entities/service"
-import type { AxiosRequestConfig } from "axios"
-import { usePersonalServiceCategoryStore } from "~/entities/profile/personal-service-category"
+import { usePersonalEducationApi } from "~/features/profile/education"
+import { usePersonalEducationStore } from "~/entities/profile/personal-education"
 
-export const usePersonalServiceService = () => {
-  const personalServiceApi = usePersonalServiceApi()
-  const serviceStore = useServiceStore()
-  const personalServiceStore = usePersonalServiceStore()
-  const personalServiceCategoryStore = usePersonalServiceCategoryStore()
-  const { $toast } = useNuxtApp()
+export const usePersonalEducationService = () => {
+  const PersonalEducationApi = usePersonalEducationApi()
+  const PersonalEducationStore = usePersonalEducationStore()
 
-  const getPersonalServiceList = async () => {
-    personalServiceStore.loading = true
-    personalServiceStore.params.type = personalServiceCategoryStore.current?.type
-    return personalServiceApi
-      .getPersonalServiceList(cleanParams(personalServiceStore.params))
+  const getPersonalEducationList = async () => {
+    PersonalEducationStore.loading = true
+
+    return PersonalEducationApi
+      .getPersonalEducationList(cleanParams(PersonalEducationStore.params))
       .then(({ content, pageable }) => {
-        personalServiceStore.items = content
-        personalServiceStore.params.total = pageable?.total || 0
+        PersonalEducationStore.items = content.educations
+        PersonalEducationStore.params.total = pageable?.total || 0
         return Promise.resolve(content)
       })
-      .finally(() => (personalServiceStore.loading = false))
-  }
-
-  const getPersonalServiceDetail = async (endpoint: string, config: AxiosRequestConfig = {}) => {
-    return personalServiceApi.getPersonalServiceDetail(endpoint, config)
-      .then(({ content, pageable }) => {
-      personalServiceStore.current = content
-      return Promise.resolve(content)
-    })
+      .finally(() => (PersonalEducationStore.loading = false))
   }
 
   return {
-    getPersonalServiceList,
-    getPersonalServiceDetail
+    getPersonalEducationList
   }
 }

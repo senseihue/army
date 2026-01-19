@@ -3,7 +3,7 @@ export const useHeaderNav = () => {
 
   const list = computed<IHeaderNav[]>(() => [
     {
-      label: t("nav.advert.about"),
+      label: t("nav.about.about_us"),
       to: "/about",
     }
   ])

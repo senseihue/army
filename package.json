@@ -46,6 +46,7 @@
     "sweetalert2": "11.12.1",
     "tinymce": "5.10.4",
     "tinymce-i18n": "22.5.2",
+    "uz-personal-cards": "^0.0.2",
     "vue": "^3.5.14",
     "vue-recaptcha-v3": "2.0.1",
     "vue-router": "^4.5.1",
@@ -73,5 +74,8 @@
     "sass-embedded": "^1.89.2",
     "typescript": "^5.8.3",
     "vite-svg-loader": "^5.1.0"
+  },
+  "engines": {
+    "node": "22.22.0"
   }
 }

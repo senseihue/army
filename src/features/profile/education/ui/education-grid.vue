@@ -1,31 +1,23 @@
 <script setup lang="ts">
-import { ServiceInfoCard } from "~/features/profile/service"
-import { usePersonalServiceStore } from "~/entities/profile/personal-service"
+import { EducationCard } from "~/features/profile/education"
+import { usePersonalEducationStore } from "~/entities/profile/personal-education"
 
 const { t } = useI18n({ useScope: "local" })
 const modal = useModal()
-const emits = defineEmits<{
-  (e: "show:details", service: IPersonalService): void
-}>()
-const personalServiceStore = usePersonalServiceStore()
-const { items, loading } = storeToRefs(personalServiceStore)
-const showServiceDetails = (service: IPersonalService) => {
-  emits("show:details", service)
+const personalEducationStore = usePersonalEducationStore()
+const { items, loading } = storeToRefs(personalEducationStore)
+const showEditModal = (education: IPersonalEducation) => {
+  modal.show('personal-education', education)
 }
 </script>
 
 <template>
   <div class="grid grid-cols-1 gap-x-7 gap-y-3 sm:grid-cols-2">
     <template v-if="items.length > 0">
-      <service-info-card
-        v-for="service in items"
-        :key="service.id"
-        :title="service.title"
-        @show:details="showServiceDetails(service)"
-      />
+      <education-card v-for="item in items" :key="item.id" :education-data="item" @edit="showEditModal(item)" />
     </template>
     <template v-else>
-      <div class="py-12 text-center col-span-full">
+      <div class="col-span-full py-12 text-center">
         <p class="font-semibold text-blue-midnight">
           {{ t("empty_service") }}
         </p>

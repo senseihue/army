@@ -6,17 +6,17 @@ export default defineNuxtRouteMiddleware(async (to) => {
     loading.value = true
 
     try {
-      const { content } = await $fetch<IResponse<ISessionProfile>>("/gateway/core/profile", {
+      const { content } = await $fetch<IResponse<ISignInResponse>>("/gateway/api/auth/user", {
         method: "GET",
         headers: {
           Authorization: `Bearer ${$session.token.value}`
         }
       })
-      $session.profile.value = content
+      $session.profile.value = content.user
       $session.loaded.value = true
     } catch {
       $session.loaded.value = true
-      $session.clear()
+      // $session.clear()
     } finally {
       loading.value = false
     }
@@ -29,8 +29,6 @@ export default defineNuxtRouteMiddleware(async (to) => {
     if (!to.meta?.residentOnly && !to.meta?.nonResidentOnly) return
     const user = $session?.profile.value
     if (!user) throw showError({ statusCode: 401, statusMessage: "Unauthorized" })
-    if (to.meta.residentOnly && !user.is_resident) throw showError({ statusCode: 403, statusMessage: "Forbidden" })
-    if (to.meta.nonResidentOnly && user.is_resident) throw showError({ statusCode: 403, statusMessage: "Forbidden" })
   }
 
   checkResidency()

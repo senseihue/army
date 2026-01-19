@@ -1,12 +1,11 @@
 <script setup>
 definePageMeta({
-  hideAppealButton: true,
+  hideAppealButton: true
 })
 </script>
 
 <template>
-  <div class="flex w-full grow antialiased bg-zinc-950
-text-zinc-100">
+  <div class="flex w-full bg-[#F1F5F9]">
     <nuxt-layout name="profile">
       <nuxt-page />
     </nuxt-layout>

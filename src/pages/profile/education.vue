@@ -1,22 +1,19 @@
 <script setup lang="ts">
 import { ProfileHeader } from "~/features/profile"
-import { ServiceDetailModal, ServiceGrid, usePersonalServiceService } from "~/features/profile/service"
-import { ServiceCategoryTabs } from "~/features/profile/service/category"
-import { usePersonalServiceStore } from "~/entities/profile/personal-service"
-import { usePersonalServiceCategoryStore } from "~/entities/profile/personal-service-category"
+import { EducationModal, EducationGrid, usePersonalEducationService, EducationCard } from "~/features/profile/education"
+import { usePersonalEducationStore } from "~/entities/profile/personal-education"
 import { UiLoader } from "~/widgets/loader"
 
 definePageMeta({
-  protected: true
+  protected: true,
+  fixedHeader: true
 })
 const { t } = useI18n({ useScope: "local" })
-const { getPersonalServiceList } = usePersonalServiceService()
-const { params, items, loading } = usePersonalServiceStore()
-const personalServiceCategoryStore = usePersonalServiceCategoryStore()
-const { current, active } = storeToRefs(personalServiceCategoryStore)
+const { getPersonalEducationList } = usePersonalEducationService()
+const { params, items, loading } = usePersonalEducationStore()
 
 const modal = useModal()
-const activeService = ref<IPersonalService | null>(null)
+const activeService = ref<IPersonalEducation | null>(null)
 const categories = computed(() => [
   {
     type: "my_company",
@@ -57,43 +54,40 @@ const categories = computed(() => [
 ])
 
 const get = async () => {
-  await getPersonalServiceList()
+  await getPersonalEducationList()
 }
 
 const onChangeCategory = async () => {
   params.page = 0
-  await getPersonalServiceList()
+  await getPersonalEducationList()
 }
 
-const changeService = (service: IPersonalService) => {
+const changeService = (service: IPersonalEducation) => {
   activeService.value = service
   modal.show("service-detail-modal", service)
 }
 
 onMounted(() => {
-  current.value = categories.value[0]
-  active.value = 0
   get()
 })
 </script>
 
 <template>
   <div class="flex w-full flex-col gap-4">
-    <profile-header icon-name="lucide:briefcase" :title="$t('nav.profile.my_services')" @refresh="get" />
+    <profile-header icon-name="lucide:briefcase" :title="$t('nav.profile.education')" @refresh="get" />
     <div class="mt-2 grid w-full gap-4 rounded-2xl bg-white p-4">
-      <service-category-tabs :categories="categories" @change="onChangeCategory" />
       <ui-loader v-if="loading" />
       <template v-else>
-        <service-grid @show:details="changeService" />
+        <education-grid @show:details="changeService" />
         <ui-pagination
           v-model="params.page"
           :total="params.total"
           :per-page="params.size"
-          @update:model-value="getPersonalServiceList"
+          @update:model-value="getPersonalEducationList"
         />
       </template>
 
-      <service-detail-modal />
+      <education-modal />
     </div>
   </div>
 </template>

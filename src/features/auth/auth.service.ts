@@ -1,30 +1,18 @@
 import { useAuthApi } from "~/features/auth"
 import type { ForgotPassword, ResetPassword, SignIn } from "~/entities/auth"
 import { useReCaptcha } from "vue-recaptcha-v3"
-import { useNotificationService } from "~/features/notification"
 
 export const useAuthService = () => {
   const route = useRoute()
-  const alert = useAlert()
   const { t } = useI18n()
   const authApi = useAuthApi()
-  const notificationService = useNotificationService()
   const localePath = useLocalePath()
   const { $session, $toast } = useNuxtApp()
   const modal = useModal()
-  const messaging = () => {
-    notificationService.subscribeToServiceWorker().then((fcmToken) => {
-      if (fcmToken) return authApi.setToken(fcmToken)
-    })
-
-    notificationService.subscribeToNotification()
-    notificationService.getNotificationList()
-  }
 
   const reCAPTCHA = useReCaptcha()
   const getRedirectUrl = (origin?: string, role?: string) =>
     authApi.getRedirectUrl(origin, role).then(({ content }) => {
-      console.log(content, "redirectUrl")
       window.open(content, "_self")
     })
   // https://sso.egov.uz/sso/oauth/Authorization.do?response_type=one_code&client_id=academy_uz&redirect_uri=https%3A%2F%2Fmy.academy.uz%2Fsso&scope=academy_uz&state=https://portal.academy.uz/sso
@@ -32,15 +20,18 @@ export const useAuthService = () => {
   const signIn = () => {
     const code = <string>route.query?.code
     const state = <string>route.query?.state
-    const role = <string>route.query?.role
 
-    if (!code) return navigateTo(localePath("/"))
+    if (code) return navigateTo(localePath("/"))
 
     $session.loading.value = true
 
     authApi
-      .signIn(code, role)
+      .signInNative({
+        pin: "20000000000000",
+        password: "20000000000000"
+      })
       .then(({ content }) => {
+        console.log(content)
         if (!content) {
           modal.show("auth-error-modal")
 
@@ -49,19 +40,15 @@ export const useAuthService = () => {
         }
         const token = useCookie("token")
         token.value = content.token
-        $session.profile.value = content.profile
-        messaging()
+        $session.profile.value = content.user
 
         if (state) {
           try {
             const url = new URL(state)
             url.searchParams.append("token", content.token)
-            console.log(content, "For role")
             location.replace(url)
-            console.log(state)
-          } catch (error) {
-            console.error("Invalid URL in state parameter:", error)
-
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          } catch (error: any) {
             navigateTo(localePath("/"))
           }
         } else {
@@ -70,30 +57,10 @@ export const useAuthService = () => {
       })
       .catch(() => {
         modal.show("auth-error-modal")
-
       })
       .finally(() => ($session.loading.value = false))
   }
 
-  const signInNonResident = async (dto: Ref<SignIn>, loading: Ref<boolean>) => {
-    loading.value = true
-
-    await reCAPTCHA?.recaptchaLoaded()
-    dto.value.hash = await reCAPTCHA?.executeRecaptcha("signin")
-    return authApi
-      .signInNonResident(dto.value)
-      .then(({ content }) => {
-        $session.token.value = content.token
-        $session.profile.value = content.profile
-
-        navigateTo(localePath("/profile"))
-        messaging()
-      })
-      .catch((error) => {
-        modal.show("auth-error-modal")
-      })
-      .finally(() => (loading.value = false))
-  }
   const sendNewPasswordNonResident = async (dto: Ref<ForgotPassword>, loading: Ref<boolean>) => {
     try {
       loading.value = true
@@ -119,7 +86,7 @@ export const useAuthService = () => {
         $toast.success(t("messages.success.saved"))
         navigateTo(localePath({ path: "/auth/sign-in", query: { role: dto.value.role } }))
       })
-      .catch((error) => {
+      .catch(() => {
         modal.show("auth-error-modal")
       })
       .finally(() => (loading.value = false))
@@ -130,7 +97,6 @@ export const useAuthService = () => {
   return {
     getRedirectUrl,
     signIn,
-    signInNonResident,
     sendNewPasswordNonResident,
     resetPasswordNonResident,
     checkResetLink

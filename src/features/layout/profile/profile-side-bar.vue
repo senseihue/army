@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { SidebarMenu } from "vue-sidebar-menu"
 import type { SidebarMenuList } from "~/entities/layout/layout.model"
-import { AppealButtonGrid } from "~/features/appeal"
+import { ProfileUserCard } from "~/features/layout/profile"
 
 const localePath = useLocalePath()
 const { t } = useI18n()
@@ -16,26 +16,19 @@ const getActive = (path: string) => {
 const menu = computed<SidebarMenuList>(() => [
   {
     title: t("nav.profile.main"),
-    icon: { element: "icon", class: "text-xl", attributes: { name: "lucide:shield-user" } },
+    // icon: { element: "icon", class: "text-xl", attributes: { name: "lucide:shield-user" } },
     child: [
       {
-        title: t("nav.profile.account"),
+        title: t("nav.profile.passport_information"),
         // icon: { element: "icon", class: "text-xl", attributes: { name: "solar:text-square-2-bold-duotone" } },
         href: localePath("/profile"),
         class: { "router-link-active": route.fullPath === localePath("/profile") }
       },
       {
-        title: t("nav.profile.company"),
-        // icon: { element: "icon", class: "text-xl", attributes: { name: "solar:dollar-bold-duotone" } },
-        href: localePath("/profile/company"),
-        class: getActive("/profile/company")
-      },
-      {
-        hidden: profile?.value?.is_resident,
-        title: t("nav.profile.change_password"),
-        // icon: { element: "icon", class: "text-xl", attributes: { name: "solar:dollar-bold-duotone" } },
-        href: localePath("/profile/password"),
-        class: getActive("/profile/password")
+        title: t("nav.profile.education"),
+        // icon: { element: "icon", class: "text-xl", attributes: { name: "solar:text-square-2-bold-duotone" } },
+        href: localePath("/profile/education"),
+        class: { "router-link-active": route.fullPath === localePath("/education") }
       }
     ]
   }
@@ -46,6 +39,7 @@ const isCollapsed = ref(false)
 <template>
   <div class="h-fit min-w-[272px] max-w-full md:max-w-[272px]">
     <client-only>
+      <!--      <profile-user-card />-->
       <div class="mb-[10px] rounded-[14px] bg-white px-2 py-4">
         <sidebar-menu
           class="app-sidebar lg:!flex"

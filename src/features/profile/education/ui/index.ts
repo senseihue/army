@@ -1,3 +1,3 @@
-export { default as ServiceInfoCard } from "./service-info-card.vue"
-export { default as ServiceGrid } from "./service-grid.vue"
-export { default as ServiceDetailModal } from "./service-detail-modal.vue"
+export { default as EducationCard } from "./education-card.vue"
+export { default as EducationGrid } from "./education-grid.vue"
+export { default as EducationModal } from "./education-modal.vue"

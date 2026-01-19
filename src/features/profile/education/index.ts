@@ -1,4 +1,4 @@
 export * from "./ui"
 
-export * from "./personal-service.api"
-export * from "./personal-service.service"
+export * from "./personal-education.api"
+export * from "./personal-education.service"
