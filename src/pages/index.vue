@@ -6,12 +6,7 @@ import { HomeMediaCards } from "~/widgets/home"
 <template>
   <div>
     <home-hero />
-    <home-about />
-    <home-report />
-    <home-statistics />
-    <home-sector />
-    <home-map />
-    <home-testimonial />
-    <home-media-cards />
+<!--    <home-about />-->
+
   </div>
 </template>

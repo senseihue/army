@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import Logo from "~/app/assets/svg/logo.svg"
+import Logo from "~/app/assets/svg/logo-white.svg"
 
 import {
   MainHeaderNav,
@@ -13,63 +13,25 @@ import { NotificationDropdown } from "~/features/notification"
 
 const { hideNavMenu } = useHeader()
 const route = useRoute()
-const position = computed(() => (route?.meta?.fixedHeader ? "fixed" : "sticky"))
+const position = computed(() => (route?.meta?.fixedHeader ? "sticky" : "fixed"))
 </script>
 
 <template>
-  <header class="main-header" :style="{ position }" @mouseleave="hideNavMenu">
+  <header class="main-header"  @mouseleave="hideNavMenu">
     <div class="main-header__inner">
-      <div class="container-7xl">
-        <div class="main-header__wrapper">
-          <div class="main-header__left">
-            <nuxt-link-locale to="/">
-              <logo class="h-9 object-contain" />
-            </nuxt-link-locale>
-          </div>
+      <nuxt-link-locale to="/" class="font-display text-lg font-semibold text-zinc-100">
+        <logo class=" object-contain" />
+      </nuxt-link-locale>
+      <div class="flex items-center gap-1">
+        <main-header-nav />
 
-          <div class="main-header__center">
-            <nav class="main-header__nav">
-              <main-header-nav />
-            </nav>
-          </div>
+        <auth-profile-button-group />
 
-          <div class="main-header__right">
-            <span class="main-header__divider" />
-
-            <ui-icon-button
-              rounded
-              variant="ghost"
-              color="secondary"
-              icon-class="text-xl"
-              icon-name="lucide:search"
-              to="/search"
-              :label="$t('labels.search')"
-            />
-
-            <main-header-language />
-
-            <ui-icon-button
-              rounded
-              variant="ghost"
-              color="secondary"
-              icon-class="text-xl"
-              icon-name="lucide:mail"
-              to="/contacts"
-              :label="$t('labels.contacts')"
-            />
-
-            <notification-dropdown />
-
-            <auth-profile-button-group />
-
-            <main-header-menu-toggle />
-          </div>
-        </div>
-
-        <nav class="main-header__sub-nav">
-          <main-header-nav />
-        </nav>
+        <main-header-menu-toggle />
       </div>
+
+
+
 
       <!--        <main-header-alert />-->
     </div>
@@ -81,10 +43,10 @@ const position = computed(() => (route?.meta?.fixedHeader ? "fixed" : "sticky"))
 
 <style>
 .main-header {
-  @apply top-0 z-50 w-full;
+  @apply top-0 left-0 right-0 z-40 p-4;
 
   &__inner {
-    @apply relative z-50 w-full bg-white;
+    @apply max-w-5xl mx-auto flex items-center justify-between h-12 px-6 rounded-full bg-zinc-900/70 border border-zinc-800/50 backdrop-blur-md;
   }
 
   &__wrapper {
@@ -100,7 +62,7 @@ const position = computed(() => (route?.meta?.fixedHeader ? "fixed" : "sticky"))
   }
 
   &__center {
-    @apply flex-1 justify-start;
+    @apply flex items-center gap-1;
   }
 
   &__right {

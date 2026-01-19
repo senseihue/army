@@ -21,7 +21,7 @@ const userInformation = computed(() => {
             {{ t("surname") }}
           </label>
           <p class="text-sm font-medium">
-            {{ userInformation.surname }}
+            {{ userInformation?.surname }}
           </p>
         </div>
         <div class="flex flex-col gap-1">
@@ -29,7 +29,7 @@ const userInformation = computed(() => {
             {{ t("name") }}
           </label>
           <p class="text-sm font-medium">
-            {{ userInformation.name }}
+            {{ userInformation?.name }}
           </p>
         </div>
         <div class="flex flex-col gap-1">
@@ -37,7 +37,7 @@ const userInformation = computed(() => {
             {{ t("phone") }}
           </label>
           <p class="text-sm font-medium">
-            {{ userInformation.phone }}
+            {{ userInformation?.phone }}
           </p>
         </div>
         <div class="flex flex-col gap-1">
@@ -45,7 +45,15 @@ const userInformation = computed(() => {
             {{ t("email") }}
           </label>
           <p class="text-sm font-medium">
-            {{ userInformation.email }}
+            {{ userInformation?.email }}
+          </p>
+        </div>
+        <div class="flex flex-col gap-1">
+          <label class="text-xs font-medium text-blue-command">
+            {{ t("email") }}
+          </label>
+          <p class="text-sm font-medium">
+            {{ userInformation?.email }}
           </p>
         </div>
       </div>

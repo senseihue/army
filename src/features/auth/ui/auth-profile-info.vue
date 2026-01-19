@@ -8,16 +8,6 @@ const list = computed(() => [
     icon: "hugeicons:coins-01",
     title: t("nav.profile.main"),
     to: localePath("/profile")
-  },
-  {
-    icon: "hugeicons:chart-evaluation",
-    title: t("nav.profile.my_services"),
-    to: localePath("/profile/my-services")
-  },
-  {
-    icon: "lucide:archive",
-    title: t("nav.profile.my_projects"),
-    to: localePath("/profile/my-projects")
   }
 ])
 

@@ -3,7 +3,9 @@ import { useAuthApi } from "~/features/auth"
 import { ProfileHeader, ProfileMainInfo } from "~/features/profile"
 
 definePageMeta({
-  protected: true
+  protected: false,
+  fixedHeader: true
+
 })
 
 const { $session } = useNuxtApp()

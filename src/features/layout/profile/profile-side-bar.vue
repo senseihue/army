@@ -38,24 +38,6 @@ const menu = computed<SidebarMenuList>(() => [
         class: getActive("/profile/password")
       }
     ]
-  },
-  {
-    title: t("nav.profile.my_services"),
-    icon: { element: "icon", class: "text-xl", attributes: { name: "mynaui:briefcase" } },
-    href: localePath("/profile/my-services"),
-    class: getActive("/profile/my-services")
-  },
-  {
-    title: t("nav.profile.my_projects"),
-    icon: { element: "icon", class: "text-xl", attributes: { name: "lucide:archive" } },
-    href: localePath("/profile/my-projects"),
-    class: getActive("/profile/my-projects")
-  },
-  {
-    title: t("nav.profile.appeals"),
-    icon: { element: "icon", class: "text-xl", attributes: { name: "lucide:message-circle-warning" } },
-    href: localePath("/profile/appeals"),
-    class: getActive("/profile/appeals")
   }
 ])
 const isCollapsed = ref(false)
@@ -80,7 +62,6 @@ const isCollapsed = ref(false)
         </sidebar-menu>
       </div>
     </client-only>
-    <appeal-button-grid variant="col" />
   </div>
 </template>
 
