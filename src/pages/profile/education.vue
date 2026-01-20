@@ -10,7 +10,7 @@ definePageMeta({
 })
 const { t } = useI18n({ useScope: "local" })
 const { getPersonalEducationList } = usePersonalEducationService()
-const { params, items, loading } = usePersonalEducationStore()
+const { params, loading } = usePersonalEducationStore()
 
 const modal = useModal()
 const activeService = ref<IPersonalEducation | null>(null)
@@ -74,7 +74,14 @@ onMounted(() => {
 
 <template>
   <div class="flex w-full flex-col gap-4">
-    <profile-header icon-name="lucide:briefcase" :title="$t('nav.profile.education')" @refresh="get" />
+    <profile-header icon-name="lucide:briefcase" :title="$t('nav.profile.education')" @refresh="get">
+      <template #action>
+        <ui-button class="rounded-xl" color="secondary" variant="flat" @click="modal.show('personal-education')">
+          <span>{{ $t("actions.add") }}</span>
+          <icon name="lucide:plus" />
+        </ui-button>
+      </template>
+    </profile-header>
     <div class="mt-2 grid w-full gap-4 rounded-2xl bg-white p-4">
       <ui-loader v-if="loading" />
       <template v-else>

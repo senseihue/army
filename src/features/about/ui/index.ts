@@ -1,6 +1,0 @@
-export { default as AboutHero } from "./about-hero.vue"
-export { default as AboutInfo } from "./about-info.vue"
-export { default as AboutFunction } from "./about-function.vue"
-export { default as AboutService } from "./about-service.vue"
-export { default as AboutAttachment } from "./about-attachment.vue"
-export { default as AboutEntity } from "./about-entity.vue"

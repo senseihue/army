@@ -1,57 +1,43 @@
 <script setup lang="ts">
-import { Appeal } from "~/entities/appeal"
-import { useAppealService, AppealTopicSelect, AppealTypeSelect } from "~/features/appeal"
-import { TerritorySelect } from "~/features/territory"
+import { PersonalEducation } from "~/entities/profile/personal-education"
+import { usePersonalEducationService } from "~/features/profile/education"
+import { SchoolsSelect } from "~/widgets/education"
+import UiDatePicker from "@vuepic/vue-datepicker"
 
-const { createAppeal, getAppeal } = useAppealService()
-const { $session } = useNuxtApp()
-const { loggedIn } = $session || {}
+const { saveEducation } = usePersonalEducationService()
 
-const { required, email, requiredIf } = useRule()
+const { required, requiredIf } = useRule()
 
 const modal = useModal()
 
 const editing = ref(false)
 const loading = ref(false)
-const unauthorized = ref(false)
-const form = ref<Appeal>(new Appeal())
+const form = ref<PersonalEducation>(new PersonalEducation())
 const rules = ref({
-  type_id: { required },
-  topic_id: { required },
-  region_id: { required },
-  text: { required },
-  full_name: { requiredIf: requiredIf(computed(() => unauthorized.value)) },
-  email: { requiredIf: requiredIf(computed(() => unauthorized.value)), email }
+  school_id: { required },
+  start_date: { required },
+  diploma_number: { requiredIf: requiredIf(computed(() => form.value.end_date?.length > 0)) },
+  diploma_date: { requiredIf: requiredIf(computed(() => form.value.end_date?.length > 0)) }
 })
 
 const { hasError, vuelidate } = useValidate(form, rules)
 
 const { t } = useI18n({ useScope: "local" })
 
-const onShown = (id: number) => {
-  if (id) {
+const onShown = (data: IPersonalEducation) => {
+  if (data?.id) {
     editing.value = true
-    getAppeal(id, form, loading)
+    form.value = data
   } else {
     editing.value = false
-    form.value = new Appeal()
+    form.value = new PersonalEducation()
     vuelidate.value.$reset()
-    unauthorized.value = !loggedIn.value
   }
 }
 const submit = async () => {
   const valid = await vuelidate.value.$validate()
-  if (valid) await createAppeal(form, loading)
-}
-
-const next = async () => {
-  await vuelidate.value.email.$validate()
-  await vuelidate.value.full_name.$validate()
-  if (hasError("full_name").invalid || hasError("email").invalid) {
-    return
-  } else {
-    unauthorized.value = false
-  }
+  console.log(vuelidate.value)
+  if (valid) await saveEducation(form, loading)
 }
 
 const cancel = () => {
@@ -59,50 +45,57 @@ const cancel = () => {
   modal.hide("appeal")
 }
 
-const label = computed(() => (unauthorized.value ? t("title_unauthorized") : t("title")))
+const label = computed(() => (editing.value ? t("actions.edit") : t("actions.add")))
 </script>
 
 <template>
   <ui-modal id="personal-education" :loading :label @shown="onShown">
     <form class="grid grid-cols-1 gap-4 px-4 py-[15px]" @submit.prevent>
-      <template v-if="unauthorized">
-        <ui-form-group v-bind="hasError('full_name')" v-slot="{ id }" :label="t('fields.name')">
-          <ui-input v-model="form.full_name" :id></ui-input>
-        </ui-form-group>
-        <ui-form-group v-bind="hasError('email')" v-slot="{ id }" :label="t('fields.email')">
-          <ui-input v-model="form.email" :id></ui-input>
-        </ui-form-group>
-      </template>
-      <template v-else>
-        <ui-form-group v-bind="hasError('topic_id')" v-slot="{ id }" :label="t('fields.type')">
-          <appeal-topic-select v-model="form.topic_id" :disabled="editing" :id></appeal-topic-select>
-        </ui-form-group>
-        <ui-form-group v-bind="hasError('type_id')" v-slot="{ id }" :label="t('fields.topic')">
-          <appeal-type-select
-            v-model="form.type_id"
-            :disabled="editing"
-            :parent-id="form.topic_id"
+      <ui-form-group v-bind="hasError('school_id')" v-slot="{ id }" :label="t('fields.school')">
+        <schools-select v-model="form.school_id" :id></schools-select>
+      </ui-form-group>
+      <ui-form-group v-bind="hasError('start_date')" v-slot="{ id }" :label="t('fields.start_date')">
+        <ui-date-picker
+          v-model="form.start_date"
+          model-type="yyyy-MM-dd"
+          format="dd-MM-yyyy"
+          auto-apply
+          teleport
+          position="left"
+          :id
+        ></ui-date-picker>
+      </ui-form-group>
+      <ui-form-group v-slot="{ id }" :label="t('fields.end_date')">
+        <ui-date-picker
+          v-model="form.end_date"
+          model-type="yyyy-MM-dd"
+          format="dd.MM.yyyy"
+          teleport
+          position="left"
+          clearable
+          :id
+        ></ui-date-picker>
+      </ui-form-group>
+      <template v-if="form.end_date">
+        <ui-form-group v-bind="hasError('diploma_date')" v-slot="{ id }" :label="t('fields.diploma_date')">
+          <ui-date-picker
+            v-model="form.diploma_date"
+            model-type="yyyy-MM-dd"
+            format="dd.MM.yyyy"
+            teleport
+            position="left"
             :id
-          ></appeal-type-select>
+          />
         </ui-form-group>
-        <ui-form-group v-bind="hasError('region_id')" v-slot="{ id }" :label="t('fields.region')">
-          <territory-select v-model="form.region_id" :disabled="editing" :id></territory-select>
-        </ui-form-group>
-        <ui-form-group v-bind="hasError('text')" v-slot="{ id }" :label="t('fields.comment')">
-          <ui-textarea v-model="form.text" rows="8" :disabled="editing" :id></ui-textarea>
-        </ui-form-group>
-        <ui-form-group v-if="editing && form.reject_reason" :label="t('fields.reson')">
-          <ui-textarea v-model="form.reject_reason" rows="8" :disabled="true"></ui-textarea>
+        <ui-form-group v-bind="hasError('diploma_number')" v-slot="{ id }" :label="t('fields.diploma_number')">
+          <ui-input v-model="form.diploma_number" :id />
         </ui-form-group>
       </template>
     </form>
     <template #footer>
       <div class="flex w-full items-center justify-end gap-2 p-4">
         <ui-button color="secondary" :label="t('cancel')" @click="cancel"></ui-button>
-        <template v-if="!editing">
-          <ui-button v-if="unauthorized" :label="t('next')" @click="next"></ui-button>
-          <ui-button v-else :label="t('submit')" @click="submit"></ui-button>
-        </template>
+        <ui-button :label="t('submit')" @click="submit"></ui-button>
       </div>
     </template>
   </ui-modal>
@@ -119,13 +112,12 @@ const label = computed(() => (unauthorized.value ? t("title_unauthorized") : t("
     "next": "Next",
     "cancel": "Cancel",
     "fields": {
-      "name": "Name",
-      "email": "Email",
-      "type": "Scope of the problem",
-      "topic": "Scope of the problem",
-      "region": "Region",
-      "comment": "Comment",
-      "reason": "Reason for rejection"
+      "school": "Educational institution",
+      "start_date": "Start date",
+      "end_date": "End date",
+      "diploma_date": "Diploma date",
+      "diploma_number": "Diploma number"
+
     }
   },
   "ru": {
@@ -135,13 +127,11 @@ const label = computed(() => (unauthorized.value ? t("title_unauthorized") : t("
     "next": "Далее",
     "cancel": "Отмена",
     "fields": {
-      "name": "Имя",
-      "email": "Email",
-      "type": "Тип проблемы",
-      "topic": "Сфера проблемы",
-      "region": "Регион",
-      "comment": "Комментарии",
-      "reason": "Причина закрытия"
+      "school": "Учебное заведение",
+      "start_date": "Дата начала",
+      "end_date": "Дата окончания",
+      "diploma_date": "Дата получения диплома",
+      "diploma_number": "Номер диплома"
     }
   },
   "uz": {
@@ -151,13 +141,11 @@ const label = computed(() => (unauthorized.value ? t("title_unauthorized") : t("
     "next": "Keyingi",
     "cancel": "Bekor qilish",
     "fields": {
-      "name": "Ism",
-      "email": "Email",
-      "type": "Muammo turi",
-      "topic": "Muammo sohasi",
-      "region": "Hudud",
-      "comment": "Izoh",
-      "reason": "Rad etish sababi"
+      "school": "Educational institution",
+      "start_date": "Boshlanish sanasi",
+      "end_date": "Tugash sanasi",
+      "diploma_date": "Diplom sanasi",
+      "diploma_number": "Diplom raqami"
     }
   }
 }

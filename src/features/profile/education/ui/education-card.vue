@@ -43,7 +43,7 @@ defineEmits<{
         class="w-fit !rounded-[14px] !px-[10px] !py-[8px]"
         variant="flat"
         color="secondary"
-        :label="$t('labels.detailed')"
+        :label="$t('actions.edit')"
         @click="$emit('edit')"
       />
     </div>

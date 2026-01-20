@@ -1,5 +1,3 @@
-import type { IContent } from "~/shared/types/content"
-
 declare global {
   interface IModal {
     "personal-education": IPersonalEducation
@@ -21,13 +19,13 @@ declare global {
     school: SchoolType
   }
 
-  type SchoolType = School
+  type SchoolType = ISchool
 
-  interface School {
+  interface ISchool {
     id: number
     school_type_id: number
     code: string
-    name: IContent
+    title: string
     alias: string
     status: boolean
     created_by?: any
@@ -58,4 +56,29 @@ export class PersonalEducation implements IPersonalEducation {
   deleted_at?: any
   created_at?: string
   updated_at?: string
+
+  static toRequest (data: Partial<PersonalEducation>) {
+    return {
+      id: data.id,
+      person_id: data.person_id,
+      school_type_id: data.school_type_id,
+      school_id: data.school_id,
+      start_date: data.start_date,
+      end_date: data.end_date,
+      diploma_number: data.diploma_number,
+      diploma_date: data.diploma_date
+    }
+  }
+
+  static toResponse (data: PersonalEducation) {
+    return {
+      id: data.id,
+      person_id: data.person_id,
+      school_type_id: data.school_type_id,
+      school_id: data.school_id,
+      start_date: data.start_date,
+      end_date: data.end_date,
+      diploma_number: data.diploma_number,
+    }
+  }
 }

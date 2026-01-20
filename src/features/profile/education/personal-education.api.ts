@@ -13,7 +13,7 @@ export const usePersonalEducationApi = () => {
   }
 
   const getSchoolList = (params: Record<string, any>): AsyncResponseContainer<IPersonalEducation[]> => {
-    return $http.$get(`${BASE_URL}/schools`, { params })
+    return $http.$get(`${BASE_URL}/references/schools`, { params })
   }
 
   const createPersonalEducation = (data: PersonalEducation): AsyncResponseContainer<IPersonalEducation> => {
@@ -28,6 +28,7 @@ export const usePersonalEducationApi = () => {
   return {
     getPersonalEducationList,
     getPersonalEducation,
+    getSchoolList,
     createPersonalEducation,
     updatePersonalEducation
   }

@@ -1,9 +1,9 @@
 interface UseSelectProps<T> {
-  api: Function
+  api: (...args: any) => any
   map?: (data: T[]) => ISelect[]
   params: Ref<Record<string, any>>
   el: Ref<HTMLElement>
-  model: Ref<number | number[] | string | string[] | undefined>
+  model: Ref<number | number[] | string | string[] | undefined | boolean>
   autoSelect?: boolean
   fetchOnOpen?: boolean
 }
@@ -25,7 +25,7 @@ export const useSelect = <T>({
       const { content } = await api(cleanParams({ ...params.value, page: 0 }))
       options.value = map ? map(content) : content
       if (el.value) await observe()
-      if (autoSelect) model.value = options.value.at(0)?.value!
+      if (autoSelect) model.value = options.value.at(0)?.value
     } finally {
       loading.value = false
     }

@@ -1,6 +1,0 @@
-export { default as ReasonNav } from "./reason-nav.vue"
-export { default as ReasonWrapper } from "./reason-wrapper.vue"
-export { default as ReasonStepsCard } from "./reason-steps-card.vue"
-export { default as GalleryGrid } from "./gallery-grid.vue"
-export { default as StatisticCard } from "./statistic-card.vue"
-export { default as SectionGrid } from "./section-grid.vue"

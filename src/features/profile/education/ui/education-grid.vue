@@ -7,7 +7,7 @@ const modal = useModal()
 const personalEducationStore = usePersonalEducationStore()
 const { items, loading } = storeToRefs(personalEducationStore)
 const showEditModal = (education: IPersonalEducation) => {
-  modal.show('personal-education', education)
+  modal.show("personal-education", education)
 }
 </script>
 
@@ -19,7 +19,7 @@ const showEditModal = (education: IPersonalEducation) => {
     <template v-else>
       <div class="col-span-full py-12 text-center">
         <p class="font-semibold text-blue-midnight">
-          {{ t("empty_service") }}
+          {{ t("empty_education_data") }}
         </p>
       </div>
     </template>
@@ -31,13 +31,13 @@ const showEditModal = (education: IPersonalEducation) => {
 <i18n>
 {
   "en": {
-    "empty_service": "No services available"
+    "empty_education_data": "Educational information unavailable"
   },
   "ru": {
-    "empty_service": "Нет доступных услуг"
+    "empty_education_data": "Образовательная информация недоступна"
   },
   "uz": {
-    "empty_service": "Xizmatlar mavjud emas"
+    "empty_education_data": "Ta'lim ma'lumotlari mavjud emas"
   }
 }
 </i18n>

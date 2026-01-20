@@ -3,11 +3,11 @@ import { useAuthApi } from "~/features/auth"
 import { ProfileHeader, ProfileMainInfo } from "~/features/profile"
 
 definePageMeta({
-  protected: false,
+  protected: true,
   fixedHeader: true
-
 })
 
+const modal = useModal()
 const { $session } = useNuxtApp()
 const { loading } = $session || {}
 
@@ -28,9 +28,11 @@ const getProfile = async () => {
 </script>
 
 <template>
-  <div class="flex w-full flex-col  gap-2">
-    <profile-header :title="$t('nav.profile.passport_information')" @refresh="getProfile" />
+  <div class="flex w-full flex-col gap-2">
+    <profile-header :title="$t('nav.profile.passport_information')" @refresh="getProfile">
+
+    </profile-header>
     <profile-main-info />
-<!--    <profile-passport-info />-->
+    <!--    <profile-passport-info />-->
   </div>
 </template>

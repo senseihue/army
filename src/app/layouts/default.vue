@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import { MainFooter, MainHeader } from "~/features/layout"
+import {  MainHeader } from "~/features/layout"
 import { AuthErrorModal } from "~/entities/auth/ui"
-import { AppealButtonGrid } from "~/features/appeal"
 import { AuthRoleSelectModal } from "~/features/auth"
 </script>
 

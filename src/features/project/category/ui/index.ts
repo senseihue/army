@@ -1,8 +1,0 @@
-export { default as ProjectCategoryHero } from "./project-category-hero.vue"
-export { default as ProjectCategoryHeroDetails } from "./project-category-hero-details.vue"
-export { default as ProjectCategoryBlock } from "./project-category-block.vue"
-export { default as ProjectCategoryCard } from "./project-category-card.vue"
-export { default as ProjectCategoryDetails } from "./project-category-details.vue"
-export { default as ProjectCategorySectorSelect } from "./project-category-sector-select.vue"
-export { default as ProjectCategoryAmountSelect } from "./project-category-amount-select.vue"
-export { default as ProjectCategoryStatusSelect } from "./project-category-status-select.vue"

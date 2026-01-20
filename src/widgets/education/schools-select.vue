@@ -10,7 +10,7 @@ interface IProps {
 const props = defineProps<IProps>()
 const model = defineModel<number | number[] | string | string[]>()
 
-const projectCategoryApi = usePersonalEducationApi()
+const personalEducationApi = usePersonalEducationApi()
 const el = ref()
 
 const params = ref<Record<string, any>>({
@@ -19,16 +19,16 @@ const params = ref<Record<string, any>>({
   size: 100
 })
 
-const map = (value: IPersonalEducation[]): ISelect[] => value?.map(({ id, title }) => ({ value: id, label: title }))
+const map = (value: ISchool[]): ISelect[] => value?.map(({ id, title }) => ({ value: id, label: title }))
 
-const { loading, onOpen, onClose, onSearch, options } = useSelect<IPersonalEducation>({
+const { loading, onOpen, onClose, onSearch, options } = useSelect<ISchool>({
   el,
   map,
   model,
   params,
   autoSelect: props.autoSelect,
   fetchOnOpen: props.fetchOnOpen,
-  api: projectCategoryApi.getPersonalEducationList
+  api: personalEducationApi.getSchoolList
 })
 </script>
 
@@ -38,6 +38,7 @@ const { loading, onOpen, onClose, onSearch, options } = useSelect<IPersonalEduca
     v-bind="$attrs"
     autocomplete="off"
     searchable
+    append-to-body
     :options="options"
     :loading="loading"
     :filter-results="false"

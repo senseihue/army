@@ -1,6 +1,6 @@
 import { clone, pickBy } from "lodash-es"
 
-export const containerData = <T>(value: T): IResponse<T> => ({ content: value })
+export const containerData = <T>(value: T): IResponse<T> => ({ content: value})
 
 export const cleanParams = (params: Record<string, any>) => {
   const clonedParams = clone(params)
@@ -16,7 +16,7 @@ export const cleanParams = (params: Record<string, any>) => {
   return pickBy(clonedParams, (value) => value != undefined)
 }
 
-export const transformParams = (cleanedParams: Record<string, any>, transformations: Record<string, Function>) => {
+export const transformParams = (cleanedParams: Record<string, any>, transformations: Record<string, (...args: any) => any>) => {
   const transformedParams: Record<string, any> = {}
 
   for (const [key, transformFn] of Object.entries(transformations)) {
