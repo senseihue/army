@@ -1,9 +1,5 @@
 name: hr_client_front
 
-networks:
-  hr_client_api-net:
-    external: true
-
 volumes:
   code:
     name: hr_client_front
@@ -14,7 +10,7 @@ services:
     container_name: hr_client_front
     restart: unless-stopped
     networks:
-      - hr_client_api-net
+      - hr_client
 
   hr_client_front_nginx:
     image: nginx:alpine
@@ -23,7 +19,7 @@ services:
     ports:
       - "91:80"
     networks:
-      - hr_client_api-net
+      - hr_client
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
 
