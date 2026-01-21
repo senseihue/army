@@ -5,4 +5,74 @@ include:
 
 variables:
   DOCKER_IMAGE: "recruit_front"
+
+stages:
+  - build
+  - deploy
+  - notify
+  - cook
   
+deploy:
+  stage: deploy
+  after_script:
+    - |
+      if [ "$CI_JOB_STATUS" == "success" ]; then
+        echo "DEPLOY_STATUS=SUCCESS ✅" >> deploy.env
+        echo "DEPLOY_MESSAGE=Deploy PRODUCTION!" >> deploy.env
+      else
+        echo "DEPLOY_STATUS=ERROR ❌" >> deploy.env
+        LOGS=$(docker logs hr --tail 40 2>&1 || echo "Loglar mavjud emas")
+        echo "DEPLOY_MESSAGE<<EOF" >> deploy.env
+        echo "$LOGS" >> deploy.env
+        echo "EOF" >> deploy.env
+      fi
+  artifacts:
+    reports:
+      dotenv: deploy.env
+    expire_in: 1 hour
+    when: always
+
+notify_build:
+  stage: notify
+  script:
+    - export COMMIT_MESSAGE="$(git log -1 --pretty=format:'%s')"
+    - export COMMIT_AUTHOR="$(git log -1 --pretty=format:'%an')"
+    - export CURRENT_TIME="$(date '+%Y-%m-%d %H:%M:%S')"
+    - |
+      curl -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
+      -H "Content-Type: application/json" \
+      -d "{
+        \"chat_id\": \"${TELEGRAM_CHAT_ID}\",
+        \"message_thread_id\": \"${TELEGRAM_THREAD_ID}\",
+        \"text\": \"🆔: *${CI_PROJECT_PATH}*\n🌿: *${CI_COMMIT_BRANCH}*\n👤: *${COMMIT_AUTHOR}*\n📝: *${COMMIT_MESSAGE}*\n🔧: *Build*\n🔉: *ERROR ❌*\n📜: Build jarayonida xatolik yuz berdi\n🕰: *${CURRENT_TIME}*\",
+        \"parse_mode\": \"Markdown\"
+      }"
+  only:
+    - main
+  when: on_failure
+  needs:
+    - job: build
+      optional: false
+
+notify_deploy:
+  stage: notify
+  script:
+    - export COMMIT_MESSAGE="$(git log -1 --pretty=format:'%s')"
+    - export COMMIT_AUTHOR="$(git log -1 --pretty=format:'%an')"
+    - export CURRENT_TIME="$(date '+%Y-%m-%d %H:%M:%S')"
+    - |
+      MESSAGE=$(echo "$DEPLOY_MESSAGE" | sed 's/"/\\"/g' | sed ':a;N;$!ba;s/\n/\\n/g')
+      curl -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
+      -H "Content-Type: application/json" \
+      -d "{
+        \"chat_id\": \"${TELEGRAM_CHAT_ID}\",
+        \"message_thread_id\": \"${TELEGRAM_THREAD_ID}\",
+        \"text\": \"🆔: *${CI_PROJECT_PATH}*\n🌿: *${CI_COMMIT_BRANCH}*\n👤: *${COMMIT_AUTHOR}*\n📝: *${COMMIT_MESSAGE}*\n🔧: *Deploy*\n🔉: *${DEPLOY_STATUS}*\n📜: ${MESSAGE}\n🕰: *${CURRENT_TIME}*\",
+        \"parse_mode\": \"Markdown\"
+      }"
+  only:
+    - main
+  when: always
+  needs:
+    - job: deploy
+      artifacts: true
