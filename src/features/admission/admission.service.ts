@@ -23,9 +23,8 @@ export const useAdmissionService = () => {
 
   const saveAdmission = async (dto: Ref<IAdmission>, loading: Ref<boolean>) => {
 
-    const action = dto.value.id ? AdmissionApi.updateAdmission : AdmissionApi.createAdmission
     loading.value = true
-    return action(dto.value)
+    return AdmissionApi.createAdmission(dto.value)
       .then(() => {
         $toast.success(t("messages.success.saved"))
         modal.hide("admission")

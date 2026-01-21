@@ -6,15 +6,12 @@ const { t } = useI18n({ useScope: "local" })
 const modal = useModal()
 const admissionStore = useAdmissionStore()
 const { items } = storeToRefs(admissionStore)
-const showEditModal = (admission: IAdmission) => {
-  modal.show("admission", admission)
-}
 </script>
 
 <template>
   <div class="grid grid-cols-1 gap-x-7 gap-y-3 lg:grid-cols-2">
     <template v-if="items.length > 0">
-      <admission-card v-for="item in 5" :key="item" :admission-data="items[item]" @edit="showEditModal(items[item])" />
+      <admission-card v-for="item in items" :key="item.id" :admission-data="item" />
     </template>
     <template v-else>
       <div class="col-span-full py-12 text-center">

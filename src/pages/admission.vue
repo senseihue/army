@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import {AdmissionHero, AdmissionGrid, useAdmissionService} from "~/features/admission"
+import {AdmissionHero, AdmissionGrid, useAdmissionService, AdmissionModal} from "~/features/admission"
 
 definePageMeta({
   fixedHeader: true,
@@ -23,5 +23,6 @@ onMounted(() => {
       </div>
       <!--    <home-about />-->
     </div>
+    <admission-modal></admission-modal>
   </div>
 </template>

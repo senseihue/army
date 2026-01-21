@@ -1,1 +1,1 @@
-export * from './school.model'
+export * from './kinship.model'

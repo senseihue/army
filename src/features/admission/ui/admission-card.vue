@@ -1,12 +1,25 @@
 <script setup lang="ts">
+import {useAdmissionStore} from "~/entities/admission";
+import {storeToRefs} from "pinia";
+
 interface IProps {
   admissionData: IAdmission
 }
 
-defineProps<IProps>()
+const props = defineProps<IProps>()
 defineEmits<{
   (e: "edit"): void
 }>()
+
+const modal = useModal()
+const admissionStore = useAdmissionStore()
+const { current } = storeToRefs(admissionStore)
+
+const showAdmissionModal = () => {
+  current.value = props.admissionData
+  modal.show('admission', props.admissionData)
+}
+
 </script>
 
 <template>
@@ -49,7 +62,6 @@ defineEmits<{
           <div class="border border-slate-200 rounded-lg p-4 hover:border-blue-300 transition-colors cursor-default">
             <div class="flex items-center justify-between mb-2">
               <span class="text-sm font-semibold text-slate-700">Гражданин</span>
-              <span class="bg-slate-100 text-slate-500 text-xs px-2 py-0.5 rounded-full">ID: 1</span>
             </div>
             <div class="text-2xl font-bold text-slate-800">
               17 <span class="text-slate-400 text-lg font-normal">-</span> 23
@@ -60,7 +72,6 @@ defineEmits<{
           <div class="border border-slate-200 rounded-lg p-4 hover:border-blue-300 transition-colors cursor-default">
             <div class="flex items-center justify-between mb-2">
               <span class="text-sm font-semibold text-slate-700">Военный</span>
-              <span class="bg-slate-100 text-slate-500 text-xs px-2 py-0.5 rounded-full">ID: 2</span>
             </div>
             <div class="text-2xl font-bold text-slate-800">
               18 <span class="text-slate-400 text-lg font-normal">-</span> 25
@@ -71,7 +82,6 @@ defineEmits<{
           <div class="border border-slate-200 rounded-lg p-4 hover:border-blue-300 transition-colors cursor-default">
             <div class="flex items-center justify-between mb-2">
               <span class="text-sm font-semibold text-slate-700">Студент</span>
-              <span class="bg-slate-100 text-slate-500 text-xs px-2 py-0.5 rounded-full">ID: 3</span>
             </div>
             <div class="text-2xl font-bold text-slate-800">
               18 <span class="text-slate-400 text-lg font-normal">-</span> 26
@@ -85,7 +95,7 @@ defineEmits<{
     </div>
 
     <div class="bg-slate-50 px-6 py-4 border-t border-slate-100 text-right">
-      <button class="bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-2 px-4 rounded shadow-sm transition-colors">
+      <button @click="showAdmissionModal" class="bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-2 px-4 rounded shadow-sm transition-colors">
         Apply Now
       </button>
     </div>

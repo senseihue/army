@@ -12,7 +12,7 @@ export const useAdmissionApi = () => {
 
 
   const createAdmission = (data: IAdmission): AsyncResponseContainer<IAdmission> => {
-    return $http.$post(`${BASE_URL}/requests/admissions`, data)
+    return $http.$post(`${BASE_URL}/requests/store`, data)
   }
 
   const updateAdmission = (data: IAdmission): AsyncResponseContainer<IAdmission> => {
