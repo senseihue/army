@@ -16,7 +16,7 @@ export default defineNuxtRouteMiddleware(async (to) => {
       $session.loaded.value = true
     } catch {
       $session.loaded.value = true
-      // $session.clear()
+      $session.clear()
     } finally {
       loading.value = false
     }

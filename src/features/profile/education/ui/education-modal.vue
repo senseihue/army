@@ -55,7 +55,7 @@ const label = computed(() => (editing.value ? t("actions.edit") : t("actions.add
         <school-type-select v-model="form.school_type_id" :id></school-type-select>
       </ui-form-group>
       <ui-form-group v-bind="hasError('school_id')" v-slot="{ id }" :label="t('fields.school')">
-        <schools-select v-model="form.school_id" :type_id="form.school_type_id" :id></schools-select>
+        <schools-select fetch-on-open v-model="form.school_id" :type_id="form.school_type_id" :id></schools-select>
       </ui-form-group>
       <ui-form-group v-bind="hasError('start_date')" v-slot="{ id }" :label="t('fields.start_date')">
         <ui-date-picker
@@ -115,6 +115,7 @@ const label = computed(() => (editing.value ? t("actions.edit") : t("actions.add
     "next": "Next",
     "cancel": "Cancel",
     "fields": {
+      "school_type": "Type of educational institution",
       "school": "Educational institution",
       "start_date": "Start date",
       "end_date": "End date",
@@ -130,6 +131,7 @@ const label = computed(() => (editing.value ? t("actions.edit") : t("actions.add
     "next": "Далее",
     "cancel": "Отмена",
     "fields": {
+      "school_type": "Тип учебного заведения",
       "school": "Учебное заведение",
       "start_date": "Дата начала",
       "end_date": "Дата окончания",
@@ -144,10 +146,11 @@ const label = computed(() => (editing.value ? t("actions.edit") : t("actions.add
     "next": "Keyingi",
     "cancel": "Bekor qilish",
     "fields": {
-      "school": "Educational institution",
+      "school_type": "Ta'lim muassasasi turi",
+      "school": "Ta'lim muassasasi",
       "start_date": "Boshlanish sanasi",
       "end_date": "Tugash sanasi",
-      "diploma_date": "Diplom sanasi",
+      "diploma_date": "Diplom berilgan sana",
       "diploma_number": "Diplom raqami"
     }
   }

@@ -74,6 +74,8 @@
     "sign_in": "Kirish",
     "sitemap": "Sahifalar ro'yxati",
     "start_date": "Boshlanish sanasi",
+    "diploma_number": "Diplom raqami",
+    "diploma_date": "Diplom berilgan sana"
   },
   "messages": {
     "confirm": {

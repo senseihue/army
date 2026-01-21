@@ -69,6 +69,7 @@ export const useSelect = <T>({
     loading,
     options,
     onSearch,
+    getOptions,
     onOpen,
     onClose
   }

@@ -12,7 +12,7 @@ const showEditModal = (education: IPersonalEducation) => {
 </script>
 
 <template>
-  <div class="grid grid-cols-1 gap-x-7 gap-y-3 sm:grid-cols-2">
+  <div class="grid grid-cols-1 gap-x-7 gap-y-3 lg:grid-cols-2">
     <template v-if="items.length > 0">
       <education-card v-for="item in items" :key="item.id" :education-data="item" @edit="showEditModal(item)" />
     </template>

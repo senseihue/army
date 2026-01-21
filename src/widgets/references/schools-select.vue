@@ -14,16 +14,16 @@ const model = defineModel<number | number[] | string | string[]>()
 const schoolApi = useSchoolApi()
 const el = ref()
 
-const params = ref<Record<string, any>>({
+const params = computed<Record<string, any>>(() => ({
   keyword: "",
   page: 1,
   per_page: 100,
   school_type_id: props.type_id
-})
+}))
 
 const map = (value: ISchool[]): ISelect[] => value?.map(({ id, title }) => ({ value: id, label: title }))
 
-const { loading, onOpen, onClose, onSearch, options } = useSelect<ISchool>({
+const { loading, onOpen, onClose, onSearch, options, getOptions } = useSelect<ISchool>({
   el,
   map,
   model,
@@ -31,6 +31,11 @@ const { loading, onOpen, onClose, onSearch, options } = useSelect<ISchool>({
   autoSelect: props.autoSelect,
   fetchOnOpen: props.fetchOnOpen,
   api: schoolApi.getSchoolList
+})
+
+watch(() => props.type_id, () => {
+  params.value.school_type_id = props.type_id
+  getOptions()
 })
 </script>
 
