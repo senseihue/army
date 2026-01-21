@@ -1,0 +1,8 @@
+include:
+  - project: 'y_zokirjon/infrastructure'
+    ref: 'main'      
+    file: '/ci-templates/deployer-front-v1.yml'
+
+variables:
+  DOCKER_IMAGE: "recruit_front"
+  
