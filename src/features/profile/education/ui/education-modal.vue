@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { PersonalEducation } from "~/entities/profile/personal-education"
-import { usePersonalEducationService } from "~/features/profile/education"
-import { SchoolsSelect, SchoolTypeSelect } from "~/widgets/references"
+import { Education } from "~/entities/profile/education"
+import { useEducationService } from "~/features/profile/education"
+import { SchoolsSelect, SchoolTypeSelect } from "~/widgets/references/school"
 import UiDatePicker from "@vuepic/vue-datepicker"
 
-const { saveEducation } = usePersonalEducationService()
+const { saveEducation } = useEducationService()
 
 const { required, requiredIf } = useRule()
 
@@ -12,7 +12,7 @@ const modal = useModal()
 
 const editing = ref(false)
 const loading = ref(false)
-const form = ref<PersonalEducation>(new PersonalEducation())
+const form = ref<Education>(new Education())
 const rules = ref({
   school_id: { required },
   school_type_id: { required },
@@ -25,13 +25,13 @@ const { hasError, vuelidate } = useValidate(form, rules)
 
 const { t } = useI18n({ useScope: "local" })
 
-const onShown = (data: IPersonalEducation) => {
+const onShown = (data: IEducation) => {
   if (data?.id) {
     editing.value = true
     form.value = data
   } else {
     editing.value = false
-    form.value = new PersonalEducation()
+    form.value = new Education()
     vuelidate.value.$reset()
   }
 }
@@ -42,14 +42,14 @@ const submit = async () => {
 
 const cancel = () => {
   vuelidate.value.$reset()
-  modal.hide("appeal")
+  modal.hide("education")
 }
 
 const label = computed(() => (editing.value ? t("actions.edit") : t("actions.add")))
 </script>
 
 <template>
-  <ui-modal id="personal-education" :loading :label @shown="onShown">
+  <ui-modal id="education" :loading :label @shown="onShown">
     <form class="grid grid-cols-1 md:grid-cols-2 gap-4 px-4 py-[15px]" @submit.prevent>
       <ui-form-group v-bind="hasError('school_type_id')" v-slot="{ id }" :label="t('fields.school_type')">
         <school-type-select v-model="form.school_type_id" :id></school-type-select>

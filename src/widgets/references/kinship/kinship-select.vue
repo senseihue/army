@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import UiSelect from "@vueform/multiselect"
-import { useSchoolApi } from "~/features/references/school"
+import { useKinshipApi } from "~/features/references/kinship"
 
 interface IProps {
   autoSelect?: boolean
@@ -10,26 +10,27 @@ interface IProps {
 const props = defineProps<IProps>()
 const model = defineModel<number | number[] | string | string[]>()
 
-const schoolApi = useSchoolApi()
+const schoolApi = useKinshipApi()
 const el = ref()
 
-const params = ref<Record<string, any>>({
+const params = computed<Record<string, any>>(() => ({
   keyword: "",
   page: 1,
-  per_page: 100
-})
+  per_page: 20
+}))
 
-const map = (value: ISchool[]): ISelect[] => value?.map(({ id, title }) => ({ value: id, label: title }))
+const map = (value: IKinship[]): ISelect[] => value?.map(({ id, title }) => ({ value: id, label: title }))
 
-const { loading, onOpen, onClose, onSearch, options } = useSelect<ISchool>({
+const { loading, onOpen, onClose, onSearch, options, getOptions } = useSelect<IKinship>({
   el,
   map,
   model,
   params,
   autoSelect: props.autoSelect,
   fetchOnOpen: props.fetchOnOpen,
-  api: schoolApi.getSchoolTypeList
+  api: schoolApi.getKinshipList
 })
+
 </script>
 
 <template>

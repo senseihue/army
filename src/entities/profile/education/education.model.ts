@@ -1,9 +1,9 @@
 declare global {
   interface IModal {
-    "personal-education": IPersonalEducation
+    "education": IEducation
   }
 
-  interface IPersonalEducation {
+  interface IEducation {
     id: number
     person_id: number
     school_type_id: number
@@ -23,7 +23,7 @@ declare global {
 }
 
 
-export class PersonalEducation implements IPersonalEducation {
+export class Education implements IEducation {
   id!: number
   school_type!: SchoolType
   school!: SchoolType
@@ -42,7 +42,7 @@ export class PersonalEducation implements IPersonalEducation {
   created_at?: string
   updated_at?: string
 
-  static toRequest (data: Partial<PersonalEducation>) {
+  static toRequest (data: Partial<Education>) {
     return {
       id: data.id,
       person_id: data.person_id,
@@ -55,7 +55,7 @@ export class PersonalEducation implements IPersonalEducation {
     }
   }
 
-  static toResponse (data: PersonalEducation) {
+  static toResponse (data: Education) {
     return {
       id: data.id,
       person_id: data.person_id,

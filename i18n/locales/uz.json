@@ -75,7 +75,16 @@
     "sitemap": "Sahifalar ro'yxati",
     "start_date": "Boshlanish sanasi",
     "diploma_number": "Diplom raqami",
-    "diploma_date": "Diplom berilgan sana"
+    "diploma_date": "Diplom berilgan sana",
+    "work_place": "Ish staji",
+    "birth_place": "Tug'ilgan shaxar",
+    "birth_date": "Tug'ilgan sana",
+    "middle_name": "Otasining ismi",
+    "pin": "JShShIR",
+    "address": "Manzil",
+    "first_name": "Ism",
+    "last_name": "Familiya",
+    "kinship": "Qarindoshlik"
   },
   "messages": {
     "confirm": {
@@ -118,9 +127,8 @@
       "label": "Agentlik haqida"
     },
     "profile": {
-      "account": "Akaunt ma'lumotlari",
-      "change_password": "Parolni o'zgartirish",
       "main": "Profil",
+      "relative": "Qarindoshlar",
       "education": "Ta'lim ma'lumotlari",
       "passport_information": "Passport ma'lumotlari"
     }

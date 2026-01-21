@@ -17,7 +17,7 @@ const el = ref()
 const params = computed<Record<string, any>>(() => ({
   keyword: "",
   page: 1,
-  per_page: 100,
+  per_page: 20,
   school_type_id: props.type_id
 }))
 

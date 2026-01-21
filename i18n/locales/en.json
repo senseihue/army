@@ -76,7 +76,16 @@
     "sitemap": "Sitemap",
     "start_date": "Start date",
     "diploma_number": "Diploma number",
-    "diploma_date": "Diploma date"
+    "diploma_date": "Diploma date",
+    "work_place": "Work place",
+    "birth_place": "Birth place",
+    "birth_date": "Birth date",
+    "middle_name": "Patronymic",
+    "pin": "PIN",
+    "address": "Address",
+    "first_name": "Name",
+    "last_name": "Surname",
+    "kinship": "Kinship"
   },
   "messages": {
     "confirm": {
@@ -122,6 +131,7 @@
     "profile": {
       "main": "Profile",
       "education": "Education data",
+      "relative": "Relatives",
       "passport_information": "Passport information"
     }
   },

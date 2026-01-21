@@ -28,7 +28,13 @@ const menu = computed<SidebarMenuList>(() => [
         title: t("nav.profile.education"),
         // icon: { element: "icon", class: "text-xl", attributes: { name: "solar:text-square-2-bold-duotone" } },
         href: localePath("/profile/education"),
-        class: { "router-link-active": route.fullPath === localePath("/education") }
+        class: { "router-link-active": route.fullPath.includes("/education") }
+      },
+      {
+        title: t("nav.profile.relative"),
+        // icon: { element: "icon", class: "text-xl", attributes: { name: "solar:text-square-2-bold-duotone" } },
+        href: localePath("/profile/relative"),
+        class: { "router-link-active": route.fullPath.includes("/relative") }
       }
     ]
   }

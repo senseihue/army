@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { EducationCard } from "~/features/profile/education"
-import { usePersonalEducationStore } from "~/entities/profile/personal-education"
+import { useEducationStore } from "~/entities/profile/education"
 
 const { t } = useI18n({ useScope: "local" })
 const modal = useModal()
-const personalEducationStore = usePersonalEducationStore()
+const personalEducationStore = useEducationStore()
 const { items, loading } = storeToRefs(personalEducationStore)
-const showEditModal = (education: IPersonalEducation) => {
-  modal.show("personal-education", education)
+const showEditModal = (education: IEducation) => {
+  modal.show("education", education)
 }
 </script>
 

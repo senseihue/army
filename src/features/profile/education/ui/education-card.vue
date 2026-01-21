@@ -1,6 +1,6 @@
 <script setup lang="ts">
 interface IProps {
-  educationData: IPersonalEducation
+  educationData: IEducation
 }
 
 defineProps<IProps>()

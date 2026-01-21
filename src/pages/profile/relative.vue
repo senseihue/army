@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ProfileHeader } from "~/features/profile"
-import { EducationModal, EducationGrid, useEducationService, EducationCard } from "~/features/profile/education"
-import { useEducationStore } from "~/entities/profile/education"
+import { RelativeModal, RelativeGrid, useRelativeService } from "~/features/profile/relative"
+import { useRelativeStore } from "~/entities/profile/relative"
 import { UiLoader } from "~/widgets/loader"
 
 definePageMeta({
@@ -9,54 +9,15 @@ definePageMeta({
   fixedHeader: true,
   isLightHeader: true
 })
-const { t } = useI18n({ useScope: "local" })
-const { getEducationList } = useEducationService()
-const { params, loading } = useEducationStore()
+const { getRelativeList } = useRelativeService()
+const { params, loading } = useRelativeStore()
 
 const modal = useModal()
-const activeService = ref<IEducation | null>(null)
-const categories = computed(() => [
-  {
-    type: "my_company",
-    title: t("services.my_company"),
-    icon: "mynaui:briefcase"
-  },
-
-  {
-    type: "infrastructure",
-    title: t("services.infrastructure"),
-    icon: "lucide:cpu"
-  },
-  {
-    type: "license",
-    title: t("services.licenses"),
-    icon: "hugeicons:note"
-  },
-  {
-    type: "foreign_economic_activity",
-    title: t("services.foreign_economic_activity"),
-    icon: "bitcoin-icons:exchange-filled"
-  },
-  {
-    type: "tax_information",
-    title: t("services.tax_information"),
-    icon: "heroicons-solid:receipt-tax"
-  },
-  {
-    type: "economic_operations",
-    title: t("services.economic_operations"),
-    icon: "heroicons-solid:receipt-tax"
-  },
-  {
-    type: "others",
-    title: t("services.others"),
-    icon: "heroicons-solid:receipt-tax"
-  }
-])
 
 const get = async () => {
-  await getEducationList()
+  await getRelativeList()
 }
+
 
 onMounted(() => {
   get()
@@ -65,9 +26,9 @@ onMounted(() => {
 
 <template>
   <div class="flex w-full flex-col gap-4">
-    <profile-header icon-name="lucide:briefcase" :title="$t('nav.profile.education')" @refresh="get">
+    <profile-header icon-name="lucide:briefcase" :title="$t('nav.profile.relative')" @refresh="get">
       <template #action>
-        <ui-button class="rounded-xl" color="secondary" variant="flat" @click="modal.show('education')">
+        <ui-button class="rounded-xl" color="secondary" variant="flat" @click="modal.show('relative')">
           <span>{{ $t("actions.add") }}</span>
           <icon name="lucide:plus" />
         </ui-button>
@@ -76,16 +37,16 @@ onMounted(() => {
     <div class="mt-2 grid w-full gap-4 rounded-2xl bg-white p-4">
       <ui-loader v-if="loading" />
       <template v-else>
-        <education-grid  />
+        <relative-grid  />
         <ui-pagination
           v-model="params.page"
           :total="params.total"
           :per-page="params.per_page"
-          @update:model-value="getEducationList"
+          @update:model-value="getRelativeList"
         />
       </template>
 
-      <education-modal />
+      <relative-modal />
     </div>
   </div>
 </template>
