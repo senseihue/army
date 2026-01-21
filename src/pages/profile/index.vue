@@ -4,7 +4,8 @@ import { ProfileHeader, ProfileMainInfo } from "~/features/profile"
 
 definePageMeta({
   protected: true,
-  fixedHeader: true
+  fixedHeader: true,
+  isLightHeader: true
 })
 
 const modal = useModal()

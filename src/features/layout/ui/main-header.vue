@@ -15,7 +15,7 @@ const position = computed(() => (!route?.meta?.fixedHeader ? "fixed" : "sticky")
 </script>
 
 <template>
-  <header class="main-header container-7xl" :class="[position]" @mouseleave="hideNavMenu">
+  <header class="main-header container-7xl" :class="[position, {is_light: route?.meta?.isLightHeader}]" @mouseleave="hideNavMenu">
     <div class="main-header__inner">
       <nuxt-link-locale class="font-display text-lg font-semibold text-zinc-100" to="/">
         <logo class="object-contain" />
@@ -25,7 +25,7 @@ const position = computed(() => (!route?.meta?.fixedHeader ? "fixed" : "sticky")
 
         <auth-profile-button-group />
 
-        <main-header-menu-toggle />
+<!--        <main-header-menu-toggle />-->
       </div>
 
       <!--        <main-header-alert />-->
@@ -42,6 +42,9 @@ const position = computed(() => (!route?.meta?.fixedHeader ? "fixed" : "sticky")
 
   &__inner {
     @apply mx-auto flex h-12 items-center justify-between rounded-full border border-zinc-800/50 bg-zinc-900/70 px-6 backdrop-blur-md;
+    &.is_light {
+      @apply !border-zinc-200 !bg-zinc-100 !text-zinc-900;
+    }
   }
 
   &__wrapper {

@@ -1,0 +1,43 @@
+<script setup lang="ts">
+const metrics = [
+  { value: "99.99%", label: "Uptime SLA", description: "Enterprise reliability" },
+  { value: "10M+", label: "API Requests/Day", description: "Proven at scale" },
+  { value: "<50ms", label: "Avg Response", description: "Blazing fast" },
+  { value: "150+", label: "Countries", description: "Global reach" },
+]
+</script>
+
+<template>
+  <section class="px-6 py-24 bg-zinc-900/20">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-12">
+        <p class="text-sm font-medium text-zinc-500 uppercase tracking-wider mb-4">Our Impact</p>
+        <h2 class="font-display text-3xl md:text-4xl font-bold text-zinc-100 mb-4">Trusted by teams worldwide</h2>
+        <p class="text-zinc-500 max-w-lg mx-auto text-balance">
+          Numbers that speak for themselves. See why thousands choose us.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div
+            v-for="metric in metrics"
+            :key="metric.label"
+            class="p-6 rounded-2xl bg-zinc-900/50 border border-zinc-800/50 hover:border-zinc-700/50 hover:bg-zinc-900/80 transition-all duration-300 group text-center relative overflow-hidden"
+        >
+          <div class="absolute inset-0 bg-gradient-to-t from-zinc-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          <div class="relative">
+            <p class="font-display text-3xl md:text-4xl font-bold text-zinc-100 mb-1 group-hover:text-white transition-colors">
+              {{ metric.value }}
+            </p>
+            <p class="text-sm font-medium text-zinc-400 mb-1">{{ metric.label }}</p>
+            <p class="text-xs text-zinc-600">{{ metric.description }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</template>
+
+<style scoped>
+
+</style>

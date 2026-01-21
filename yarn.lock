@@ -2304,6 +2304,11 @@
   resolved "https://registry.yarnpkg.com/@oxc-transform/binding-win32-x64-msvc/-/binding-win32-x64-msvc-0.102.0.tgz#0fe378c5d5087142ab30862bf6d0ec4dfbed4dfc"
   integrity sha512-eYOm6mch+1cP9qlNkMdorfBFY8aEOxY/isqrreLmEWqF/hyXA0SbLKDigTbvh3JFKny/gXlHoCKckqfua4cwtg==
 
+"@paper-design/shaders@^0.0.71":
+  version "0.0.71"
+  resolved "https://registry.yarnpkg.com/@paper-design/shaders/-/shaders-0.0.71.tgz#957a10b2ed9084312d265ca554d5bc938034a4cd"
+  integrity sha512-brCt05YxxyjBrhnE3l1wJJHcFXsM8aE4lmpd9TMQp+p0dMU3F+OWkJZL9m/RC1Tt7om5xr0Wg7d0HYm+b9NYZA==
+
 "@parcel/watcher-android-arm64@2.5.4":
   version "2.5.4"
   resolved "https://registry.yarnpkg.com/@parcel/watcher-android-arm64/-/watcher-android-arm64-2.5.4.tgz#88c67bde2c3efa997a0b1fea540080c6ade0322c"

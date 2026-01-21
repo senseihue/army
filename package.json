@@ -24,6 +24,7 @@
     "@nuxtjs/google-fonts": "^3.2.0",
     "@nuxtjs/i18n": "9.5.4",
     "@nuxtjs/tailwindcss": "6.14.0",
+    "@paper-design/shaders": "^0.0.71",
     "@pinia/nuxt": "0.11.0",
     "@tinymce/tinymce-vue": "4.0.7",
     "@vueform/multiselect": "2.6.10",
