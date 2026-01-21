@@ -6,7 +6,9 @@ include:
 variables:
   DOCKER_IMAGE: "recruit_front"
 
-starges:
+stages:
+  - build
+  - deploy
   - notify
   
 deploy:
