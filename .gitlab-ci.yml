@@ -6,8 +6,3 @@ include:
 variables:
   DOCKER_IMAGE: "recruit_front"
   
-deploy:
-  script:
-    - echo "Running special deploy for Priziv..."
-    - docker compose down
-    - docker compose up -d --force-recreate
