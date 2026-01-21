@@ -31,7 +31,6 @@ const getProfile = async () => {
 <template>
   <div class="flex w-full flex-col gap-2">
     <profile-header :title="$t('nav.profile.passport_information')" @refresh="getProfile">
-
     </profile-header>
     <profile-main-info />
     <!--    <profile-passport-info />-->

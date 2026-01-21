@@ -28,7 +28,7 @@ export const useEducationService = () => {
     loading.value = true
     return action(dto.value)
       .then(() => {
-        $toast.success(t("messages.success.education_created"))
+        $toast.success(t("messages.success.saved"))
         modal.hide("education")
         getEducationList()
       })

@@ -28,7 +28,7 @@ export const useRelativeService = () => {
     loading.value = true
     return action(dto.value)
       .then(() => {
-        $toast.success(t("messages.success.relative_created"))
+        $toast.success(t("messages.success.saved"))
         modal.hide("relative")
         getRelativeList()
       })

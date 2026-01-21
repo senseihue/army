@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {  MainHeader } from "~/features/layout"
+import {MainFooter, MainHeader} from "~/features/layout"
 import { AuthErrorModal } from "~/entities/auth/ui"
 import { AuthRoleSelectModal } from "~/features/auth"
 </script>
@@ -17,7 +17,7 @@ import { AuthRoleSelectModal } from "~/features/auth"
     <!--      </div>-->
     <!--    </section>-->
 
-    <!--    <main-footer />-->
+        <main-footer />
     <toaster close-button rich-colors invert position="top-right" />
     <auth-role-select-modal />
 
