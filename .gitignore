@@ -9,6 +9,9 @@ dist
 # Node dependencies
 node_modules
 
+# env files
+.env*
+
 # Logs
 logs
 *.log
