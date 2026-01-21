@@ -1,9 +1,5 @@
 name: hr_client_front
 
-volumes:
-  code:
-    name: hr_client_front
-
 services:
   hr_client_front:
     image: $DOCKER_IMAGE:$TAG
