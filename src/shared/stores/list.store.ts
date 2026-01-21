@@ -1,7 +1,7 @@
 export const createListParams = <T = IStoreListParams>(params: T) => {
   return ref({
     page: 0,
-    size: 10,
+    per_page: 10,
     total: 0,
     keyword: "",
     ...params

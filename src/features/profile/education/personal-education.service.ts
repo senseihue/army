@@ -14,9 +14,9 @@ export const usePersonalEducationService = () => {
 
     return PersonalEducationApi
       .getPersonalEducationList(cleanParams(PersonalEducationStore.params))
-      .then(({ content, pageable }) => {
+      .then(({ content, pagination }) => {
         PersonalEducationStore.items = content
-        PersonalEducationStore.params.total = pageable?.total || 0
+        PersonalEducationStore.params.total = pagination?.total || 0
         return Promise.resolve(content)
       })
       .finally(() => (PersonalEducationStore.loading = false))
@@ -26,8 +26,6 @@ export const usePersonalEducationService = () => {
 
     const action = dto.value.id ? PersonalEducationApi.updatePersonalEducation : PersonalEducationApi.createPersonalEducation
     loading.value = true
-    dto.value.person_id = profile?.value?.person.id
-    dto.value.school_type_id = 6
     return action(dto.value)
       .then(() => {
         $toast.success(t("messages.success.education_created"))

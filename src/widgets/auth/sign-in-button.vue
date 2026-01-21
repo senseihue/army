@@ -9,7 +9,6 @@ const getRedirectUrl = () => authService.signIn()
 </script>
 
 <template>
-  <client-only>
     <ui-button
       v-bind="$attrs"
       rounded
@@ -19,5 +18,4 @@ const getRedirectUrl = () => authService.signIn()
       @click="getRedirectUrl"
     />
 
-  </client-only>
 </template>

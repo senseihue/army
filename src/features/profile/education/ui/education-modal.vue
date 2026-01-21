@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { PersonalEducation } from "~/entities/profile/personal-education"
 import { usePersonalEducationService } from "~/features/profile/education"
-import { SchoolsSelect } from "~/widgets/education"
+import { SchoolsSelect, SchoolTypeSelect } from "~/widgets/references"
 import UiDatePicker from "@vuepic/vue-datepicker"
 
 const { saveEducation } = usePersonalEducationService()
@@ -15,6 +15,7 @@ const loading = ref(false)
 const form = ref<PersonalEducation>(new PersonalEducation())
 const rules = ref({
   school_id: { required },
+  school_type_id: { required },
   start_date: { required },
   diploma_number: { requiredIf: requiredIf(computed(() => form.value.end_date?.length > 0)) },
   diploma_date: { requiredIf: requiredIf(computed(() => form.value.end_date?.length > 0)) }
@@ -36,7 +37,6 @@ const onShown = (data: IPersonalEducation) => {
 }
 const submit = async () => {
   const valid = await vuelidate.value.$validate()
-  console.log(vuelidate.value)
   if (valid) await saveEducation(form, loading)
 }
 
@@ -50,9 +50,12 @@ const label = computed(() => (editing.value ? t("actions.edit") : t("actions.add
 
 <template>
   <ui-modal id="personal-education" :loading :label @shown="onShown">
-    <form class="grid grid-cols-1 gap-4 px-4 py-[15px]" @submit.prevent>
+    <form class="grid grid-cols-1 md:grid-cols-2 gap-4 px-4 py-[15px]" @submit.prevent>
+      <ui-form-group v-bind="hasError('school_type_id')" v-slot="{ id }" :label="t('fields.school_type')">
+        <school-type-select v-model="form.school_type_id" :id></school-type-select>
+      </ui-form-group>
       <ui-form-group v-bind="hasError('school_id')" v-slot="{ id }" :label="t('fields.school')">
-        <schools-select v-model="form.school_id" :id></schools-select>
+        <schools-select v-model="form.school_id" :type_id="form.school_type_id" :id></schools-select>
       </ui-form-group>
       <ui-form-group v-bind="hasError('start_date')" v-slot="{ id }" :label="t('fields.start_date')">
         <ui-date-picker

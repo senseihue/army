@@ -6,7 +6,8 @@ import { UiLoader } from "~/widgets/loader"
 
 definePageMeta({
   protected: true,
-  fixedHeader: true
+  fixedHeader: true,
+  isLightHeader: true
 })
 const { t } = useI18n({ useScope: "local" })
 const { getPersonalEducationList } = usePersonalEducationService()
@@ -89,7 +90,7 @@ onMounted(() => {
         <ui-pagination
           v-model="params.page"
           :total="params.total"
-          :per-page="params.size"
+          :per-page="params.per_page"
           @update:model-value="getPersonalEducationList"
         />
       </template>

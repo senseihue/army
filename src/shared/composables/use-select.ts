@@ -32,7 +32,7 @@ export const useSelect = <T>({
   }
 
   const getInfiniteOptions = async () => {
-    if (params.value.total < params.value.size) {
+    if (params.value.total < params.value.per_page) {
       return disconnect()
     }
     const { content } = await api(cleanParams(params.value)).finally(() => (loading.value = false))

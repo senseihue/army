@@ -1,23 +1,24 @@
 <script setup lang="ts">
 import UiSelect from "@vueform/multiselect"
-import { usePersonalEducationApi } from "~/features/profile/education"
+import { useSchoolApi } from "~/features/references/school"
 
 interface IProps {
   autoSelect?: boolean
   fetchOnOpen?: boolean
+  type_id?: ISchoolType['id']
 }
 
 const props = defineProps<IProps>()
 const model = defineModel<number | number[] | string | string[]>()
 
-const personalEducationApi = usePersonalEducationApi()
+const schoolApi = useSchoolApi()
 const el = ref()
 
 const params = ref<Record<string, any>>({
   keyword: "",
   page: 1,
-  school_type_id: 1,
-  size: 100
+  per_page: 100,
+  school_type_id: props.type_id
 })
 
 const map = (value: ISchool[]): ISelect[] => value?.map(({ id, title }) => ({ value: id, label: title }))
@@ -29,7 +30,7 @@ const { loading, onOpen, onClose, onSearch, options } = useSelect<ISchool>({
   params,
   autoSelect: props.autoSelect,
   fetchOnOpen: props.fetchOnOpen,
-  api: personalEducationApi.getSchoolList
+  api: schoolApi.getSchoolList
 })
 </script>
 

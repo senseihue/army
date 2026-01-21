@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import Logo from "~/app/assets/svg/logo-white.svg"
+import LogoBlack from "~/app/assets/svg/logo-black.svg"
 
 import {
   MainHeaderNav,
@@ -12,18 +13,20 @@ import { AuthProfileButtonGroup } from "~/widgets/auth"
 const { hideNavMenu } = useHeader()
 const route = useRoute()
 const position = computed(() => (!route?.meta?.fixedHeader ? "fixed" : "sticky"))
+const isLight = computed(() => route?.meta?.isLightHeader === true)
 </script>
 
 <template>
-  <header class="main-header container-7xl" :class="[position, {is_light: route?.meta?.isLightHeader}]" @mouseleave="hideNavMenu">
+  <header class="main-header container-7xl" :class="[position, isLight ? 'is_light' : '']" @mouseleave="hideNavMenu">
     <div class="main-header__inner">
       <nuxt-link-locale class="font-display text-lg font-semibold text-zinc-100" to="/">
-        <logo class="object-contain" />
+        <logo-black v-if="isLight" class="object-contain" />
+        <logo v-else class="object-contain" />
       </nuxt-link-locale>
       <div class="flex items-center gap-1">
-        <main-header-nav />
+        <main-header-nav :is-light="isLight" />
 
-        <auth-profile-button-group />
+        <auth-profile-button-group :is-light="isLight" />
 
 <!--        <main-header-menu-toggle />-->
       </div>
@@ -40,11 +43,16 @@ const position = computed(() => (!route?.meta?.fixedHeader ? "fixed" : "sticky")
 .main-header {
   @apply left-0 right-0 top-0 z-40 py-4;
 
+  &.is_light {
+    .main-header {
+      &__inner {
+        @apply !border-none !bg-transparent !text-zinc-900 backdrop-blur-none;
+      }
+    }
+  }
   &__inner {
     @apply mx-auto flex h-12 items-center justify-between rounded-full border border-zinc-800/50 bg-zinc-900/70 px-6 backdrop-blur-md;
-    &.is_light {
-      @apply !border-zinc-200 !bg-zinc-100 !text-zinc-900;
-    }
+
   }
 
   &__wrapper {

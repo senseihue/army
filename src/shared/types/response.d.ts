@@ -6,16 +6,18 @@ interface IResult {
 }
 
 interface IPagination {
-  total: number
-  prev: number
-  next: number
-  current: number
+  "total": number,
+  "per_page": number,
+  "current_page": number,
+  "last_page": number,
+  "from": number,
+  "to": number
 }
 
 interface IResponse<T> {
   content: T
   errors?: string[]
-  pageable?: IPagination
+  pagination?: IPagination
 }
 
 type ResponseContainer<T = any> = IResponse<T>
@@ -25,6 +27,6 @@ interface PaginationParams {
   [key: string]: any
   keyword: string
   page: number
-  size: number
+  per_page: number
   total: number
 }

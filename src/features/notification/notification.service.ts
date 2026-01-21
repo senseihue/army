@@ -11,15 +11,15 @@ export const useNotificationService = () => {
   const { $session, $config, $firebaseMessaging } = useNuxtApp()
 
   const getInfiniteNotificationList = async () => {
-    if (params.value.total % params.value.size === 0) {
+    if (params.value.total % params.value.per_page === 0) {
       disconnect()
       return
     }
-    const { content, pageable } = await notificationApi.getNotificationList(cleanParams(params.value))
+    const { content, pagination } = await notificationApi.getNotificationList(cleanParams(params.value))
 
     if (!content.length) return disconnect()
     items.value = items.value.concat(content)
-    count.value = pageable?.total ?? 0
+    count.value = pagination?.total ?? 0
     params.value.page++
   }
   const { observe, disconnect } = useInfinite(sentinel, getInfiniteNotificationList)
@@ -27,9 +27,9 @@ export const useNotificationService = () => {
   const getNotificationList = async () => {
     try {
       loading.value = true
-      const { content, pageable } = await notificationApi.getNotificationList(cleanParams({ size: 10 }))
+      const { content, pagination } = await notificationApi.getNotificationList(cleanParams({ per_page: 10 }))
       items.value = content
-      count.value = pageable?.total ?? 0
+      count.value = pagination?.total ?? 0
     } finally {
       loading.value = false
     }

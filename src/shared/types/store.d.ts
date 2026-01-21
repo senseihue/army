@@ -1,6 +1,6 @@
 interface IStoreListParams extends Record<string, any>{
   page: number
-  size: number
+  per_page: number
   total: number
   keyword: string
 }

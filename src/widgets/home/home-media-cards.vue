@@ -6,7 +6,7 @@ const { t, locale } = useI18n({ useScope: "local" })
 const params = ref({
   page: 0,
   total: 1,
-  size: 6
+  per_page: 6
 })
 
 const pressList = ref<IPress[]>([])

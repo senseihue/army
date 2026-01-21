@@ -12,9 +12,6 @@ export const usePersonalEducationApi = () => {
     return $http.$get(`${BASE_URL}/${id}`)
   }
 
-  const getSchoolList = (params: Record<string, any>): AsyncResponseContainer<IPersonalEducation[]> => {
-    return $http.$get(`${BASE_URL}/references/schools`, { params })
-  }
 
   const createPersonalEducation = (data: PersonalEducation): AsyncResponseContainer<IPersonalEducation> => {
     return $http.$post(`${BASE_URL}/person/educations`, data)
@@ -28,7 +25,6 @@ export const usePersonalEducationApi = () => {
   return {
     getPersonalEducationList,
     getPersonalEducation,
-    getSchoolList,
     createPersonalEducation,
     updatePersonalEducation
   }

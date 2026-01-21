@@ -2,6 +2,11 @@
 import { AuthProfileInfo } from "~/features/auth/ui"
 import { SignInButton } from "~/widgets/auth"
 
+interface IProps {
+  isLight?: boolean
+}
+
+defineProps<IProps>()
 const { $session } = useNuxtApp()
 const { loggedIn } = $session || {}
 </script>
