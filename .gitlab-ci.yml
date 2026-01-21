@@ -10,6 +10,7 @@ stages:
   - build
   - deploy
   - notify
+  - cook
   
 deploy:
   stage: deploy
