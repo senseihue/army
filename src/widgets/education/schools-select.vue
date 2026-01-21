@@ -16,6 +16,7 @@ const el = ref()
 const params = ref<Record<string, any>>({
   keyword: "",
   page: 1,
+  school_type_id: 1,
   size: 100
 })
 

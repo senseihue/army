@@ -13,7 +13,10 @@ defineEmits<{
   <div class="max-w-xl rounded-lg border bg-white p-6 shadow-sm">
     <div class="mb-4 border-b pb-4">
       <h3 class="text-xl font-bold text-gray-900">{{ educationData.school.title }}</h3>
-      <span class="mt-2 inline-block rounded bg-blue-50 px-2 py-1 text-sm font-semibold text-blue-700">
+      <span
+        v-if="educationData.school_type"
+        class="mt-2 inline-block rounded bg-blue-50 px-2 py-1 text-sm font-semibold text-blue-700"
+      >
         {{ educationData.school_type.title }}
       </span>
     </div>
