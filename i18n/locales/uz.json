@@ -1,0 +1,139 @@
+{
+  "actions": {
+    "add": "Qo'shish",
+    "add_project": "Loyiha qo'shish",
+    "all_regions": "Barcha hududlar",
+    "all_sectors": "Barcha sektorlar",
+    "amount": "Miqdori",
+    "back": "Ortga",
+    "buy": "Sotib olish",
+    "cancel": "Bekor qilish",
+    "contact_us": "Biz bilan bog'lanish",
+    "download": "Yuklab olish",
+    "edit": "Tahrirlash",
+    "email": "Elektron pochta",
+    "entrepreneur": "Tadbirkor",
+    "investment_proposals": "Investitsiya takliflari",
+    "investor": "Investor",
+    "irr": "IRR",
+    "loading": "Yuklanmoqda...",
+    "non_resident": "Norezident",
+    "npv": "NPV",
+    "participate": "Qatnashish",
+    "phone": "Telefon",
+    "pp": "PP",
+    "project_category": "Loyiha toifasi",
+    "project_cost": "Loyiha qiymati",
+    "project_information": "Loyiha haqida ma'lumot",
+    "project_location": "Loyiha joylashuvi",
+    "project_type": "Loyiha turi",
+    "publish": "Nashr etish",
+    "refresh": "Yangilash",
+    "remove": "O'chirish",
+    "resident": "Rezident",
+    "save": "Saqlash",
+    "sector": "Sektor",
+    "send": "Yuborish",
+    "send_appeal": "Fikr qoldirish",
+    "sign_in": "Kirish",
+    "sign_out": "Chiqish",
+    "sign_up": "Roʻyxatdan oʻtish",
+    "sitemap": "Sahifalar ro'yxati",
+    "status": "Holati",
+    "submit_application": "Ariza topshirish",
+    "upload": "Yuklash",
+    "view": "Ko'rish",
+    "view_here": "Bu yerda ko'rish",
+    "view_more": "Ko'proq ko'rish",
+    "where_to_start": "Qayerdan boshlash kerak",
+    "more": "Batafsil"
+  },
+  "description": {
+    "footer_desc": "Invest.gov.uz investitsiya portali materiallaridan asl manba va Portalga havola ko‘rsatilmagan holda har qanday foydalanish (ko‘paytirish, chop etish, nusxalash, qayta chop etish, tarqatish, tarjima qilish, efirga uzatish, qayta ishlash va tarqatishning boshqa usullari) qat’iyan man etiladi.\n\n"
+  },
+  "labels": {
+    "end_date": "Tugash sanasi",
+    "cookie_policy": "Cookie shartlari",
+    "date_from": "Boshlanish sanasi",
+    "date_to": "Tugash sanasi",
+    "day": "Kun",
+    "hour": "Soat",
+    "language": "Til",
+    "menu": "Menyu",
+    "minute": "Daqiqa",
+    "name": "Nomi",
+    "notifications": "Bildirishnomalar",
+    "phone": "Telefon",
+    "privacy_policy": "Xisoblash shartlari",
+    "quantity": "Miqdor",
+    "region": "Hudud",
+    "results": "Natijalar",
+    "search": "Qidiruv",
+    "second": "Sonya",
+    "sector": "Sektor",
+    "sign_in": "Kirish",
+    "sitemap": "Sahifalar ro'yxati",
+    "start_date": "Boshlanish sanasi",
+  },
+  "messages": {
+    "confirm": {
+      "block": "Haqiqatan ham bloklamoqchimisiz?",
+      "deactivate": "Haqiqatan ham deaktivatsiya qilmoqchimisiz?",
+      "delete": "Haqiqatan ham o'chirmoqchimisiz?",
+      "send_message": "Haqiqatan ham xabar yubormoqchimisiz?",
+      "sign_out": "Haqiqatan ham chiqmoqchimisiz?"
+    },
+    "error": {
+      "user_not_found": "Foydalanuvchi topilmadi",
+      "user_not_found_description": "Ushbu hisob tizimda yo'q yoki hali faollashtirilmagan. Kiritilgan ma'lumotlarning to'g'riligini tekshiring yoki qo'llab-quvvatlash uchun murojaat qiling."
+    },
+    "info": {
+      "data_not_found": "Ma'lumot topilmadi",
+      "entity_blocked": "{name} bloklandi",
+      "entity_deactivated": "{name} deaktivatsiya qilindi",
+      "entity_deleted": "{name} o'chirildi",
+      "file_size_limit": "Fayl hajmi chegarasi {size} MB",
+      "message_cannot_be_edited": "Xabar yuborilgandan so'ng tahrir qilib bo'lmaydi.",
+      "no_worries_message": "Xavotir olmang, sizga tiklash bo'yicha ko'rsatmalar yuboramiz.",
+      "page_not_found": "Sahifa topilmadi",
+      "welcome_message": "Xush kelibsiz! Iltimos, ma'lumotlaringizni kiriting."
+    },
+    "success": {
+      "appeal_created": "Sizning murojaatlaringiz moderatsiyaga yuborildi.",
+      "entity_activated": "{name} faollashtirildi",
+      "entity_sent": "{name} yuborildi",
+      "entity_unblocked": "{name} blokdan chiqarildi",
+      "non_resident_registration": "Ro'yxatdan o'tish muvaffaqiyatli amalga oshirildi. Parol sizning elektron pochtangizga yuborildi",
+      "password_reset": "Parolni tiklash havolasi elektron pochtangizga yuborildi",
+      "registration": "Ro'yxatdan o'tish muvaffaqiyatli yakunlandi!",
+      "saved": "Muvaffaqiyatli saqlandi"
+    }
+  },
+  "nav": {
+    "about": {
+      "about_us": "Biz haqimizda",
+      "event": "Tadbirlar",
+      "label": "Agentlik haqida"
+    },
+    "profile": {
+      "account": "Akaunt ma'lumotlari",
+      "change_password": "Parolni o'zgartirish",
+      "main": "Profil",
+      "education": "Ta'lim ma'lumotlari",
+      "passport_information": "Passport ma'lumotlari"
+    }
+  },
+  "thead": {
+    "actions": "Amallar",
+    "sequence": "№"
+  },
+  "validations": {
+    "email": "Noto'g'ri elektron pochta manzili",
+    "maxLength": "Maksimal ruxsat etilgan uzunlik {max}",
+    "minLength": "Minimal talab qilingan uzunlik {min}",
+    "not": "Qiymat \"{otherName}\" ga teng bo'lmasligi kerak",
+    "required": "Ushbu maydon to'ldirilishi shart",
+    "requiredIf": "Ushbu maydon to'ldirilishi shart",
+    "sameAs": "Qiymat \"{otherName}\" maydoni bilan mos kelishi kerak"
+  }
+}

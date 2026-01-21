@@ -1,0 +1,8 @@
+export { default as MainFooter } from "./main-footer.vue"
+export { default as MainHeader } from "./main-header.vue"
+export { default as MainHeaderAlert } from "./main-header-alert.vue"
+export { default as MainHeaderNav } from "./main-header-nav.vue"
+export { default as MainHeaderMenu } from "./main-header-menu.vue"
+export { default as MainHeaderNavMenu } from "./main-header-nav-menu.vue"
+export { default as MainHeaderLanguage } from "./main-header-language.vue"
+export { default as MainHeaderMenuToggle } from "./main-header-menu-toggle.vue"

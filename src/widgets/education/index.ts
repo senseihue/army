@@ -1,0 +1,1 @@
+export { default as SchoolsSelect } from './schools-select.vue'

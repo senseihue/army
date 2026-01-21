@@ -1,0 +1,18 @@
+<script lang="ts" setup>
+import { useAuthService } from "~/features/auth"
+
+const { signIn } = useAuthService()
+definePageMeta({
+  layout: "blank"
+})
+
+onMounted(() => signIn())
+</script>
+
+<template>
+  <div>
+    <div class="grid min-h-dvh w-full place-items-center">
+      <ui-spinner size="size-32" />
+    </div>
+  </div>
+</template>
