@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import UiSelect from "@vueform/multiselect"
-import { useRegionApi } from "~/features/references/region"
+import { useDistrictApi } from "~/features/references/district"
 
 interface IProps {
   autoSelect?: boolean
@@ -10,7 +10,7 @@ interface IProps {
 const props = defineProps<IProps>()
 const model = defineModel<number | number[] | string | string[]>()
 
-const schoolApi = useRegionApi()
+const schoolApi = useDistrictApi()
 const el = ref()
 
 const params = computed<Record<string, any>>(() => ({
@@ -19,16 +19,16 @@ const params = computed<Record<string, any>>(() => ({
   per_page: 20
 }))
 
-const map = (value: IRegion[]): ISelect[] => value?.map(({ id, title }) => ({ value: id, label: title }))
+const map = (value: IDistrict[]): ISelect[] => value?.map(({ id, title }) => ({ value: id, label: title }))
 
-const { loading, onOpen, onClose, onSearch, options, getOptions } = useSelect<IRegion>({
+const { loading, onOpen, onClose, onSearch, options, getOptions } = useSelect<IDistrict>({
   el,
   map,
   model,
   params,
   autoSelect: props.autoSelect,
   fetchOnOpen: props.fetchOnOpen,
-  api: schoolApi.getRegionList
+  api: schoolApi.getDistrictList
 })
 
 </script>
