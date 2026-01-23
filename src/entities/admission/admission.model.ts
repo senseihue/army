@@ -49,11 +49,12 @@ declare global {
 }
 
 export class Admission {
-  season_id!: number;
-  offer_id!: number;
-  test_region_id!: number;
-  test_district_id!: number;
-  test_language_id!: number;
-  school_id!: number;
-  speciality_id!: number;
+  season_id!: number
+  offer_id!: number
+  test_region_id!: number
+  test_district_id!: number
+  test_language_id!: number
+  school_id!: number
+  speciality_id!: number
+  offer_accepted: boolean = false
 }

@@ -10,10 +10,11 @@ import { RegionSelect } from "~/widgets/references/region"
 import { DistrictSelect } from "~/widgets/references/district"
 import { LanguageSelect } from "~/widgets/references/language"
 import SpecialitySelect from "~/widgets/speciality/speciality-select.vue"
+import { OfferCheckbox } from "~/widgets/references/offer"
 
 const { saveAdmission } = useAdmissionService()
 
-const { required, requiredIf } = useRule()
+const { required, not } = useRule()
 
 const modal = useModal()
 const admissionStore = useAdmissionStore()
@@ -24,7 +25,7 @@ const loading = ref(false)
 const form = ref<Admission>(new Admission())
 const rules = ref({
   season_id: { required },
-  // offer_id: { required },
+  offer_accepted: { not: not((value: boolean) => value) },
   test_region_id: { required },
   test_district_id: { required },
   test_language_id: { required },
@@ -37,9 +38,8 @@ const { hasError, vuelidate } = useValidate(form, rules)
 const { t } = useI18n({ useScope: "local" })
 
 const onShown = () => {
-  form.value = {
-    offer_id: 16,
-  }
+  form.value.offer_id = 16
+
   form.value.season_id = current.value?.season.id
 }
 const submit = async () => {
@@ -82,7 +82,10 @@ const label = computed(() => (editing.value ? t("actions.edit") : t("actions.add
         <language-select v-model="form.test_language_id" :id />
       </ui-form-group>
       <ui-form-group v-bind="hasError('speciality_id')" v-slot="{ id }" :label="t('labels.speciality')">
-        <speciality-select :school-id="form.school_id" v-model="form.speciality_id" :id />
+        <speciality-select v-model="form.speciality_id" :school-id="form.school_id" :id />
+      </ui-form-group>
+      <ui-form-group class="col-span-full" v-bind="hasError('offer_accepted')" v-slot="{ id }">
+        <offer-checkbox v-bind="hasError('offer_accepted')" :id v-model="form.offer_accepted" class="col-span-full" />
       </ui-form-group>
     </form>
     <template #footer>

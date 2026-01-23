@@ -6,6 +6,7 @@ interface IProps {
   autoSelect?: boolean
   fetchOnOpen?: boolean
   schoolId?: number
+  seasonId?: number
 }
 
 const props = defineProps<IProps>()
