@@ -10,11 +10,11 @@ COPY . .
 
 RUN yarn build
 
-FROM node:22-alpine
+#FROM node:22-alpine
 
-WORKDIR /app
+#WORKDIR /app
 
-COPY --from=builder /app/.output ./.output
+#COPY --from=builder /app/.output ./.output
 
 EXPOSE 3000
 
