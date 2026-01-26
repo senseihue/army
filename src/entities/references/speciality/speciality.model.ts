@@ -3,7 +3,7 @@ declare global {
     interface ISpeciality {
       id: number
       code: string
-      name: string
+      title: string
       description: string
       status: string
       specialty_type_id: number

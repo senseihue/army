@@ -3,7 +3,7 @@ export const useHeaderNav = () => {
 
   const list = computed<IHeaderNav[]>(() => [
     {
-      label: t("nav.about.admission"),
+      label: t("nav.admission.main"),
       to: "/admission",
     },
     {

@@ -1,5 +1,5 @@
 interface UseSelectProps<T> {
-  api: (...args: any) => any
+  api: (...args: any) => AsyncResponseContainer<any>
   map?: (data: T[]) => ISelect[]
   params: Ref<Record<string, any>>
   el: Ref<HTMLElement>
@@ -22,8 +22,9 @@ export const useSelect = <T>({
   const getOptions = async () => {
     loading.value = true
     try {
-      const { content } = await api(cleanParams({ ...params.value, page: 0 }))
+      const { content, pagination } = await api(cleanParams({ ...params.value, page: 0 }))
       options.value = map ? map(content) : content
+      params.value.total = pagination?.total || 0
       if (el.value) await observe()
       if (autoSelect) model.value = options.value.at(0)?.value
     } finally {

@@ -13,6 +13,7 @@ declare global {
     season_type_id: number;
     title: string;
     start_date: string;
+    offer: IOffer
     end_date: string;
     social_statuses: Socialstatus[];
     schools: School[];
@@ -50,7 +51,7 @@ declare global {
 
 export class Admission {
   season_id!: number
-  offer_id!: number
+  social_status_id!: number
   test_region_id!: number
   test_district_id!: number
   test_language_id!: number

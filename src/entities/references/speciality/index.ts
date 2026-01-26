@@ -1,1 +1,2 @@
-export * from './district.model'
+export * from './speciality.model'
+export * from './speciality.store'

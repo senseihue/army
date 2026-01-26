@@ -1,5 +1,6 @@
 export default defineNuxtPlugin(() => {
   const localePath = useLocalePath()
+  const route = useRoute()
 
   const token = useCookie("token")
   const loaded = ref(false) // Profile is loaded
@@ -13,7 +14,9 @@ export default defineNuxtPlugin(() => {
     token.value = undefined
     loading.value = false
     profile.value = undefined
-    reloadNuxtApp({ path: localePath("/"), force: true })
+    if (route.meta.protected) {
+      reloadNuxtApp({ path: localePath("/"), force: true })
+    }
   }
 
   watch(

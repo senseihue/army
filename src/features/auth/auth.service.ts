@@ -31,10 +31,7 @@ export const useAuthService = () => {
         password: "20000000000000"
       })
       .then(({ content }) => {
-        console.log(content)
         if (!content) {
-          modal.show("auth-error-modal")
-
           navigateTo(localePath("/"))
           return
         }

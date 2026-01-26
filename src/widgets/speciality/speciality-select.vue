@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import UiSelect from "@vueform/multiselect"
-import { useSpecialityApi } from "~/features/admission/speciality"
+import { useSpecialityApi, useSpecialityService } from "~/features/references/speciality"
 
 interface IProps {
   autoSelect?: boolean
@@ -13,6 +13,7 @@ const props = defineProps<IProps>()
 const model = defineModel<number | number[] | string | string[]>()
 
 const schoolApi = useSpecialityApi()
+const _loading = ref(false)
 const el = ref()
 
 const params = ref<Record<string, any>>({
@@ -20,6 +21,10 @@ const params = ref<Record<string, any>>({
   page: 1,
   per_page: 20
 })
+
+const getSpecialityList = () => {
+
+}
 
 const map = (value: ISpeciality[]): ISelect[] => value?.map(({ id, title }) => ({ value: id, label: title }))
 
@@ -37,9 +42,14 @@ watch(
   () => props.schoolId,
   () => {
     params.value.school_id = props.schoolId
+    params.value.season_id = props.seasonId
     getOptions()
   }
 )
+
+defineExpose({
+  options: () => options
+})
 </script>
 
 <template>

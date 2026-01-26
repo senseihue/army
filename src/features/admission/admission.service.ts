@@ -3,7 +3,8 @@ import { useAdmissionStore } from "~/entities/admission"
 
 export const useAdmissionService = () => {
   const modal = useModal()
-  const {$toast } = useNuxtApp()
+  const {$toast, $session} = useNuxtApp()
+  const { loggedIn } = $session || {}
   const { t } = useI18n()
   const AdmissionApi = useAdmissionApi()
   const AdmissionStore = useAdmissionStore()

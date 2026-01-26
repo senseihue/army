@@ -10,12 +10,7 @@ import LogoWhite from "~/app/assets/svg/logo-white.svg"
         <div class="footer__grid">
           <!-- Column 1: Logo & Support -->
           <div class="footer__branding">
-            <logo-white class="mb-2 max-w-32 sm:mb-0 md:mb-6" />
-
-            <div>
-              <p class="mb-2 text-xs text-white">Supported by</p>
-              <euro-bank class="w-full max-w-52" />
-            </div>
+            <logo-white class="mb-2 sm:mb-0 md:mb-6" />
           </div>
 
           <!-- Column 2: Contact Info -->
@@ -24,13 +19,13 @@ import LogoWhite from "~/app/assets/svg/logo-white.svg"
               <icon class="footer__icon" name="lucide:home" :size="20" />
 
               <a class="footer__link" href="https://maps.app.goo.gl/427fQ4Q9PMGdm8Wn7" target="_blank">
-                13 Amir Temur Avenue, Tashkent 100060, Uzbekistan
+                13 Amir Temur Avenue, Tashkent 112330, Uzbekistan
               </a>
             </div>
 
             <div class="footer__contact-item">
               <icon class="footer__icon" name="lucide:phone" :size="20" />
-              <a class="footer__link" href="tel:+9987120201013">+998 (71) 202-02-10</a>
+              <a class="footer__link" href="tel:+9987120201013">+998 (71) 123-02-10</a>
             </div>
 
             <div class="footer__contact-item">
@@ -41,7 +36,7 @@ import LogoWhite from "~/app/assets/svg/logo-white.svg"
             <div class="footer__contact-item">
               <icon class="footer__icon" name="lucide:at-sign" :size="20" />
               <a class="footer__link" href="mailto:uzipa@invest.gov.uz">
-                uzipa@invest.gov.uz --->
+                uzipa@invest1.gov.uz --->
                 <br />
                 ({{ $t("labels.investment_related") }})
               </a>
@@ -49,7 +44,7 @@ import LogoWhite from "~/app/assets/svg/logo-white.svg"
             <div class="footer__contact-item">
               <icon class="footer__icon" name="lucide:at-sign" :size="20" />
               <a class="footer__link" href="mailto:info@invest.gov.uz">
-                info@invest.gov.uz --->
+                info@invest1.gov.uz --->
                 <br />
                 ({{ $t("labels.official_correspondence") }})
               </a>
@@ -69,7 +64,7 @@ import LogoWhite from "~/app/assets/svg/logo-white.svg"
           <!-- Column 3: Bottom Text -->
           <div class="footer__text">
             <p class="text-xs text-white">
-              {{ $t("description.footer_desc") }}
+<!--              {{ // $t("description.footer_desc") }}-->
             </p>
           </div>
         </div>

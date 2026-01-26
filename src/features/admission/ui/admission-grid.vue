@@ -11,7 +11,7 @@ const { items } = storeToRefs(admissionStore)
 <template>
   <div class="grid grid-cols-1 gap-x-7 gap-y-3 lg:grid-cols-2">
     <template v-if="items.length > 0">
-      <admission-card v-for="item in items" :key="item.id" :admission-data="item" />
+      <admission-card v-for="item in items" :key="item.id" :admission="item" />
     </template>
     <template v-else>
       <div class="col-span-full py-12 text-center">

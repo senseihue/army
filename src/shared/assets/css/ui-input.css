@@ -1,5 +1,5 @@
 .ui-input {
-    @apply form-input px-8 py-4 placeholder:text-black sm:px-8;
+    @apply form-input px-8 py-4 placeholder:text-black sm:px-8 rounded-lg;
     @apply focus:outline-0 focus:ring-1;
     @apply border-gray-200 bg-gray-50 ;
     @apply hover:border-gray-300;

@@ -57,7 +57,7 @@ html {
 }
 
 .multiselect, .dp__input {
-    @apply h-[54px] rounded-none;
+    @apply h-[54px] rounded-lg;
 }
 
 .dp__input_wrap {
@@ -69,5 +69,5 @@ html {
 }
 
 .dp__input {
-    @apply placeholder:text-black rounded-none
+    @apply placeholder:text-black rounded-lg
 }

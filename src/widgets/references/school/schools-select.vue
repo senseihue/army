@@ -6,6 +6,7 @@ interface IProps {
   autoSelect?: boolean
   fetchOnOpen?: boolean
   type_id?: ISchoolType['id']
+  seasonId?: IAdmission['id']
 }
 
 const props = defineProps<IProps>()
@@ -18,7 +19,8 @@ const params = computed<Record<string, any>>(() => ({
   keyword: "",
   page: 1,
   per_page: 20,
-  school_type_id: props.type_id
+  school_type_id: props.type_id,
+  season_id: props.seasonId
 }))
 
 const map = (value: ISchool[]): ISelect[] => value?.map(({ id, title }) => ({ value: id, label: title }))
@@ -33,8 +35,9 @@ const { loading, onOpen, onClose, onSearch, options, getOptions } = useSelect<IS
   api: schoolApi.getSchoolList
 })
 
-watch(() => props.type_id, () => {
+watchEffect(() => {
   params.value.school_type_id = props.type_id
+  params.value.season_id = props.seasonId
   getOptions()
 })
 </script>

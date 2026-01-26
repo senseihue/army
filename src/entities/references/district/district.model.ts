@@ -2,7 +2,7 @@ declare global {
 
     interface IDistrict {
       id: number
-      name: string
+      title: string
       code: string
       sync_code?: any
       foreign_id: number
