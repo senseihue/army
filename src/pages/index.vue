@@ -1,11 +1,12 @@
 <script lang="ts" setup>
-import {HomeHero, HomeStatistics} from "~/features/home"
+import {HomeHero} from "~/features/home"
+import { HomeServices } from "~/widgets/home"
 </script>
 
 <template>
-  <div class="bg-zinc-950 text-zinc-100 antialiased">
+  <div class="antialiased">
     <home-hero />
-    <home-statistics />
+    <home-services id="services" />
     <!--    <home-about />-->
   </div>
 </template>

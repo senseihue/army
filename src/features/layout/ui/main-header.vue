@@ -28,7 +28,7 @@ const isLight = computed(() => route?.meta?.isLightHeader === true)
 
         <auth-profile-button-group :is-light="isLight" />
 
-<!--        <main-header-menu-toggle />-->
+      <!--        <main-header-menu-toggle />-->
       </div>
 
       <!--        <main-header-alert />-->

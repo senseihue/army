@@ -1,1 +1,1 @@
-export { default as HomeMediaCards } from './home-media-cards.vue'
+export { default as HomeServices } from './home-services.vue'

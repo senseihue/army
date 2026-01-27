@@ -11,7 +11,7 @@ export const useAuthService = () => {
   const modal = useModal()
 
   const reCAPTCHA = useReCaptcha()
-  const getRedirectUrl = (origin?: string, role?: string) =>
+  const getRedirectUrl = (origin?: string) =>
     authApi.getRedirectUrl(origin).then(({ content }) => {
       window.open(content, "_self")
     })

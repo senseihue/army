@@ -4,9 +4,11 @@ declare global {
   }
 
   interface IAdmission {
-    id: number;
-    title: string;
-    season: Season;
+    id: number
+    title: string
+    description: string
+    image_path: string
+    season: Season
   }
   interface Season {
     id: number;
@@ -15,10 +17,10 @@ declare global {
     start_date: string;
     offer: IOffer
     end_date: string;
-    social_statuses: Socialstatus[];
-    schools: School[];
+    social_statuses: SocialStatus[];
+    schools: ISchool[];
   }
-  interface School {
+  interface ISchool {
     id: number;
     school_type_id: number;
     title: string;
@@ -34,7 +36,7 @@ declare global {
     school_id: number;
     social_status_id: number;
   }
-  interface Socialstatus {
+  interface SocialStatus {
     id: number;
     title: string;
     pivot: Pivot;
@@ -44,6 +46,11 @@ declare global {
     social_status_id: number;
     age_min: number;
     age_max: number;
+  }
+
+  interface IAdmissionSchoolParams extends IStoreListParams {
+    season_id: number
+    social_status_id: number
   }
 
 

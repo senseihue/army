@@ -7,7 +7,7 @@ import UiSelect from "@vueform/multiselect"
 import { RegionSelect } from "~/widgets/references/region"
 import { DistrictSelect } from "~/widgets/references/district"
 import { LanguageSelect } from "~/widgets/references/language"
-import SpecialitySelect from "~/widgets/speciality/speciality-select.vue"
+import SpecialitySelect from "~/widgets/references/speciality/speciality-select.vue"
 import { OfferCheckbox } from "~/widgets/references/offer"
 import useAuthCallback from "~/shared/composables/use-auth-callback"
 

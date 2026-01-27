@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import EuroBank from "~/app/assets/svg/euro-bank.svg"
 import LogoWhite from "~/app/assets/svg/logo-white.svg"
 </script>
 

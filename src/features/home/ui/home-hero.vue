@@ -3,37 +3,36 @@ const isLight = ref(false)
 </script>
 
 <template>
-  <section class="min-h-screen flex flex-col items-center justify-center px-6 pt-24 pb-20 relative">
+  <section class="relative flex min-h-screen flex-col items-center justify-center px-6 pb-20 pt-24">
     <video
-      class="absolute z-0 inset-0 w-full h-full object-cover opacity-50"
+      class="absolute inset-0 z-0 h-full w-full object-cover "
       muted
       autoplay
       src="/Untitled 1-1.mp4"
       @contextmenu.prevent
     />
-    <div class="relative z-10 text-center max-w-3xl mx-auto">
-      <h1 class="font-display text-5xl md:text-7xl font-bold tracking-tight mb-6">
-        <span class="text-zinc-100 block">Build faster.</span>
-        <span class="bg-gradient-to-r from-zinc-500 via-zinc-300 to-zinc-500 bg-clip-text text-transparent">
-            Ship smarter.
-          </span>
+    <div class="relative z-10 mx-auto text-center">
+      <h1 class="font-display mb-6 text-5xl font-bold tracking-tight md:text-7xl">
+        <span class="block text-zinc-100">SADOQAT - MATONAT - INTELLEKT</span>
+        <!--        <span class="bg-gradient-to-r from-zinc-500 via-zinc-300 to-zinc-500 bg-clip-text text-transparent">-->
+        <!--          Ship smarter.-->
+        <!--        </span>-->
       </h1>
 
-      <p class="text-lg md:text-xl text-zinc-500 max-w-2xl mx-auto mb-10 leading-relaxed text-balance">
-        The all-in-one platform that helps teams build, deploy, and scale their products 10x faster. No complexity,
-        just results.
+      <p class="mx-auto mb-10 max-w-2xl text-balance text-lg leading-relaxed text-zinc-500 md:text-xl">
+        MUDOFAA VAZIRLIGI HARBIY - KASBIY SARALASH BOSHQARMASI
       </p>
 
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-        <nuxt-link-locale to="/"
-                          class="group transition-transform duration-300 hover:scale-105 active:scale-95"
+      <div class="flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <nuxt-link-locale
+          class="group transition-transform duration-300 hover:scale-105 active:scale-95"
+          to="/#services"
         >
-          <div :class="{
-            'rounded-full': true,
-            'shadow-[0_8px_20px_rgba(0,0,0,0.25)]': isLight
-          }">
-
-          </div>
+          <ui-button
+            class="ml-2 rounded-full !bg-zinc-100 px-4 py-1.5 text-sm font-medium !text-zinc-900 transition-colors hover:!bg-zinc-200"
+            rounded
+            :label="$t('labels.send_application')"
+          />
         </nuxt-link-locale>
       </div>
     </div>

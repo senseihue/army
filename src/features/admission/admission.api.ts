@@ -1,3 +1,4 @@
+
 export const useAdmissionApi = () => {
   const { $http } = useNuxtApp()
   const BASE_URL = "/api"
@@ -5,9 +6,15 @@ export const useAdmissionApi = () => {
   const getAdmissionList = (params: Record<string, any>): AsyncResponseContainer<IAdmission[]> => {
     return $http.$get(`${BASE_URL}/requests/season-types`, { params })
   }
-
+  const getAdmissionSocialStatusList = (params: Record<string, any>): AsyncResponseContainer<IAdmission[]> => {
+    return $http.$get(`${BASE_URL}/requests/seasons/social-statuses`, { params })
+  }
   const getAdmission = (id: number): AsyncResponseContainer<IAdmission> => {
     return $http.$get(`${BASE_URL}/${id}`)
+  }
+
+  const getAdmissionSchoolList = (params: IAdmissionSchoolParams): AsyncResponseContainer<ISchool[]> => {
+    return $http.$get(`${BASE_URL}/requests/seasons/schools`, { params })
   }
 
 
@@ -15,15 +22,13 @@ export const useAdmissionApi = () => {
     return $http.$post(`${BASE_URL}/requests/store`, data)
   }
 
-  const updateAdmission = (data: IAdmission): AsyncResponseContainer<IAdmission> => {
-    return $http.$put(`${BASE_URL}/requests/admissions`, data)
-  }
 
 
   return {
     getAdmissionList,
     getAdmission,
-    createAdmission,
-    updateAdmission
+    getAdmissionSchoolList,
+    getAdmissionSocialStatusList,
+    createAdmission
   }
 }

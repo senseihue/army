@@ -9,7 +9,7 @@
     "start:dev": "nuxt preview --dotenv .env.development",
     "generate:dev": "nuxt generate --dotenv .env.development",
     "build": "nuxt build --dotenv .env.production",
-    "start": "nuxt preview --dotenv .env.production",
+    "start": "nuxt start --dotenv .env.production",
     "generate": "nuxt generate --dotenv .env.production",
     "build:staging": "nuxt build --dotenv .env.staging",
     "start:staging": "nuxt preview --dotenv .env.staging",
