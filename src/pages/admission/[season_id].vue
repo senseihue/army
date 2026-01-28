@@ -4,21 +4,33 @@ import {
   useAdmissionService,
   AdmissionModal,
   AdmissionSchoolGrid,
-  useAdmissionApi
+  useAdmissionApi, AdmissionSocialStatusTab
 } from "~/features/admission"
+import { useAdmissionStore } from "~/entities/admission"
 
 definePageMeta({
   fixedHeader: true,
   isLightHeader: true
 })
 
-const { getAdmissionSocialStatusList } = useAdmissionApi()
+const { getAdmissionSocialStatusList, getAdmission } = useAdmissionApi()
 const { getAdmissionSchoolList } = useAdmissionService()
+const admissionStore = useAdmissionStore()
+const {current} = storeToRefs(admissionStore)
 const route = useRoute()
 
+const {data, error} = await useAsyncData<IResponse<IAdmission>>(() => getAdmission(route.params.season_id))
+
+if (error.value) {
+  throw showError(error.value)
+}
+
+const { content } = data.value
+
+current.value = content
 onMounted(() => {
   getAdmissionSocialStatusList({
-    season_id: route.params.season_id as string
+    season_id: route.params.season_id
   })
   getAdmissionSchoolList()
 })
@@ -27,13 +39,9 @@ onMounted(() => {
 <template>
   <div class="bg-[#F1F5F9]">
     <div class="text-zinc-100 antialiased">
-      <admission-hero />
+      <admission-hero :title="content.title" :description="content.description" :image="content.season_type.image_path" />
       <div class="container-7xl p-section">
-        <ui-tabs>
-          <ui-tab label="All Schools" />
-          <ui-tab label="All Schools" />
-          <ui-tab label="All Schools" />
-        </ui-tabs>
+        <admission-social-status-tab class="mb-12 md:mb-20" :social-status="content.social_statuses" />
         <admission-school-grid />
       </div>
       <!--    <home-about />-->

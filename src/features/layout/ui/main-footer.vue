@@ -14,57 +14,63 @@ import LogoWhite from "~/app/assets/svg/logo-white.svg"
 
           <!-- Column 2: Contact Info -->
           <div class="footer__contact">
-            <div class="footer__contact-item">
-              <icon class="footer__icon" name="lucide:home" :size="20" />
+<!--            <div class="footer__contact-item">-->
+<!--              <icon class="footer__icon" name="lucide:home" :size="20" />-->
 
-              <a class="footer__link" href="https://maps.app.goo.gl/427fQ4Q9PMGdm8Wn7" target="_blank">
-                13 Amir Temur Avenue, Tashkent 112330, Uzbekistan
-              </a>
+<!--              <a class="footer__link" href="https://maps.app.goo.gl/427fQ4Q9PMGdm8Wn7" target="_blank">-->
+<!--                13 Amir Temur Avenue, Tashkent 112330, Uzbekistan-->
+<!--              </a>-->
+<!--            </div>-->
+
+            <div class="footer__contact-item">
+              <icon class="footer__icon" name="lucide:phone" :size="20" />
+              <a class="footer__link" href="tel:+998712698019">+998 (71) 269-80-19</a>
             </div>
 
             <div class="footer__contact-item">
               <icon class="footer__icon" name="lucide:phone" :size="20" />
-              <a class="footer__link" href="tel:+9987120201013">+998 (71) 123-02-10</a>
+              <a class="footer__link" href="tel:1530">1530 {{ $t("labels.short_phone_number") }}</a>
+            </div>
+
+<!--            <div class="footer__contact-item">-->
+<!--              <icon class="footer__icon" name="lucide:at-sign" :size="20" />-->
+<!--              <a class="footer__link" href="mailto:uzipa@invest.gov.uz">-->
+<!--                uzipa@invest1.gov.uz -&ndash;&gt;-->
+<!--                <br />-->
+<!--                ({{ $t("labels.investment_related") }})-->
+<!--              </a>-->
+<!--            </div>-->
+<!--            <div class="footer__contact-item">-->
+<!--              <icon class="footer__icon" name="lucide:at-sign" :size="20" />-->
+<!--              <a class="footer__link" href="mailto:info@invest.gov.uz">-->
+<!--                info@invest1.gov.uz -&ndash;&gt;-->
+<!--                <br />-->
+<!--                ({{ $t("labels.official_correspondence") }})-->
+<!--              </a>-->
+<!--            </div>-->
+
+            <div class="footer__contact-item">
+              <icon class="footer__icon" name="tabler:brand-facebook" :size="20" />
+              <a class="footer__link" href="https://www.facebook.com/InvestUZB" target="_blank">Facebook</a>
             </div>
 
             <div class="footer__contact-item">
-              <icon class="footer__icon" name="lucide:phone" :size="20" />
-              <a class="footer__link" href="tel:402">402 {{ $t("labels.office") }}</a>
+              <icon class="footer__icon" name="hugeicons:linkedin-02" :size="20" />
+              <a class="footer__link" href="https://www.linkedin.com/company/investinuzb" target="_blank">Linkedin</a>
             </div>
-
-            <div class="footer__contact-item">
-              <icon class="footer__icon" name="lucide:at-sign" :size="20" />
-              <a class="footer__link" href="mailto:uzipa@invest.gov.uz">
-                uzipa@invest1.gov.uz --->
-                <br />
-                ({{ $t("labels.investment_related") }})
-              </a>
-            </div>
-            <div class="footer__contact-item">
-              <icon class="footer__icon" name="lucide:at-sign" :size="20" />
-              <a class="footer__link" href="mailto:info@invest.gov.uz">
-                info@invest1.gov.uz --->
-                <br />
-                ({{ $t("labels.official_correspondence") }})
-              </a>
-            </div>
-
-            <!--            <div class="footer__contact-item">-->
-            <!--              <icon class="footer__icon" name="tabler:brand-facebook" :size="20" />-->
-            <!--              <a class="footer__link" href="https://www.facebook.com/InvestUZB" target="_blank">Facebook</a>-->
-            <!--            </div>-->
-
-            <!--            <div class="footer__contact-item">-->
-            <!--              <icon class="footer__icon" name="hugeicons:linkedin-02" :size="20" />-->
-            <!--              <a class="footer__link" href="https://www.linkedin.com/company/investinuzb" target="_blank">Linkedin</a>-->
-            <!--            </div>-->
           </div>
 
           <!-- Column 3: Bottom Text -->
-          <div class="footer__text">
-            <p class="text-xs text-white">
-<!--              {{ // $t("description.footer_desc") }}-->
-            </p>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+            <a class="h-12 w-12 cursor-pointer" target="_blank" href="tel:+998712698019">
+              <img class="h-full w-full object-cover" src="/img/layout/pngwing.com (14).png" alt="" />
+            </a>
+            <a class="h-12 w-12 cursor-pointer" target="_blank" href="https://t.me/mudofaa_vacancy">
+              <img class="h-full w-full object-cover" src="/img/layout/pngwing.com (22).png" alt="" />
+            </a>
+            <a class="h-12 w-12 cursor-pointer" target="_blank" href="https://instagram.com/mudofaa__vacancy">
+              <img class="h-full w-full object-cover" src="/img/layout/pngwing.com (23).png" alt="" />
+            </a>
           </div>
         </div>
 

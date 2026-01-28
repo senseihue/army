@@ -1,6 +1,10 @@
 <script lang="ts" setup>
-import {HomeHero} from "~/features/home"
+import { HomeHero } from "~/features/home"
 import { HomeServices } from "~/widgets/home"
+definePageMeta({
+  fixedHeader: true,
+  isLightHeader: true
+})
 </script>
 
 <template>

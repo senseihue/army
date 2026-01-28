@@ -1,1 +1,1 @@
-export { default as DistrictSelect } from './district-select.vue'
+export { default as SpecialitySelect } from "./speciality-select.vue"

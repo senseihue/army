@@ -1,5 +1,5 @@
 import { useAdmissionApi } from "~/features/admission"
-import { useAdmissionSchoolStore, useAdmissionStore } from "~/entities/admission"
+import { Admission, useAdmissionSchoolStore, useAdmissionStore } from "~/entities/admission"
 
 export const useAdmissionService = () => {
   const modal = useModal()
@@ -26,22 +26,27 @@ export const useAdmissionService = () => {
   const getAdmissionSchoolList = async () => {
     const season_id = route.params.season_id
     const social_status_id = route.query.social_status_id
+    admissionSchoolStore.loading = true
 
-    if (!season_id || !social_status_id) return
+    if (!season_id || !social_status_id) {
+      admissionSchoolStore.items = []
+      return (admissionSchoolStore.loading = false)
+    }
     return AdmissionApi.getAdmissionSchoolList({ season_id, social_status_id })
       .then(({ content, pagination }) => {
         admissionSchoolStore.items = content
         admissionSchoolStore.params.total = pagination?.total || 0
         return Promise.resolve(content)
-      })
+      }).finally(() => (admissionSchoolStore.loading = false))
   }
 
-  const saveAdmission = async (dto: Ref<IAdmission>, loading: Ref<boolean>) => {
+  const saveAdmission = async (dto: Ref<Admission>, loading: Ref<boolean>) => {
 
     loading.value = true
     return AdmissionApi.createAdmission(dto.value)
       .then(() => {
         $toast.success(t("messages.success.saved"))
+        dto.value = new Admission()
         modal.hide("admission")
         getAdmissionList()
       })

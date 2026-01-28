@@ -5,6 +5,7 @@ import { useDistrictApi } from "~/features/references/district"
 interface IProps {
   autoSelect?: boolean
   fetchOnOpen?: boolean
+  regionId: number
 }
 
 const props = defineProps<IProps>()
@@ -31,6 +32,13 @@ const { loading, onOpen, onClose, onSearch, options, getOptions } = useSelect<ID
   api: schoolApi.getDistrictList
 })
 
+watch(
+  () => props.regionId,
+  () => {
+    params.value.region_id = props.regionId
+    getOptions()
+  }
+)
 </script>
 
 <template>

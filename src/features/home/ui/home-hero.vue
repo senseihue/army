@@ -1,16 +1,15 @@
 <script setup lang="ts">
+import { HomeHeroSlider } from "~/features/home"
+
 const isLight = ref(false)
 </script>
 
 <template>
-  <section class="relative flex min-h-screen flex-col items-center justify-center px-6 pb-20 pt-24">
-    <video
-      class="absolute inset-0 z-0 h-full w-full object-cover "
-      muted
-      autoplay
-      src="/Untitled 1-1.mp4"
-      @contextmenu.prevent
-    />
+  <section class="relative flex min-h-screen flex-col items-center justify-center bg-black/50 px-6 pb-20 pt-24">
+    <div class="absolute inset-0 z-0 h-full w-full">
+      <div class="bg-black/50 absolute inset-0 z-[2]"></div>
+      <home-hero-slider class="z-[1]" />
+    </div>
     <div class="relative z-10 mx-auto text-center">
       <h1 class="font-display mb-6 text-5xl font-bold tracking-tight md:text-7xl">
         <span class="block text-zinc-100">SADOQAT - MATONAT - INTELLEKT</span>
@@ -19,7 +18,7 @@ const isLight = ref(false)
         <!--        </span>-->
       </h1>
 
-      <p class="mx-auto mb-10 max-w-2xl text-balance text-lg leading-relaxed text-zinc-500 md:text-xl">
+      <p class="mx-auto mb-10 max-w-2xl text-balance text-lg leading-relaxed text-zinc-200 md:text-xl">
         MUDOFAA VAZIRLIGI HARBIY - KASBIY SARALASH BOSHQARMASI
       </p>
 

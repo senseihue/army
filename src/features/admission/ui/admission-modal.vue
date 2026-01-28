@@ -1,41 +1,43 @@
 <script setup lang="ts">
-import { Admission, useAdmissionStore } from "~/entities/admission"
+import { Admission, useAdmissionSchoolStore, useAdmissionStore } from "~/entities/admission"
 import { useAdmissionService } from "~/features/admission"
 import { storeToRefs } from "pinia"
-import { SchoolsSelect } from "~/widgets/references/school"
-import UiSelect from "@vueform/multiselect"
 import { RegionSelect } from "~/widgets/references/region"
 import { DistrictSelect } from "~/widgets/references/district"
 import { LanguageSelect } from "~/widgets/references/language"
-import SpecialitySelect from "~/widgets/references/speciality/speciality-select.vue"
-import { OfferCheckbox } from "~/widgets/references/offer"
+import { SpecialitySelect } from "~/widgets/references/speciality"
 import useAuthCallback from "~/shared/composables/use-auth-callback"
+import { requiredIf } from "@vuelidate/validators"
 
 const { $session, $toast } = useNuxtApp()
 const { profile } = $session || {}
 const modal = useModal()
+const route = useRoute()
 
 const { saveAdmission } = useAdmissionService()
-const admissionStore = useAdmissionStore()
-const { current } = storeToRefs(admissionStore)
-const { required, not, requiredIf } = useRule()
+const admissionSchoolStore = useAdmissionSchoolStore()
+const { current } = storeToRefs(admissionSchoolStore)
+const { required } = useRule()
 
-const specialitySelect = ref(null)
+const _specialitySelect = ref(null)
 const loading = ref(false)
 const form = ref<Admission>(new Admission())
+
+const handleValidationSpeciality = (value: any) => {
+  const options = _specialitySelect.value?.options() || []
+  return !(options && options.length > 0 && !value);
+
+}
 const rules = ref({
-  season_id: { required },
-  social_status_id: { required },
-  offer_accepted: {
-    not: not((value: boolean) => {
-      return !value
-    })
-  },
+  // offer_accepted: {
+  //   not: not((value: boolean) => {
+  //     return !value
+  //   })
+  // },
   test_region_id: { required },
   test_district_id: { required },
   test_language_id: { required },
-  school_id: { required },
-  speciality_id: { required }
+  speciality_id: { requiredIf: handleValidationSpeciality }
 })
 
 const { hasError, vuelidate } = useValidate(form, rules)
@@ -43,7 +45,9 @@ const { hasError, vuelidate } = useValidate(form, rules)
 const { t } = useI18n({ useScope: "local" })
 
 const onShown = () => {
-  form.value.season_id = current.value?.season.id
+  form.value.season_id = Number(route.params.season_id)
+  form.value.school_id = Number(current.value?.id)
+  form.value.social_status_id = Number(route.query.social_status_id)
 }
 
 const submit = async () => {
@@ -51,11 +55,8 @@ const submit = async () => {
   if (valid) {
     await useAuthCallback(
       async () => {
-        const ageValid = await validateAgeRequirement()
-        if (ageValid) {
-          await saveAdmission(form, loading)
-          vuelidate.value.$reset()
-        } else $toast.error("messages.error.age_requirement_not_met")
+        await saveAdmission(form, loading)
+        vuelidate.value.$reset()
       },
       () => {
         $toast.error(t("messages.error.something_went_wrong"))
@@ -75,31 +76,20 @@ const cancel = () => {
   vuelidate.value.$reset()
   modal.hide("admission")
 }
+
+const cleanDistrict = () => {
+  form.value.test_district_id = undefined
+}
 </script>
 
 <template>
-  <ui-modal id="admission" :loading :label="t('labels.send_application')" @shown="onShown">
+  <ui-modal id="admission" :loading :label="t('labels.send_application')" @shown="onShown" @hide="vuelidate.$reset">
     <form class="grid grid-cols-1 gap-4 px-4 py-[15px] md:grid-cols-2" @submit.prevent>
-      <ui-form-group v-bind="hasError('social_status_id')" v-slot="{ id }" :label="t('labels.personal_status')">
-        <ui-select
-          v-model="form.social_status_id"
-          autocomplete="off"
-          append-to-body
-          value-prop="id"
-          label="title"
-          :filter-results="false"
-          :options="current?.season.social_statuses"
-          :id
-        ></ui-select>
-      </ui-form-group>
-      <ui-form-group v-bind="hasError('school_id')" v-slot="{ id }" :label="t('labels.admission_place')">
-        <schools-select v-model="form.school_id" :season-id="form.season_id" :id></schools-select>
-      </ui-form-group>
       <ui-form-group v-bind="hasError('test_region_id')" v-slot="{ id }" :label="t('labels.admission_region')">
-        <region-select v-model="form.test_region_id" :id />
+        <region-select v-model="form.test_region_id" :id @update:model-value="cleanDistrict" />
       </ui-form-group>
-      <ui-form-group v-bind="hasError('test_district_id')" v-slot="{ id }" :label="t('labels.admission_region')">
-        <district-select v-model="form.test_district_id" :id />
+      <ui-form-group v-bind="hasError('test_district_id')" v-slot="{ id }" :label="t('labels.admission_test_district')">
+        <district-select v-model="form.test_district_id" :region-id="form.test_region_id" :id />
       </ui-form-group>
       <ui-form-group v-bind="hasError('test_language_id')" v-slot="{ id }" :label="t('labels.admission_language')">
         <language-select v-model="form.test_language_id" :id />
@@ -107,20 +97,9 @@ const cancel = () => {
       <ui-form-group v-bind="hasError('speciality_id')" v-slot="{ id }" :label="t('labels.speciality')">
         <speciality-select
           v-model="form.speciality_id"
-          ref="specialitySelect"
+          ref="_specialitySelect"
           :school-id="form.school_id"
           :season-id="form.season_id"
-          :id
-        />
-      </ui-form-group>
-      <ui-form-group v-slot="{ id }" class="col-span-full">
-        <offer-checkbox
-          v-model="form.offer_accepted"
-          class="col-span-full"
-          :oferta="current?.season?.offer"
-          :class="{
-            'text-danger-600 dark:text-danger-400': hasError('offer_accepted').invalid
-          }"
           :id
         />
       </ui-form-group>

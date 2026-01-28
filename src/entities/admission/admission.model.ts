@@ -17,13 +17,14 @@ declare global {
     start_date: string;
     offer: IOffer
     end_date: string;
-    social_statuses: SocialStatus[];
+    social_statuses: ISocialStatus[];
     schools: ISchool[];
   }
   interface ISchool {
     id: number;
     school_type_id: number;
     title: string;
+    image_path: string;
     pivot: Pivot2;
     type: Type;
   }
@@ -36,7 +37,7 @@ declare global {
     school_id: number;
     social_status_id: number;
   }
-  interface SocialStatus {
+  interface ISocialStatus {
     id: number;
     title: string;
     pivot: Pivot;
@@ -65,4 +66,5 @@ export class Admission {
   school_id!: number
   speciality_id!: number
   offer_accepted: boolean = false
+
 }

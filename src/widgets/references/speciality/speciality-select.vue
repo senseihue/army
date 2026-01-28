@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import UiSelect from "@vueform/multiselect"
-import { useSpecialityApi, useSpecialityService } from "~/features/references/speciality"
+import { useSpecialityApi } from "~/features/references/speciality"
 
 interface IProps {
   autoSelect?: boolean
@@ -21,10 +21,6 @@ const params = ref<Record<string, any>>({
   page: 1,
   per_page: 20
 })
-
-const getSpecialityList = () => {
-
-}
 
 const map = (value: ISpeciality[]): ISelect[] => value?.map(({ id, title }) => ({ value: id, label: title }))
 
@@ -48,7 +44,7 @@ watch(
 )
 
 defineExpose({
-  options: () => options
+  options: () => options.value
 })
 </script>
 

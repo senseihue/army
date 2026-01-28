@@ -10617,10 +10617,10 @@ vue3-apexcharts@1.6.0:
   resolved "https://registry.yarnpkg.com/vue3-apexcharts/-/vue3-apexcharts-1.6.0.tgz#2ea6eb9acdd3c31cff790b67d6c2bf1b38cc09f6"
   integrity sha512-gemKFXpw4TuVcllwyKJGYjTwiJQxxCUwbXsiiEEZjs0zc9jvOHvreN8frXz7QbnYqMqOHF9D1TBqwENvoPNjLw==
 
-vue3-carousel@^0.15.1:
-  version "0.15.1"
-  resolved "https://registry.yarnpkg.com/vue3-carousel/-/vue3-carousel-0.15.1.tgz#df8ab7e8545730783555007e400a290497404ef2"
-  integrity sha512-nV2ChLZtgAOikmls8WaVe37vO4Wagk4RYawePHIvXrFtduFnQODyzPx8MmXaAb6l+ka72yAi04ZeCyciiyJMyA==
+vue3-carousel@^0.17.0:
+  version "0.17.0"
+  resolved "https://registry.yarnpkg.com/vue3-carousel/-/vue3-carousel-0.17.0.tgz#938c559ff259408d273c0d19c838cc9041212568"
+  integrity sha512-kvb2CRpsEtLGSbiOq/fXfayMJeiwMMjnNSbqWI/Ee7tgfY/ofNanRuhpd7WRVtDdzJY1HvygdLawlBhIyJTM2w==
 
 vue@^3.4, vue@^3.5.14, vue@^3.5.25:
   version "3.5.27"

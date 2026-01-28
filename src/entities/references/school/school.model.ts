@@ -5,6 +5,7 @@ declare global {
         id: number
         school_type_id: ISchoolType['id']
         code: string
+      region: IRegion
         title: string
         alias: string
         status: boolean

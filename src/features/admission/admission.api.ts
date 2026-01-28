@@ -10,7 +10,7 @@ export const useAdmissionApi = () => {
     return $http.$get(`${BASE_URL}/requests/seasons/social-statuses`, { params })
   }
   const getAdmission = (id: number): AsyncResponseContainer<IAdmission> => {
-    return $http.$get(`${BASE_URL}/${id}`)
+    return $http.$get(`${BASE_URL}/requests/seasons/${id}`)
   }
 
   const getAdmissionSchoolList = (params: IAdmissionSchoolParams): AsyncResponseContainer<ISchool[]> => {

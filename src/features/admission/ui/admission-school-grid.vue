@@ -4,13 +4,18 @@ import { useAdmissionSchoolStore } from "~/entities/admission"
 
 const { t } = useI18n({ useScope: "local" })
 const admissionSchoolStore = useAdmissionSchoolStore()
-const { items } = storeToRefs(admissionSchoolStore)
+const { items, loading } = storeToRefs(admissionSchoolStore)
 </script>
 
 <template>
-  <div class="grid grid-cols-1 gap-x-7 gap-y-3 lg:grid-cols-2">
-    <template v-if="items?.length > 0">
-      <admission-school-card v-for="item in 5" :key="item" :admission="items[0]" />
+  <div class="grid grid-cols-1 gap-x-7 gap-y-3 lg:grid-cols-3">
+    <template v-if="loading">
+      <div class="col-span-full grid min-h-96 place-items-center">
+        <ui-spinner size="size-32" />
+      </div>
+    </template>
+    <template v-if="items?.length > 0 && !loading">
+      <admission-school-card v-for="item in items" :key="item.id" :admission-school="item" />
     </template>
     <template v-else>
       <div class="col-span-full py-12 text-center">

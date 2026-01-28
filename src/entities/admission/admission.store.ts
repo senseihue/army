@@ -12,9 +12,11 @@ export const useAdmissionStore = defineStore("admission", () => {
 export const useAdmissionSchoolStore = defineStore("admission-school", () => {
   const list = createListState<ISchool>()
   const params = createListParams({})
+  const current = ref<ISchool>()
+
   const active = ref(0)
 
-  return { ...list, params, active }
+  return { ...list, current, params, active }
 })
 
 
