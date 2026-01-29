@@ -46,7 +46,10 @@ prepare:
     - echo "🚀 Security Check Passed. Streaming image to Production Server..."
     - docker save $DOCKER_IMAGE:$TAG | gzip | ssh -p $SERVER_PORT $EXTERNAL_SERVER "gunzip | docker load"
     
-  allow_failure: true
+ # allow_failure: true
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+      when: manual
 
 delivery_to_prod:
   stage: delivery
