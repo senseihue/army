@@ -1,4 +1,35 @@
 .git
-.gitlab-ci.yml
+.gitignore
+.gitattributes
+
+# /vendor
+# /node_modules
+
+.idea
+.vscode
+.flac
+.DS_Store
+Thumbs.db
+npm-debug.log
+yarn-error.log
+
 Dockerfile
 docker-compose.yml
+docker-compose.*.yml
+.dockerignore
+.gitlab-ci.yml
+
+/public/hot
+/public/storage
+
+# We need the FOLDERS, but not your local LOGS or CACHED VIEWS.
+# This prevents "permission denied" errors and stale cache issues.
+/storage/framework/cache/data/*
+/storage/framework/sessions/*
+/storage/framework/testing/*
+/storage/framework/views/*
+/storage/logs/*
+/bootstrap/cache/*
+
+/tests
+phpunit.xml
