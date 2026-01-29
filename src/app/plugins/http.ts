@@ -19,7 +19,7 @@ export default defineNuxtPlugin(() => {
   const runtimeConfig = useRuntimeConfig()
 
   const options: AxiosRequestConfig = {
-    baseURL: "https://api.army-gov.uz/",
+    baseURL: "/gateway",
     withCredentials: true,
     headers: {
       accept: "*/*",
