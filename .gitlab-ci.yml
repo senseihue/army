@@ -9,16 +9,46 @@ include:
 
 variables:
   DOCKER_IMAGE: "recruit_front"
+  DOCKER_IMAGE_PROD: "front"
 
 stages:
   - build
   - deploy
   - notify
   - cook
+  - delivery
 
 deploy:
   stage: deploy
   extends: .deploy_watcher
 
+delivery_to_prod:
+  stage: delivery
+  extends: .ssh_setup
+  script:
+    - echo "$ENV_PROD" > .env 
+    - echo "🐳 Building $DOCKER_IMAGE:$TAG..."
+    - docker build --build-arg TAG=$TAG -t $DOCKER_IMAGE:$TAG -f Dockerfile .
+
+    - echo "🚀 Streaming image to Production Server..."
+    - docker save $DOCKER_IMAGE:$TAG | gzip | ssh -p $SERVER_PORT $EXTERNAL_SERVER "gunzip | docker load"
+    - |
+        ssh -p $SERVER_PORT $EXTERNAL_SERVER "
+        docker network create hr_net || true &&
+        export DOCKER_IMAGE=$DOCKER_IMAGE &&
+        export TAG=$TAG &&
+        cd /srv/client &&
+        sed -i \"s|image: .*front.*|image: $DOCKER_IMAGE:$TAG|g\" docker-compose.yml &&
+        docker compose -f docker-compose.yml down --remove-orphans || true &&
+        docker compose -f docker-compose.yml up -d &&
+        
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+      when: manual
+  tags:
+    - temppriz
+  environment:
+    name: production
+  needs: ["deploy"]
 
 
