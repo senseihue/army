@@ -16,6 +16,7 @@ stages:
   - deploy
   - notify
   - cook
+  - scan
   - delivery
 
 .ssh_setup:
