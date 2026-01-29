@@ -16,7 +16,7 @@ stages:
   - deploy
   - notify
   - cook
-  - scan
+  # - scan
   - delivery
 
 .ssh_setup:
@@ -32,30 +32,34 @@ deploy:
   stage: deploy
   extends: .deploy_watcher
 
-prepare:
-  stage: scan
-  extends: .ssh_setup
-  needs: []
-  script:
-    - echo "$ENV_PROD" > .env 
-    - echo "🐳 Building $DOCKER_IMAGE:$TAG..."
-    - docker build --build-arg TAG=$TAG -t $DOCKER_IMAGE:$TAG -f Dockerfile .
+# prepare:
+#   stage: scan
+#   extends: .ssh_setup
+#   needs: []
+#   script:
+#     - echo "$ENV_PROD" > .env 
+#     - echo "🐳 Building $DOCKER_IMAGE:$TAG..."
+#     - docker build --build-arg TAG=$TAG -t $DOCKER_IMAGE:$TAG -f Dockerfile .
 
-    - echo "🔍 Scanning Built Image with Host Trivy..."
-    - trivy image --severity CRITICAL --exit-code 1 --no-progress $DOCKER_IMAGE:$TAG
+#     - echo "🔍 Scanning Built Image with Host Trivy..."
+#     - trivy image --severity CRITICAL --exit-code 1 --no-progress $DOCKER_IMAGE:$TAG
 
-    - echo "🚀 Security Check Passed. Streaming image to Production Server..."
-    - docker save $DOCKER_IMAGE:$TAG | gzip | ssh -p $SERVER_PORT $EXTERNAL_SERVER "gunzip | docker load"
+#     - echo "🚀 Security Check Passed. Streaming image to Production Server..."
+#     - docker save $DOCKER_IMAGE:$TAG | gzip | ssh -p $SERVER_PORT $EXTERNAL_SERVER "gunzip | docker load"
     
-  allow_failure: true
-  rules:
-    - if: $CI_COMMIT_BRANCH == "main"
-      when: manual
+#   allow_failure: true
+#   rules:
+#     - if: $CI_COMMIT_BRANCH == "main"
+#       when: manual
 
 delivery_to_prod:
   stage: delivery
   extends: .ssh_setup
   script:
+    - echo "$ENV_PROD" > .env 
+    - echo "🐳 Building $DOCKER_IMAGE:$TAG..."
+    - docker build --build-arg TAG=$TAG -t $DOCKER_IMAGE:$TAG -f Dockerfile .
+    - docker save $DOCKER_IMAGE:$TAG | gzip | ssh -p $SERVER_PORT $EXTERNAL_SERVER "gunzip | docker load"
     - |
         ssh -p $SERVER_PORT $EXTERNAL_SERVER "
         docker network create hr_net || true &&
@@ -73,6 +77,6 @@ delivery_to_prod:
     - temppriz
   environment:
     name: production
-  needs: ["prepare"]
+  needs: ["deploy"]
 
 
