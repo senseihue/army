@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Admission, useAdmissionSchoolStore, useAdmissionStore } from "~/entities/admission"
+import { Admission, useAdmissionSchoolStore } from "~/entities/admission"
 import { useAdmissionService } from "~/features/admission"
 import { storeToRefs } from "pinia"
 import { RegionSelect } from "~/widgets/references/region"
@@ -7,7 +7,6 @@ import { DistrictSelect } from "~/widgets/references/district"
 import { LanguageSelect } from "~/widgets/references/language"
 import { SpecialitySelect } from "~/widgets/references/speciality"
 import useAuthCallback from "~/shared/composables/use-auth-callback"
-import { requiredIf } from "@vuelidate/validators"
 
 const { $session, $toast } = useNuxtApp()
 const { profile } = $session || {}
@@ -25,8 +24,7 @@ const form = ref<Admission>(new Admission())
 
 const handleValidationSpeciality = (value: any) => {
   const options = _specialitySelect.value?.options() || []
-  return !(options && options.length > 0 && !value);
-
+  return !(options && options.length > 0 && !value)
 }
 const rules = ref({
   // offer_accepted: {
@@ -106,8 +104,8 @@ const cleanDistrict = () => {
     </form>
     <template #footer>
       <div class="flex w-full items-center justify-end gap-2 p-4">
-        <ui-button color="secondary" :label="t('cancel')" @click="cancel"></ui-button>
-        <ui-button :label="t('submit')" @click="submit"></ui-button>
+        <ui-button color="secondary" :label="t('actions.cancel')" @click="cancel"></ui-button>
+        <ui-button :label="t('actions.send')" @click="submit"></ui-button>
       </div>
     </template>
   </ui-modal>
@@ -117,13 +115,6 @@ const cleanDistrict = () => {
 
 <i18n>
 {
-  "en": {
-    "submit": "Submit",
-    "title": "Describe the problem",
-    "title_unauthorized": "Please enter your name and email",
-    "next": "Next",
-    "cancel": "Cancel"
-  },
   "ru": {
     "submit": "Отправить",
     "title": "Опишите проблему",
@@ -131,10 +122,13 @@ const cleanDistrict = () => {
     "next": "Далее",
     "cancel": "Отмена"
   },
+  "oz": {
+    "submit": "Юбориш",
+    "next": "Keyingi",
+    "cancel": "Bekor qilish"
+  },
   "uz": {
     "submit": "Yuborish",
-    "title": "Muammoni tasvirlab bering",
-    "title_unauthorized": "Iltimos, ismingizni va elektron pochtangizni kiriting",
     "next": "Keyingi",
     "cancel": "Bekor qilish"
   }

@@ -3,7 +3,13 @@ interface IProps {
   admission: IAdmission
 }
 
-defineProps<IProps>()
+const props = defineProps<IProps>()
+
+const modal = useModal()
+
+const changeRoute = () => {
+  modal.show("offer", props.admission.season.offer)
+}
 </script>
 
 <template>
@@ -30,9 +36,12 @@ defineProps<IProps>()
       </div>
     </div>
     <div class="px-4">
-      <nuxt-link-locale v-if="admission.season" class="inline-block w-full" :to="`/admission/${admission.season?.id}`">
-        <ui-button class="w-full rounded-lg" :label="$t('labels.send_application')" />
-      </nuxt-link-locale>
+      <ui-button
+        v-if="admission.season"
+        class="w-full rounded-lg"
+        :label="$t('labels.send_application')"
+        @click="changeRoute"
+      />
       <ui-button v-else class="w-full rounded-lg" disabled :label="$t('labels.coming_soon')" />
     </div>
   </div>

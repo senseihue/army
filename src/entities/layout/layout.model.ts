@@ -3,6 +3,10 @@ import type { SidebarComponentItem, SidebarHeaderItem, SidebarItem } from "vue-s
 export type SidebarMenuList = Array<SidebarItem | SidebarComponentItem | SidebarHeaderItem>
 
 declare global {
+  interface IModal {
+    offer: IOffer
+  }
+
   interface IHeaderNav {
     label: string
     to?: string
@@ -10,5 +14,11 @@ declare global {
       label: string
       to: string
     }>
+  }
+
+  interface IOffer {
+    file_path: string
+    title: string
+    id: number
   }
 }

@@ -6,9 +6,15 @@ const isLight = ref(false)
 
 <template>
   <section class="relative flex min-h-screen flex-col items-center justify-center bg-black/50 px-6 pb-20 pt-24">
+
     <div class="absolute inset-0 z-0 h-full w-full">
-      <div class="bg-black/50 absolute inset-0 z-[2]"></div>
-      <home-hero-slider class="z-[1]" />
+      <div class="absolute inset-0 z-[2] bg-black/50"></div>
+      <img
+        class="absolute inset-0 z-0 h-full w-full bg-black/50 object-cover"
+        src="/img/home/hf_20260127_122634_8da9a608-cf9e-490c-8727-eaa1bad50bf2.png"
+        alt=""
+        @contextmenu.prevent
+      />
     </div>
     <div class="relative z-10 mx-auto text-center">
       <h1 class="font-display mb-6 text-5xl font-bold tracking-tight md:text-7xl">
