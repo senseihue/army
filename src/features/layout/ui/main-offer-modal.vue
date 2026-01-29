@@ -5,6 +5,11 @@
 
 import useAuthCallback from "~/shared/composables/use-auth-callback"
 
+const { $toast } = useNuxtApp()
+const { t } = useI18n()
+const router = useRouter()
+const localePath = useLocalePath()
+
 const VuePdfEmbed = defineAsyncComponent(() => import("vue-pdf-embed"))
 const containerRef = ref(null)
 const offer = ref<IOffer | null>(null)
@@ -28,12 +33,11 @@ const cancel = () => {
   onHide()
 }
 
-const submit = () => {
+const submit = async () => {
   if (enableSubmit.value) {
     await useAuthCallback(
       async () => {
-        await saveAdmission(form, loading)
-        vuelidate.value.$reset()
+        router.push(localePath('/admission/1'))
       },
       () => {
         $toast.error(t("messages.error.something_went_wrong"))
