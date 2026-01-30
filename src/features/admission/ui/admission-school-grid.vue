@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { AdmissionSchoolCard } from "~/features/admission"
+import { AdmissionSchoolCard, useAdmissionService } from "~/features/admission"
 import { useAdmissionSchoolStore } from "~/entities/admission"
 
 const { t } = useI18n({ useScope: "local" })
 const admissionSchoolStore = useAdmissionSchoolStore()
-const { items, loading } = storeToRefs(admissionSchoolStore)
+const { items, loading, params } = storeToRefs(admissionSchoolStore)
+const { getAdmissionSchoolList } = useAdmissionService()
 </script>
 
 <template>
@@ -16,6 +17,9 @@ const { items, loading } = storeToRefs(admissionSchoolStore)
     </template>
     <template v-if="items?.length > 0 && !loading">
       <admission-school-card v-for="item in items" :key="item.id" :admission-school="item" />
+      <div class="col-span-full mt-8 flex justify-center">
+        <ui-pagination v-model="params.page" :total="params.total" @change="getAdmissionSchoolList" />
+      </div>
     </template>
     <template v-else>
       <div class="col-span-full py-12 text-center">

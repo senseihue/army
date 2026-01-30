@@ -6,7 +6,8 @@ import {
   MainHeaderNav,
   MainHeaderNavMenu,
   MainHeaderMenu,
-  MainHeaderMenuToggle
+  MainHeaderMenuToggle,
+  MainHeaderLanguage
 } from "~/features/layout"
 import { AuthProfileButtonGroup } from "~/widgets/auth"
 
@@ -27,8 +28,10 @@ const isLight = computed(() => route?.meta?.isLightHeader === true)
         <main-header-nav :is-light="isLight" />
 
         <auth-profile-button-group :is-light="isLight" />
+        <main-header-language />
+        <!--        <main-theme-switcher />-->
 
-      <!--        <main-header-menu-toggle />-->
+        <!--        <main-header-menu-toggle />-->
       </div>
 
       <!--        <main-header-alert />-->
@@ -52,7 +55,6 @@ const isLight = computed(() => route?.meta?.isLightHeader === true)
   }
   &__inner {
     @apply mx-auto flex h-12 items-center justify-between rounded-full border border-zinc-800/50 bg-zinc-900/70 px-6 backdrop-blur-md;
-
   }
 
   &__wrapper {

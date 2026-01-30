@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useAdmissionSchoolStore } from "~/entities/admission"
+import { useAdmissionSchoolStore, useAdmissionStore } from "~/entities/admission"
 import { storeToRefs } from "pinia"
 
 interface IProps {
@@ -7,18 +7,40 @@ interface IProps {
 }
 
 const props = defineProps<IProps>()
-const { getCdnUrl } = cdn()
 defineEmits<{
   (e: "edit"): void
 }>()
 
+const { $session } = useNuxtApp()
+
+const { getCdnUrl } = cdn()
+const route = useRoute()
 const modal = useModal()
+const admissionStore = useAdmissionStore()
 const admissionSchoolStore = useAdmissionSchoolStore()
 const { current } = storeToRefs(admissionSchoolStore)
+const { current: season } = storeToRefs(admissionStore)
+const { profile } = $session || {}
 
-const showAdmissionSchoolModal = () => {
+const showAdmissionSchoolModal = async () => {
+  const valid = await validateAgeRequirement()
+  if (!valid) {
+    modal.show("error-modal", {
+      title: "messages.error.age_restriction",
+      message: "messages.error.age_restriction_description"
+    })
+    return
+  }
   current.value = props.admissionSchool
   modal.show("admission", props.admissionSchool)
+}
+
+const validateAgeRequirement = async () => {
+  const socialStatus = season.value?.social_statuses.find(({ id }) => id === Number(route.query.social_status_id))
+  console.log(socialStatus, season.value, profile.value)
+  if (!socialStatus) return Promise.resolve(false)
+  const age = new Date().getFullYear() - new Date(profile.value?.person.birth_date).getFullYear()
+  return Promise.resolve(age >= socialStatus.pivot.age_min && age <= socialStatus.pivot.age_max)
 }
 </script>
 
@@ -32,7 +54,7 @@ const showAdmissionSchoolModal = () => {
           'object-cover': admissionSchool.image_path,
           'bg-black/35 object-contain': !admissionSchool.image_path
         }"
-        :src="admissionSchool.image_path ? getCdnUrl(admissionSchool.image_path) : '/img/admission/rekruting-logo.png'"
+        :src="getCdnUrl(admissionSchool.image_path)"
       />
     </div>
 

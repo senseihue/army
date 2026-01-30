@@ -43,13 +43,13 @@ export const useAuthService = () => {
           try {
             const url = new URL(state)
             url.searchParams.append("token", content.token)
-            location.replace(url)
+            // location.replace(url)
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
           } catch (error: any) {
-            navigateTo(localePath("/"))
+            // navigateTo(localePath("/"))
           }
         } else {
-          navigateTo(localePath("/"))
+          // navigateTo(localePath("/"))
         }
       })
       .catch(() => {

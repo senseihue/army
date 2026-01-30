@@ -50,11 +50,7 @@ onMounted(() => {
 <template>
   <div class="bg-[#F1F5F9]">
     <div class="text-zinc-100 antialiased">
-      <admission-hero
-        :title="content.title"
-        :description="content.description"
-        :image="content.season_type.image_path"
-      />
+      <admission-hero :title="content.title" :description="content.descrip" :image="content.season_type.image_path" />
       <div class="container-7xl p-section">
         <admission-social-status-tab class="mb-12 md:mb-20" :social-status="content.social_statuses" />
         <admission-school-grid />

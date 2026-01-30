@@ -56,23 +56,23 @@ const onShown = () => {
 const submit = async () => {
   const valid = await vuelidate.value.$validate()
   if (valid) {
+    if (items.value.length < 1) {
+      modal.show("error-modal", {
+        title: t("messages.error.education_requirement"),
+        message: t("messages.error.education_requirement_description")
+      })
+      return
+    }
     await useAuthCallback(
       async () => {
         await saveAdmission(form, loading)
         vuelidate.value.$reset()
       },
       () => {
-        $toast.error(t("messages.error.something_went_wrong"))
+        $toast.error(t("messages.error.age_restriction"))
       }
     )
   }
-}
-
-const validateAgeRequirement = async () => {
-  const socialStatus = current.value?.season.social_statuses.find((status) => status.id === form.value.social_status_id)
-  if (!socialStatus) return Promise.reject(false)
-  const age = new Date().getFullYear() - new Date(profile.value?.person.birth_date).getFullYear()
-  return Promise.resolve(age >= socialStatus.pivot.age_min && age <= socialStatus.pivot.age_max)
 }
 
 const cancel = () => {

@@ -1,6 +1,6 @@
 declare global {
   interface IModal {
-    "admission": IAdmission
+    admission: IAdmission
   }
 
   interface IAdmission {
@@ -9,52 +9,66 @@ declare global {
     description: string
     image_path: string
     season: ISeason
-  }
-  interface ISeason {
-    id: number;
-    season_type_id: number;
-    title: string;
-    start_date: string;
+    season_type_id: number
+    offer_id: number
+    descrip?: any
+    start_date: string
+    end_date: string
     offer: IOffer
-    end_date: string;
-    social_statuses: ISocialStatus[];
-    schools: ISchool[];
+    season_type: ISeasontype
+    social_statuses: ISocialStatus[]
+  }
+
+  interface ISeasontype {
+    id: number
+    title: string
+    descrip?: any
+    image_path: string
+  }
+
+  interface ISeason {
+    id: number
+    season_type_id: number
+    title: string
+    start_date: string
+    offer: IOffer
+    end_date: string
+    social_statuses: ISocialStatus[]
+    schools: ISchool[]
   }
   interface ISchool {
-    id: number;
-    school_type_id: number;
-    title: string;
-    image_path: string;
-    pivot: Pivot2;
-    type: Type;
+    id: number
+    school_type_id: number
+    title: string
+    image_path: string
+    pivot: Pivot2
+    type: Type
   }
   interface Type {
-    id: number;
-    title: string;
+    id: number
+    title: string
   }
   interface Pivot2 {
-    season_id: number;
-    school_id: number;
-    social_status_id: number;
+    season_id: number
+    school_id: number
+    social_status_id: number
   }
   interface ISocialStatus {
-    id: number;
-    title: string;
-    pivot: Pivot;
+    id: number
+    title: string
+    pivot: Pivot
   }
   interface Pivot {
-    season_id: number;
-    social_status_id: number;
-    age_min: number;
-    age_max: number;
+    season_id: number
+    social_status_id: number
+    age_min: number
+    age_max: number
   }
 
   interface IAdmissionSchoolParams extends IStoreListParams {
     season_id: number
     social_status_id: number
   }
-
-
 }
 
 export class Admission {
@@ -66,5 +80,4 @@ export class Admission {
   school_id!: number
   speciality_id!: number
   offer_accepted: boolean = false
-
 }

@@ -1,3 +1,2 @@
-export { default as EducationCard } from "./education-card.vue"
-export { default as EducationGrid } from "./education-grid.vue"
-export { default as EducationModal } from "./education-modal.vue"
+export { default as RequestCard } from "./request-card.vue"
+export { default as RequestGrid } from "./request-grid.vue"

@@ -35,7 +35,7 @@ const submit = async () => {
   if (enableSubmit.value) {
     await useAuthCallback(
       () => {
-        router.push(localePath(`/admission/${season.value.id}`))
+        router.push(localePath(`/admission/${season.value?.id}`))
         cancel()
       },
       () => {

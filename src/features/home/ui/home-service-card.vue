@@ -5,6 +5,7 @@ interface IProps {
 
 const props = defineProps<IProps>()
 
+const { getCdnUrl } = cdn()
 const modal = useModal()
 
 const changeRoute = () => {
@@ -21,7 +22,7 @@ const changeRoute = () => {
         <img
           class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
           :alt="admission.title"
-          :src="admission.image_path"
+          :src="getCdnUrl(admission.image_path)"
         />
       </div>
       <div

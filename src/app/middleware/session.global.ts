@@ -1,12 +1,13 @@
 export default defineNuxtRouteMiddleware(async (to) => {
   const { $session } = useNuxtApp()
   const { loading } = $session || {}
+  const config = useRuntimeConfig()
 
   const getProfile = async () => {
     loading.value = true
 
     try {
-      const { content } = await $fetch<IResponse<ISignInResponse>>("/gateway/api/auth/user", {
+      const { content } = await $fetch<IResponse<ISignInResponse>>(`${config.public.apiUrl}/api/auth/user`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${$session.token.value}`

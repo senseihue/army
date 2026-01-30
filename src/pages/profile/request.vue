@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ProfileHeader } from "~/features/profile"
-import { EducationGrid, useEducationService } from "~/features/profile/education"
-import { useEducationStore } from "~/entities/profile/education"
+import { RequestGrid, useRequestService } from "~/features/profile/request"
+import { useRequestStore } from "~/entities/profile/request"
 import { UiLoader } from "~/widgets/loader"
 
 definePageMeta({
@@ -10,13 +10,13 @@ definePageMeta({
   isLightHeader: true
 })
 
-const { getEducationList } = useEducationService()
-const { params, loading } = useEducationStore()
+const { getRequestList } = useRequestService()
+const { params, loading } = useRequestStore()
 
 const modal = useModal()
 
 const get = async () => {
-  await getEducationList()
+  await getRequestList()
 }
 
 onMounted(() => {
@@ -26,9 +26,9 @@ onMounted(() => {
 
 <template>
   <div class="flex w-full flex-col gap-4">
-    <profile-header icon-name="lucide:briefcase" :title="$t('nav.profile.education')" @refresh="get">
+    <profile-header icon-name="lucide:briefcase" :title="$t('nav.profile.request')" @refresh="get">
       <template #action>
-        <ui-button class="rounded-xl" color="secondary" variant="flat" @click="modal.show('education')">
+        <ui-button class="rounded-xl" color="secondary" variant="flat" @click="modal.show('request')">
           <span>{{ $t("actions.add") }}</span>
           <icon name="lucide:plus" />
         </ui-button>
@@ -37,12 +37,12 @@ onMounted(() => {
     <div class="mt-2 grid w-full gap-4 rounded-2xl bg-white p-4">
       <ui-loader v-if="loading" />
       <template v-else>
-        <education-grid />
+        <request-grid />
         <ui-pagination
           v-model="params.page"
           :total="params.total"
           :per-page="params.per_page"
-          @update:model-value="getEducationList"
+          @update:model-value="getRequestList"
         />
       </template>
     </div>

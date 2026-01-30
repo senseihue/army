@@ -2,11 +2,13 @@
 import { HomeHeroSlider } from "~/features/home"
 
 const isLight = ref(false)
+
+const { t } = useI18n({ useScope: "local" })
 </script>
 
 <template>
-  <section class="relative flex min-h-screen flex-col items-center justify-center bg-black/50 px-6 pb-20 pt-24">
-
+  <section class="relative flex min-h-[90vh] flex-col items-center justify-end bg-black/50 px-6 pb-12 pt-24">
+    <ui-ticker class="z-10"></ui-ticker>
     <div class="absolute inset-0 z-0 h-full w-full">
       <div class="absolute inset-0 z-[2] bg-black/50"></div>
       <img
@@ -17,29 +19,32 @@ const isLight = ref(false)
       />
     </div>
     <div class="relative z-10 mx-auto text-center">
-      <h1 class="font-display mb-6 text-5xl font-bold tracking-tight md:text-7xl">
-        <span class="block text-zinc-100">SADOQAT - MATONAT - INTELLEKT</span>
-        <!--        <span class="bg-gradient-to-r from-zinc-500 via-zinc-300 to-zinc-500 bg-clip-text text-transparent">-->
-        <!--          Ship smarter.-->
-        <!--        </span>-->
+      <h1 class="font-display mb-6 text-lg font-bold tracking-tight md:text-[2.5rem]">
+        <span class="block text-zinc-100">
+          {{ t("title") }}
+        </span>
       </h1>
 
-      <p class="mx-auto mb-10 max-w-2xl text-balance text-lg leading-relaxed text-zinc-200 md:text-xl">
-        MUDOFAA VAZIRLIGI HARBIY - KASBIY SARALASH BOSHQARMASI
+      <p class="mx-auto max-w-2xl text-balance text-lg leading-relaxed text-zinc-200 md:text-xl">
+        {{ t("description") }}
       </p>
-
-      <div class="flex flex-col items-center justify-center gap-4 sm:flex-row">
-        <nuxt-link-locale
-          class="group transition-transform duration-300 hover:scale-105 active:scale-95"
-          to="/#services"
-        >
-          <ui-button
-            class="ml-2 rounded-full !bg-zinc-100 px-4 py-1.5 text-sm font-medium !text-zinc-900 transition-colors hover:!bg-zinc-200"
-            rounded
-            :label="$t('labels.send_application')"
-          />
-        </nuxt-link-locale>
-      </div>
     </div>
   </section>
 </template>
+
+<i18n>
+{
+  "uz": {
+    "title": "ҲАРБИЙ ХИЗМАТ – БУРЧ, ШАРАФ ВА БАРҚАРОР КЕЛАЖАК!",
+    "description": "ЎЗБЕКИСТОН РЕСПУБЛИКАСИ МУДОФАА ВАЗИРЛИГИ ҲАРБИЙ - КАСБИЙ САРАЛАШ БОШҚАРМАСИ"
+  },
+  "ru": {
+    "title": "ВОЕННАЯ СЛУЖБА-ДОЛГ, ЧЕСТЬ И СТАБИЛЬНОЕ БУДУЩЕЕ!",
+    "description": "УПРАВЛЕНИЕ ВОЕННО-ПРОФЕССИОНАЛЬНОГО ОТБОРА МИНИСТЕРСТВА ОБОРОНЫ РЕСПУБЛИКИ УЗБЕКИСТАН"
+  },
+  "oz": {
+    "title": "HARBIY XIZMAT – BURCH, SHARAF VA BARQAROR KELAJAK!",
+    "description": "O‘ZBEKISTON RESPUBLIKASI MUDOFAA VAZIRLIGI HARBIY - KASBIY SARALASH BOSHQARMASI"
+  }
+}
+</i18n>

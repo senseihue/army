@@ -64,7 +64,9 @@ export default defineNuxtConfig({
   ],
 
   routeRules: {
-    "/gateway/**": { proxy: process.env.APP_API_URL }
+    "/gateway/**": { proxy: process.env.APP_API_URL },
+    "/cdn/**": { proxy: process.env.APP_API_URL },
+    "/cdn2/**": { proxy: process.env.APP_ADMIN_URL }
   },
 
   modules: [

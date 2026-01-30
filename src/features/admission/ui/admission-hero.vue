@@ -6,18 +6,20 @@ interface IProps {
 }
 
 defineProps<IProps>()
+
+const { getCdnUrl } = cdn()
 </script>
 
 <template>
-  <section class="relative flex min-h-[50%] flex-col items-center justify-center px-6 pb-20 pt-24 bg-black/35">
+  <section class="relative flex min-h-[50%] flex-col items-center justify-center bg-black/35 px-6 pb-20 pt-24">
     <img
       class="absolute inset-0 z-0 h-full w-full opacity-50"
       :class="{
         'object-cover': image,
-        'object-contain': !image,
+        'object-contain': !image
       }"
       :alt="title"
-      :src="image ? `/cdn/${image}` : '/img/admission/rekruting-logo.png'"
+      :src="getCdnUrl(image)"
     />
     <div class="relative z-10 mx-auto max-w-3xl text-center">
       <h1 class="font-display mb-6 text-5xl font-bold tracking-tight md:text-7xl">

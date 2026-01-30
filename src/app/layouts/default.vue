@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { MainFooter, MainHeader, MainOfferModal } from "~/features/layout"
+import { MainErrorModal, MainFooter, MainHeader, MainOfferModal } from "~/features/layout"
 import { AuthErrorModal } from "~/entities/auth/ui"
 import { AuthRoleSelectModal } from "~/features/auth"
 import { EducationModal } from "~/features/profile/education"
@@ -24,6 +24,7 @@ import { EducationModal } from "~/features/profile/education"
 
     <auth-error-modal />
     <main-offer-modal />
+    <main-error-modal />
     <education-modal />
   </div>
 </template>

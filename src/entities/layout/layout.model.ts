@@ -4,7 +4,11 @@ export type SidebarMenuList = Array<SidebarItem | SidebarComponentItem | Sidebar
 
 declare global {
   interface IModal {
-    offer: IOffer
+    "offer": IOffer
+    "error-modal": {
+      title: string
+      message: string
+    }
   }
 
   interface IHeaderNav {

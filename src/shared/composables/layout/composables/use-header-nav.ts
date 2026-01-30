@@ -9,15 +9,15 @@ export const useHeaderNav = () => {
       },
       {
         label: t("nav.about.label"),
-        to: "/about-us",
+        to: "/https://gov.uz/oz/mudofaa/pages/about",
         dropdown: [
           {
             label: t("nav.about.label"),
-            to: "/about-us"
+            to: "https://gov.uz/oz/mudofaa/pages/about"
           },
           {
             label: t("nav.about.leadership"),
-            to: "/leadership"
+            to: "https://gov.uz/oz/mudofaa/guides"
           }
         ]
       },

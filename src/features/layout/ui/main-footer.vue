@@ -14,13 +14,13 @@ import LogoWhite from "~/app/assets/svg/logo-white.svg"
 
           <!-- Column 2: Contact Info -->
           <div class="footer__contact">
-<!--            <div class="footer__contact-item">-->
-<!--              <icon class="footer__icon" name="lucide:home" :size="20" />-->
+            <!--            <div class="footer__contact-item">-->
+            <!--              <icon class="footer__icon" name="lucide:home" :size="20" />-->
 
-<!--              <a class="footer__link" href="https://maps.app.goo.gl/427fQ4Q9PMGdm8Wn7" target="_blank">-->
-<!--                13 Amir Temur Avenue, Tashkent 112330, Uzbekistan-->
-<!--              </a>-->
-<!--            </div>-->
+            <!--              <a class="footer__link" href="https://maps.app.goo.gl/427fQ4Q9PMGdm8Wn7" target="_blank">-->
+            <!--                13 Amir Temur Avenue, Tashkent 112330, Uzbekistan-->
+            <!--              </a>-->
+            <!--            </div>-->
 
             <div class="footer__contact-item">
               <icon class="footer__icon" name="lucide:phone" :size="20" />
@@ -32,32 +32,32 @@ import LogoWhite from "~/app/assets/svg/logo-white.svg"
               <a class="footer__link" href="tel:1530">1530 {{ $t("labels.short_phone_number") }}</a>
             </div>
 
-<!--            <div class="footer__contact-item">-->
-<!--              <icon class="footer__icon" name="lucide:at-sign" :size="20" />-->
-<!--              <a class="footer__link" href="mailto:uzipa@invest.gov.uz">-->
-<!--                uzipa@invest1.gov.uz -&ndash;&gt;-->
-<!--                <br />-->
-<!--                ({{ $t("labels.investment_related") }})-->
-<!--              </a>-->
-<!--            </div>-->
-<!--            <div class="footer__contact-item">-->
-<!--              <icon class="footer__icon" name="lucide:at-sign" :size="20" />-->
-<!--              <a class="footer__link" href="mailto:info@invest.gov.uz">-->
-<!--                info@invest1.gov.uz -&ndash;&gt;-->
-<!--                <br />-->
-<!--                ({{ $t("labels.official_correspondence") }})-->
-<!--              </a>-->
-<!--            </div>-->
+            <!--            <div class="footer__contact-item">-->
+            <!--              <icon class="footer__icon" name="lucide:at-sign" :size="20" />-->
+            <!--              <a class="footer__link" href="mailto:uzipa@invest.gov.uz">-->
+            <!--                uzipa@invest1.gov.uz -&ndash;&gt;-->
+            <!--                <br />-->
+            <!--                ({{ $t("labels.investment_related") }})-->
+            <!--              </a>-->
+            <!--            </div>-->
+            <!--            <div class="footer__contact-item">-->
+            <!--              <icon class="footer__icon" name="lucide:at-sign" :size="20" />-->
+            <!--              <a class="footer__link" href="mailto:info@invest.gov.uz">-->
+            <!--                info@invest1.gov.uz -&ndash;&gt;-->
+            <!--                <br />-->
+            <!--                ({{ $t("labels.official_correspondence") }})-->
+            <!--              </a>-->
+            <!--            </div>-->
 
-            <div class="footer__contact-item">
-              <icon class="footer__icon" name="tabler:brand-facebook" :size="20" />
-              <a class="footer__link" href="https://www.facebook.com/InvestUZB" target="_blank">Facebook</a>
-            </div>
+            <!--            <div class="footer__contact-item">-->
+            <!--              <icon class="footer__icon" name="tabler:brand-facebook" :size="20" />-->
+            <!--              <a class="footer__link" href="https://www.facebook.com/InvestUZB" target="_blank">Facebook</a>-->
+            <!--            </div>-->
 
-            <div class="footer__contact-item">
-              <icon class="footer__icon" name="hugeicons:linkedin-02" :size="20" />
-              <a class="footer__link" href="https://www.linkedin.com/company/investinuzb" target="_blank">Linkedin</a>
-            </div>
+            <!--            <div class="footer__contact-item">-->
+            <!--              <icon class="footer__icon" name="hugeicons:linkedin-02" :size="20" />-->
+            <!--              <a class="footer__link" href="https://www.linkedin.com/company/investinuzb" target="_blank">Linkedin</a>-->
+            <!--            </div>-->
           </div>
 
           <!-- Column 3: Bottom Text -->
