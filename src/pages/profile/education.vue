@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ProfileHeader } from "~/features/profile"
-import { EducationModal, EducationGrid, useEducationService, EducationCard } from "~/features/profile/education"
+import { EducationModal, EducationGrid, useEducationService } from "~/features/profile/education"
 import { useEducationStore } from "~/entities/profile/education"
 import { UiLoader } from "~/widgets/loader"
 
@@ -14,46 +14,6 @@ const { getEducationList } = useEducationService()
 const { params, loading } = useEducationStore()
 
 const modal = useModal()
-const activeService = ref<IEducation | null>(null)
-const categories = computed(() => [
-  {
-    type: "my_company",
-    title: t("services.my_company"),
-    icon: "mynaui:briefcase"
-  },
-
-  {
-    type: "infrastructure",
-    title: t("services.infrastructure"),
-    icon: "lucide:cpu"
-  },
-  {
-    type: "license",
-    title: t("services.licenses"),
-    icon: "hugeicons:note"
-  },
-  {
-    type: "foreign_economic_activity",
-    title: t("services.foreign_economic_activity"),
-    icon: "bitcoin-icons:exchange-filled"
-  },
-  {
-    type: "tax_information",
-    title: t("services.tax_information"),
-    icon: "heroicons-solid:receipt-tax"
-  },
-  {
-    type: "economic_operations",
-    title: t("services.economic_operations"),
-    icon: "heroicons-solid:receipt-tax"
-  },
-  {
-    type: "others",
-    title: t("services.others"),
-    icon: "heroicons-solid:receipt-tax"
-  }
-])
-
 const get = async () => {
   await getEducationList()
 }
@@ -85,7 +45,6 @@ onMounted(() => {
         />
       </template>
 
-      <education-modal />
     </div>
   </div>
 </template>

@@ -8,7 +8,7 @@ const props = defineProps<IProps>()
 const modal = useModal()
 
 const changeRoute = () => {
-  modal.show("offer", props.admission.season.offer)
+  modal.show("offer", props.admission.season)
 }
 </script>
 

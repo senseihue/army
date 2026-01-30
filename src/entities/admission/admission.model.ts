@@ -8,9 +8,9 @@ declare global {
     title: string
     description: string
     image_path: string
-    season: Season
+    season: ISeason
   }
-  interface Season {
+  interface ISeason {
     id: number;
     season_type_id: number;
     title: string;

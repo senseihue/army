@@ -7,6 +7,7 @@ interface IProps {
 }
 
 const props = defineProps<IProps>()
+const { getCdnUrl } = cdn()
 defineEmits<{
   (e: "edit"): void
 }>()
@@ -31,7 +32,7 @@ const showAdmissionSchoolModal = () => {
           'object-cover': admissionSchool.image_path,
           'bg-black/35 object-contain': !admissionSchool.image_path
         }"
-        :src="admissionSchool.image_path ? `/cdn/${admissionSchool.image_path}` : '/img/admission/rekruting-logo.png'"
+        :src="admissionSchool.image_path ? getCdnUrl(admissionSchool.image_path) : '/img/admission/rekruting-logo.png'"
       />
     </div>
 

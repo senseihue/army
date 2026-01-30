@@ -7,11 +7,16 @@ import { DistrictSelect } from "~/widgets/references/district"
 import { LanguageSelect } from "~/widgets/references/language"
 import { SpecialitySelect } from "~/widgets/references/speciality"
 import useAuthCallback from "~/shared/composables/use-auth-callback"
+import { useEducationStore } from "~/entities/profile/education"
 
 const { $session, $toast } = useNuxtApp()
 const { profile } = $session || {}
 const modal = useModal()
 const route = useRoute()
+
+const educationStore = useEducationStore()
+
+const { items } = storeToRefs(educationStore)
 
 const { saveAdmission } = useAdmissionService()
 const admissionSchoolStore = useAdmissionSchoolStore()
@@ -101,6 +106,10 @@ const cleanDistrict = () => {
           :id
         />
       </ui-form-group>
+      <div v-if="items?.length < 1" class="col-span-full mt-2 flex flex-col items-center gap-4">
+        <p>{{ t("labels.empty_education") }}</p>
+        <ui-button icon-name="lucide:plus" :label="$t('actions.add')" @click="modal.show('education')"></ui-button>
+      </div>
     </form>
     <template #footer>
       <div class="flex w-full items-center justify-end gap-2 p-4">

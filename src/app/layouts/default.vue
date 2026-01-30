@@ -2,6 +2,7 @@
 import { MainFooter, MainHeader, MainOfferModal } from "~/features/layout"
 import { AuthErrorModal } from "~/entities/auth/ui"
 import { AuthRoleSelectModal } from "~/features/auth"
+import { EducationModal } from "~/features/profile/education"
 </script>
 
 <template>
@@ -23,5 +24,6 @@ import { AuthRoleSelectModal } from "~/features/auth"
 
     <auth-error-modal />
     <main-offer-modal />
+    <education-modal />
   </div>
 </template>
